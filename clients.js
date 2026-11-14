@@ -16,31 +16,31 @@
 window.CLIENTS = {
   "gleb": {
     "slug": "gleb",
-    "brandTag": "EVIDENCE-BASED COACHING",
+    "brandTag": "ОНЛАЙН-КЛУБ & НАСТАВНИЧЕСТВО",
     "location": "ОНЛАЙН // СНГ & МИР",
     "name": "ГЛЕБ МАТВЕЙЧУК",
     "firstName": "ГЛЕБ",
     "lastName": "МАТВЕЙЧУК",
-    "tagline": "HYPERTROPHY & NUTRITION COACH",
-    "spec": "РЕКОМПОЗИЦИЯ ТЕЛА БЕЗ СРЫВОВ И ГОЛОДА",
+    "tagline": "АВТОР КЛУБА И НАСТАВНИК ПО ТРАНСФОРМАЦИИ",
+    "spec": "ТЕЛО И ФОРМА ВАШЕЙ МЕЧТЫ БЕЗ СРЫВОВ И ГОЛОДА",
     "heroImage": "/images/gleb-hero.jpg",
-    "accentColor": "#00F0FF",
-    "accentDim": "rgba(0, 240, 255, 0.12)",
-    "accentGlow": "rgba(0, 240, 255, 0.40)",
+    "accentColor": "#FF6B00",
+    "accentDim": "rgba(255, 107, 0, 0.12)",
+    "accentGlow": "rgba(255, 107, 0, 0.42)",
     "telegramUsername": "gleb_matveychukfit",
-    "scarcityBadge": "ОТБОР НА ВЕДЕНИЕ: СВОБОДНО 2 МЕСТА",
+    "scarcityBadge": "ОТБОР В КЛУБ: СВОБОДНО 2 МЕСТА",
     "stats": [
       {
-        "label": "ОПЫТ",
+        "label": "ЛЕТ ОПЫТА",
         "value": "05+"
       },
       {
-        "label": "АТЛЕТОВ",
+        "label": "ПОДОПЕЧНЫХ",
         "value": "180+"
       },
       {
-        "label": "ЧИТАТЕЛЕЙ",
-        "value": "2.1K"
+        "label": "РЕЗУЛЬТАТ",
+        "value": "100%"
       }
     ],
     "cases": [

@@ -1,0 +1,526 @@
+/* ==========================================================================
+   FITNESS CLUB THEME (Inspired by sorryunot.ru "Клуб для себяшники")
+   Warm Charcoal + Tangerine Orange + Geometric Rounded Pill Aesthetic
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --orange-primary: #FF6B00;
+  --orange-hover: #FF7D1A;
+  --orange-glow: rgba(255, 107, 0, 0.40);
+  --orange-dim: rgba(255, 107, 0, 0.12);
+  --charcoal-bg: #101114;
+  --charcoal-surface: #17181D;
+  --charcoal-card: #1D1E24;
+  --charcoal-elevated: #24252D;
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-orange: rgba(255, 107, 0, 0.35);
+  --radius-card: 28px;
+  --radius-pill: 9999px;
+}
+
+/* ==========================================================================
+   1. GLOBAL STYLES & ATMOSPHERE
+   ========================================================================== */
+body {
+  background-color: var(--charcoal-bg) !important;
+  color: #F4F4F6 !important;
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, sans-serif !important;
+  overflow-x: hidden !important;
+  position: relative;
+  background-image: 
+    radial-gradient(circle at 85% 12%, rgba(255, 107, 0, 0.15) 0%, transparent 45%),
+    radial-gradient(circle at 10% 45%, rgba(255, 85, 0, 0.10) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(255, 107, 0, 0.12) 0%, transparent 45%),
+    radial-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px) !important;
+  background-size: 100% 100%, 100% 100%, 100% 100%, 28px 28px !important;
+}
+
+/* Hide all brutalist tattoo corner brackets */
+.border-t-2.border-r-2,
+.border-b-2.border-l-2,
+[class*="border-t-2"][class*="border-r-2"],
+[class*="border-b-2"][class*="border-l-2"] {
+  display: none !important;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--charcoal-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 9999px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--orange-primary);
+}
+
+/* ==========================================================================
+   2. TYPOGRAPHY (Replace brutalist Anton with modern confident Montserrat)
+   ========================================================================== */
+h1, h2, h3, .font-display {
+  font-family: 'Montserrat', 'Plus Jakarta Sans', sans-serif !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.02em !important;
+  text-transform: none !important;
+}
+
+.font-tech {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.03em !important;
+}
+
+.font-sans {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif !important;
+}
+
+/* ==========================================================================
+   3. STICKERS & BADGES (The Signature Sorryunot Style)
+   ========================================================================== */
+/* Scalloped / Starburst Sticker */
+.sticker-starburst {
+  position: absolute;
+  top: 15px;
+  right: calc(50% - 460px);
+  background: #FFFFFF;
+  color: #0A0A0C;
+  padding: 10px 18px;
+  border-radius: 9999px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 11px;
+  line-height: 1.2;
+  text-transform: uppercase;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 255, 255, 0.35);
+  transform: rotate(-6deg);
+  z-index: 50;
+  pointer-events: none;
+  animation: float-sticker 4s ease-in-out infinite alternate;
+}
+
+@media (max-width: 1024px) {
+  .sticker-starburst {
+    top: 10px;
+    right: 15px;
+    font-size: 9px;
+    padding: 6px 12px;
+  }
+}
+
+@keyframes float-sticker {
+  0% { transform: rotate(-6deg) translateY(0px); }
+  100% { transform: rotate(-4deg) translateY(-6px); }
+}
+
+/* Top bar styling */
+.bg-obsidian-900\/95, 
+.bg-obsidian-950\/85, 
+header.sticky {
+  background: rgba(18, 19, 24, 0.88) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border-bottom: 1px solid var(--border-subtle) !important;
+}
+
+/* Navigation Links */
+nav a {
+  position: relative;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-weight: 600 !important;
+  transition: all 0.2s ease !important;
+}
+nav a:hover {
+  color: var(--orange-primary) !important;
+}
+
+/* ==========================================================================
+   4. HERO SECTION
+   ========================================================================== */
+section.relative.pt-12.pb-20 {
+  background: linear-gradient(180deg, 
+    rgba(255, 107, 0, 0.05) 0%, 
+    rgba(23, 24, 29, 0.6) 50%, 
+    var(--charcoal-bg) 100%) !important;
+  border-bottom: 1px solid var(--border-subtle) !important;
+  position: relative;
+}
+
+/* Hero Title */
+section.relative.pt-12.pb-20 h1 {
+  font-size: clamp(2.5rem, 4.5vw, 4rem) !important;
+  line-height: 1.1 !important;
+  font-weight: 900 !important;
+}
+
+/* Gradient highlight for key phrase */
+section.relative.pt-12.pb-20 h1 span.bg-clip-text {
+  background: linear-gradient(135deg, var(--orange-primary) 0%, #FF9E4D 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+
+/* Hero Coach Photo Card (Soft Rounded Frame like Sorryunot Reference) */
+.col-span-5.relative .rounded-2xl {
+  border-radius: 36px !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  background: linear-gradient(160deg, rgba(255, 107, 0, 0.08) 0%, var(--charcoal-card) 40%, var(--charcoal-surface) 100%) !important;
+  box-shadow: 
+    0 25px 60px -15px rgba(0, 0, 0, 0.8), 
+    0 0 40px -10px var(--orange-glow),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.1) !important;
+  overflow: hidden !important;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease !important;
+}
+
+.col-span-5.relative:hover .rounded-2xl {
+  transform: translateY(-4px);
+  box-shadow: 
+    0 35px 70px -15px rgba(0, 0, 0, 0.9), 
+    0 0 55px -5px var(--orange-glow),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.18) !important;
+}
+
+/* Floating Coach Bio Card inside Image */
+.col-span-5.relative .glass-panel {
+  border-radius: 24px !important;
+  background: rgba(20, 21, 26, 0.88) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6) !important;
+}
+
+/* Stats Counter Grid */
+.grid.grid-cols-3.gap-6.pt-6.border-t.border-white\/10 {
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid var(--border-subtle) !important;
+  border-radius: 26px !important;
+  padding: 18px 24px !important;
+  backdrop-filter: blur(14px) !important;
+}
+
+.grid.grid-cols-3.gap-6.pt-6.border-t.border-white\/10 .font-display {
+  font-size: 2.25rem !important;
+  color: #FFFFFF !important;
+}
+
+.grid.grid-cols-3.gap-6.pt-6.border-t.border-white\/10 > div:first-child .font-display {
+  color: var(--orange-primary) !important;
+}
+
+/* ==========================================================================
+   5. BUTTONS & PILLS (Smooth Friendly Shapes)
+   ========================================================================== */
+button[style*="backgroundColor: i.accentColor"],
+button[style*="background-color: var(--accent-color)"],
+button[style*="background-color: rgb(255, 107, 0)"],
+button[style*="background-color: #FF6B00"],
+a[style*="backgroundColor: i.accentColor"],
+a[style*="background-color: var(--accent-color)"],
+.bg-accent-button {
+  border-radius: var(--radius-pill) !important;
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.02em !important;
+  color: #FFFFFF !important;
+  background: linear-gradient(135deg, var(--orange-primary) 0%, #FF5500 100%) !important;
+  box-shadow: 
+    0 10px 25px -5px var(--orange-glow),
+    0 4px 10px rgba(0, 0, 0, 0.4) !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+button[style*="backgroundColor: i.accentColor"]:hover,
+a[style*="backgroundColor: i.accentColor"]:hover {
+  transform: translateY(-2px) scale(1.02) !important;
+  filter: brightness(1.06) !important;
+  box-shadow: 
+    0 14px 30px -4px var(--orange-glow),
+    0 6px 15px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Secondary Button (Outline Pill) */
+button.bg-obsidian-900,
+a.bg-obsidian-900 {
+  border-radius: var(--radius-pill) !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  backdrop-filter: blur(12px) !important;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-weight: 600 !important;
+  transition: all 0.25s ease !important;
+}
+
+button.bg-obsidian-900:hover,
+a.bg-obsidian-900:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: var(--orange-primary) !important;
+  color: #FFFFFF !important;
+  transform: translateY(-2px) !important;
+}
+
+/* ==========================================================================
+   6. INTERACTIVE CALCULATOR SECTION
+   ========================================================================== */
+section#diagnostic {
+  background: linear-gradient(180deg, 
+    var(--charcoal-bg) 0%, 
+    rgba(29, 30, 36, 0.6) 50%, 
+    var(--charcoal-bg) 100%) !important;
+}
+
+/* Diagnostic Central Glass Panel */
+section#diagnostic .glass-panel.rounded-2xl {
+  background: var(--charcoal-card) !important;
+  backdrop-filter: blur(24px) !important;
+  -webkit-backdrop-filter: blur(24px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.09) !important;
+  border-radius: var(--radius-card) !important;
+  box-shadow: 
+    0 25px 60px -20px rgba(0, 0, 0, 0.8),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.06) !important;
+}
+
+/* Goal Cards (Cut, Bulk, Recomp) */
+section#diagnostic .grid.grid-cols-3.gap-3 button {
+  border-radius: 22px !important;
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  backdrop-filter: blur(12px) !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+section#diagnostic .grid.grid-cols-3.gap-3 button:hover {
+  border-color: rgba(255, 107, 0, 0.4) !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Selected Goal Card */
+section#diagnostic .grid.grid-cols-3.gap-3 button[style*="border-color"] {
+  border-color: var(--orange-primary) !important;
+  background: linear-gradient(145deg, rgba(255, 107, 0, 0.12) 0%, rgba(255, 255, 255, 0.02) 100%) !important;
+  box-shadow: 
+    0 0 25px -5px var(--orange-glow),
+    inset 0 1px 1px 0 rgba(255, 107, 0, 0.3) !important;
+}
+
+/* Sliders Container Cards */
+.p-4.rounded-xl.border.border-white\/10.bg-obsidian-950\/70 {
+  border-radius: 22px !important;
+  background: rgba(18, 19, 24, 0.8) !important;
+  border: 1px solid rgba(255, 255, 255, 0.07) !important;
+  backdrop-filter: blur(12px) !important;
+  transition: all 0.25s ease !important;
+}
+
+.p-4.rounded-xl.border.border-white\/10.bg-obsidian-950\/70:hover {
+  border-color: rgba(255, 255, 255, 0.16) !important;
+}
+
+/* Form inputs & Range Sliders */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-radius: 9999px;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--orange-primary) !important;
+  box-shadow: 
+    0 0 16px var(--orange-glow),
+    0 2px 6px rgba(0,0,0,0.6) !important;
+  border: 3px solid #14151A;
+  cursor: grab;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 
+    0 0 24px var(--orange-glow),
+    0 4px 10px rgba(0,0,0,0.8) !important;
+}
+
+input[type="range"]::-webkit-slider-thumb:active {
+  cursor: grabbing;
+  transform: scale(1.25);
+}
+
+/* Activity Level Buttons */
+.grid.grid-cols-4.gap-2\.5 button {
+  border-radius: 14px !important;
+  backdrop-filter: blur(12px) !important;
+  transition: all 0.2s ease !important;
+}
+
+/* Calorie Summary Result Card */
+.flex.items-center.justify-between.gap-6.p-6.rounded-xl.border.bg-obsidian-950\/80 {
+  border-radius: 26px !important;
+  background: linear-gradient(135deg, rgba(255, 107, 0, 0.08) 0%, rgba(26, 27, 33, 0.95) 40%, rgba(18, 19, 24, 0.98) 100%) !important;
+  border: 1.5px solid var(--orange-primary) !important;
+  box-shadow: 
+    0 0 35px -10px var(--orange-glow),
+    0 20px 45px -10px rgba(0, 0, 0, 0.8) !important;
+}
+
+/* ==========================================================================
+   7. TRANSFORMATION CASES SECTION ("Достижения тех, кто уже с нами!")
+   ========================================================================== */
+section#cases {
+  background: var(--charcoal-bg) !important;
+  border-bottom: 1px solid var(--border-subtle) !important;
+}
+
+/* Before/After Container */
+section#cases .rounded-2xl.overflow-hidden.border {
+  border-radius: 32px !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 
+    0 25px 65px -15px rgba(0, 0, 0, 0.85),
+    0 0 40px -10px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Before/After Dragger Line */
+section#cases .absolute.top-0.bottom-0.w-\[2px\] {
+  background: var(--orange-primary) !important;
+  box-shadow: 0 0 16px var(--orange-glow) !important;
+}
+
+/* Dragger Circle */
+section#cases .w-8.h-8.rounded-full.flex.items-center.justify-center.text-black.font-bold,
+section#cases div[style*="left"] .rounded-full {
+  background: var(--orange-primary) !important;
+  box-shadow: 0 0 20px var(--orange-glow) !important;
+  border: 2px solid #FFFFFF !important;
+  color: #FFFFFF !important;
+}
+
+/* Case Metrics Pills */
+.font-tech.text-xs.font-bold.px-3.py-1\.5.rounded-lg {
+  border-radius: var(--radius-pill) !important;
+  background: rgba(255, 107, 0, 0.1) !important;
+  color: var(--orange-primary) !important;
+  border: 1px solid rgba(255, 107, 0, 0.25) !important;
+}
+
+/* ==========================================================================
+   8. PRICING & PROTOCOLS SECTION
+   ========================================================================== */
+section#pricing {
+  background: linear-gradient(180deg, 
+    var(--charcoal-bg) 0%, 
+    rgba(29, 30, 36, 0.7) 50%, 
+    var(--charcoal-bg) 100%) !important;
+}
+
+/* Tier Cards */
+section#pricing .grid > div {
+  border-radius: 30px !important;
+  background: var(--charcoal-card) !important;
+  backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  box-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.7) !important;
+}
+
+section#pricing .grid > div:hover {
+  transform: translateY(-4px) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Recommended Tier Card (Warm Orange Aura) */
+section#pricing div[class*="shadow-glow-accent"],
+section#pricing div.border-white\/20,
+section#pricing div.border-white\/25 {
+  border-color: var(--orange-primary) !important;
+  box-shadow: 
+    0 0 40px -5px var(--orange-glow),
+    0 25px 55px -15px rgba(0, 0, 0, 0.85) !important;
+  background: linear-gradient(160deg, 
+    rgba(255, 107, 0, 0.08) 0%, 
+    rgba(29, 30, 36, 0.95) 35%, 
+    var(--charcoal-surface) 100%) !important;
+  transform: translateY(-4px);
+}
+
+/* Recommended Floating Badge */
+section#pricing .absolute.-top-3\.5 {
+  border-radius: var(--radius-pill) !important;
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.04em !important;
+  padding: 6px 16px !important;
+  background: var(--orange-primary) !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 6px 20px var(--orange-glow) !important;
+}
+
+/* ==========================================================================
+   9. BOTTOM BANNER & MOBILE WEBAPP
+   ========================================================================== */
+.p-10.rounded-3xl.border.bg-obsidian-900\/90 {
+  background: linear-gradient(135deg, 
+    rgba(255, 107, 0, 0.1) 0%, 
+    rgba(29, 30, 36, 0.95) 40%, 
+    var(--charcoal-surface) 100%) !important;
+  border-radius: 36px !important;
+  border: 1.5px solid var(--orange-primary) !important;
+  box-shadow: 
+    0 25px 70px -15px rgba(0, 0, 0, 0.85), 
+    0 0 50px -10px var(--orange-glow) !important;
+}
+
+@media (max-width: 1023px) {
+  main.max-w-\[430px\] {
+    background: #121317 !important;
+    border-color: var(--border-subtle) !important;
+    box-shadow: 0 0 60px rgba(0, 0, 0, 0.9) !important;
+  }
+
+  /* Mobile Tab Bar */
+  .relative.z-20.bg-obsidian-950 {
+    background: rgba(18, 19, 24, 0.94) !important;
+    backdrop-filter: blur(16px) !important;
+  }
+
+  .grid.grid-cols-3.bg-obsidian-900 {
+    background: rgba(255, 255, 255, 0.04) !important;
+    border: 1px solid var(--border-subtle) !important;
+    border-radius: var(--radius-pill) !important;
+    padding: 4px !important;
+  }
+
+  .grid.grid-cols-3.bg-obsidian-900 button {
+    border-radius: var(--radius-pill) !important;
+  }
+
+  /* Sticky Bottom Bar */
+  .fixed.bottom-0.left-0.right-0 {
+    background: rgba(18, 19, 24, 0.92) !important;
+    backdrop-filter: blur(24px) !important;
+    -webkit-backdrop-filter: blur(24px) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.7) !important;
+  }
+}
