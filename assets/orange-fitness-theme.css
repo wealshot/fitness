@@ -29,7 +29,7 @@ body {
   font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, sans-serif !important;
   overflow-x: hidden !important;
   position: relative;
-  background-image: 
+  background-image:
     radial-gradient(circle at 85% 12%, rgba(255, 107, 0, 0.15) 0%, transparent 45%),
     radial-gradient(circle at 10% 45%, rgba(255, 85, 0, 0.10) 0%, transparent 40%),
     radial-gradient(circle at 90% 80%, rgba(255, 107, 0, 0.12) 0%, transparent 45%),
@@ -50,14 +50,17 @@ body {
   width: 8px;
   height: 8px;
 }
+
 ::-webkit-scrollbar-track {
   background: var(--charcoal-bg);
 }
+
 ::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.18);
   border-radius: 9999px;
   border: 1px solid rgba(0, 0, 0, 0.3);
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: var(--orange-primary);
 }
@@ -65,7 +68,10 @@ body {
 /* ==========================================================================
    2. TYPOGRAPHY (Replace brutalist Anton with modern confident Montserrat)
    ========================================================================== */
-h1, h2, h3, .font-display {
+h1,
+h2,
+h3,
+.font-display {
   font-family: 'Montserrat', 'Plus Jakarta Sans', sans-serif !important;
   font-weight: 800 !important;
   letter-spacing: -0.02em !important;
@@ -117,13 +123,18 @@ h1, h2, h3, .font-display {
 }
 
 @keyframes float-sticker {
-  0% { transform: rotate(-6deg) translateY(0px); }
-  100% { transform: rotate(-4deg) translateY(-6px); }
+  0% {
+    transform: rotate(-6deg) translateY(0px);
+  }
+
+  100% {
+    transform: rotate(-4deg) translateY(-6px);
+  }
 }
 
 /* Top bar styling */
-.bg-obsidian-900\/95, 
-.bg-obsidian-950\/85, 
+.bg-obsidian-900\/95,
+.bg-obsidian-950\/85,
 header.sticky {
   background: rgba(18, 19, 24, 0.88) !important;
   backdrop-filter: blur(20px) !important;
@@ -138,6 +149,7 @@ nav a {
   font-weight: 600 !important;
   transition: all 0.2s ease !important;
 }
+
 nav a:hover {
   color: var(--orange-primary) !important;
 }
@@ -146,10 +158,10 @@ nav a:hover {
    4. HERO SECTION
    ========================================================================== */
 section.relative.pt-12.pb-20 {
-  background: linear-gradient(180deg, 
-    rgba(255, 107, 0, 0.05) 0%, 
-    rgba(23, 24, 29, 0.6) 50%, 
-    var(--charcoal-bg) 100%) !important;
+  background: linear-gradient(180deg,
+      rgba(255, 107, 0, 0.05) 0%,
+      rgba(23, 24, 29, 0.6) 50%,
+      var(--charcoal-bg) 100%) !important;
   border-bottom: 1px solid var(--border-subtle) !important;
   position: relative;
 }
@@ -174,8 +186,8 @@ section.relative.pt-12.pb-20 h1 span.bg-clip-text {
   border-radius: 32px !important;
   border: 1px solid rgba(255, 255, 255, 0.12) !important;
   background: linear-gradient(160deg, rgba(255, 107, 0, 0.08) 0%, var(--charcoal-card) 40%, var(--charcoal-surface) 100%) !important;
-  box-shadow: 
-    0 25px 60px -15px rgba(0, 0, 0, 0.8), 
+  box-shadow:
+    0 25px 60px -15px rgba(0, 0, 0, 0.8),
     0 0 40px -10px var(--orange-glow),
     inset 0 1px 1px 0 rgba(255, 255, 255, 0.1) !important;
   overflow: hidden !important;
@@ -211,8 +223,8 @@ section.relative.pt-12.pb-20 h1 span.bg-clip-text {
 
 .col-span-5.relative:hover .rounded-2xl {
   transform: translateY(-4px);
-  box-shadow: 
-    0 35px 70px -15px rgba(0, 0, 0, 0.9), 
+  box-shadow:
+    0 35px 70px -15px rgba(0, 0, 0, 0.9),
     0 0 55px -5px var(--orange-glow),
     inset 0 1px 1px 0 rgba(255, 255, 255, 0.18) !important;
 }
@@ -240,7 +252,7 @@ section.relative.pt-12.pb-20 h1 span.bg-clip-text {
   gap: 12px !important;
 }
 
-.grid.grid-cols-3.gap-6.pt-6.border-t.border-white\/10 > div {
+.grid.grid-cols-3.gap-6.pt-6.border-t.border-white\/10>div {
   text-align: center !important;
   min-width: 0 !important;
 }
@@ -265,7 +277,7 @@ section.relative.pt-12.pb-20 h1 span.bg-clip-text {
   margin-top: 4px !important;
 }
 
-.grid.grid-cols-3.gap-6.pt-6.border-t.border-white\/10 > div:first-child .font-display {
+.grid.grid-cols-3.gap-6.pt-6.border-t.border-white\/10>div:first-child .font-display {
   color: var(--orange-primary) !important;
 }
 
@@ -285,7 +297,7 @@ a[style*="background-color: var(--accent-color)"],
   letter-spacing: 0.02em !important;
   color: #FFFFFF !important;
   background: linear-gradient(135deg, var(--orange-primary) 0%, #FF5500 100%) !important;
-  box-shadow: 
+  box-shadow:
     0 10px 25px -5px var(--orange-glow),
     0 4px 10px rgba(0, 0, 0, 0.4) !important;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
@@ -295,7 +307,7 @@ button[style*="backgroundColor: i.accentColor"]:hover,
 a[style*="backgroundColor: i.accentColor"]:hover {
   transform: translateY(-2px) scale(1.02) !important;
   filter: brightness(1.06) !important;
-  box-shadow: 
+  box-shadow:
     0 14px 30px -4px var(--orange-glow),
     0 6px 15px rgba(0, 0, 0, 0.5) !important;
 }
@@ -412,6 +424,7 @@ div.bg-obsidian-950.p-1.rounded-lg.border.border-white\/10 {
     padding: 0 2px !important;
     gap: 2px !important;
   }
+
   .grid.grid-cols-3.bg-obsidian-900 button span:first-child {
     font-size: 8px !important;
   }
@@ -419,10 +432,10 @@ div.bg-obsidian-950.p-1.rounded-lg.border.border-white\/10 {
 
 /* Diagnostic Central Glass Panel */
 section#diagnostic {
-  background: linear-gradient(180deg, 
-    var(--charcoal-bg) 0%, 
-    rgba(29, 30, 36, 0.6) 50%, 
-    var(--charcoal-bg) 100%) !important;
+  background: linear-gradient(180deg,
+      var(--charcoal-bg) 0%,
+      rgba(29, 30, 36, 0.6) 50%,
+      var(--charcoal-bg) 100%) !important;
 }
 
 section#diagnostic .glass-panel.rounded-2xl {
@@ -431,7 +444,7 @@ section#diagnostic .glass-panel.rounded-2xl {
   -webkit-backdrop-filter: blur(24px) !important;
   border: 1px solid rgba(255, 255, 255, 0.09) !important;
   border-radius: var(--radius-card) !important;
-  box-shadow: 
+  box-shadow:
     0 25px 60px -20px rgba(0, 0, 0, 0.8),
     inset 0 1px 1px 0 rgba(255, 255, 255, 0.06) !important;
 }
@@ -455,7 +468,7 @@ section#diagnostic .grid.grid-cols-3.gap-3 button:hover {
 section#diagnostic .grid.grid-cols-3.gap-3 button[style*="border-color"] {
   border-color: var(--orange-primary) !important;
   background: linear-gradient(145deg, rgba(255, 107, 0, 0.12) 0%, rgba(255, 255, 255, 0.02) 100%) !important;
-  box-shadow: 
+  box-shadow:
     0 0 25px -5px var(--orange-glow),
     inset 0 1px 1px 0 rgba(255, 107, 0, 0.3) !important;
 }
@@ -492,9 +505,9 @@ input[type="range"]::-webkit-slider-thumb {
   height: 24px;
   border-radius: 50%;
   background: var(--orange-primary) !important;
-  box-shadow: 
+  box-shadow:
     0 0 16px var(--orange-glow),
-    0 2px 6px rgba(0,0,0,0.6) !important;
+    0 2px 6px rgba(0, 0, 0, 0.6) !important;
   border: 3px solid #14151A;
   cursor: grab;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
@@ -502,9 +515,9 @@ input[type="range"]::-webkit-slider-thumb {
 
 input[type="range"]::-webkit-slider-thumb:hover {
   transform: scale(1.2);
-  box-shadow: 
+  box-shadow:
     0 0 24px var(--orange-glow),
-    0 4px 10px rgba(0,0,0,0.8) !important;
+    0 4px 10px rgba(0, 0, 0, 0.8) !important;
 }
 
 input[type="range"]::-webkit-slider-thumb:active {
@@ -524,20 +537,20 @@ input[type="range"]::-webkit-slider-thumb:active {
   border-radius: 26px !important;
   background: linear-gradient(135deg, rgba(255, 107, 0, 0.08) 0%, rgba(26, 27, 33, 0.95) 40%, rgba(18, 19, 24, 0.98) 100%) !important;
   border: 1.5px solid var(--orange-primary) !important;
-  box-shadow: 
+  box-shadow:
     0 0 35px -10px var(--orange-glow),
     0 20px 45px -10px rgba(0, 0, 0, 0.8) !important;
 }
 
 /* ==========================================================================
-   7. ATHLETIC ACHIEVEMENTS SECTION (Fix for Screenshot 2: Arrows & Gallery)
+   7. INTERACTIVE TRANSFORMATION SLIDER (Before / After Comparison)
    ========================================================================== */
 section#cases {
   background: var(--charcoal-bg) !important;
   border-bottom: 1px solid var(--border-subtle) !important;
 }
 
-/* Gallery Photo Frame */
+/* Slider Container */
 section#cases .rounded-2xl.overflow-hidden,
 section#cases .rounded-xl.overflow-hidden {
   border-radius: 28px !important;
@@ -545,78 +558,86 @@ section#cases .rounded-xl.overflow-hidden {
   box-shadow: 
     0 25px 65px -15px rgba(0, 0, 0, 0.85), 
     0 0 40px -10px rgba(0, 0, 0, 0.5) !important;
+  cursor: ew-resize !important;
 }
 
-/* Ensure Andrey's achievement photos fit beautifully */
+/* Ensure Mikhail's Before/After photos align with high focus on waist & torso */
 section#cases img {
   object-fit: cover !important;
-  object-position: center 22% !important;
+  object-position: center 36% !important;
 }
 
-/* Left & Right Gallery Arrows */
-section#cases button[aria-label="Предыдущее"],
-section#cases button[aria-label="Следующее"],
-section#cases button[aria-label="Назад"],
-section#cases button[aria-label="Вперёд"] {
-  background: rgba(16, 17, 22, 0.85) !important;
-  backdrop-filter: blur(16px) !important;
-  -webkit-backdrop-filter: blur(16px) !important;
-  border: 1.5px solid rgba(255, 255, 255, 0.22) !important;
-  color: #FFFFFF !important;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6) !important;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
-}
-
-section#cases button[aria-label="Предыдущее"]:hover,
-section#cases button[aria-label="Следующее"]:hover,
-section#cases button[aria-label="Назад"]:hover,
-section#cases button[aria-label="Вперёд"]:hover {
+/* Before/After Split Dragger Line */
+section#cases .absolute.top-0.bottom-0.w-\[2px\] {
   background: var(--orange-primary) !important;
-  border-color: #FFFFFF !important;
-  box-shadow: 0 0 25px var(--orange-glow) !important;
-  transform: translateY(-50%) scale(1.1) !important;
+  box-shadow: 0 0 16px var(--orange-glow) !important;
+  cursor: ew-resize !important;
 }
 
-section#cases button[aria-label="Предыдущее"]:active,
-section#cases button[aria-label="Следующее"]:active,
-section#cases button[aria-label="Назад"]:active,
-section#cases button[aria-label="Вперёд"]:active {
-  transform: translateY(-50%) scale(0.95) !important;
+/* Dragger Circle Handle <> */
+section#cases div[style*="left"] .w-8.h-8,
+section#cases div[style*="left"] .w-10.h-10,
+section#cases div[style*="left"] .rounded-lg,
+section#cases div[style*="left"] .rounded {
+  border-radius: 9999px !important;
+  background: var(--orange-primary) !important;
+  box-shadow: 
+    0 0 25px var(--orange-glow),
+    0 4px 12px rgba(0, 0, 0, 0.7) !important;
+  border: 2px solid #FFFFFF !important;
+  color: #FFFFFF !important;
+  cursor: grab !important;
+  transition: transform 0.15s ease !important;
 }
 
-/* Achievement Badges & Indicators */
+section#cases div[style*="left"] .w-8.h-8:active,
+section#cases div[style*="left"] .w-10.h-10:active {
+  cursor: grabbing !important;
+  transform: translate(-50%, -50%) scale(1.15) !important;
+}
+
+/* Bottom Hint Badge (ТЯНИ ШТОРКУ ДЛЯ СРАВНЕНИЯ) */
+section#cases .absolute.bottom-3.left-1\/2,
+section#cases .absolute.bottom-4.left-1\/2 {
+  display: inline-flex !important;
+  border-radius: 9999px !important;
+  background: rgba(16, 17, 22, 0.9) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  padding: 6px 14px !important;
+  letter-spacing: 0.04em !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6) !important;
+}
+
+/* Before / After Corner Badges */
 section#cases .bg-black\/85 {
   border-radius: 9999px !important;
   background: rgba(16, 17, 22, 0.88) !important;
   backdrop-filter: blur(12px) !important;
   border: 1px solid rgba(255, 255, 255, 0.15) !important;
   font-family: 'Montserrat', sans-serif !important;
-  font-size: 11px !important;
-  padding: 6px 14px !important;
-  letter-spacing: 0.03em !important;
-}
-
-/* Hide Bottom Badge & Header Switcher in Achievements (User Request) */
-section#cases .absolute.bottom-3.left-1\/2,
-section#cases .absolute.bottom-4.left-1\/2,
-section#cases .flex.bg-obsidian-900.p-1.rounded-lg,
-section#cases div.flex.bg-obsidian-900.p-1,
-section#cases .flex.items-center.gap-2:not(.pt-2):not(.border-t) {
-  display: none !important;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  padding: 5px 12px !important;
+  letter-spacing: 0.04em !important;
 }
 
 /* ==========================================================================
    8. PRICING & PROTOCOLS SECTION (Fix for Screenshots 4 & 5: Clean Word Wrapping)
    ========================================================================== */
 section#pricing {
-  background: linear-gradient(180deg, 
-    var(--charcoal-bg) 0%, 
-    rgba(29, 30, 36, 0.7) 50%, 
-    var(--charcoal-bg) 100%) !important;
+  background: linear-gradient(180deg,
+      var(--charcoal-bg) 0%,
+      rgba(29, 30, 36, 0.7) 50%,
+      var(--charcoal-bg) 100%) !important;
 }
 
 /* Tier Cards */
-section#pricing .grid > div {
+section#pricing .grid>div {
   border-radius: 28px !important;
   background: var(--charcoal-card) !important;
   backdrop-filter: blur(20px) !important;
@@ -633,11 +654,11 @@ section#pricing .flex.items-start.justify-between.gap-3.mb-4 {
   align-items: stretch !important;
 }
 
-section#pricing .flex.items-start.justify-between.gap-3.mb-4 > div:first-child {
+section#pricing .flex.items-start.justify-between.gap-3.mb-4>div:first-child {
   width: 100% !important;
 }
 
-section#pricing .flex.items-start.justify-between.gap-3.mb-4 > div:last-child {
+section#pricing .flex.items-start.justify-between.gap-3.mb-4>div:last-child {
   display: flex !important;
   align-items: baseline !important;
   justify-content: space-between !important;
@@ -654,7 +675,7 @@ section#pricing .flex.items-center.gap-2 {
   margin-bottom: 2px !important;
 }
 
-section#pricing .flex.items-center.gap-2 > span {
+section#pricing .flex.items-center.gap-2>span {
   font-family: 'Plus Jakarta Sans', monospace !important;
   font-size: 11px !important;
   font-weight: 800 !important;
@@ -691,7 +712,7 @@ section#pricing .font-display.text-2xl.lg\:text-3xl {
   color: #FFFFFF !important;
 }
 
-section#pricing .grid > div:hover {
+section#pricing .grid>div:hover {
   transform: translateY(-4px) !important;
   border-color: rgba(255, 255, 255, 0.2) !important;
 }
@@ -701,13 +722,13 @@ section#pricing div[class*="shadow-glow-accent"],
 section#pricing div.border-white\/20,
 section#pricing div.border-white\/25 {
   border-color: var(--orange-primary) !important;
-  box-shadow: 
+  box-shadow:
     0 0 40px -5px var(--orange-glow),
     0 25px 55px -15px rgba(0, 0, 0, 0.85) !important;
-  background: linear-gradient(160deg, 
-    rgba(255, 107, 0, 0.08) 0%, 
-    rgba(29, 30, 36, 0.95) 35%, 
-    var(--charcoal-surface) 100%) !important;
+  background: linear-gradient(160deg,
+      rgba(255, 107, 0, 0.08) 0%,
+      rgba(29, 30, 36, 0.95) 35%,
+      var(--charcoal-surface) 100%) !important;
   transform: translateY(-4px);
 }
 
@@ -727,14 +748,14 @@ section#pricing .absolute.-top-3\.5 {
    9. BOTTOM BANNER & MOBILE WEBAPP
    ========================================================================== */
 .p-10.rounded-3xl.border.bg-obsidian-900\/90 {
-  background: linear-gradient(135deg, 
-    rgba(255, 107, 0, 0.1) 0%, 
-    rgba(29, 30, 36, 0.95) 40%, 
-    var(--charcoal-surface) 100%) !important;
+  background: linear-gradient(135deg,
+      rgba(255, 107, 0, 0.1) 0%,
+      rgba(29, 30, 36, 0.95) 40%,
+      var(--charcoal-surface) 100%) !important;
   border-radius: 36px !important;
   border: 1.5px solid var(--orange-primary) !important;
-  box-shadow: 
-    0 25px 70px -15px rgba(0, 0, 0, 0.85), 
+  box-shadow:
+    0 25px 70px -15px rgba(0, 0, 0, 0.85),
     0 0 50px -10px var(--orange-glow) !important;
 }
 
