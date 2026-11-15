@@ -186,27 +186,31 @@ section.relative.pt-12.pb-20 h1 span.bg-clip-text {
 .col-span-5.relative img {
   object-fit: cover !important;
   object-position: center 25% !important;
-  transform: scale(1.28) !important;
+  transform: scale(1.15) !important;
   transform-origin: center 25% !important;
-  filter: contrast(1.06) brightness(1.16) !important;
+  filter: contrast(1.05) brightness(1.0) !important;
 }
 
-/* Mobile Hero Container & Andrey Photo Zoom (Screenshot 3) */
+/* Mobile Hero Container & Smooth Dark Vignette / Gradient */
 .h-\[370px\] {
-  height: 440px !important;
+  height: 400px !important;
 }
 
 .h-\[370px\] img {
   object-fit: cover !important;
-  object-position: center 28% !important;
-  transform: scale(1.36) !important;
-  transform-origin: center 28% !important;
-  filter: contrast(1.06) brightness(1.18) !important;
+  object-position: center 25% !important;
+  transform: scale(1.2) !important;
+  transform-origin: center 25% !important;
+  filter: contrast(1.05) brightness(1.0) !important;
 }
 
-.h-\[370px\] .h-56 {
-  height: 120px !important;
-  opacity: 0.6 !important;
+/* Restore deep smooth bottom darkening (as requested by user) */
+.h-\[370px\] .h-56,
+.h-56.lg\:h-80 {
+  height: 220px !important;
+  background: linear-gradient(to top, #101114 0%, rgba(16, 17, 20, 0.95) 30%, rgba(16, 17, 20, 0.6) 65%, transparent 100%) !important;
+  opacity: 1 !important;
+  pointer-events: none !important;
 }
 
 .col-span-5.relative:hover .rounded-2xl {
