@@ -47,11 +47,11 @@ const server = http.createServer((req, res) => {
 
 server.listen(PORT, () => {
   console.log(`\n========================================`);
-  console.log(`🚀 PULSE Engine запущен локально!`);
-  console.log(`👉 Откройте: http://localhost:${PORT}/gleb`);
+  console.log(`🚀 PULSE Engine запущен! Тренер: АНДРЕЙ ЗЛЫДАРЕВ`);
+  console.log(`👉 Откройте: http://localhost:${PORT}/zlydarev`);
   console.log(`========================================\n`);
   
   // Auto-open browser on Windows
-  exec(`start http://localhost:${PORT}/gleb`);
+  exec(`start http://localhost:${PORT}/zlydarev`);
 });
 
