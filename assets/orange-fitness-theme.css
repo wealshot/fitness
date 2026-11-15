@@ -182,6 +182,11 @@ section.relative.pt-12.pb-20 h1 span.bg-clip-text {
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease !important;
 }
 
+.col-span-5.relative .rounded-2xl img {
+  object-fit: cover !important;
+  object-position: center 15% !important;
+}
+
 .col-span-5.relative:hover .rounded-2xl {
   transform: translateY(-4px);
   box-shadow: 
@@ -200,18 +205,42 @@ section.relative.pt-12.pb-20 h1 span.bg-clip-text {
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6) !important;
 }
 
-/* Stats Counter Grid */
+/* Stats Counter Grid (Fix for Screenshot 4: Even, Single-line, No awkward wrap) */
 .grid.grid-cols-3.gap-6.pt-6.border-t.border-white\/10 {
   background: rgba(255, 255, 255, 0.03) !important;
   border: 1px solid var(--border-subtle) !important;
   border-radius: 26px !important;
-  padding: 18px 24px !important;
+  padding: 16px 20px !important;
   backdrop-filter: blur(14px) !important;
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  align-items: center !important;
+  gap: 12px !important;
+}
+
+.grid.grid-cols-3.gap-6.pt-6.border-t.border-white\/10 > div {
+  text-align: center !important;
+  min-width: 0 !important;
 }
 
 .grid.grid-cols-3.gap-6.pt-6.border-t.border-white\/10 .font-display {
-  font-size: 2.25rem !important;
+  font-size: clamp(1.15rem, 1.8vw, 1.65rem) !important;
+  line-height: 1.15 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
   color: #FFFFFF !important;
+  font-weight: 900 !important;
+}
+
+.grid.grid-cols-3.gap-6.pt-6.border-t.border-white\/10 .font-tech {
+  font-size: 10px !important;
+  letter-spacing: 0.03em !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  color: #9CA3AF !important;
+  margin-top: 4px !important;
 }
 
 .grid.grid-cols-3.gap-6.pt-6.border-t.border-white\/10 > div:first-child .font-display {
@@ -270,8 +299,89 @@ a.bg-obsidian-900:hover {
 }
 
 /* ==========================================================================
-   6. INTERACTIVE CALCULATOR SECTION
+   6. SEGMENTED CONTROLS & CALCULATOR (Fix for Screenshot 1 & 2)
    ========================================================================== */
+/* Segmented Gender Toggle Container (Fix for Screenshot 1) */
+.bg-obsidian-950.p-1.rounded-lg.border,
+div.bg-obsidian-950.p-1.rounded-lg.border.border-white\/10 {
+  border-radius: 9999px !important;
+  padding: 3px !important;
+  background: rgba(20, 21, 26, 0.95) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 2px !important;
+  height: 38px !important;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5) !important;
+}
+
+.bg-obsidian-950.p-1.rounded-lg.border button {
+  border-radius: 9999px !important;
+  height: 30px !important;
+  padding: 0 16px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 11px !important;
+  line-height: 1 !important;
+  letter-spacing: 0.04em !important;
+  box-shadow: none !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  border: none !important;
+}
+
+.bg-obsidian-950.p-1.rounded-lg.border button[style*="background-color: rgb(255, 107, 0)"],
+.bg-obsidian-950.p-1.rounded-lg.border button[style*="background-color: #FF6B00"],
+.bg-obsidian-950.p-1.rounded-lg.border button[style*="backgroundColor: u"] {
+  background: var(--orange-primary) !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 2px 10px rgba(255, 107, 0, 0.45) !important;
+}
+
+/* Nav / Mobile Segmented Tab Switcher (Fix for Screenshot 2) */
+.grid.grid-cols-3.bg-obsidian-900 {
+  background: rgba(20, 21, 26, 0.95) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 9999px !important;
+  padding: 4px !important;
+  gap: 4px !important;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.4) !important;
+}
+
+.grid.grid-cols-3.bg-obsidian-900 button {
+  border-radius: 9999px !important;
+  height: 38px !important;
+  padding: 0 14px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 11px !important;
+  letter-spacing: 0.04em !important;
+  box-shadow: none !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.grid.grid-cols-3.bg-obsidian-900 button[style*="background-color: rgb(255, 107, 0)"],
+.grid.grid-cols-3.bg-obsidian-900 button[style*="background-color: #FF6B00"],
+.grid.grid-cols-3.bg-obsidian-900 button[style*="backgroundColor: u"] {
+  background: var(--orange-primary) !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 15px rgba(255, 107, 0, 0.45) !important;
+}
+
+.grid.grid-cols-3.bg-obsidian-900 button span:first-child {
+  font-family: 'Plus Jakarta Sans', monospace !important;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  opacity: 0.8 !important;
+}
+
+/* Diagnostic Central Glass Panel */
 section#diagnostic {
   background: linear-gradient(180deg, 
     var(--charcoal-bg) 0%, 
@@ -279,7 +389,6 @@ section#diagnostic {
     var(--charcoal-bg) 100%) !important;
 }
 
-/* Diagnostic Central Glass Panel */
 section#diagnostic .glass-panel.rounded-2xl {
   background: var(--charcoal-card) !important;
   backdrop-filter: blur(24px) !important;
@@ -385,7 +494,7 @@ input[type="range"]::-webkit-slider-thumb:active {
 }
 
 /* ==========================================================================
-   7. TRANSFORMATION CASES SECTION ("Достижения тех, кто уже с нами!")
+   7. TRANSFORMATION CASES SECTION (Fix for Screenshot 3)
    ========================================================================== */
 section#cases {
   background: var(--charcoal-bg) !important;
@@ -397,8 +506,14 @@ section#cases .rounded-2xl.overflow-hidden.border {
   border-radius: 32px !important;
   border: 1px solid rgba(255, 255, 255, 0.12) !important;
   box-shadow: 
-    0 25px 65px -15px rgba(0, 0, 0, 0.85),
+    0 25px 65px -15px rgba(0, 0, 0, 0.85), 
     0 0 40px -10px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Ensure Andrey's case photos fit beautifully with high focus */
+section#cases img {
+  object-fit: cover !important;
+  object-position: center 25% !important;
 }
 
 /* Before/After Dragger Line */
@@ -416,12 +531,24 @@ section#cases div[style*="left"] .rounded-full {
   color: #FFFFFF !important;
 }
 
+/* Slider Badges */
+section#cases .bg-black\/85 {
+  border-radius: 9999px !important;
+  background: rgba(16, 17, 22, 0.88) !important;
+  backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 11px !important;
+  padding: 6px 14px !important;
+  letter-spacing: 0.03em !important;
+}
+
 /* Case Metrics Pills */
 .font-tech.text-xs.font-bold.px-3.py-1\.5.rounded-lg {
   border-radius: var(--radius-pill) !important;
-  background: rgba(255, 107, 0, 0.1) !important;
+  background: rgba(255, 107, 0, 0.12) !important;
   color: var(--orange-primary) !important;
-  border: 1px solid rgba(255, 107, 0, 0.25) !important;
+  border: 1px solid rgba(255, 107, 0, 0.3) !important;
 }
 
 /* ==========================================================================
@@ -496,23 +623,6 @@ section#pricing .absolute.-top-3\.5 {
     background: #121317 !important;
     border-color: var(--border-subtle) !important;
     box-shadow: 0 0 60px rgba(0, 0, 0, 0.9) !important;
-  }
-
-  /* Mobile Tab Bar */
-  .relative.z-20.bg-obsidian-950 {
-    background: rgba(18, 19, 24, 0.94) !important;
-    backdrop-filter: blur(16px) !important;
-  }
-
-  .grid.grid-cols-3.bg-obsidian-900 {
-    background: rgba(255, 255, 255, 0.04) !important;
-    border: 1px solid var(--border-subtle) !important;
-    border-radius: var(--radius-pill) !important;
-    padding: 4px !important;
-  }
-
-  .grid.grid-cols-3.bg-obsidian-900 button {
-    border-radius: var(--radius-pill) !important;
   }
 
   /* Sticky Bottom Bar */
