@@ -47,11 +47,11 @@ const server = http.createServer((req, res) => {
 
 server.listen(PORT, () => {
   console.log(`\n========================================`);
-  console.log(`🚀 PULSE Engine запущен! Тренер: АРТУР СИЛКИН`);
-  console.log(`👉 Откройте: http://localhost:${PORT}/silkin (или http://localhost:${PORT}/)`);
+  console.log(`🚀 PULSE Engine запущен! Тренер: САВВА ДУЖАК`);
+  console.log(`👉 Откройте: http://localhost:${PORT}/savva (или http://localhost:${PORT}/)`);
   console.log(`========================================\n`);
   
   // Auto-open browser on Windows
-  exec(`start http://localhost:${PORT}/silkin`);
+  exec(`start http://localhost:${PORT}/savva`);
 });
 
