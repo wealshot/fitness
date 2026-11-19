@@ -14,6 +14,138 @@
  */
 
 window.CLIENTS = {
+  "radionov": {
+    "slug": "radionov",
+    "brandTag": "ONLINE COACHING // BODYBUILDING & AESTHETICS ⚜️",
+    "location": "ОНЛАЙН // РОССИЯ & МИР",
+    "name": "НИКИТА РАДИОНОВ",
+    "firstName": "НИКИТА",
+    "lastName": "РАДИОНОВ",
+    "tagline": "БОДИБИЛДИНГ & ЭСТЕТИКА // УРОКИ ПОЗИРОВАНИЯ ⚜️",
+    "spec": "НАБОР СУХОЙ МЫШЕЧНОЙ МАССЫ, РЕЛЬЕФ И ПОЗИРОВАНИЕ 💪🏻",
+    "bio": "Бодибилдер и персональный онлайн-тренер. Помогаю построить эстетичное, рельефное тело с выраженным V-конусом и отточить сценическое позирование. Результат без вреда для здоровья и откатов.",
+    "heroImage": "/images/radionov.jpg",
+    "heroImageStyle": {
+      "objectPosition": "center 18%",
+      "filter": "brightness(0.98) contrast(1.06)"
+    },
+    "accentColor": "#0EA5E9",
+    "accentSecondary": "#0284C7",
+    "accentDim": "rgba(14, 165, 233, 0.14)",
+    "accentGlow": "rgba(14, 165, 233, 0.45)",
+    "hasApplicationForm": true,
+    "hasReviewsSection": true,
+    "telegramUsername": "therrodionov",
+    "scarcityBadge": "ОТБОР НА ВЕДЕНИЕ: СВОБОДНО 2 МЕСТА",
+    "stats": [
+      {
+        "label": "ОПЫТ В ФИТНЕСЕ",
+        "value": "06+ ЛЕТ"
+      },
+      {
+        "label": "АТЛЕТОВ В ФОРМЕ",
+        "value": "180+"
+      },
+      {
+        "label": "ЧИСТАЯ ЭСТЕТИКА",
+        "value": "100%"
+      }
+    ],
+    "cases": [
+      {
+        "id": 1,
+        "name": "АТЛЕТИЧЕСКИЙ V-СИЛУЭТ & ОБЪЕМ СПИНЫ",
+        "tag": "+8 КГ СУХОЙ МАССЫ // РЕЛЬЕФ",
+        "badge": "ТОЧКА А ➔ ТОЧКА Б",
+        "beforeImage": "/cases/radionov_case_before.jpg",
+        "afterImage": "/cases/radionov_case_after.jpg",
+        "objectPosition": "center",
+        "description": "Прицельная гипертрофия широчайших и плечевого пояса. За счет выверенной биомеханики, прогрессии рабочих весов и профицита качественного белка нарастили плотный мышечный массив спины и сформировали классический V-конус без лишней жировой массы.",
+        "initialStats": "ТОЧКА А // ДЕФИЦИТ МАССЫ, УЗКИЙ КОРСЕТ",
+        "resultStats": "ТОЧКА Б // РЕЛЬЕФНЫЙ V-ТОРС, ШИРОКИЕ КРЫЛЬЯ"
+      }
+    ],
+    "reviews": [
+      {
+        "id": 1,
+        "image": "/cases/radionov_review_1.jpg",
+        "author": "Михаил",
+        "result": "+6.5 кг сухой массы // Рельеф и тонус",
+        "tag": "СУХОЙ НАБОР",
+        "text": "С Никитой полностью пересобрали программу под гипертрофию. За 3 месяца прибавил больше 6 кг чистых мышц без заливания лица и живота. Плечи и руки выросли, на тренировках море энергии!",
+        "rating": 5,
+        "time": "15:40"
+      },
+      {
+        "id": 2,
+        "image": "/cases/radionov_review_2.jpg",
+        "author": "Ксения",
+        "result": "V-образная спина // Позирование & Рельеф",
+        "tag": "ЭСТЕТИКА & ПОЗИРОВАНИЕ",
+        "text": "Пришла к Никите прокачать спину и поставить сценическое позирование. За время ведения раскрыли широчайшие, научилась правильно подавать форму и чувствовать мышцы. Наставник высшего уровня в эстетике!",
+        "rating": 5,
+        "time": "18:25"
+      },
+      {
+        "id": 3,
+        "image": "/cases/radionov_review_3.jpg",
+        "author": "Артем",
+        "result": "3 недели // Пресс, плечи и венозность",
+        "tag": "ЭКСПРЕСС-ФОРМА",
+        "text": "Всего за 3 недели убрали лишнюю воду и жир с боков, прорезался глубокий пресс и округлились плечи. Программа составлена четко под мой график, контроль и обратная связь на высшем уровне.",
+        "rating": 5,
+        "time": "12:10"
+      }
+    ],
+    "tiers": [
+      {
+        "id": "tier-radionov-audit",
+        "code": "01",
+        "name": "ДИАГНОСТИКА & РАЗБОР ПОЗИРОВАНИЯ",
+        "badge": "БЫСТРЫЙ СТАРТ",
+        "price": "ПО ЗАПРОСУ",
+        "period": "РАЗОВАЯ СЕССИЯ",
+        "recommendedGoal": null,
+        "features": [
+          "Разбор текущей формы, мышечных дисбалансов и биомеханики",
+          "Урок базового позирования и постановки классических поз",
+          "Персональный расчет КБЖУ под чистый набор или сушку",
+          "Личная консультация в Telegram с Никитой"
+        ]
+      },
+      {
+        "id": "tier-radionov-coaching",
+        "code": "02",
+        "name": "ОНЛАЙН-ВЕДЕНИЕ // BODYBUILDING & ESTHETICS",
+        "badge": "ВЫБОР АТЛЕТОВ",
+        "price": "ИНДИВИДУАЛЬНО",
+        "period": "В МЕСЯЦ // УТОЧНЯЙТЕ В ЛС",
+        "recommendedGoal": "bulk",
+        "features": [
+          "Индивидуальная тренировочная программа на гипертрофию",
+          "Гибкий рацион питания без срывов и голодовок",
+          "Видеоанализ техники каждого тяжелого подхода",
+          "Ежедневная поддержка и корректировки в Telegram 24/7"
+        ]
+      },
+      {
+        "id": "tier-radionov-vip",
+        "code": "03",
+        "name": "КУРС «PRO CLASSIC & ESTHETICS»",
+        "badge": "МАКСИМАЛЬНЫЙ ФОКУС",
+        "price": "ИНДИВИДУАЛЬНО",
+        "period": "КУРС 90 ДНЕЙ",
+        "recommendedGoal": "cut",
+        "features": [
+          "Полный цикл доведения формы: от набора до сценического рельефа",
+          "Глубокая проработка мышечных объемов, V-конуса и талии",
+          "Курс уроков сценического позирования (@estheticsposing)",
+          "Приоритетный личный трекинг Никиты 24/7"
+        ]
+      }
+    ]
+  },
+
   "bernetskiy": {
   "slug": "bernetskiy",
   "brandTag": "МАСТЕР СПОРТА // ОНЛАЙН-НАСТАВНИК",
@@ -1080,4 +1212,13 @@ if (typeof window !== "undefined" && window.CLIENTS && window.CLIENTS.felix) {
 if (typeof window !== "undefined" && window.CLIENTS && window.CLIENTS.bernetskiy) {
   window.CLIENTS["vladislav"] = window.CLIENTS.bernetskiy;
   window.CLIENTS["master_fitness"] = window.CLIENTS.bernetskiy;
+}
+
+// Алиасы для Никиты Радионова
+if (typeof window !== "undefined" && window.CLIENTS && window.CLIENTS.radionov) {
+  window.CLIENTS["thenikitaradionov"] = window.CLIENTS.radionov;
+  window.CLIENTS["nikitaradionov"] = window.CLIENTS.radionov;
+  window.CLIENTS["nikita_radionov"] = window.CLIENTS.radionov;
+  window.CLIENTS["therrodionov"] = window.CLIENTS.radionov;
+  window.CLIENTS["estheticsposing"] = window.CLIENTS.radionov;
 }
