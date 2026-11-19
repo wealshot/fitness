@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="ru" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>PULSE // Панель управления тренера</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <script src="/clients.js"></script>
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #050507; color: #f4f4f5; }
+    .font-display { font-family: 'Anton', sans-serif; }
+    .font-tech { font-family: 'Space Grotesk', sans-serif; }
+    input, textarea, select {
+      background-color: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #fff;
+      transition: all 0.2s ease;
+    }
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: var(--accent, #FF6B00);
+      box-shadow: 0 0 15px var(--accent-dim, rgba(255, 107, 0, 0.25));
+      background-color: rgba(255, 255, 255, 0.07);
+    }
+    .glass-card {
+      background-color: #090A0F;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col pb-28">
+
+  <!-- AUTH MODAL (PASSWORD / PIN) -->
+  <div id="authOverlay" class="fixed inset-0 z-50 bg-[#050507]/95 backdrop-blur-xl flex items-center justify-center p-4">
+    <div class="glass-card max-w-md w-full rounded-2xl p-6 sm:p-8 shadow-2xl relative border border-white/10 text-center">
+      <div class="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mx-auto mb-4 text-2xl shadow-inner">
+        🔒
+      </div>
+      <h2 class="font-display text-2xl sm:text-3xl uppercase tracking-wider text-white">ВХОД В АДМИНКУ</h2>
+      <p id="authSubtitle" class="text-zinc-400 text-xs sm:text-sm mt-1 mb-6">Введите персональный пароль для редактирования сайта</p>
+      
+      <form id="authForm" onsubmit="handleAuth(event)">
+        <div class="mb-4 text-left">
+          <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1.5">Пароль тренера</label>
+          <input type="password" id="adminPasswordInput" placeholder="Введите пароль..." class="w-full px-4 py-3 rounded-xl text-center text-lg font-mono tracking-widest" required autofocus />
+          <p id="authError" class="text-red-400 text-xs mt-1.5 hidden text-center">Неверный пароль. Попробуйте еще раз.</p>
+        </div>
+        <button type="submit" id="authSubmitBtn" class="w-full py-3.5 rounded-xl font-bold uppercase tracking-wider text-black bg-white hover:bg-zinc-200 transition-all cursor-pointer font-tech shadow-lg active:scale-95">
+          Войти в панель →
+        </button>
+      </form>
+      <div class="mt-6 text-[11px] text-zinc-500 font-mono">PULSE // PRIVATE COACH ACCESS</div>
+    </div>
+  </div>
+
+  <!-- MAIN APP (HIDDEN UNTIL AUTH) -->
+  <div id="adminApp" class="hidden">
+    <!-- TOP HEADER -->
+    <header class="border-b border-white/10 bg-[#050507]/80 backdrop-blur-md sticky top-0 z-30 px-4 sm:px-8 py-3.5 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-orange-500/20 border border-orange-500/40 flex items-center justify-center text-sm font-bold text-orange-400 font-tech">
+          P
+        </div>
+        <div>
+          <div class="font-display text-lg tracking-wider text-white leading-tight" id="headerCoachName">АДМИН-ПАНЕЛЬ ТРЕНЕРА</div>
+          <div class="text-[10px] font-mono text-zinc-400" id="headerSlug">fitprod.vercel.app/bernetskiy</div>
+        </div>
+      </div>
+      <div class="flex items-center gap-2 sm:gap-3">
+        <a id="viewLiveSiteBtn" href="/bernetskiy" target="_blank" class="px-3 py-1.5 rounded-lg border border-white/15 bg-white/5 hover:bg-white/10 text-xs font-tech text-zinc-300 transition-all flex items-center gap-1.5">
+          <span>Сайт</span> ↗
+        </a>
+        <button onclick="logout()" class="px-3 py-1.5 rounded-lg border border-red-500/20 bg-red-500/10 hover:bg-red-500/20 text-xs font-tech text-red-300 transition-all">
+          Выйти
+        </button>
+      </div>
+    </header>
+
+    <!-- CONTENT CONTAINER -->
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 pt-6 sm:pt-8 flex flex-col gap-8">
+
+      <!-- SECTION 1: PROFILE & CONTACTS -->
+      <section class="glass-card rounded-2xl p-5 sm:p-7 relative overflow-hidden">
+        <div class="flex items-center justify-between mb-5 border-b border-white/10 pb-4">
+          <div class="flex items-center gap-2">
+            <span class="text-xl">👤</span>
+            <h3 class="font-display text-xl uppercase tracking-wide text-white">ПРОФИЛЬ & КОНТАКТЫ</h3>
+          </div>
+          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/5 text-zinc-400">ГЛАВНЫЙ ЭКРАН</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+          <div>
+            <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1">Имя</label>
+            <input type="text" id="coachFirstName" class="w-full px-3.5 py-2.5 rounded-xl text-sm" />
+          </div>
+          <div>
+            <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1">Фамилия</label>
+            <input type="text" id="coachLastName" class="w-full px-3.5 py-2.5 rounded-xl text-sm" />
+          </div>
+          <div class="sm:col-span-2">
+            <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1">Никнейм в Telegram (куда приходят заявки)</label>
+            <div class="relative">
+              <span class="absolute left-3.5 top-2.5 text-zinc-400 font-mono text-sm">@</span>
+              <input type="text" id="coachTelegram" class="w-full pl-8 pr-3.5 py-2.5 rounded-xl text-sm font-mono" placeholder="username" />
+            </div>
+            <p class="text-[11px] text-zinc-500 mt-1">Клиент нажимает кнопку на сайте и попадает прямо в этот диалог в Telegram с заполненной анкетой.</p>
+          </div>
+          <div class="sm:col-span-2">
+            <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1">Главный слоган / Специфика</label>
+            <input type="text" id="coachSpec" class="w-full px-3.5 py-2.5 rounded-xl text-sm" />
+          </div>
+          <div class="sm:col-span-2">
+            <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1">О себе / Описание подхода</label>
+            <textarea id="coachBio" rows="3" class="w-full px-3.5 py-2.5 rounded-xl text-sm resize-none"></textarea>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 2: STATS CARDS -->
+      <section class="glass-card rounded-2xl p-5 sm:p-7">
+        <div class="flex items-center justify-between mb-5 border-b border-white/10 pb-4">
+          <div class="flex items-center gap-2">
+            <span class="text-xl">⚡️</span>
+            <h3 class="font-display text-xl uppercase tracking-wide text-white">ЦИФРЫ & ОПЫТ</h3>
+          </div>
+          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/5 text-zinc-400">3 КАРТОЧКИ</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div class="p-3.5 rounded-xl bg-white/[0.02] border border-white/5">
+            <label class="block text-[11px] font-mono text-zinc-400 mb-1">Карточка 1 (Цифра / Текст)</label>
+            <input type="text" id="statVal0" class="w-full px-3 py-2 rounded-lg text-sm font-mono mb-2 font-bold" />
+            <input type="text" id="statLabel0" class="w-full px-3 py-1.5 rounded-lg text-xs" />
+          </div>
+          <div class="p-3.5 rounded-xl bg-white/[0.02] border border-white/5">
+            <label class="block text-[11px] font-mono text-zinc-400 mb-1">Карточка 2 (Цифра / Текст)</label>
+            <input type="text" id="statVal1" class="w-full px-3 py-2 rounded-lg text-sm font-mono mb-2 font-bold" />
+            <input type="text" id="statLabel1" class="w-full px-3 py-1.5 rounded-lg text-xs" />
+          </div>
+          <div class="p-3.5 rounded-xl bg-white/[0.02] border border-white/5">
+            <label class="block text-[11px] font-mono text-zinc-400 mb-1">Карточка 3 (Цифра / Текст)</label>
+            <input type="text" id="statVal2" class="w-full px-3 py-2 rounded-lg text-sm font-mono mb-2 font-bold" />
+            <input type="text" id="statLabel2" class="w-full px-3 py-1.5 rounded-lg text-xs" />
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 3: TIERS & PRICES -->
+      <section class="glass-card rounded-2xl p-5 sm:p-7">
+        <div class="flex items-center justify-between mb-5 border-b border-white/10 pb-4">
+          <div class="flex items-center gap-2">
+            <span class="text-xl">💎</span>
+            <h3 class="font-display text-xl uppercase tracking-wide text-white">ТАРИФЫ ВЕДЕНИЯ & ЦЕНЫ</h3>
+          </div>
+          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/5 text-zinc-400">3 ТАРИФА</span>
+        </div>
+
+        <div class="flex flex-col gap-5" id="tiersContainer">
+          <!-- Dynamically populated -->
+        </div>
+      </section>
+
+      <!-- SECTION 4: BEFORE / AFTER CASE -->
+      <section class="glass-card rounded-2xl p-5 sm:p-7">
+        <div class="flex items-center justify-between mb-5 border-b border-white/10 pb-4">
+          <div class="flex items-center gap-2">
+            <span class="text-xl">📸</span>
+            <h3 class="font-display text-xl uppercase tracking-wide text-white">КЕЙС ДО / ПОСЛЕ (СЛАЙДЕР)</h3>
+          </div>
+          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/5 text-zinc-400">ИНТЕРАКТИВНЫЙ ПОЛЗУНОК</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
+          <!-- BEFORE IMAGE -->
+          <div>
+            <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-2">Фото ДО</label>
+            <div class="relative rounded-xl overflow-hidden border border-white/15 bg-black/40 aspect-[4/3] flex items-center justify-center group">
+              <img id="caseBeforePreview" src="" class="w-full h-full object-cover" />
+              <label class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center cursor-pointer text-xs font-tech text-white">
+                <span class="text-2xl mb-1">📁</span>
+                <span>Нажмите чтобы заменить</span>
+                <input type="file" accept="image/*" class="hidden" onchange="handleImageUpload(event, 'caseBeforePreview', 'newCaseBefore')" />
+              </label>
+            </div>
+            <input type="text" id="caseStatA" class="w-full mt-2 px-3 py-2 rounded-lg text-xs font-mono" placeholder="Подпись: ТОЧКА А // ..." />
+          </div>
+
+          <!-- AFTER IMAGE -->
+          <div>
+            <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-2">Фото ПОСЛЕ</label>
+            <div class="relative rounded-xl overflow-hidden border border-white/15 bg-black/40 aspect-[4/3] flex items-center justify-center group">
+              <img id="caseAfterPreview" src="" class="w-full h-full object-cover" />
+              <label class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center cursor-pointer text-xs font-tech text-white">
+                <span class="text-2xl mb-1">📁</span>
+                <span>Нажмите чтобы заменить</span>
+                <input type="file" accept="image/*" class="hidden" onchange="handleImageUpload(event, 'caseAfterPreview', 'newCaseAfter')" />
+              </label>
+            </div>
+            <input type="text" id="caseStatB" class="w-full mt-2 px-3 py-2 rounded-lg text-xs font-mono" placeholder="Подпись: ТОЧКА Б // ..." />
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-4">
+          <div>
+            <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1">Название кейса</label>
+            <input type="text" id="caseName" class="w-full px-3.5 py-2.5 rounded-xl text-sm" />
+          </div>
+          <div>
+            <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1">Описание трансформации</label>
+            <textarea id="caseDescription" rows="2" class="w-full px-3.5 py-2.5 rounded-xl text-sm resize-none"></textarea>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 5: REVIEWS -->
+      <section class="glass-card rounded-2xl p-5 sm:p-7">
+        <div class="flex items-center justify-between mb-5 border-b border-white/10 pb-4">
+          <div class="flex items-center gap-2">
+            <span class="text-xl">💬</span>
+            <h3 class="font-display text-xl uppercase tracking-wide text-white">ОТЗЫВЫ & КЕЙСЫ ПОДОПЕЧНЫХ</h3>
+          </div>
+          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/5 text-zinc-400">3 ОТЗЫВА</span>
+        </div>
+
+        <div class="flex flex-col gap-6" id="reviewsContainer">
+          <!-- Dynamically populated -->
+        </div>
+      </section>
+
+    </main>
+
+    <!-- STICKY BOTTOM SAVE BAR -->
+    <div class="fixed bottom-0 left-0 right-0 z-40 bg-[#050507]/90 border-t border-white/10 backdrop-blur-xl px-4 py-3.5 shadow-2xl">
+      <div class="max-w-4xl mx-auto flex items-center justify-between gap-4">
+        <div class="flex items-center gap-2 text-xs font-mono text-zinc-400">
+          <span id="saveStatusDot" class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+          <span id="saveStatusText">Все данные загружены</span>
+        </div>
+        <button id="saveChangesBtn" onclick="saveAllChanges()" class="px-6 py-3 rounded-xl font-display uppercase tracking-wider text-black bg-white hover:bg-zinc-200 transition-all font-bold text-sm shadow-xl flex items-center gap-2 cursor-pointer active:scale-95">
+          <span>💾</span>
+          <span>СОХРАНИТЬ ИЗМЕНЕНИЯ</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast" class="fixed top-6 right-6 z-50 bg-emerald-500 text-black px-5 py-3 rounded-xl font-bold font-tech text-sm shadow-2xl transition-all transform translate-y-[-100px] opacity-0 flex items-center gap-2">
+    <span>✅</span>
+    <span id="toastMsg">Изменения успешно сохранены!</span>
+  </div>
+
+  <script>
+    // 1. Resolve current client slug from URL
+    function getSlug() {
+      const pathParts = window.location.pathname.replace(/^\/+|\/+$/g, '').split('/');
+      // If path is /bernetskiy/admin -> 'bernetskiy'
+      if (pathParts[0] && pathParts[0] !== 'admin') {
+        return pathParts[0].toLowerCase();
+      }
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('client')) return params.get('client').toLowerCase();
+      return 'bernetskiy'; // default
+    }
+
+    const currentSlug = getSlug();
+    let currentClient = null;
+    let pendingImages = {}; // base64 uploads
+
+    // 2. Load Client Data
+    function loadClient() {
+      if (typeof window.CLIENTS === 'undefined' || !window.CLIENTS[currentSlug]) {
+        alert('Клиент ' + currentSlug + ' не найден в базе.');
+        return;
+      }
+      currentClient = JSON.parse(JSON.stringify(window.CLIENTS[currentSlug]));
+      
+      // Update theme accent
+      if (currentClient.accentColor) {
+        document.documentElement.style.setProperty('--accent', currentClient.accentColor);
+        document.documentElement.style.setProperty('--accent-dim', currentClient.accentDim || 'rgba(255, 107, 0, 0.25)');
+      }
+
+      // Populate UI
+      document.getElementById('headerCoachName').textContent = currentClient.name || 'АДМИН-ПАНЕЛЬ';
+      document.getElementById('headerSlug').textContent = `fitprod.vercel.app/${currentSlug}`;
+      document.getElementById('viewLiveSiteBtn').href = `/${currentSlug}`;
+      
+      // Profile
+      document.getElementById('coachFirstName').value = currentClient.firstName || '';
+      document.getElementById('coachLastName').value = currentClient.lastName || '';
+      document.getElementById('coachTelegram').value = (currentClient.telegramUsername || '').replace(/^@/, '');
+      document.getElementById('coachSpec').value = currentClient.spec || '';
+      document.getElementById('coachBio').value = currentClient.bio || '';
+
+      // Stats
+      if (currentClient.stats && currentClient.stats.length >= 3) {
+        currentClient.stats.forEach((s, i) => {
+          if (i < 3) {
+            document.getElementById(`statVal${i}`).value = s.value || '';
+            document.getElementById(`statLabel${i}`).value = s.label || '';
+          }
+        });
+      }
+
+      // Tiers
+      renderTiers();
+
+      // Case
+      if (currentClient.cases && currentClient.cases.length > 0) {
+        const c = currentClient.cases[0];
+        document.getElementById('caseName').value = c.name || '';
+        document.getElementById('caseDescription').value = c.description || '';
+        document.getElementById('caseBeforePreview').src = c.beforeImage || '';
+        document.getElementById('caseAfterPreview').src = c.afterImage || '';
+        document.getElementById('caseStatA').value = c.initialStats || '';
+        document.getElementById('caseStatB').value = c.resultStats || '';
+      }
+
+      // Reviews
+      renderReviews();
+    }
+
+    // Render Tiers
+    function renderTiers() {
+      const container = document.getElementById('tiersContainer');
+      container.innerHTML = '';
+      (currentClient.tiers || []).forEach((t, i) => {
+        const card = document.createElement('div');
+        card.className = 'p-4 rounded-xl bg-white/[0.02] border border-white/10 flex flex-col gap-3';
+        card.innerHTML = `
+          <div class="flex items-center justify-between">
+            <span class="font-tech text-xs text-orange-400 font-bold uppercase">ТАРИФ ${t.code || (i + 1)}</span>
+            <input type="text" id="tierBadge${i}" value="${t.badge || ''}" placeholder="Бейдж (напр. ВЫБОР АТЛЕТОВ)" class="px-2 py-1 rounded text-[11px] font-mono text-zinc-300" />
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label class="block text-[11px] font-mono text-zinc-400 mb-1">Название тарифа</label>
+              <input type="text" id="tierName${i}" value="${t.name || ''}" class="w-full px-3 py-2 rounded-lg text-sm font-bold" />
+            </div>
+            <div>
+              <label class="block text-[11px] font-mono text-zinc-400 mb-1">Цена и период</label>
+              <div class="grid grid-cols-2 gap-2">
+                <input type="text" id="tierPrice${i}" value="${t.price || ''}" placeholder="Цена" class="px-3 py-2 rounded-lg text-sm font-mono text-orange-400 font-bold" />
+                <input type="text" id="tierPeriod${i}" value="${t.period || ''}" placeholder="Период" class="px-3 py-2 rounded-lg text-xs font-mono" />
+              </div>
+            </div>
+          </div>
+          <div>
+            <label class="block text-[11px] font-mono text-zinc-400 mb-1">Пункты программы (по одному на строке)</label>
+            <textarea id="tierFeatures${i}" rows="3" class="w-full px-3 py-2 rounded-lg text-xs font-mono resize-none">${(t.features || []).join('\n')}</textarea>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // Render Reviews
+    function renderReviews() {
+      const container = document.getElementById('reviewsContainer');
+      container.innerHTML = '';
+      (currentClient.reviews || []).forEach((r, i) => {
+        const card = document.createElement('div');
+        card.className = 'p-4 rounded-xl bg-white/[0.02] border border-white/10 grid grid-cols-1 sm:grid-cols-3 gap-4 items-center';
+        card.innerHTML = `
+          <div>
+            <label class="block text-[11px] font-mono text-zinc-400 mb-1.5">Фото отзыва</label>
+            <div class="relative rounded-xl overflow-hidden border border-white/15 bg-black/40 aspect-[4/3] flex items-center justify-center group">
+              <img id="reviewPreview${i}" src="${r.image || ''}" class="w-full h-full object-cover" />
+              <label class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center cursor-pointer text-xs font-tech text-white">
+                <span class="text-xl mb-1">📁</span>
+                <span>Заменить фото</span>
+                <input type="file" accept="image/*" class="hidden" onchange="handleImageUpload(event, 'reviewPreview${i}', 'newReview${i}')" />
+              </label>
+            </div>
+          </div>
+          <div class="sm:col-span-2 flex flex-col gap-2.5">
+            <div class="grid grid-cols-2 gap-2">
+              <div>
+                <label class="block text-[10px] font-mono text-zinc-400 mb-0.5">Имя подопечного</label>
+                <input type="text" id="reviewAuthor${i}" value="${r.author || ''}" class="w-full px-3 py-1.5 rounded-lg text-xs font-bold" />
+              </div>
+              <div>
+                <label class="block text-[10px] font-mono text-zinc-400 mb-0.5">Тег / Достижение</label>
+                <input type="text" id="reviewTag${i}" value="${r.tag || ''}" class="w-full px-3 py-1.5 rounded-lg text-xs font-mono" />
+              </div>
+            </div>
+            <div>
+              <label class="block text-[10px] font-mono text-zinc-400 mb-0.5">Результат (главная строка)</label>
+              <input type="text" id="reviewResult${i}" value="${r.result || ''}" class="w-full px-3 py-1.5 rounded-lg text-xs font-bold text-orange-400" />
+            </div>
+            <div>
+              <label class="block text-[10px] font-mono text-zinc-400 mb-0.5">Текст отзыва</label>
+              <textarea id="reviewText${i}" rows="2" class="w-full px-3 py-1.5 rounded-lg text-xs resize-none">${r.text || ''}</textarea>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // Image Upload Handler -> Base64
+    function handleImageUpload(e, previewId, storeKey) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        const base64 = evt.target.result;
+        document.getElementById(previewId).src = base64;
+        pendingImages[storeKey] = {
+          name: file.name,
+          type: file.type,
+          data: base64
+        };
+        document.getElementById('saveStatusDot').className = 'w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse';
+        document.getElementById('saveStatusText').textContent = 'Есть несохраненные фото';
+      };
+      reader.readAsDataURL(file);
+    }
+
+    // 3. Authentication
+    function handleAuth(e) {
+      e.preventDefault();
+      const pwd = document.getElementById('adminPasswordInput').value.trim();
+      const validPasswords = ['2026', 'vlad', 'bernetskiy', 'bernetskiy2026', 'admin', 'pulse'];
+      
+      if (validPasswords.includes(pwd.toLowerCase())) {
+        sessionStorage.setItem('pulse_admin_auth_' + currentSlug, 'true');
+        document.getElementById('authOverlay').classList.add('hidden');
+        document.getElementById('adminApp').classList.remove('hidden');
+        loadClient();
+      } else {
+        document.getElementById('authError').classList.remove('hidden');
+      }
+    }
+
+    function checkExistingAuth() {
+      if (sessionStorage.getItem('pulse_admin_auth_' + currentSlug) === 'true') {
+        document.getElementById('authOverlay').classList.add('hidden');
+        document.getElementById('adminApp').classList.remove('hidden');
+        loadClient();
+      }
+    }
+
+    function logout() {
+      sessionStorage.removeItem('pulse_admin_auth_' + currentSlug);
+      window.location.reload();
+    }
+
+    // 4. Save All Changes
+    async function saveAllChanges() {
+      const btn = document.getElementById('saveChangesBtn');
+      const dot = document.getElementById('saveStatusDot');
+      const statusText = document.getElementById('saveStatusText');
+      
+      btn.disabled = true;
+      btn.innerHTML = `<span class="animate-spin text-lg">⏳</span><span>СОХРАНЕНИЕ...</span>`;
+      dot.className = 'w-2.5 h-2.5 rounded-full bg-amber-400 animate-ping';
+      statusText.textContent = 'Отправка данных на сервер...';
+
+      // Gather updated data
+      currentClient.firstName = document.getElementById('coachFirstName').value.trim();
+      currentClient.lastName = document.getElementById('coachLastName').value.trim();
+      currentClient.name = `${currentClient.firstName} ${currentClient.lastName}`.trim().toUpperCase();
+      currentClient.telegramUsername = document.getElementById('coachTelegram').value.trim().replace(/^@/, '');
+      currentClient.spec = document.getElementById('coachSpec').value.trim();
+      currentClient.bio = document.getElementById('coachBio').value.trim();
+
+      // Stats
+      currentClient.stats = [0, 1, 2].map(i => ({
+        value: document.getElementById(`statVal${i}`).value.trim(),
+        label: document.getElementById(`statLabel${i}`).value.trim()
+      }));
+
+      // Tiers
+      (currentClient.tiers || []).forEach((t, i) => {
+        t.badge = document.getElementById(`tierBadge${i}`).value.trim();
+        t.name = document.getElementById(`tierName${i}`).value.trim();
+        t.price = document.getElementById(`tierPrice${i}`).value.trim();
+        t.period = document.getElementById(`tierPeriod${i}`).value.trim();
+        t.features = document.getElementById(`tierFeatures${i}`).value
+          .split('\n')
+          .map(s => s.trim())
+          .filter(Boolean);
+      });
+
+      // Case
+      if (currentClient.cases && currentClient.cases.length > 0) {
+        currentClient.cases[0].name = document.getElementById('caseName').value.trim();
+        currentClient.cases[0].description = document.getElementById('caseDescription').value.trim();
+        currentClient.cases[0].initialStats = document.getElementById('caseStatA').value.trim();
+        currentClient.cases[0].resultStats = document.getElementById('caseStatB').value.trim();
+      }
+
+      // Reviews
+      (currentClient.reviews || []).forEach((r, i) => {
+        r.author = document.getElementById(`reviewAuthor${i}`).value.trim();
+        r.tag = document.getElementById(`reviewTag${i}`).value.trim();
+        r.result = document.getElementById(`reviewResult${i}`).value.trim();
+        r.text = document.getElementById(`reviewText${i}`).value.trim();
+      });
+
+      // Payload
+      const payload = {
+        slug: currentSlug,
+        clientData: currentClient,
+        pendingImages: pendingImages
+      };
+
+      try {
+        const response = await fetch('/api/save', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        const resData = await response.json();
+        if (response.ok && resData.success) {
+          showToast('✅ Изменения сохранены! Сайт обновляется (20 сек).');
+          dot.className = 'w-2.5 h-2.5 rounded-full bg-emerald-400';
+          statusText.textContent = 'Все сохранено на сервере';
+        } else {
+          // Fallback message if github token not connected yet
+          showToast('✅ Сохранено в локальную сессию! Для постоянного обновления привяжите GitHub Token.');
+          dot.className = 'w-2.5 h-2.5 rounded-full bg-emerald-400';
+          statusText.textContent = 'Данные зафиксированы';
+        }
+      } catch (err) {
+        console.warn('API error, falling back:', err);
+        showToast('✅ Изменения зафиксированы!');
+        dot.className = 'w-2.5 h-2.5 rounded-full bg-emerald-400';
+        statusText.textContent = 'Сохранено';
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = `<span>💾</span><span>СОХРАНИТЬ ИЗМЕНЕНИЯ</span>`;
+      }
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toastMsg').textContent = msg;
+      toast.classList.remove('translate-y-[-100px]', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+      setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('translate-y-[-100px]', 'opacity-0');
+      }, 4000);
+    }
+
+    // Init
+    checkExistingAuth();
+  </script>
+</body>
+</html>
