@@ -1,6 +1,51 @@
 // Vercel Serverless Function: POST /api/save
 // Commits updated client data and images directly to GitHub repository (Zero Database!)
 
+function replaceClientInContent(content, slug, clientData) {
+  const target = `"${slug}":`;
+  const pos = content.indexOf(target);
+  const formattedJson = JSON.stringify(clientData, null, 2);
+  const indentedJson = formattedJson.split('\n').map((l, i) => i === 0 ? l : '  ' + l).join('\n');
+
+  if (pos === -1) {
+    const insertMarker = 'window.CLIENTS = {';
+    const insPos = content.indexOf(insertMarker);
+    if (insPos !== -1) {
+      const splitAt = insPos + insertMarker.length;
+      return content.slice(0, splitAt) + `\n  "${slug}": ` + indentedJson + ',' + content.slice(splitAt);
+    }
+    return content;
+  }
+
+  const braceStart = content.indexOf('{', pos);
+  if (braceStart === -1) return content;
+
+  let count = 1;
+  let i = braceStart + 1;
+  let inString = false;
+  let escape = false;
+
+  while (i < content.length && count > 0) {
+    const ch = content[i];
+    if (escape) {
+      escape = false;
+    } else if (ch === '\\') {
+      escape = true;
+    } else if (ch === '"') {
+      inString = !inString;
+    } else if (!inString) {
+      if (ch === '{') count++;
+      else if (ch === '}') count--;
+    }
+    i++;
+  }
+
+  if (count === 0) {
+    return content.slice(0, pos) + `"${slug}": ` + indentedJson + content.slice(i);
+  }
+  return content;
+}
+
 export default async function handler(req, res) {
   // CORS
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -55,10 +100,14 @@ export default async function handler(req, res) {
           clientData.heroImage = `/${targetPath}`;
         } else if (key === 'newCaseBefore') {
           targetPath = `cases/${slug}_case_before.jpg`;
-          clientData.cases[0].beforeImage = `/${targetPath}`;
+          if (clientData.cases && clientData.cases[0]) {
+            clientData.cases[0].beforeImage = `/${targetPath}`;
+          }
         } else if (key === 'newCaseAfter') {
           targetPath = `cases/${slug}_case_after.jpg`;
-          clientData.cases[0].afterImage = `/${targetPath}`;
+          if (clientData.cases && clientData.cases[0]) {
+            clientData.cases[0].afterImage = `/${targetPath}`;
+          }
         } else if (key.startsWith('newReview')) {
           const revIdx = parseInt(key.replace('newReview', ''), 10);
           targetPath = `cases/${slug}_review_${revIdx + 1}.jpg`;
@@ -105,16 +154,8 @@ export default async function handler(req, res) {
     const currentSha = getData.sha;
     const currentContent = Buffer.from(getData.content, 'base64').toString('utf-8');
 
-    // 3. Update the specific client block in clients.js
-    const clientJson = JSON.stringify(clientData, null, 2);
-    const regex = new RegExp(`("${slug}":\\s*\\{[\\s\\S]*?\\n  \\})(,?)`, 'm');
-    let updatedContent = '';
-
-    if (regex.test(currentContent)) {
-      updatedContent = currentContent.replace(regex, `"${slug}": ${clientJson}$2`);
-    } else {
-      updatedContent = currentContent.replace('window.CLIENTS = {', `window.CLIENTS = {\n  "${slug}": ${clientJson},`);
-    }
+    // 3. Update the specific client block in clients.js using robust parser
+    const updatedContent = replaceClientInContent(currentContent, slug, clientData);
 
     // 4. Commit updated clients.js back to GitHub
     const putRes = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/clients.js`, {

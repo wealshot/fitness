@@ -122,14 +122,18 @@
               <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1">Бейдж над заголовком</label>
               <input type="text" id="coachSpec" placeholder="СТРОИМ ТЕЛО ИЗ ЖЕЛЕЗА И ВИТАМИНОВ ⚡" class="w-full px-3.5 py-2 rounded-xl text-xs font-mono" />
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
               <div>
-                <label class="block text-[11px] font-mono text-zinc-400 mb-1">Текст главной кнопки (Калькулятор)</label>
+                <label class="block text-[11px] font-mono text-zinc-400 mb-1">Главная кнопка Hero (Калькулятор)</label>
                 <input type="text" id="coachPrimaryBtnText" placeholder="Рассчитать форму и калории" class="w-full px-3 py-2 rounded-lg text-xs" />
               </div>
               <div>
-                <label class="block text-[11px] font-mono text-zinc-400 mb-1">Текст кнопки Telegram</label>
+                <label class="block text-[11px] font-mono text-zinc-400 mb-1">Вторая кнопка Hero (Telegram)</label>
                 <input type="text" id="coachSecondaryBtnText" placeholder="Написать в Telegram" class="w-full px-3 py-2 rounded-lg text-xs" />
+              </div>
+              <div>
+                <label class="block text-[11px] font-mono text-zinc-400 mb-1">Кнопка в шапке (CTA)</label>
+                <input type="text" id="coachCtaBtnText" placeholder="Забрать план [2342 ккал]" class="w-full px-3 py-2 rounded-lg text-xs" />
               </div>
             </div>
           </div>
@@ -199,19 +203,26 @@
           <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/5 text-zinc-400">ВКЛ / ВЫКЛ</span>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <label class="flex items-center gap-3 p-3.5 rounded-xl bg-white/[0.02] border border-white/10 cursor-pointer hover:bg-white/[0.04] transition-all">
             <input type="checkbox" id="toggleReviewsSection" class="w-5 h-5 rounded accent-orange-500 cursor-pointer" />
             <div>
-              <div class="text-sm font-bold text-white">Блок отзывов подопечных</div>
-              <div class="text-xs text-zinc-400">Показывать карусель отзывов со скриншотами</div>
+              <div class="text-sm font-bold text-white">Блок отзывов</div>
+              <div class="text-xs text-zinc-400">Карусель отзывов подопечных</div>
+            </div>
+          </label>
+          <label class="flex items-center gap-3 p-3.5 rounded-xl bg-white/[0.02] border border-white/10 cursor-pointer hover:bg-white/[0.04] transition-all">
+            <input type="checkbox" id="toggleCasesSection" class="w-5 h-5 rounded accent-orange-500 cursor-pointer" />
+            <div>
+              <div class="text-sm font-bold text-white">Блок кейсов (До / После)</div>
+              <div class="text-xs text-zinc-400">Слайдер результатов трансформации</div>
             </div>
           </label>
           <label class="flex items-center gap-3 p-3.5 rounded-xl bg-white/[0.02] border border-white/10 cursor-pointer hover:bg-white/[0.04] transition-all">
             <input type="checkbox" id="toggleApplicationForm" class="w-5 h-5 rounded accent-orange-500 cursor-pointer" />
             <div>
-              <div class="text-sm font-bold text-white">Форма анкеты на ведение</div>
-              <div class="text-xs text-zinc-400">Шаг с заполнением цели и отправкой в Telegram</div>
+              <div class="text-sm font-bold text-white">Форма анкеты</div>
+              <div class="text-xs text-zinc-400">Шаг с анкетой и отправкой в TG</div>
             </div>
           </label>
         </div>
@@ -432,8 +443,12 @@
       document.getElementById('coachScarcityBadge').value = currentClient.scarcityBadge || '';
       document.getElementById('coachBio').value = currentClient.bio || '';
 
+      // Hero buttons & CTA
+      document.getElementById('coachCtaBtnText').value = currentClient.ctaButtonText || '';
+
       // Toggles
       document.getElementById('toggleReviewsSection').checked = currentClient.hasReviewsSection !== false;
+      document.getElementById('toggleCasesSection').checked = currentClient.hasCasesSection !== false;
       document.getElementById('toggleApplicationForm').checked = currentClient.hasApplicationForm !== false;
 
       // Stats
@@ -577,6 +592,19 @@
     }
 
     function checkExistingAuth() {
+      // Auto-save GitHub token from URL (?token=ghp_...)
+      try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const tokenInUrl = urlParams.get('token');
+        if (tokenInUrl) {
+          localStorage.setItem('pulse_github_token', tokenInUrl.trim());
+          if (window.history && window.history.replaceState) {
+            window.history.replaceState({}, document.title, window.location.pathname);
+          }
+          showToast('🔑 GitHub Token успешно подключен!');
+        }
+      } catch(e) {}
+
       if (sessionStorage.getItem('pulse_admin_auth_' + currentSlug) === 'true') {
         document.getElementById('authOverlay').classList.add('hidden');
         document.getElementById('adminApp').classList.remove('hidden');
@@ -600,20 +628,36 @@
       }
     }
 
-    function clearLocalOverrides() {
-      if (confirm('Вернуть сайт к исходному виду и сбросить все внесенные правки?')) {
-        localStorage.removeItem('pulse_override_' + currentSlug);
-        for (let i = localStorage.length - 1; i >= 0; i--) {
-          const k = localStorage.key(i);
-          if (k && (k === 'pulse_override_' + currentSlug || k.startsWith('pulse_override_'))) {
-            localStorage.removeItem(k);
-          }
-        }
-        showToast('✅ Все правки сброшены! Сайт возвращен к исходному виду.');
-        setTimeout(() => {
-          window.location.reload();
-        }, 800);
+    async function clearLocalOverrides() {
+      if (!confirm('Сбросить ВСЕ внесенные изменения и вернуть сайт к заводскому исходному виду?')) {
+        return;
       }
+      localStorage.removeItem('pulse_override_' + currentSlug);
+      for (let i = localStorage.length - 1; i >= 0; i--) {
+        const k = localStorage.key(i);
+        if (k && (k === 'pulse_override_' + currentSlug || k.startsWith('pulse_override_'))) {
+          localStorage.removeItem(k);
+        }
+      }
+      const token = (document.getElementById('githubTokenInput')?.value || localStorage.getItem('pulse_github_token') || '').trim();
+      if (token && window.CLIENTS && window.CLIENTS[currentSlug]) {
+        showToast('⏳ Сбрасываем изменения на GitHub...');
+        try {
+          await fetch('/api/save', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              slug: currentSlug,
+              clientData: window.CLIENTS[currentSlug],
+              githubToken: token
+            })
+          });
+        } catch(e) {}
+      }
+      showToast('✅ Все настройки сброшены к исходным!');
+      setTimeout(() => {
+        window.location.reload();
+      }, 700);
     }
 
     async function saveAllChanges() {
@@ -647,7 +691,10 @@
       currentClient.scarcityBadge = document.getElementById('coachScarcityBadge').value.trim();
       currentClient.bio = document.getElementById('coachBio').value.trim();
 
+      currentClient.ctaButtonText = document.getElementById('coachCtaBtnText').value.trim();
+
       currentClient.hasReviewsSection = document.getElementById('toggleReviewsSection').checked;
+      currentClient.hasCasesSection = document.getElementById('toggleCasesSection').checked;
       currentClient.hasApplicationForm = document.getElementById('toggleApplicationForm').checked;
 
       currentClient.stats = [0, 1, 2].map(i => ({

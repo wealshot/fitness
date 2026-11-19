@@ -1213,10 +1213,7 @@ if (typeof window !== "undefined" && window.localStorage) {
         if (k && k.startsWith("pulse_override_")) window.localStorage.removeItem(k);
       }
       console.log("[PULSE] Reset all local overrides!");
-      if (window.history && window.history.replaceState) {
-        window.history.replaceState({}, document.title, window.location.pathname);
-      }
-      window.location.reload();
+      window.location.replace(window.location.pathname);
     }
 
     // 2. Apply saved admin overrides
