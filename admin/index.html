@@ -122,6 +122,16 @@
               <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1">Бейдж над заголовком</label>
               <input type="text" id="coachSpec" placeholder="СТРОИМ ТЕЛО ИЗ ЖЕЛЕЗА И ВИТАМИНОВ ⚡" class="w-full px-3.5 py-2 rounded-xl text-xs font-mono" />
             </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+              <div>
+                <label class="block text-[11px] font-mono text-zinc-400 mb-1">Текст главной кнопки (Калькулятор)</label>
+                <input type="text" id="coachPrimaryBtnText" placeholder="Рассчитать форму и калории" class="w-full px-3 py-2 rounded-lg text-xs" />
+              </div>
+              <div>
+                <label class="block text-[11px] font-mono text-zinc-400 mb-1">Текст кнопки Telegram</label>
+                <input type="text" id="coachSecondaryBtnText" placeholder="Написать в Telegram" class="w-full px-3 py-2 rounded-lg text-xs" />
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -164,9 +174,13 @@
             <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1">Локация (напр. ОНЛАЙН // СНГ & МИР)</label>
             <input type="text" id="coachLocation" class="w-full px-3.5 py-2.5 rounded-xl text-xs font-mono" />
           </div>
-          <div class="sm:col-span-2">
-            <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1">Плашка мест (напр. ОТБОР НА ВЕДЕНИЕ: СВОБОДНО 2 МЕСТА)</label>
-            <input type="text" id="coachScarcityBadge" class="w-full px-3.5 py-2.5 rounded-xl text-xs font-mono text-orange-400 font-bold" />
+          <div>
+            <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1">Плашка мест</label>
+            <input type="text" id="coachScarcityBadge" placeholder="ОТБОР НА ВЕДЕНИЕ: СВОБОДНО 2 МЕСТА" class="w-full px-3.5 py-2.5 rounded-xl text-xs font-mono text-orange-400 font-bold" />
+          </div>
+          <div>
+            <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1">Хэштег/код в правом углу</label>
+            <input type="text" id="coachScarcityCode" placeholder="#BERNETSKIY-2026" class="w-full px-3.5 py-2.5 rounded-xl text-xs font-mono text-zinc-400" />
           </div>
           <div class="sm:col-span-2">
             <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1">О себе (Био)</label>
@@ -404,6 +418,9 @@
       document.getElementById('coachHeroTitle').value = currentClient.heroTitle || '';
       document.getElementById('coachHeroDescription').value = currentClient.heroDescription || '';
       document.getElementById('coachSpec').value = currentClient.spec || '';
+      document.getElementById('coachPrimaryBtnText').value = currentClient.primaryBtnText || '';
+      document.getElementById('coachSecondaryBtnText').value = currentClient.secondaryBtnText || '';
+      document.getElementById('coachScarcityCode').value = currentClient.scarcityCode || '';
 
       // Profile
       document.getElementById('coachFirstName').value = currentClient.firstName || '';
@@ -616,6 +633,9 @@
       currentClient.heroTitle = document.getElementById('coachHeroTitle').value.trim();
       currentClient.heroDescription = document.getElementById('coachHeroDescription').value.trim();
       currentClient.spec = document.getElementById('coachSpec').value.trim();
+      currentClient.primaryBtnText = document.getElementById('coachPrimaryBtnText').value.trim();
+      currentClient.secondaryBtnText = document.getElementById('coachSecondaryBtnText').value.trim();
+      currentClient.scarcityCode = document.getElementById('coachScarcityCode').value.trim();
 
       currentClient.firstName = document.getElementById('coachFirstName').value.trim();
       currentClient.lastName = document.getElementById('coachLastName').value.trim();
