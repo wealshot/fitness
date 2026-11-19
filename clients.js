@@ -14,8 +14,8 @@
  */
 
 window.CLIENTS = {
-  "rodionov": {
-    "slug": "rodionov",
+  "radionov": {
+    "slug": "radionov",
     "brandTag": "ONLINE COACHING // BODYBUILDING & AESTHETICS ⚜️",
     "location": "ОНЛАЙН // РОССИЯ & МИР",
     "name": "НИКИТА РАДИОНОВ",
