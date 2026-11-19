@@ -14,8 +14,8 @@
  */
 
 window.CLIENTS = {
-  "radionov": {
-    "slug": "radionov",
+  "rodionov": {
+    "slug": "rodionov",
     "brandTag": "ONLINE COACHING // BODYBUILDING & AESTHETICS ⚜️",
     "location": "ОНЛАЙН // РОССИЯ & МИР",
     "name": "НИКИТА РАДИОНОВ",
@@ -1200,25 +1200,3 @@ window.CLIENTS = {
     ]
   }
 };
-
-// Алиасы для Феликса Искра
-if (typeof window !== "undefined" && window.CLIENTS && window.CLIENTS.felix) {
-  window.CLIENTS["fel_iskra"] = window.CLIENTS.felix;
-  window.CLIENTS["felix_iskra"] = window.CLIENTS.felix;
-  window.CLIENTS["felix_iskra_"] = window.CLIENTS.felix;
-}
-
-// Алиасы для Владислава Бернецкого
-if (typeof window !== "undefined" && window.CLIENTS && window.CLIENTS.bernetskiy) {
-  window.CLIENTS["vladislav"] = window.CLIENTS.bernetskiy;
-  window.CLIENTS["master_fitness"] = window.CLIENTS.bernetskiy;
-}
-
-// Алиасы для Никиты Радионова
-if (typeof window !== "undefined" && window.CLIENTS && window.CLIENTS.radionov) {
-  window.CLIENTS["thenikitaradionov"] = window.CLIENTS.radionov;
-  window.CLIENTS["nikitaradionov"] = window.CLIENTS.radionov;
-  window.CLIENTS["nikita_radionov"] = window.CLIENTS.radionov;
-  window.CLIENTS["therrodionov"] = window.CLIENTS.radionov;
-  window.CLIENTS["estheticsposing"] = window.CLIENTS.radionov;
-}
