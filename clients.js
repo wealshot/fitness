@@ -35,7 +35,7 @@ window.CLIENTS = {
     "accentGlow": "rgba(14, 165, 233, 0.45)",
     "hasApplicationForm": true,
     "hasReviewsSection": true,
-    "telegramUsername": "therrodionov",
+    "telegramUsername": "NikitaRadionov17",
     "scarcityBadge": "ОТБОР НА ВЕДЕНИЕ: СВОБОДНО 2 МЕСТА",
     "stats": [
       {
