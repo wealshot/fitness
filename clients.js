@@ -13,7 +13,9 @@
  * =======================================================================
  */
 
+// Alias support for both spellings
 window.CLIENTS = {
+
   "radionov": {
     "slug": "radionov",
     "brandTag": "ONLINE COACHING // BODYBUILDING & AESTHETICS ⚜️",
@@ -1207,6 +1209,11 @@ window.CLIENTS = {
     ]
   }
 };
+
+// Alias mapping (radionov == rodionov)
+if (window.CLIENTS && window.CLIENTS["radionov"]) {
+  window.CLIENTS["rodionov"] = window.CLIENTS["radionov"];
+}
 
 // Live Preview & Admin Sync (Instant local update on device + Reset handler)
 if (typeof window !== "undefined" && window.localStorage) {

@@ -69,6 +69,7 @@ export default async function handler(req, res) {
   const coachPasswords = {
     bernetskiy: ['vB8$kL!92xQ#2026', 'vB8$kL!92xQ'],
     radionov:   ['nR9#mX2$84!vP2026', 'nR9#mX2$84!'],
+    rodionov:   ['nR9#mX2$84!vP2026', 'nR9#mX2$84!'],
     felix:      ['fL7!qZ9#31$wK2026', 'fL7!qZ9#31$']
   };
   const masterPasswords = ['PulseAdmin#X9v2!2026', 'Pulse#SuperAdmin2026!'];
