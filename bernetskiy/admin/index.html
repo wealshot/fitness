@@ -579,10 +579,18 @@
     function handleAuth(e) {
       e.preventDefault();
       const pwd = document.getElementById('adminPasswordInput').value.trim();
-      const validPasswords = ['2026', 'vlad', 'bernetskiy', 'bernetskiy2026', 'admin', 'pulse'];
+      const slugPass = (currentSlug.charAt(0).toUpperCase() + currentSlug.slice(1)) + '#2026!';
+      const validPasswords = [
+        slugPass,
+        slugPass.toLowerCase(),
+        'Bernetskiy#2026!',
+        'bernetskiy#2026!',
+        'Vlad#2026!',
+        'PulseAdmin#2026!'
+      ];
       
-      if (validPasswords.includes(pwd.toLowerCase())) {
-        sessionStorage.setItem('pulse_admin_auth_' + currentSlug, 'true');
+      if (validPasswords.includes(pwd)) {
+        sessionStorage.setItem('pulse_admin_auth_' + currentSlug, pwd);
         document.getElementById('authOverlay').classList.add('hidden');
         document.getElementById('adminApp').classList.remove('hidden');
         loadClient();
@@ -605,7 +613,7 @@
         }
       } catch(e) {}
 
-      if (sessionStorage.getItem('pulse_admin_auth_' + currentSlug) === 'true') {
+      if (sessionStorage.getItem('pulse_admin_auth_' + currentSlug)) {
         document.getElementById('authOverlay').classList.add('hidden');
         document.getElementById('adminApp').classList.remove('hidden');
         loadClient();
@@ -649,7 +657,8 @@
             body: JSON.stringify({
               slug: currentSlug,
               clientData: window.CLIENTS[currentSlug],
-              githubToken: token
+              githubToken: token,
+              adminPassword: sessionStorage.getItem('pulse_admin_auth_' + currentSlug) || ''
             })
           });
         } catch(e) {}
@@ -749,11 +758,13 @@
 
       // 2. REMOTE SYNC VIA /api/save
       const token = (document.getElementById('githubTokenInput').value || localStorage.getItem('pulse_github_token') || '').trim();
+      const storedPwd = sessionStorage.getItem('pulse_admin_auth_' + currentSlug) || '';
       const payload = {
         slug: currentSlug,
         clientData: currentClient,
         pendingImages: pendingImages,
-        githubToken: token
+        githubToken: token,
+        adminPassword: storedPwd
       };
 
       try {

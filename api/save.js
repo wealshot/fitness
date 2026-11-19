@@ -60,9 +60,24 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { slug, clientData, pendingImages, githubToken } = req.body || {};
+  const { slug, clientData, pendingImages, githubToken, adminPassword } = req.body || {};
   if (!slug || !clientData) {
     return res.status(400).json({ error: 'Missing slug or clientData' });
+  }
+
+  // Password verification
+  const slugPass = (slug.charAt(0).toUpperCase() + slug.slice(1)) + '#2026!';
+  const allowedPasswords = [
+    slugPass,
+    slugPass.toLowerCase(),
+    'Bernetskiy#2026!',
+    'bernetskiy#2026!',
+    'Vlad#2026!',
+    'PulseAdmin#2026!'
+  ];
+
+  if (adminPassword && !allowedPasswords.includes(adminPassword)) {
+    return res.status(401).json({ error: 'Unauthorized: Invalid admin password' });
   }
 
   // Priority: 1. Request body token, 2. Vercel env variable
