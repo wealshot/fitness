@@ -26,6 +26,7 @@ window.CLIENTS = {
   "bio": "Помогаю девушкам обрести тонкую талию, плоский живот и упругие ягодицы без голодовок, срывов и бесконечного кардио.",
   "heroImage": "/images/felix.png",
   "heroImageStyle": {
+    "objectPosition": "center 10%",
     "filter": "brightness(0.98) contrast(1.05)"
   },
   "accentColor": "#FF2A85",
