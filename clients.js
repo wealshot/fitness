@@ -26,7 +26,7 @@ window.CLIENTS = {
     "bio": "Бодибилдер и персональный онлайн-тренер. Помогаю построить эстетичное, рельефное тело с выраженным V-конусом и отточить сценическое позирование. Результат без вреда для здоровья и откатов.",
     "heroImage": "/images/radionov.jpg",
     "heroImageStyle": {
-      "objectPosition": "center 18%",
+      "objectPosition": "center top",
       "filter": "brightness(0.98) contrast(1.06)"
     },
     "accentColor": "#0EA5E9",
