@@ -50,7 +50,10 @@ export default async function handler(req, res) {
         const base64Data = img.data.replace(/^data:image\/\w+;base64,/, '');
         let targetPath = '';
 
-        if (key === 'newCaseBefore') {
+        if (key === 'newHeroImage') {
+          targetPath = `images/${slug}-hero.jpg`;
+          clientData.heroImage = `/${targetPath}`;
+        } else if (key === 'newCaseBefore') {
           targetPath = `cases/${slug}_case_before.jpg`;
           clientData.cases[0].beforeImage = `/${targetPath}`;
         } else if (key === 'newCaseAfter') {
