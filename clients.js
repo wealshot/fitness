@@ -233,6 +233,18 @@ window.CLIENTS = {
           "description": "Классический случай «не могу набрать вес». За счет точечной калибровки КБЖУ, акцента на компаундные движения и качественного восстановления набрали 8 кг плотного мышечного корсета без заплывания живота.",
           "initialStats": "ТОЧКА А // ХУДОЩАВОЕ ТЕЛОСЛОЖЕНИЕ",
           "resultStats": "ТОЧКА Б // АТЛЕТИЧНЫЙ РЕЛЬЕФНЫЙ ТОРС"
+        },
+        {
+          "id": 5,
+          "name": "СНИЖЕНИЕ ВЕСА & СУХОЙ РЕЛЬЕФ",
+          "tag": "-14 КГ ЖИРА // ЧЕТКИЙ РЕЛЬЕФ",
+          "badge": "С 96 КГ ➔ ДО 82 КГ",
+          "beforeImage": "/cases/felix1.png",
+          "afterImage": "/cases/felix2.png",
+          "objectPosition": "center top",
+          "description": "Комплексная работа: сожгли 14 кг висцерального и подкожного жира, выровняли осанку, укрепили мышечный корсет спины и пресса. Полная перезагрузка пищевых привычек без срывов и голода.",
+          "initialStats": "ТОЧКА А // 96 КГ (ЛИШНИЙ ВЕС, ОДЫШКА)",
+          "resultStats": "ТОЧКА Б // 82 КГ (СУХОЙ ТОРС, ЛЕГКОСТЬ)"
         }
       ],
       "reviews": [
@@ -1386,16 +1398,27 @@ if (typeof window !== "undefined" && window.localStorage) {
       window.location.replace(window.location.pathname);
     }
 
-    // 2. Apply saved admin overrides
+    // 2. Apply saved admin overrides (safe merge - preserve updated cases & reviews from server)
     for (let i = 0; i < window.localStorage.length; i++) {
       const k = window.localStorage.key(i);
       if (k && k.startsWith("pulse_override_")) {
         const targetSlug = k.replace("pulse_override_", "").toLowerCase();
         const raw = window.localStorage.getItem(k);
         if (raw && window.CLIENTS && window.CLIENTS[targetSlug]) {
-          const overrideData = JSON.parse(raw);
-          Object.assign(window.CLIENTS[targetSlug], overrideData);
-          console.log("[PULSE] Applied local admin override for:", targetSlug);
+          try {
+            const overrideData = JSON.parse(raw);
+            const serverData = window.CLIENTS[targetSlug];
+            // If server has more cases than stale local override, keep server cases!
+            if (serverData.cases && overrideData.cases && overrideData.cases.length < serverData.cases.length) {
+              delete overrideData.cases;
+            }
+            // If server has more reviews than stale local override, keep server reviews!
+            if (serverData.reviews && overrideData.reviews && overrideData.reviews.length < serverData.reviews.length) {
+              delete overrideData.reviews;
+            }
+            Object.assign(serverData, overrideData);
+            console.log("[PULSE] Applied local admin override safely for:", targetSlug);
+          } catch(e) {}
         }
       }
     }
