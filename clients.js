@@ -1200,3 +1200,23 @@ window.CLIENTS = {
     ]
   }
 };
+
+// Live Preview & Admin Sync (Instant local update on device)
+if (typeof window !== "undefined" && window.localStorage) {
+  try {
+    for (let i = 0; i < window.localStorage.length; i++) {
+      const k = window.localStorage.key(i);
+      if (k && k.startsWith("pulse_override_")) {
+        const targetSlug = k.replace("pulse_override_", "").toLowerCase();
+        const raw = window.localStorage.getItem(k);
+        if (raw && window.CLIENTS && window.CLIENTS[targetSlug]) {
+          const overrideData = JSON.parse(raw);
+          Object.assign(window.CLIENTS[targetSlug], overrideData);
+          console.log("[PULSE] Applied local admin override for:", targetSlug);
+        }
+      }
+    }
+  } catch (e) {
+    console.warn("[PULSE] Local override error:", e);
+  }
+}

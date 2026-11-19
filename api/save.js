@@ -15,23 +15,24 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { slug, clientData, pendingImages } = req.body || {};
+  const { slug, clientData, pendingImages, githubToken } = req.body || {};
   if (!slug || !clientData) {
     return res.status(400).json({ error: 'Missing slug or clientData' });
   }
 
-  const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+  // Priority: 1. Request body token, 2. Vercel env variable
+  const GITHUB_TOKEN = (githubToken || process.env.GITHUB_TOKEN || '').trim();
   const REPO_OWNER = process.env.REPO_OWNER || 'wealshot';
   const REPO_NAME = process.env.REPO_NAME || 'fitness';
   const BRANCH = 'main';
 
-  // If GITHUB_TOKEN is not configured yet in Vercel env
+  // If GITHUB_TOKEN is not configured
   if (!GITHUB_TOKEN) {
-    console.log('[API SAVE] GITHUB_TOKEN not configured. Returning preview success.');
+    console.log('[API SAVE] GITHUB_TOKEN not configured. Returning local success.');
     return res.status(200).json({
       success: true,
-      mode: 'mock',
-      message: 'Изменения зафиксированы. Для автоматического деплоя добавьте GITHUB_TOKEN в Vercel.'
+      mode: 'local',
+      message: 'Сохранено локально в браузере. Для глобального обновления всех пользователей укажите GitHub Token.'
     });
   }
 
@@ -103,15 +104,12 @@ export default async function handler(req, res) {
 
     // 3. Update the specific client block in clients.js
     const clientJson = JSON.stringify(clientData, null, 2);
-    // Replace the client's object in clients.js
-    // Pattern: `"${slug}":\s*\{[\s\S]*?\n  \}(,?)`
     const regex = new RegExp(`("${slug}":\\s*\\{[\\s\\S]*?\\n  \\})(,?)`, 'm');
     let updatedContent = '';
 
     if (regex.test(currentContent)) {
       updatedContent = currentContent.replace(regex, `"${slug}": ${clientJson}$2`);
     } else {
-      // Append if not found
       updatedContent = currentContent.replace('window.CLIENTS = {', `window.CLIENTS = {\n  "${slug}": ${clientJson},`);
     }
 
@@ -134,7 +132,7 @@ export default async function handler(req, res) {
     return res.status(200).json({
       success: true,
       mode: 'github-commit',
-      message: 'Изменения успешно закоммичены в репозиторий! Vercel пересобирает сайт.'
+      message: 'Изменения закоммичены в GitHub! Vercel пересобирает сайт (20 сек).'
     });
 
   } catch (err) {
