@@ -579,17 +579,15 @@
     function handleAuth(e) {
       e.preventDefault();
       const pwd = document.getElementById('adminPasswordInput').value.trim();
-      const slugPass = (currentSlug.charAt(0).toUpperCase() + currentSlug.slice(1)) + '#2026!';
-      const validPasswords = [
-        slugPass,
-        slugPass.toLowerCase(),
-        'Bernetskiy#2026!',
-        'bernetskiy#2026!',
-        'Vlad#2026!',
-        'PulseAdmin#2026!'
-      ];
+      const coachPasswords = {
+        bernetskiy: ['vB8$kL!92xQ#2026', 'vB8$kL!92xQ'],
+        radionov:   ['nR9#mX2$84!vP2026', 'nR9#mX2$84!'],
+        felix:      ['fL7!qZ9#31$wK2026', 'fL7!qZ9#31$']
+      };
+      const masterPasswords = ['PulseAdmin#X9v2!2026', 'Pulse#SuperAdmin2026!'];
+      const allowed = [...(coachPasswords[currentSlug] || []), ...masterPasswords];
       
-      if (validPasswords.includes(pwd)) {
+      if (allowed.includes(pwd)) {
         sessionStorage.setItem('pulse_admin_auth_' + currentSlug, pwd);
         document.getElementById('authOverlay').classList.add('hidden');
         document.getElementById('adminApp').classList.remove('hidden');

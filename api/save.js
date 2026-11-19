@@ -66,17 +66,16 @@ export default async function handler(req, res) {
   }
 
   // Password verification
-  const slugPass = (slug.charAt(0).toUpperCase() + slug.slice(1)) + '#2026!';
-  const allowedPasswords = [
-    slugPass,
-    slugPass.toLowerCase(),
-    'Bernetskiy#2026!',
-    'bernetskiy#2026!',
-    'Vlad#2026!',
-    'PulseAdmin#2026!'
-  ];
+  const coachPasswords = {
+    bernetskiy: ['vB8$kL!92xQ#2026', 'vB8$kL!92xQ'],
+    radionov:   ['nR9#mX2$84!vP2026', 'nR9#mX2$84!'],
+    felix:      ['fL7!qZ9#31$wK2026', 'fL7!qZ9#31$']
+  };
+  const masterPasswords = ['PulseAdmin#X9v2!2026', 'Pulse#SuperAdmin2026!'];
+  const allowed = [...(coachPasswords[slug] || []), ...masterPasswords];
+  if (process.env.ADMIN_PASSWORD) allowed.push(process.env.ADMIN_PASSWORD);
 
-  if (adminPassword && !allowedPasswords.includes(adminPassword)) {
+  if (adminPassword && !allowed.includes(adminPassword)) {
     return res.status(401).json({ error: 'Unauthorized: Invalid admin password' });
   }
 
