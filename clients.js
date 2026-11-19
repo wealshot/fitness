@@ -29,13 +29,13 @@ window.CLIENTS = {
     "objectPosition": "center 15%",
     "filter": "brightness(0.98) contrast(1.08)"
   },
-  "accentColor": "#10B981",
-  "accentSecondary": "#059669",
-  "accentDim": "rgba(16, 185, 129, 0.14)",
-  "accentGlow": "rgba(16, 185, 129, 0.45)",
+  "accentColor": "#EF4444",
+  "accentSecondary": "#B91C1C",
+  "accentDim": "rgba(239, 68, 68, 0.14)",
+  "accentGlow": "rgba(239, 68, 68, 0.45)",
   "hasApplicationForm": true,
   "hasReviewsSection": true,
-  "telegramUsername": "Master_fitness",
+  "telegramUsername": "Bernetskiy",
   "scarcityBadge": "ОТБОР НА ВЕДЕНИЕ: СВОБОДНО 2 МЕСТА",
   "stats": [
     {
