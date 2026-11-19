@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>PULSE // Панель управления тренера</title>
+  <title>PULSE • Личный кабинет наставника</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -39,20 +39,20 @@
       <div class="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mx-auto mb-4 text-2xl shadow-inner">
         🔒
       </div>
-      <h2 class="font-display text-2xl sm:text-3xl uppercase tracking-wider text-white">ВХОД В АДМИНКУ</h2>
-      <p id="authSubtitle" class="text-zinc-400 text-xs sm:text-sm mt-1 mb-6">Введите пароль для редактирования сайта</p>
+      <h2 class="font-display text-2xl sm:text-3xl uppercase tracking-wider text-white">ЛИЧНЫЙ КАБИНЕТ НАСТАВНИКА</h2>
+      <p id="authSubtitle" class="text-zinc-400 text-xs sm:text-sm mt-1 mb-6">Авторизация в системе управления профилем и тарифами</p>
       
       <form id="authForm" onsubmit="handleAuth(event)">
         <div class="mb-4 text-left">
-          <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1.5">Пароль тренера</label>
+          <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1.5">Ключ доступа / Пароль наставника</label>
           <input type="password" id="adminPasswordInput" placeholder="Введите пароль..." class="w-full px-4 py-3 rounded-xl text-center text-lg font-mono tracking-widest" required autofocus />
           <p id="authError" class="text-red-400 text-xs mt-1.5 hidden text-center">Неверный пароль. Попробуйте еще раз.</p>
         </div>
         <button type="submit" id="authSubmitBtn" class="w-full py-3.5 rounded-xl font-bold uppercase tracking-wider text-black bg-white hover:bg-zinc-200 transition-all cursor-pointer font-tech shadow-lg active:scale-95">
-          Войти в панель →
+          Войти в личный кабинет →
         </button>
       </form>
-      <div class="mt-6 text-[11px] text-zinc-500 font-mono">PULSE // PRIVATE COACH ACCESS</div>
+      <div class="mt-6 text-[11px] text-zinc-500 font-mono">PULSE • COACH PORTAL // SECURE ACCESS</div>
     </div>
   </div>
 
@@ -65,7 +65,7 @@
           P
         </div>
         <div>
-          <div class="font-display text-lg tracking-wider text-white leading-tight" id="headerCoachName">АДМИН-ПАНЕЛЬ ТРЕНЕРА</div>
+          <div class="font-display text-lg tracking-wider text-white leading-tight" id="headerCoachName">КАБИНЕТ УПРАВЛЕНИЯ ПРОФИЛЕМ</div>
           <div class="text-[10px] font-mono text-zinc-400" id="headerSlug">fitprod.vercel.app/bernetskiy</div>
         </div>
       </div>
@@ -338,12 +338,12 @@
       <!-- ADVANCED SERVER SYNC -->
       <details class="glass-card rounded-2xl p-5 border border-white/5 text-xs text-zinc-400">
         <summary class="cursor-pointer font-mono font-bold text-zinc-300 flex items-center justify-between">
-          <span>⚙️ НАСТРОЙКИ СИНХРОНИЗАЦИИ (GITHUB TOKEN)</span>
+          <span>⚙️ СЕРВЕРНАЯ СИНХРОНИЗАЦИЯ</span>
           <span class="text-xs text-zinc-500">Опционально</span>
         </summary>
         <div class="mt-4 pt-4 border-t border-white/10 flex flex-col gap-3">
           <p class="text-zinc-400 leading-relaxed">
-            Изменения мгновенно применяются на вашем устройстве при нажатии кнопки «Сохранить». Если вы хотите, чтобы обновления автоматически публиковались на GitHub для всех остальных посетителей, вставьте GitHub Token:
+            Изменения вступают в силу автоматически при сохранении. Для привязки персонального ключа публикации на глобальном сервере:
           </p>
           <input type="password" id="githubTokenInput" placeholder="ghp_... или gho_..." class="w-full px-3 py-2 rounded-lg font-mono text-xs" />
           <div class="flex items-center gap-2">
@@ -403,7 +403,7 @@
 
     function loadClient() {
       if (typeof window.CLIENTS === 'undefined' || !window.CLIENTS[currentSlug]) {
-        alert('Клиент ' + currentSlug + ' не найден в базе.');
+        alert('Профиль ' + currentSlug + ' не найден в системе.');
         return;
       }
       
@@ -420,7 +420,7 @@
         document.documentElement.style.setProperty('--accent-dim', currentClient.accentDim || 'rgba(255, 107, 0, 0.25)');
       }
 
-      document.getElementById('headerCoachName').textContent = currentClient.name || 'АДМИН-ПАНЕЛЬ';
+      document.getElementById('headerCoachName').textContent = (currentClient.name ? currentClient.name + ' // КАБИНЕТ НАСТАВНИКА' : 'ЛИЧНЫЙ КАБИНЕТ НАСТАВНИКА');
       document.getElementById('headerSlug').textContent = `fitprod.vercel.app/${currentSlug}`;
       document.getElementById('viewLiveSiteBtn').href = `/${currentSlug}`;
       
@@ -635,7 +635,7 @@
     }
 
     async function clearLocalOverrides() {
-      if (!confirm('Сбросить ВСЕ внесенные изменения и вернуть сайт к заводскому исходному виду?')) {
+      if (!confirm('Восстановить исходные параметры профиля? Все внесенные изменения будут сброшены.')) {
         return;
       }
       localStorage.removeItem('pulse_override_' + currentSlug);
@@ -647,7 +647,7 @@
       }
       const token = (document.getElementById('githubTokenInput')?.value || localStorage.getItem('pulse_github_token') || '').trim();
       if (token && window.CLIENTS && window.CLIENTS[currentSlug]) {
-        showToast('⏳ Сбрасываем изменения на GitHub...');
+        showToast('⏳ Восстановление исходных параметров на сервере...');
         try {
           await fetch('/api/save', {
             method: 'POST',
@@ -774,9 +774,9 @@
 
         const resData = await response.json();
         if (response.ok && resData.mode === 'github-commit') {
-          showToast('🚀 Опубликовано на GitHub! Сайт пересоберется за 20 секунд.');
+          showToast('🚀 Опубликовано на сервере! Сайт пересоберется за 20 секунд.');
           dot.className = 'w-2.5 h-2.5 rounded-full bg-emerald-400';
-          statusText.textContent = 'Опубликовано на GitHub';
+          statusText.textContent = 'Опубликовано на сервере';
         } else {
           showToast('✅ Изменения применены! Откройте сайт для проверки.');
           dot.className = 'w-2.5 h-2.5 rounded-full bg-emerald-400';

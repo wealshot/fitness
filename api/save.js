@@ -91,7 +91,7 @@ export default async function handler(req, res) {
     return res.status(200).json({
       success: true,
       mode: 'local',
-      message: 'Сохранено локально в браузере. Для глобального обновления всех пользователей укажите GitHub Token.'
+      message: 'Сохранено локально. Для глобальной публикации укажите серверный ключ доступа.'
     });
   }
 
@@ -145,7 +145,7 @@ export default async function handler(req, res) {
             method: 'PUT',
             headers,
             body: JSON.stringify({
-              message: `chore(admin): upload ${targetPath} for ${slug}`,
+              message: `chore(portal): upload ${targetPath} for ${slug}`,
               content: base64Data,
               sha: existingSha || undefined,
               branch: BRANCH
@@ -176,7 +176,7 @@ export default async function handler(req, res) {
       method: 'PUT',
       headers,
       body: JSON.stringify({
-        message: `chore(admin): update ${slug} via admin panel`,
+        message: `chore(portal): update ${slug} via admin panel`,
         content: Buffer.from(updatedContent, 'utf-8').toString('base64'),
         sha: currentSha,
         branch: BRANCH
@@ -190,7 +190,7 @@ export default async function handler(req, res) {
     return res.status(200).json({
       success: true,
       mode: 'github-commit',
-      message: 'Изменения закоммичены в GitHub! Vercel пересобирает сайт (20 сек).'
+      message: 'Изменения успешно применены! Сервер обновляет данные (20 сек).'
     });
 
   } catch (err) {
