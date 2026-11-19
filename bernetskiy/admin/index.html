@@ -70,10 +70,14 @@
         </div>
       </div>
       <div class="flex items-center gap-2 sm:gap-3">
+        <button type="button" onclick="clearLocalOverrides()" class="px-3 py-1.5 rounded-lg border border-red-500/30 bg-red-500/10 hover:bg-red-500/20 text-xs font-tech text-red-300 transition-all flex items-center gap-1 cursor-pointer" title="Сбросить все правки к исходному сайту">
+          <span>↺</span>
+          <span class="hidden sm:inline">Сбросить к исходным</span>
+        </button>
         <a id="viewLiveSiteBtn" href="/bernetskiy" target="_blank" class="px-3.5 py-1.5 rounded-lg border border-emerald-500/30 bg-emerald-500/10 hover:bg-emerald-500/20 text-xs font-tech text-emerald-400 transition-all flex items-center gap-1.5 font-bold">
           <span>Открыть сайт</span> ↗
         </a>
-        <button onclick="logout()" class="px-3 py-1.5 rounded-lg border border-red-500/20 bg-red-500/10 hover:bg-red-500/20 text-xs font-tech text-red-300 transition-all cursor-pointer">
+        <button onclick="logout()" class="px-3 py-1.5 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-xs font-tech text-zinc-400 hover:text-white transition-all cursor-pointer">
           Выйти
         </button>
       </div>
@@ -337,10 +341,16 @@
           <span id="saveStatusDot" class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
           <span id="saveStatusText">Все данные актуальны</span>
         </div>
-        <button id="saveChangesBtn" onclick="saveAllChanges()" class="px-6 py-3 rounded-xl font-display uppercase tracking-wider text-black bg-white hover:bg-zinc-200 transition-all font-bold text-sm shadow-xl flex items-center gap-2 cursor-pointer active:scale-95">
-          <span>💾</span>
-          <span>СОХРАНИТЬ ИЗМЕНЕНИЯ</span>
-        </button>
+        <div class="flex items-center gap-2.5">
+          <button type="button" onclick="clearLocalOverrides()" class="px-4 py-3 rounded-xl border border-red-500/30 bg-red-500/10 hover:bg-red-500/20 text-red-300 text-xs font-tech font-bold uppercase tracking-wider transition-all cursor-pointer active:scale-95 flex items-center gap-1.5" title="Сбросить все изменения">
+            <span>↺</span>
+            <span class="hidden sm:inline">Сбросить всё</span>
+          </button>
+          <button id="saveChangesBtn" onclick="saveAllChanges()" class="px-6 py-3 rounded-xl font-display uppercase tracking-wider text-black bg-white hover:bg-zinc-200 transition-all font-bold text-sm shadow-xl flex items-center gap-2 cursor-pointer active:scale-95">
+            <span>💾</span>
+            <span>СОХРАНИТЬ ИЗМЕНЕНИЯ</span>
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -574,9 +584,18 @@
     }
 
     function clearLocalOverrides() {
-      if (confirm('Сбросить все внесенные изменения к исходному варианту?')) {
+      if (confirm('Вернуть сайт к исходному виду и сбросить все внесенные правки?')) {
         localStorage.removeItem('pulse_override_' + currentSlug);
-        window.location.reload();
+        for (let i = localStorage.length - 1; i >= 0; i--) {
+          const k = localStorage.key(i);
+          if (k && (k === 'pulse_override_' + currentSlug || k.startsWith('pulse_override_'))) {
+            localStorage.removeItem(k);
+          }
+        }
+        showToast('✅ Все правки сброшены! Сайт возвращен к исходному виду.');
+        setTimeout(() => {
+          window.location.reload();
+        }, 800);
       }
     }
 

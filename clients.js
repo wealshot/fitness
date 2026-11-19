@@ -1201,9 +1201,25 @@ window.CLIENTS = {
   }
 };
 
-// Live Preview & Admin Sync (Instant local update on device)
+// Live Preview & Admin Sync (Instant local update on device + Reset handler)
 if (typeof window !== "undefined" && window.localStorage) {
   try {
+    // 1. One-click URL reset (?reset=1)
+    if (window.location && window.location.search && window.location.search.includes("reset=1")) {
+      const slug = window.location.pathname.replace(/^\/+|\/+$/g, '').split('/')[0] || '';
+      window.localStorage.removeItem("pulse_override_" + slug);
+      for (let i = window.localStorage.length - 1; i >= 0; i--) {
+        const k = window.localStorage.key(i);
+        if (k && k.startsWith("pulse_override_")) window.localStorage.removeItem(k);
+      }
+      console.log("[PULSE] Reset all local overrides!");
+      if (window.history && window.history.replaceState) {
+        window.history.replaceState({}, document.title, window.location.pathname);
+      }
+      window.location.reload();
+    }
+
+    // 2. Apply saved admin overrides
     for (let i = 0; i < window.localStorage.length; i++) {
       const k = window.localStorage.key(i);
       if (k && k.startsWith("pulse_override_")) {
