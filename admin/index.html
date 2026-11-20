@@ -8,7 +8,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
-  <script src="/clients.js"></script>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <script src="/clients.js?v=20261120_1835"></script>
   <style>
     body { font-family: 'Inter', sans-serif; background-color: #050507; color: #f4f4f5; }
     .font-display { font-family: 'Anton', sans-serif; }
@@ -332,8 +335,11 @@
             <span class="text-xl">💬</span>
             <h3 class="font-display text-xl uppercase tracking-wide text-white">ОТЗЫВЫ & КЕЙСЫ ПОДОПЕЧНЫХ</h3>
           </div>
-          <div class="flex items-center gap-3">
+          <div class="flex flex-wrap items-center gap-2 sm:gap-3">
             <span id="reviewsCountBadge" class="text-[10px] font-mono px-2.5 py-1 rounded bg-white/5 text-zinc-400 border border-white/10">15 ИЗ 15 ОТЗЫВОВ</span>
+            <button type="button" onclick="resetReviewsToServer()" class="px-3 py-1.5 rounded-lg border border-white/20 bg-white/5 hover:bg-white/10 text-zinc-300 hover:text-white font-tech font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-1.5 cursor-pointer active:scale-95" title="Загрузить все 15 отзывов с сервера">
+              <span>🔄 Сбросить к 15 отзывам</span>
+            </button>
             <button type="button" onclick="addReview()" class="px-3.5 py-1.5 rounded-lg bg-orange-500 hover:bg-orange-400 text-black font-tech font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-1.5 cursor-pointer shadow-md active:scale-95">
               <span>+ ДОБАВИТЬ ОТЗЫВ</span>
             </button>
@@ -424,7 +430,10 @@
       const serverClient = JSON.parse(JSON.stringify(window.CLIENTS[currentSlug]));
       if (localOverride) {
         if (serverClient.reviews && (!localOverride.reviews || localOverride.reviews.length < serverClient.reviews.length)) {
-          localOverride.reviews = serverClient.reviews;
+          localOverride.reviews = JSON.parse(JSON.stringify(serverClient.reviews));
+          try {
+            localStorage.setItem('pulse_override_' + currentSlug, JSON.stringify(localOverride));
+          } catch(e) {}
         }
         if (serverClient.cases && (!localOverride.cases || localOverride.cases.length < serverClient.cases.length)) {
           localOverride.cases = serverClient.cases;
@@ -606,6 +615,24 @@
           r.image = pendingImages[imgKey].data;
         }
       });
+    }
+
+    
+    function resetReviewsToServer() {
+      if (!window.CLIENTS || !window.CLIENTS[currentSlug]) return;
+      if (!confirm('Загрузить все актуальные 15 отзывов с сервера? Несохраненные правки в отзывах будут сброшены.')) return;
+      const serverReviews = JSON.parse(JSON.stringify(window.CLIENTS[currentSlug].reviews || []));
+      currentClient.reviews = serverReviews;
+      try {
+        const raw = localStorage.getItem('pulse_override_' + currentSlug);
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          parsed.reviews = serverReviews;
+          localStorage.setItem('pulse_override_' + currentSlug, JSON.stringify(parsed));
+        }
+      } catch(e) {}
+      renderReviews();
+      alert('Все 15 отзывов успешно синхронизированы с сервера!');
     }
 
     function addReview() {
