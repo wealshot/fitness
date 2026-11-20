@@ -62,25 +62,29 @@
   <!-- MAIN APP -->
   <div id="adminApp" class="hidden">
     <!-- TOP HEADER -->
-    <header class="border-b border-white/10 bg-[#050507]/80 backdrop-blur-md sticky top-0 z-30 px-4 sm:px-8 py-3.5 flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <div class="w-8 h-8 rounded-lg bg-orange-500/20 border border-orange-500/40 flex items-center justify-center text-sm font-bold text-orange-400 font-tech">
+    <header class="border-b border-white/10 bg-[#050507]/95 backdrop-blur-md sticky top-0 z-30 px-3 sm:px-8 py-2.5 sm:py-3.5 flex items-center justify-between gap-2">
+      <div class="flex items-center gap-2 sm:gap-3 min-w-0">
+        <div class="w-8 h-8 rounded-lg bg-orange-500/20 border border-orange-500/40 flex items-center justify-center text-sm font-bold text-orange-400 font-tech shrink-0">
           P
         </div>
-        <div>
-          <div class="font-display text-lg tracking-wider text-white leading-tight" id="headerCoachName">КАБИНЕТ УПРАВЛЕНИЯ ПРОФИЛЕМ</div>
-          <div class="text-[10px] font-mono text-zinc-400" id="headerSlug">fitprod.vercel.app/bernetskiy</div>
+        <div class="min-w-0">
+          <div class="font-display text-sm sm:text-base md:text-lg tracking-wider text-white leading-tight truncate" id="headerCoachName">КАБИНЕТ УПРАВЛЕНИЯ</div>
+          <div class="text-[10px] font-mono text-zinc-400 truncate flex items-center gap-1.5">
+            <span class="text-orange-400 font-semibold hidden sm:inline">КАБИНЕТ</span>
+            <span class="text-zinc-600 hidden sm:inline">•</span>
+            <span id="headerSlug" class="truncate">fitprod.vercel.app/bernetskiy</span>
+          </div>
         </div>
       </div>
-      <div class="flex items-center gap-2 sm:gap-3">
-        <button type="button" onclick="clearLocalOverrides()" class="px-3 py-1.5 rounded-lg border border-red-500/30 bg-red-500/10 hover:bg-red-500/20 text-xs font-tech text-red-300 transition-all flex items-center gap-1 cursor-pointer" title="Сбросить все правки к исходному сайту">
-          <span>↺</span>
-          <span class="hidden sm:inline">Сбросить к исходным</span>
+      <div class="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
+        <button type="button" onclick="clearLocalOverrides()" class="h-8 px-2 sm:px-3 rounded-lg border border-red-500/30 bg-red-500/10 hover:bg-red-500/20 text-xs font-tech text-red-300 transition-all flex items-center justify-center gap-1 cursor-pointer" title="Сбросить все правки к исходному сайту">
+          <span class="text-sm">↺</span>
+          <span class="hidden md:inline text-[11px]">Сбросить</span>
         </button>
-        <a id="viewLiveSiteBtn" href="/bernetskiy" target="_blank" class="px-3.5 py-1.5 rounded-lg border border-emerald-500/30 bg-emerald-500/10 hover:bg-emerald-500/20 text-xs font-tech text-emerald-400 transition-all flex items-center gap-1.5 font-bold">
-          <span>Открыть сайт</span> ↗
+        <a id="viewLiveSiteBtn" href="/bernetskiy" target="_blank" class="h-8 px-2 sm:px-3.5 rounded-lg border border-emerald-500/30 bg-emerald-500/10 hover:bg-emerald-500/20 text-xs font-tech text-emerald-400 transition-all flex items-center gap-1 font-bold whitespace-nowrap">
+          <span>Сайт</span> <span class="hidden sm:inline">тренера</span> ↗
         </a>
-        <button onclick="logout()" class="px-3 py-1.5 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-xs font-tech text-zinc-400 hover:text-white transition-all cursor-pointer">
+        <button onclick="logout()" class="h-8 px-2 sm:px-3 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-xs font-tech text-zinc-400 hover:text-white transition-all cursor-pointer whitespace-nowrap">
           Выйти
         </button>
       </div>
@@ -448,7 +452,7 @@
         document.documentElement.style.setProperty('--accent-dim', currentClient.accentDim || 'rgba(255, 107, 0, 0.25)');
       }
 
-      document.getElementById('headerCoachName').textContent = (currentClient.name ? currentClient.name + ' // КАБИНЕТ НАСТАВНИКА' : 'ЛИЧНЫЙ КАБИНЕТ НАСТАВНИКА');
+      document.getElementById('headerCoachName').textContent = currentClient.name || 'КАБИНЕТ НАСТАВНИКА';
       document.getElementById('headerSlug').textContent = `fitprod.vercel.app/${currentSlug}`;
       document.getElementById('viewLiveSiteBtn').href = `/${currentSlug}`;
       
