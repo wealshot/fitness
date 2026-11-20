@@ -215,6 +215,18 @@ window.CLIENTS = {
         "description": "Качественная гипертрофия мышечного корсета и увеличение рабочих весов без травм.",
         "initialStats": "ТОЧКА А // СТАРТ",
         "resultStats": "ТОЧКА Б // РЕЗУЛЬТАТ"
+      },
+      {
+        "id": 5,
+        "name": "КЕЙС 05 // ТРАНСФОРМАЦИЯ",
+        "tag": "+5 КГ МАССЫ // РЕЛЬЕФ",
+        "badge": "ПРОГРЕСС ЗА 12 НЕДЕЛЬ",
+        "beforeImage": "/cases/vladislav_case_before.jpg",
+        "afterImage": "/cases/vladislav_case_after.jpg",
+        "objectPosition": "center",
+        "description": "Индивидуальная трансформация подопечного под руководством наставника.",
+        "initialStats": "ТОЧКА А // СТАРТ",
+        "resultStats": "ТОЧКА Б // РЕЗУЛЬТАТ"
       }
     ],
     "reviews": [
