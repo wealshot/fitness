@@ -266,7 +266,7 @@
 
       <!-- SECTION 3: TIERS & PRICES -->
       <section class="glass-card rounded-2xl p-5 sm:p-7">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5 border-b border-white/10 pb-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 border-b border-white/10 pb-4">
           <div class="flex items-center gap-2">
             <span class="text-xl">💎</span>
             <h3 class="font-display text-xl uppercase tracking-wide text-white">ТАРИФЫ ВЕДЕНИЯ & ЦЕНЫ</h3>
@@ -279,7 +279,58 @@
           </div>
         </div>
 
-        <div class="flex flex-col gap-5" id="tiersContainer"></div>
+        <!-- Horizontal Tier Navigation (Left / Right) -->
+        <div class="flex items-center gap-2 mb-4">
+          <button type="button" onclick="prevTier()" class="h-9 w-9 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer shrink-0 font-bold" title="Предыдущий тариф">
+            <span>←</span>
+          </button>
+          <div id="tierTabsContainer" class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 flex-1"></div>
+          <button type="button" onclick="nextTier()" class="h-9 w-9 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer shrink-0 font-bold" title="Следующий тариф">
+            <span>→</span>
+          </button>
+        </div>
+
+        <!-- Active Tier Editor Card -->
+        <div class="p-5 rounded-xl bg-white/[0.02] border border-white/10 flex flex-col gap-4 relative">
+          <div class="flex items-center justify-between border-b border-white/10 pb-3">
+            <div class="flex items-center gap-2">
+              <span id="activeTierCodeBadge" class="w-7 h-7 rounded-md bg-orange-500/20 text-orange-400 border border-orange-500/30 flex items-center justify-center font-mono text-xs font-bold">01</span>
+              <span id="activeTierTitle" class="font-tech text-xs uppercase text-white font-bold tracking-wider">ТАРИФ 1 ИЗ 3</span>
+            </div>
+            <button type="button" onclick="deleteActiveTier()" class="px-2.5 py-1 rounded-md bg-red-500/10 hover:bg-red-500/20 text-red-400 hover:text-red-300 text-xs font-tech font-bold uppercase transition-all flex items-center gap-1 cursor-pointer border border-red-500/20" title="Удалить этот тариф">
+              <span>🗑️ Удалить тариф</span>
+            </button>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div>
+              <label class="block text-[11px] font-mono text-zinc-400 mb-1">Название тарифа</label>
+              <input type="text" id="tierNameInput" class="w-full px-3 py-2 rounded-lg text-sm font-bold" />
+            </div>
+            <div>
+              <label class="block text-[11px] font-mono text-zinc-400 mb-1">Бейдж / Статус</label>
+              <input type="text" id="tierBadgeInput" placeholder="ХИТ ПРОДАЖ, ALL INCLUSIVE..." class="w-full px-3 py-2 rounded-lg text-xs font-mono" />
+            </div>
+            <div>
+              <label class="block text-[11px] font-mono text-zinc-400 mb-1">Цена и период</label>
+              <div class="grid grid-cols-2 gap-2">
+                <input type="text" id="tierPriceInput" placeholder="14 900 ₽" class="px-3 py-2 rounded-lg text-sm font-mono text-orange-400 font-bold" />
+                <input type="text" id="tierPeriodInput" placeholder="В МЕСЯЦ" class="px-3 py-2 rounded-lg text-xs font-mono" />
+              </div>
+            </div>
+          </div>
+          <div>
+            <label class="block text-[11px] font-mono text-zinc-400 mb-1">Рекомендуемая цель</label>
+            <select id="tierGoalInput" class="w-full sm:w-64 px-3 py-1.5 rounded-lg text-xs font-mono">
+              <option value="recomp">Рекомпозиция (recomp)</option>
+              <option value="cut">Сушка и рельеф (cut)</option>
+              <option value="bulk">Набор массы (bulk)</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-[11px] font-mono text-zinc-400 mb-1">Пункты программы (по одному на каждой строке)</label>
+            <textarea id="tierFeaturesInput" rows="4" class="w-full px-3 py-2 rounded-lg text-xs font-mono resize-none"></textarea>
+          </div>
+        </div>
       </section>
 
       <!-- SECTION 4: BEFORE / AFTER CASE -->
@@ -339,15 +390,15 @@
 
       <!-- SECTION 5: REVIEWS -->
       <section class="glass-card rounded-2xl p-5 sm:p-7">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5 border-b border-white/10 pb-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 border-b border-white/10 pb-4">
           <div class="flex items-center gap-2">
             <span class="text-xl">💬</span>
-            <h3 class="font-display text-xl uppercase tracking-wide text-white">ОТЗЫВЫ & КЕЙСЫ ПОДОПЕЧНЫХ</h3>
+            <h3 class="font-display text-xl uppercase tracking-wide text-white">ОТЗЫВЫ ПОДОПЕЧНЫХ</h3>
           </div>
           <div class="flex flex-wrap items-center gap-2 sm:gap-3">
             <span id="reviewsCountBadge" class="text-[10px] font-mono px-2.5 py-1 rounded bg-white/5 text-zinc-400 border border-white/10">15 ИЗ 15 ОТЗЫВОВ</span>
             <button type="button" onclick="resetReviewsToServer()" class="px-3 py-1.5 rounded-lg border border-white/20 bg-white/5 hover:bg-white/10 text-zinc-300 hover:text-white font-tech font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-1.5 cursor-pointer active:scale-95" title="Загрузить все 15 отзывов с сервера">
-              <span>🔄 Сбросить к 15 отзывам</span>
+              <span>🔄 Сбросить к 15</span>
             </button>
             <button type="button" onclick="addReview()" class="px-3.5 py-1.5 rounded-lg bg-orange-500 hover:bg-orange-400 text-black font-tech font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-1.5 cursor-pointer shadow-md active:scale-95">
               <span>+ ДОБАВИТЬ ОТЗЫВ</span>
@@ -355,7 +406,68 @@
           </div>
         </div>
 
-        <div class="flex flex-col gap-6" id="reviewsContainer"></div>
+        <!-- Horizontal Review Navigation (Left / Right) -->
+        <div class="flex items-center gap-2 mb-4">
+          <button type="button" onclick="prevReview()" class="h-9 w-9 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer shrink-0 font-bold" title="Предыдущий отзыв">
+            <span>←</span>
+          </button>
+          <div id="reviewTabsContainer" class="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-1 flex-1"></div>
+          <button type="button" onclick="nextReview()" class="h-9 w-9 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer shrink-0 font-bold" title="Следующий отзыв">
+            <span>→</span>
+          </button>
+        </div>
+
+        <!-- Active Review Editor Card -->
+        <div class="p-5 rounded-xl bg-white/[0.02] border border-white/10 flex flex-col gap-4 relative">
+          <div class="flex items-center justify-between border-b border-white/10 pb-3">
+            <div class="flex items-center gap-2">
+              <span id="activeReviewNumBadge" class="w-7 h-7 rounded-md bg-orange-500/20 text-orange-400 border border-orange-500/30 flex items-center justify-center font-mono text-xs font-bold">#1</span>
+              <span id="activeReviewTitle" class="font-tech text-xs uppercase text-white font-bold tracking-wider">ОТЗЫВ 1 ИЗ 15</span>
+            </div>
+            <button type="button" onclick="deleteActiveReview()" class="px-2.5 py-1 rounded-md bg-red-500/10 hover:bg-red-500/20 text-red-400 hover:text-red-300 text-xs font-tech font-bold uppercase transition-all flex items-center gap-1 cursor-pointer border border-red-500/20" title="Удалить этот отзыв">
+              <span>🗑️ Удалить отзыв</span>
+            </button>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 items-center">
+            <div>
+              <label class="block text-[11px] font-mono text-zinc-400 mb-1.5">Фото отзыва</label>
+              <div class="relative rounded-xl overflow-hidden border border-white/15 bg-black/40 aspect-[4/3] flex items-center justify-center group">
+                <img id="activeReviewPreview" src="" class="w-full h-full object-cover" />
+                <label class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center cursor-pointer text-xs font-tech text-white">
+                  <span class="text-xl mb-1">📁</span>
+                  <span>Заменить фото</span>
+                  <input type="file" accept="image/*" class="hidden" onchange="handleActiveReviewImage(event)" />
+                </label>
+              </div>
+            </div>
+            <div class="sm:col-span-2 flex flex-col gap-2.5">
+              <div class="grid grid-cols-2 gap-2">
+                <div>
+                  <label class="block text-[10px] font-mono text-zinc-400 mb-0.5">Имя подопечного</label>
+                  <input type="text" id="reviewAuthorInput" class="w-full px-3 py-1.5 rounded-lg text-xs font-bold" />
+                </div>
+                <div>
+                  <label class="block text-[10px] font-mono text-zinc-400 mb-0.5">Тег / Достижение</label>
+                  <input type="text" id="reviewTagInput" class="w-full px-3 py-1.5 rounded-lg text-xs font-mono" />
+                </div>
+              </div>
+              <div class="grid grid-cols-3 gap-2">
+                <div class="col-span-2">
+                  <label class="block text-[10px] font-mono text-zinc-400 mb-0.5">Результат (главная строка)</label>
+                  <input type="text" id="reviewResultInput" class="w-full px-3 py-1.5 rounded-lg text-xs font-bold text-orange-400" />
+                </div>
+                <div>
+                  <label class="block text-[10px] font-mono text-zinc-400 mb-0.5">Время</label>
+                  <input type="text" id="reviewTimeInput" placeholder="14:25" class="w-full px-3 py-1.5 rounded-lg text-xs font-mono" />
+                </div>
+              </div>
+              <div>
+                <label class="block text-[10px] font-mono text-zinc-400 mb-0.5">Текст отзыва</label>
+                <textarea id="reviewTextInput" rows="3" class="w-full px-3 py-1.5 rounded-lg text-xs resize-none"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       <!-- ADVANCED SERVER SYNC -->
@@ -515,82 +627,100 @@
       }
     }
 
-    function collectTiersFromDOM() {
-      if (!currentClient || !currentClient.tiers) return;
-      currentClient.tiers.forEach((t, i) => {
-        const badgeEl = document.getElementById(`tierBadge${i}`);
-        const nameEl = document.getElementById(`tierName${i}`);
-        const priceEl = document.getElementById(`tierPrice${i}`);
-        const periodEl = document.getElementById(`tierPeriod${i}`);
-        const featEl = document.getElementById(`tierFeatures${i}`);
-        const goalEl = document.getElementById(`tierGoal${i}`);
-        if (badgeEl) t.badge = badgeEl.value.trim();
-        if (nameEl) t.name = nameEl.value.trim();
-        if (priceEl) t.price = priceEl.value.trim();
-        if (periodEl) t.period = periodEl.value.trim();
-        if (goalEl) t.recommendedGoal = goalEl.value;
-        if (featEl) {
-          t.features = featEl.value
-            .split('\n')
-            .map(s => s.trim())
-            .filter(Boolean);
-        }
-      });
-    }
+    let activeTierIndex = 0;
 
     function renderTiers() {
       const count = (currentClient.tiers || []).length;
-      const badge = document.getElementById('tiersCountBadge');
-      if (badge) badge.textContent = `${count} ИЗ 5 ТАРИФОВ`;
-      const container = document.getElementById('tiersContainer');
+      if (activeTierIndex >= count) activeTierIndex = Math.max(0, count - 1);
+      renderTierTabs();
+      loadActiveTierData();
+    }
+
+    function renderTierTabs() {
+      const container = document.getElementById('tierTabsContainer');
+      if (!container) return;
       container.innerHTML = '';
-      (currentClient.tiers || []).forEach((t, i) => {
-        const codeStr = '0' + (i + 1);
-        t.code = codeStr;
-        const card = document.createElement('div');
-        card.className = 'p-5 rounded-xl bg-white/[0.02] border border-white/10 flex flex-col gap-4 relative';
-        card.innerHTML = `
-          <div class="flex items-center justify-between border-b border-white/10 pb-3">
-            <div class="flex items-center gap-2">
-              <span class="w-6 h-6 rounded-md bg-orange-500/20 text-orange-400 border border-orange-500/30 flex items-center justify-center font-mono text-xs font-bold">${codeStr}</span>
-              <span class="font-tech text-xs uppercase text-white font-bold tracking-wider">ТАРИФ ${i + 1} ИЗ ${count}</span>
-            </div>
-            <button type="button" onclick="deleteTier(${i})" class="px-2.5 py-1 rounded-md bg-red-500/10 hover:bg-red-500/20 text-red-400 hover:text-red-300 text-xs font-tech font-bold uppercase transition-all flex items-center gap-1 cursor-pointer border border-red-500/20" title="Удалить тариф">
-              <span>🗑️ Удалить</span>
-            </button>
-          </div>
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            <div>
-              <label class="block text-[11px] font-mono text-zinc-400 mb-1">Название тарифа</label>
-              <input type="text" id="tierName${i}" value="${t.name || ''}" class="w-full px-3 py-2 rounded-lg text-sm font-bold" />
-            </div>
-            <div>
-              <label class="block text-[11px] font-mono text-zinc-400 mb-1">Бейдж / Статус</label>
-              <input type="text" id="tierBadge${i}" value="${t.badge || ''}" placeholder="ХИТ ПРОДАЖ, ALL INCLUSIVE..." class="w-full px-3 py-2 rounded-lg text-xs font-mono" />
-            </div>
-            <div>
-              <label class="block text-[11px] font-mono text-zinc-400 mb-1">Цена и период</label>
-              <div class="grid grid-cols-2 gap-2">
-                <input type="text" id="tierPrice${i}" value="${t.price || ''}" placeholder="14 900 ₽" class="px-3 py-2 rounded-lg text-sm font-mono text-orange-400 font-bold" />
-                <input type="text" id="tierPeriod${i}" value="${t.period || ''}" placeholder="В МЕСЯЦ" class="px-3 py-2 rounded-lg text-xs font-mono" />
-              </div>
-            </div>
-          </div>
-          <div>
-            <label class="block text-[11px] font-mono text-zinc-400 mb-1">Рекомендуемая цель</label>
-            <select id="tierGoal${i}" class="w-full sm:w-64 px-3 py-1.5 rounded-lg text-xs font-mono">
-              <option value="recomp" ${t.recommendedGoal === 'recomp' ? 'selected' : ''}>Рекомпозиция (recomp)</option>
-              <option value="cut" ${t.recommendedGoal === 'cut' ? 'selected' : ''}>Сушка и рельеф (cut)</option>
-              <option value="bulk" ${t.recommendedGoal === 'bulk' ? 'selected' : ''}>Набор массы (bulk)</option>
-            </select>
-          </div>
-          <div>
-            <label class="block text-[11px] font-mono text-zinc-400 mb-1">Пункты программы (по одному на каждой строке)</label>
-            <textarea id="tierFeatures${i}" rows="3" class="w-full px-3 py-2 rounded-lg text-xs font-mono resize-none">${(t.features || []).join('\n')}</textarea>
-          </div>
-        `;
-        container.appendChild(card);
+      const tiers = currentClient.tiers || [];
+      const badge = document.getElementById('tiersCountBadge');
+      if (badge) badge.textContent = `${tiers.length} ИЗ 5 ТАРИФОВ`;
+
+      tiers.forEach((t, i) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.onclick = () => switchTier(i);
+        const isActive = i === activeTierIndex;
+        btn.className = `px-3.5 py-1.5 rounded-lg text-xs font-tech font-bold uppercase tracking-wider transition-all cursor-pointer whitespace-nowrap shrink-0 ${
+          isActive 
+            ? 'bg-orange-500 text-black shadow-md' 
+            : 'bg-white/5 hover:bg-white/10 text-zinc-400 hover:text-white border border-white/10'
+        }`;
+        const shortName = (t.name || 'Тариф').split(' // ')[0].replace(/^ТАРИФ\s*\d*\s*/i, '').trim() || (t.name || 'Тариф');
+        btn.textContent = `0${i + 1} // ${shortName.slice(0, 16)}`;
+        container.appendChild(btn);
       });
+    }
+
+    function switchTier(index) {
+      saveActiveTierData();
+      activeTierIndex = index;
+      renderTierTabs();
+      loadActiveTierData();
+    }
+
+    function prevTier() {
+      const len = (currentClient.tiers || []).length;
+      if (len <= 1) return;
+      saveActiveTierData();
+      activeTierIndex = (activeTierIndex - 1 + len) % len;
+      renderTierTabs();
+      loadActiveTierData();
+    }
+
+    function nextTier() {
+      const len = (currentClient.tiers || []).length;
+      if (len <= 1) return;
+      saveActiveTierData();
+      activeTierIndex = (activeTierIndex + 1) % len;
+      renderTierTabs();
+      loadActiveTierData();
+    }
+
+    function saveActiveTierData() {
+      if (!currentClient.tiers || !currentClient.tiers[activeTierIndex]) return;
+      const t = currentClient.tiers[activeTierIndex];
+      const nameEl = document.getElementById('tierNameInput');
+      const badgeEl = document.getElementById('tierBadgeInput');
+      const priceEl = document.getElementById('tierPriceInput');
+      const periodEl = document.getElementById('tierPeriodInput');
+      const goalEl = document.getElementById('tierGoalInput');
+      const featEl = document.getElementById('tierFeaturesInput');
+      if (nameEl) t.name = nameEl.value.trim();
+      if (badgeEl) t.badge = badgeEl.value.trim();
+      if (priceEl) t.price = priceEl.value.trim();
+      if (periodEl) t.period = periodEl.value.trim();
+      if (goalEl) t.recommendedGoal = goalEl.value;
+      if (featEl) {
+        t.features = featEl.value
+          .split('\n')
+          .map(s => s.trim())
+          .filter(Boolean);
+      }
+    }
+
+    function loadActiveTierData() {
+      const tiers = currentClient.tiers || [];
+      if (!tiers[activeTierIndex]) return;
+      const t = tiers[activeTierIndex];
+      const codeStr = '0' + (activeTierIndex + 1);
+      t.code = codeStr;
+      document.getElementById('activeTierCodeBadge').textContent = codeStr;
+      document.getElementById('activeTierTitle').textContent = `ТАРИФ ${activeTierIndex + 1} ИЗ ${tiers.length}`;
+      document.getElementById('tierNameInput').value = t.name || '';
+      document.getElementById('tierBadgeInput').value = t.badge || '';
+      document.getElementById('tierPriceInput').value = t.price || '';
+      document.getElementById('tierPeriodInput').value = t.period || '';
+      document.getElementById('tierGoalInput').value = t.recommendedGoal || 'recomp';
+      document.getElementById('tierFeaturesInput').value = (t.features || []).join('\n');
     }
 
     function addTier() {
@@ -599,13 +729,13 @@
         alert('Максимальное количество тарифов — 5.');
         return;
       }
-      collectTiersFromDOM();
+      saveActiveTierData();
       const nextNum = currentClient.tiers.length + 1;
       const codeStr = '0' + nextNum;
       currentClient.tiers.push({
         id: 'tier-custom-' + Date.now(),
         code: codeStr,
-        name: 'ТАРИФ ' + codeStr + ' // ФОРМАТ',
+        name: 'ТАРИФ ' + codeStr + ' // НАЗВАНИЕ',
         badge: 'ФОРМАТ ' + nextNum,
         price: '19 900 ₽',
         period: 'В МЕСЯЦ',
@@ -613,21 +743,23 @@
         features: [
           'Индивидуальный тренировочный план',
           'Расчёт и ведение по КБЖУ',
-          'Поддержка в Telegram и видеоанализ техники'
+          'Поддержка в Telegram и разбор техники'
         ]
       });
+      activeTierIndex = currentClient.tiers.length - 1;
       renderTiers();
     }
 
-    function deleteTier(index) {
+    function deleteActiveTier() {
       if (!currentClient.tiers || currentClient.tiers.length <= 1) {
         alert('В системе должен оставаться хотя бы один тариф (от 1 до 5).');
         return;
       }
-      collectTiersFromDOM();
-      const tierName = currentClient.tiers[index].name || 'Тариф 0' + (index + 1);
+      const t = currentClient.tiers[activeTierIndex];
+      const tierName = (t && t.name) ? t.name : `Тариф 0${activeTierIndex + 1}`;
       if (!confirm(`Удалить «${tierName}»?`)) return;
-      currentClient.tiers.splice(index, 1);
+      currentClient.tiers.splice(activeTierIndex, 1);
+      activeTierIndex = Math.max(0, activeTierIndex - 1);
       renderTiers();
     }
 
@@ -691,40 +823,98 @@
       document.getElementById('caseAfterPreview').src = c.afterImage || '';
     }
 
-    function collectReviewsFromDOM() {
-      if (!currentClient || !currentClient.reviews) return;
-      currentClient.reviews.forEach((r, i) => {
-        const authorEl = document.getElementById(`reviewAuthor${i}`);
-        const tagEl = document.getElementById(`reviewTag${i}`);
-        const resultEl = document.getElementById(`reviewResult${i}`);
-        const textEl = document.getElementById(`reviewText${i}`);
-        if (authorEl) r.author = authorEl.value.trim();
-        if (tagEl) r.tag = tagEl.value.trim();
-        if (resultEl) r.result = resultEl.value.trim();
-        if (textEl) r.text = textEl.value.trim();
-        const imgKey = 'newReview' + i;
-        if (pendingImages[imgKey] && pendingImages[imgKey].data) {
-          r.image = pendingImages[imgKey].data;
-        }
+    let activeReviewIndex = 0;
+
+    function renderReviews() {
+      const count = (currentClient.reviews || []).length;
+      if (activeReviewIndex >= count) activeReviewIndex = Math.max(0, count - 1);
+      renderReviewTabs();
+      loadActiveReviewData();
+    }
+
+    function renderReviewTabs() {
+      const container = document.getElementById('reviewTabsContainer');
+      if (!container) return;
+      container.innerHTML = '';
+      const reviews = currentClient.reviews || [];
+      const badge = document.getElementById('reviewsCountBadge');
+      if (badge) badge.textContent = `${reviews.length} ИЗ 15 ОТЗЫВОВ`;
+
+      reviews.forEach((r, i) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.onclick = () => switchReview(i);
+        const isActive = i === activeReviewIndex;
+        btn.className = `px-3 py-1.5 rounded-lg text-xs font-tech font-bold uppercase tracking-wider transition-all cursor-pointer whitespace-nowrap shrink-0 ${
+          isActive 
+            ? 'bg-orange-500 text-black shadow-md' 
+            : 'bg-white/5 hover:bg-white/10 text-zinc-400 hover:text-white border border-white/10'
+        }`;
+        btn.textContent = `${i + 1} // ${r.author || 'Отзыв'}`;
+        container.appendChild(btn);
       });
     }
 
-    
-    function resetReviewsToServer() {
-      if (!window.CLIENTS || !window.CLIENTS[currentSlug]) return;
-      if (!confirm('Загрузить все актуальные 15 отзывов с сервера? Несохраненные правки в отзывах будут сброшены.')) return;
-      const serverReviews = JSON.parse(JSON.stringify(window.CLIENTS[currentSlug].reviews || []));
-      currentClient.reviews = serverReviews;
-      try {
-        const raw = localStorage.getItem('pulse_override_' + currentSlug);
-        if (raw) {
-          const parsed = JSON.parse(raw);
-          parsed.reviews = serverReviews;
-          localStorage.setItem('pulse_override_' + currentSlug, JSON.stringify(parsed));
-        }
-      } catch(e) {}
-      renderReviews();
-      alert('Все 15 отзывов успешно синхронизированы с сервера!');
+    function switchReview(index) {
+      saveActiveReviewData();
+      activeReviewIndex = index;
+      renderReviewTabs();
+      loadActiveReviewData();
+    }
+
+    function prevReview() {
+      const len = (currentClient.reviews || []).length;
+      if (len <= 1) return;
+      saveActiveReviewData();
+      activeReviewIndex = (activeReviewIndex - 1 + len) % len;
+      renderReviewTabs();
+      loadActiveReviewData();
+    }
+
+    function nextReview() {
+      const len = (currentClient.reviews || []).length;
+      if (len <= 1) return;
+      saveActiveReviewData();
+      activeReviewIndex = (activeReviewIndex + 1) % len;
+      renderReviewTabs();
+      loadActiveReviewData();
+    }
+
+    function saveActiveReviewData() {
+      if (!currentClient.reviews || !currentClient.reviews[activeReviewIndex]) return;
+      const r = currentClient.reviews[activeReviewIndex];
+      const authorEl = document.getElementById('reviewAuthorInput');
+      const tagEl = document.getElementById('reviewTagInput');
+      const resEl = document.getElementById('reviewResultInput');
+      const timeEl = document.getElementById('reviewTimeInput');
+      const textEl = document.getElementById('reviewTextInput');
+      if (authorEl) r.author = authorEl.value.trim();
+      if (tagEl) r.tag = tagEl.value.trim();
+      if (resEl) r.result = resEl.value.trim();
+      if (timeEl) r.time = timeEl.value.trim();
+      if (textEl) r.text = textEl.value.trim();
+      const imgKey = 'newReview_' + activeReviewIndex;
+      if (pendingImages[imgKey] && pendingImages[imgKey].data) {
+        r.image = pendingImages[imgKey].data;
+      }
+    }
+
+    function loadActiveReviewData() {
+      const reviews = currentClient.reviews || [];
+      if (!reviews[activeReviewIndex]) return;
+      const r = reviews[activeReviewIndex];
+      document.getElementById('activeReviewNumBadge').textContent = `#${activeReviewIndex + 1}`;
+      document.getElementById('activeReviewTitle').textContent = `ОТЗЫВ ${activeReviewIndex + 1} ИЗ ${reviews.length}`;
+      document.getElementById('activeReviewPreview').src = r.image || '';
+      document.getElementById('reviewAuthorInput').value = r.author || '';
+      document.getElementById('reviewTagInput').value = r.tag || '';
+      document.getElementById('reviewResultInput').value = r.result || '';
+      document.getElementById('reviewTimeInput').value = r.time || '14:00';
+      document.getElementById('reviewTextInput').value = r.text || '';
+    }
+
+    function handleActiveReviewImage(event) {
+      handleImageUpload(event, 'activeReviewPreview', 'newReview_' + activeReviewIndex);
     }
 
     function addReview() {
@@ -733,7 +923,7 @@
         alert('Максимальное количество отзывов — 15.');
         return;
       }
-      collectReviewsFromDOM();
+      saveActiveReviewData();
       const newId = (currentClient.reviews.length > 0) 
         ? Math.max(...currentClient.reviews.map(r => r.id || 0)) + 1 
         : 1;
@@ -748,76 +938,39 @@
         time: '14:00',
         image: '/cases/vladislav_danya.jpg'
       });
+      activeReviewIndex = currentClient.reviews.length - 1;
       renderReviews();
     }
 
-    function deleteReview(index) {
+    function deleteActiveReview() {
       if (!currentClient.reviews || currentClient.reviews.length <= 1) {
         alert('В системе должен оставаться хотя бы один отзыв.');
         return;
       }
-      collectReviewsFromDOM();
-      const name = currentClient.reviews[index].author || `Отзыв #${index + 1}`;
-      if (!confirm(`Удалить отзыв #${index + 1} (${name})?`)) return;
-      currentClient.reviews.splice(index, 1);
+      const r = currentClient.reviews[activeReviewIndex];
+      const author = (r && r.author) ? r.author : `Отзыв #${activeReviewIndex + 1}`;
+      if (!confirm(`Удалить отзыв «${author}»?`)) return;
+      currentClient.reviews.splice(activeReviewIndex, 1);
+      activeReviewIndex = Math.max(0, activeReviewIndex - 1);
       renderReviews();
     }
 
-    function renderReviews() {
-      const count = (currentClient.reviews || []).length;
-      const badge = document.getElementById('reviewsCountBadge');
-      if (badge) badge.textContent = `${count} ИЗ 15 ОТЗЫВОВ`;
-      const container = document.getElementById('reviewsContainer');
-      container.innerHTML = '';
-      (currentClient.reviews || []).forEach((r, i) => {
-        const card = document.createElement('div');
-        card.className = 'p-5 rounded-xl bg-white/[0.02] border border-white/10 flex flex-col gap-4 relative';
-        card.innerHTML = `
-          <div class="flex items-center justify-between border-b border-white/10 pb-3">
-            <div class="flex items-center gap-2">
-              <span class="w-6 h-6 rounded-md bg-orange-500/20 text-orange-400 border border-orange-500/30 flex items-center justify-center font-mono text-xs font-bold">#${i + 1}</span>
-              <span class="font-tech text-xs uppercase text-white font-bold tracking-wider">ОТЗЫВ ${i + 1} ИЗ ${count}</span>
-            </div>
-            <button type="button" onclick="deleteReview(${i})" class="px-2.5 py-1 rounded-md bg-red-500/10 hover:bg-red-500/20 text-red-400 hover:text-red-300 text-xs font-tech font-bold uppercase transition-all flex items-center gap-1 cursor-pointer border border-red-500/20" title="Удалить отзыв">
-              <span>🗑️ Удалить</span>
-            </button>
-          </div>
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 items-center">
-            <div>
-              <label class="block text-[11px] font-mono text-zinc-400 mb-1.5">Фото отзыва</label>
-              <div class="relative rounded-xl overflow-hidden border border-white/15 bg-black/40 aspect-[4/3] flex items-center justify-center group">
-                <img id="reviewPreview${i}" src="${r.image || ''}" class="w-full h-full object-cover" />
-                <label class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center cursor-pointer text-xs font-tech text-white">
-                  <span class="text-xl mb-1">📁</span>
-                  <span>Заменить фото</span>
-                  <input type="file" accept="image/*" class="hidden" onchange="handleImageUpload(event, 'reviewPreview${i}', 'newReview${i}')" />
-                </label>
-              </div>
-            </div>
-            <div class="sm:col-span-2 flex flex-col gap-2.5">
-              <div class="grid grid-cols-2 gap-2">
-                <div>
-                  <label class="block text-[10px] font-mono text-zinc-400 mb-0.5">Имя подопечного</label>
-                  <input type="text" id="reviewAuthor${i}" value="${r.author || ''}" class="w-full px-3 py-1.5 rounded-lg text-xs font-bold" />
-                </div>
-                <div>
-                  <label class="block text-[10px] font-mono text-zinc-400 mb-0.5">Тег / Достижение</label>
-                  <input type="text" id="reviewTag${i}" value="${r.tag || ''}" class="w-full px-3 py-1.5 rounded-lg text-xs font-mono" />
-                </div>
-              </div>
-              <div>
-                <label class="block text-[10px] font-mono text-zinc-400 mb-0.5">Результат (главная строка)</label>
-                <input type="text" id="reviewResult${i}" value="${r.result || ''}" class="w-full px-3 py-1.5 rounded-lg text-xs font-bold text-orange-400" />
-              </div>
-              <div>
-                <label class="block text-[10px] font-mono text-zinc-400 mb-0.5">Текст отзыва</label>
-                <textarea id="reviewText${i}" rows="2" class="w-full px-3 py-1.5 rounded-lg text-xs resize-none">${r.text || ''}</textarea>
-              </div>
-            </div>
-          </div>
-        `;
-        container.appendChild(card);
-      });
+    function resetReviewsToServer() {
+      if (!window.CLIENTS || !window.CLIENTS[currentSlug]) return;
+      if (!confirm('Загрузить все актуальные 15 отзывов с сервера? Несохраненные правки в отзывах будут сброшены.')) return;
+      const serverReviews = JSON.parse(JSON.stringify(window.CLIENTS[currentSlug].reviews || []));
+      currentClient.reviews = serverReviews;
+      try {
+        const raw = localStorage.getItem('pulse_override_' + currentSlug);
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          parsed.reviews = serverReviews;
+          localStorage.setItem('pulse_override_' + currentSlug, JSON.stringify(parsed));
+        }
+      } catch(e) {}
+      activeReviewIndex = 0;
+      renderReviews();
+      alert('Все 15 отзывов успешно синхронизированы с сервера!');
     }
 
     function handleImageUpload(e, previewId, storeKey) {
@@ -971,10 +1124,9 @@
         label: document.getElementById(`statLabel${i}`).value.trim()
       }));
 
-      collectTiersFromDOM();
-
+      saveActiveTierData();
       saveActiveCaseData();
-      collectReviewsFromDOM();
+      saveActiveReviewData();
 
       // 1. INSTANT LOCAL OVERRIDE
       try {
