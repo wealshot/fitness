@@ -279,15 +279,21 @@
           </div>
         </div>
 
-        <!-- Horizontal Tier Navigation (Left / Right) -->
-        <div class="flex items-center gap-2 mb-4">
-          <button type="button" onclick="prevTier()" class="h-9 w-9 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer shrink-0 font-bold" title="Предыдущий тариф">
-            <span>←</span>
-          </button>
-          <div id="tierTabsContainer" class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 flex-1"></div>
-          <button type="button" onclick="nextTier()" class="h-9 w-9 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer shrink-0 font-bold" title="Следующий тариф">
-            <span>→</span>
-          </button>
+        <!-- Horizontal Tier Navigation (Arrows & Counter) -->
+        <div class="flex items-center gap-3 mb-4">
+          <div class="inline-flex items-center gap-2 bg-white/5 border border-white/10 p-1 rounded-xl shadow-sm">
+            <button type="button" onclick="prevTier()" class="h-9 w-9 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer font-bold text-base" title="Предыдущий тариф">
+              <span>←</span>
+            </button>
+            <div class="font-tech text-xs sm:text-sm text-zinc-400 px-3 flex items-center gap-1.5 font-bold tracking-wider select-none">
+              <span class="text-white text-sm sm:text-base font-extrabold" id="tierCounterCurrent">01</span>
+              <span class="text-zinc-600">/</span>
+              <span id="tierCounterTotal">03</span>
+            </div>
+            <button type="button" onclick="nextTier()" class="h-9 w-9 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer font-bold text-base" title="Следующий тариф">
+              <span>→</span>
+            </button>
+          </div>
         </div>
 
         <!-- Active Tier Editor Card -->
@@ -406,15 +412,21 @@
           </div>
         </div>
 
-        <!-- Horizontal Review Navigation (Left / Right) -->
-        <div class="flex items-center gap-2 mb-4">
-          <button type="button" onclick="prevReview()" class="h-9 w-9 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer shrink-0 font-bold" title="Предыдущий отзыв">
-            <span>←</span>
-          </button>
-          <div id="reviewTabsContainer" class="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-1 flex-1"></div>
-          <button type="button" onclick="nextReview()" class="h-9 w-9 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer shrink-0 font-bold" title="Следующий отзыв">
-            <span>→</span>
-          </button>
+        <!-- Horizontal Review Navigation (Arrows & Counter) -->
+        <div class="flex items-center gap-3 mb-4">
+          <div class="inline-flex items-center gap-2 bg-white/5 border border-white/10 p-1 rounded-xl shadow-sm">
+            <button type="button" onclick="prevReview()" class="h-9 w-9 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer font-bold text-base" title="Предыдущий отзыв">
+              <span>←</span>
+            </button>
+            <div class="font-tech text-xs sm:text-sm text-zinc-400 px-3 flex items-center gap-1.5 font-bold tracking-wider select-none">
+              <span class="text-white text-sm sm:text-base font-extrabold" id="reviewCounterCurrent">01</span>
+              <span class="text-zinc-600">/</span>
+              <span id="reviewCounterTotal">15</span>
+            </div>
+            <button type="button" onclick="nextReview()" class="h-9 w-9 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer font-bold text-base" title="Следующий отзыв">
+              <span>→</span>
+            </button>
+          </div>
         </div>
 
         <!-- Active Review Editor Card -->
@@ -629,41 +641,29 @@
 
     let activeTierIndex = 0;
 
+    function updateTierCounter() {
+      const tiers = currentClient.tiers || [];
+      const currentEl = document.getElementById('tierCounterCurrent');
+      const totalEl = document.getElementById('tierCounterTotal');
+      const badge = document.getElementById('tiersCountBadge');
+      const currentNum = activeTierIndex + 1;
+      const totalNum = tiers.length;
+      if (currentEl) currentEl.textContent = String(currentNum).padStart(2, '0');
+      if (totalEl) totalEl.textContent = String(totalNum).padStart(2, '0');
+      if (badge) badge.textContent = `${totalNum} ИЗ 5 ТАРИФОВ`;
+    }
+
     function renderTiers() {
       const count = (currentClient.tiers || []).length;
       if (activeTierIndex >= count) activeTierIndex = Math.max(0, count - 1);
-      renderTierTabs();
+      updateTierCounter();
       loadActiveTierData();
-    }
-
-    function renderTierTabs() {
-      const container = document.getElementById('tierTabsContainer');
-      if (!container) return;
-      container.innerHTML = '';
-      const tiers = currentClient.tiers || [];
-      const badge = document.getElementById('tiersCountBadge');
-      if (badge) badge.textContent = `${tiers.length} ИЗ 5 ТАРИФОВ`;
-
-      tiers.forEach((t, i) => {
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.onclick = () => switchTier(i);
-        const isActive = i === activeTierIndex;
-        btn.className = `px-3.5 py-1.5 rounded-lg text-xs font-tech font-bold uppercase tracking-wider transition-all cursor-pointer whitespace-nowrap shrink-0 ${
-          isActive 
-            ? 'bg-orange-500 text-black shadow-md' 
-            : 'bg-white/5 hover:bg-white/10 text-zinc-400 hover:text-white border border-white/10'
-        }`;
-        const shortName = (t.name || 'Тариф').split(' // ')[0].replace(/^ТАРИФ\s*\d*\s*/i, '').trim() || (t.name || 'Тариф');
-        btn.textContent = `0${i + 1} // ${shortName.slice(0, 16)}`;
-        container.appendChild(btn);
-      });
     }
 
     function switchTier(index) {
       saveActiveTierData();
       activeTierIndex = index;
-      renderTierTabs();
+      updateTierCounter();
       loadActiveTierData();
     }
 
@@ -672,7 +672,7 @@
       if (len <= 1) return;
       saveActiveTierData();
       activeTierIndex = (activeTierIndex - 1 + len) % len;
-      renderTierTabs();
+      updateTierCounter();
       loadActiveTierData();
     }
 
@@ -681,7 +681,7 @@
       if (len <= 1) return;
       saveActiveTierData();
       activeTierIndex = (activeTierIndex + 1) % len;
-      renderTierTabs();
+      updateTierCounter();
       loadActiveTierData();
     }
 
@@ -825,40 +825,29 @@
 
     let activeReviewIndex = 0;
 
+    function updateReviewCounter() {
+      const reviews = currentClient.reviews || [];
+      const currentEl = document.getElementById('reviewCounterCurrent');
+      const totalEl = document.getElementById('reviewCounterTotal');
+      const badge = document.getElementById('reviewsCountBadge');
+      const currentNum = activeReviewIndex + 1;
+      const totalNum = reviews.length;
+      if (currentEl) currentEl.textContent = String(currentNum).padStart(2, '0');
+      if (totalEl) totalEl.textContent = String(totalNum).padStart(2, '0');
+      if (badge) badge.textContent = `${totalNum} ИЗ 15 ОТЗЫВОВ`;
+    }
+
     function renderReviews() {
       const count = (currentClient.reviews || []).length;
       if (activeReviewIndex >= count) activeReviewIndex = Math.max(0, count - 1);
-      renderReviewTabs();
+      updateReviewCounter();
       loadActiveReviewData();
-    }
-
-    function renderReviewTabs() {
-      const container = document.getElementById('reviewTabsContainer');
-      if (!container) return;
-      container.innerHTML = '';
-      const reviews = currentClient.reviews || [];
-      const badge = document.getElementById('reviewsCountBadge');
-      if (badge) badge.textContent = `${reviews.length} ИЗ 15 ОТЗЫВОВ`;
-
-      reviews.forEach((r, i) => {
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.onclick = () => switchReview(i);
-        const isActive = i === activeReviewIndex;
-        btn.className = `px-3 py-1.5 rounded-lg text-xs font-tech font-bold uppercase tracking-wider transition-all cursor-pointer whitespace-nowrap shrink-0 ${
-          isActive 
-            ? 'bg-orange-500 text-black shadow-md' 
-            : 'bg-white/5 hover:bg-white/10 text-zinc-400 hover:text-white border border-white/10'
-        }`;
-        btn.textContent = `${i + 1} // ${r.author || 'Отзыв'}`;
-        container.appendChild(btn);
-      });
     }
 
     function switchReview(index) {
       saveActiveReviewData();
       activeReviewIndex = index;
-      renderReviewTabs();
+      updateReviewCounter();
       loadActiveReviewData();
     }
 
@@ -867,7 +856,7 @@
       if (len <= 1) return;
       saveActiveReviewData();
       activeReviewIndex = (activeReviewIndex - 1 + len) % len;
-      renderReviewTabs();
+      updateReviewCounter();
       loadActiveReviewData();
     }
 
@@ -876,7 +865,7 @@
       if (len <= 1) return;
       saveActiveReviewData();
       activeReviewIndex = (activeReviewIndex + 1) % len;
-      renderReviewTabs();
+      updateReviewCounter();
       loadActiveReviewData();
     }
 
