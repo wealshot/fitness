@@ -336,57 +336,86 @@
         </div>
       </section>
 
-      <!-- SECTION 4: BEFORE / AFTER CASE -->
+      <!-- SECTION 4: CASES -->
       <section class="glass-card rounded-2xl p-5 sm:p-7">
-        <div class="flex items-center justify-between mb-4 border-b border-white/10 pb-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 mb-4 border-b border-white/10 pb-3">
           <div class="flex items-center gap-2">
             <span class="text-xl">📸</span>
-            <h3 class="font-display text-xl uppercase tracking-wide text-white">КЕЙСЫ ТРАНСФОРМАЦИИ (ДО / ПОСЛЕ)</h3>
+            <h3 class="font-display text-xl uppercase tracking-wide text-white">КЕЙСЫ</h3>
           </div>
-          <span id="casesCountBadge" class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/5 text-zinc-400">КЕЙСЫ</span>
-        </div>
-
-        <!-- Case Tabs -->
-        <div id="caseTabsContainer" class="flex flex-wrap gap-2 mb-6"></div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
-          <!-- BEFORE IMAGE -->
-          <div>
-            <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-2">Фото ДО</label>
-            <div class="relative rounded-xl overflow-hidden border border-white/15 bg-black/40 aspect-[4/3] flex items-center justify-center group">
-              <img id="caseBeforePreview" src="" class="w-full h-full object-cover" />
-              <label class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center cursor-pointer text-xs font-tech text-white">
-                <span class="text-2xl mb-1">📁</span>
-                <span>Нажмите чтобы заменить</span>
-                <input type="file" accept="image/*" class="hidden" onchange="handleImageUpload(event, 'caseBeforePreview', 'newCaseBefore')" />
-              </label>
-            </div>
-            <input type="text" id="caseStatA" class="w-full mt-2 px-3 py-2 rounded-lg text-xs font-mono" placeholder="Подпись: ТОЧКА А // ..." />
-          </div>
-
-          <!-- AFTER IMAGE -->
-          <div>
-            <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-2">Фото ПОСЛЕ</label>
-            <div class="relative rounded-xl overflow-hidden border border-white/15 bg-black/40 aspect-[4/3] flex items-center justify-center group">
-              <img id="caseAfterPreview" src="" class="w-full h-full object-cover" />
-              <label class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center cursor-pointer text-xs font-tech text-white">
-                <span class="text-2xl mb-1">📁</span>
-                <span>Нажмите чтобы заменить</span>
-                <input type="file" accept="image/*" class="hidden" onchange="handleImageUpload(event, 'caseAfterPreview', 'newCaseAfter')" />
-              </label>
-            </div>
-            <input type="text" id="caseStatB" class="w-full mt-2 px-3 py-2 rounded-lg text-xs font-mono" placeholder="Подпись: ТОЧКА Б // ..." />
+          <div class="flex items-center gap-2 flex-wrap">
+            <span id="casesCountBadge" class="text-xs font-mono font-bold px-2.5 py-1 rounded-lg bg-white/5 text-zinc-400 border border-white/10 shrink-0">5/5</span>
+            <button type="button" onclick="addCase()" class="px-3 py-1 rounded-lg bg-orange-500 hover:bg-orange-400 text-black font-tech font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-1 cursor-pointer shadow-sm active:scale-95 shrink-0">
+              <span>+ ДОБАВИТЬ</span>
+            </button>
           </div>
         </div>
 
-        <div class="flex flex-col gap-4">
-          <div>
-            <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1">Название кейса</label>
-            <input type="text" id="caseName" class="w-full px-3.5 py-2.5 rounded-xl text-sm" />
+        <!-- Horizontal Case Navigation (Full Width) -->
+        <div class="w-full flex items-center justify-between bg-white/5 border border-white/10 p-1.5 rounded-xl mb-4">
+          <button type="button" onclick="prevCase()" class="h-9 w-12 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer font-bold text-base" title="Предыдущий кейс">
+            <span>←</span>
+          </button>
+          <div class="font-tech text-sm sm:text-base text-zinc-400 px-3 flex items-center gap-2 font-bold tracking-wider select-none">
+            <span class="text-white text-base sm:text-lg font-extrabold" id="caseCounterCurrent">01</span>
+            <span class="text-zinc-600 font-normal">/</span>
+            <span id="caseCounterTotal">05</span>
           </div>
-          <div>
-            <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1">Описание трансформации</label>
-            <textarea id="caseDescription" rows="2" class="w-full px-3.5 py-2.5 rounded-xl text-sm resize-none"></textarea>
+          <button type="button" onclick="nextCase()" class="h-9 w-12 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer font-bold text-base" title="Следующий кейс">
+            <span>→</span>
+          </button>
+        </div>
+
+        <!-- Active Case Editor Card -->
+        <div class="p-5 rounded-xl bg-white/[0.02] border border-white/10 flex flex-col gap-4 relative">
+          <div class="flex items-center justify-between border-b border-white/10 pb-3">
+            <div class="flex items-center gap-2">
+              <span id="activeCaseCodeBadge" class="w-7 h-7 rounded-md bg-orange-500/20 text-orange-400 border border-orange-500/30 flex items-center justify-center font-mono text-xs font-bold">01</span>
+            </div>
+            <button type="button" onclick="deleteActiveCase()" class="h-8 w-8 rounded-lg bg-red-500/10 hover:bg-red-500/20 text-red-400 hover:text-red-300 text-sm flex items-center justify-center transition-all cursor-pointer border border-red-500/20 active:scale-95" title="Удалить кейс">
+              <span>🗑️</span>
+            </button>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-1">
+            <!-- BEFORE IMAGE -->
+            <div>
+              <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-2">Фото ДО</label>
+              <div class="relative rounded-xl overflow-hidden border border-white/15 bg-black/40 aspect-[4/3] flex items-center justify-center group">
+                <img id="caseBeforePreview" src="" class="w-full h-full object-cover" />
+                <label class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center cursor-pointer text-xs font-tech text-white">
+                  <span class="text-2xl mb-1">📁</span>
+                  <span>Нажмите чтобы заменить</span>
+                  <input type="file" accept="image/*" class="hidden" onchange="handleCaseBeforeImage(event)" />
+                </label>
+              </div>
+              <input type="text" id="caseStatA" class="w-full mt-2 px-3 py-2 rounded-lg text-xs font-mono" placeholder="Подпись: ТОЧКА А // ..." />
+            </div>
+
+            <!-- AFTER IMAGE -->
+            <div>
+              <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-2">Фото ПОСЛЕ</label>
+              <div class="relative rounded-xl overflow-hidden border border-white/15 bg-black/40 aspect-[4/3] flex items-center justify-center group">
+                <img id="caseAfterPreview" src="" class="w-full h-full object-cover" />
+                <label class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center cursor-pointer text-xs font-tech text-white">
+                  <span class="text-2xl mb-1">📁</span>
+                  <span>Нажмите чтобы заменить</span>
+                  <input type="file" accept="image/*" class="hidden" onchange="handleCaseAfterImage(event)" />
+                </label>
+              </div>
+              <input type="text" id="caseStatB" class="w-full mt-2 px-3 py-2 rounded-lg text-xs font-mono" placeholder="Подпись: ТОЧКА Б // ..." />
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-4">
+            <div>
+              <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1">Название кейса</label>
+              <input type="text" id="caseName" class="w-full px-3.5 py-2.5 rounded-xl text-sm font-bold" />
+            </div>
+            <div>
+              <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1">Описание трансформации</label>
+              <textarea id="caseDescription" rows="2" class="w-full px-3.5 py-2.5 rounded-xl text-sm resize-none"></textarea>
+            </div>
           </div>
         </div>
       </section>
@@ -759,43 +788,65 @@
 
     let activeCaseIndex = 0;
 
-    function renderCasesTabs() {
-      const container = document.getElementById('caseTabsContainer');
-      if (!container) return;
-      container.innerHTML = '';
+    function updateCaseCounter() {
       const cases = currentClient.cases || [];
+      const currentEl = document.getElementById('caseCounterCurrent');
+      const totalEl = document.getElementById('caseCounterTotal');
       const badge = document.getElementById('casesCountBadge');
-      if (badge) badge.textContent = `${cases.length} КЕЙС${cases.length === 1 ? '' : cases.length < 5 ? 'А' : 'ОВ'}`;
+      const currentNum = activeCaseIndex + 1;
+      const totalNum = cases.length;
+      if (currentEl) currentEl.textContent = String(currentNum).padStart(2, '0');
+      if (totalEl) totalEl.textContent = String(totalNum).padStart(2, '0');
+      if (badge) badge.textContent = `${totalNum}/5`;
+    }
 
-      cases.forEach((c, i) => {
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.onclick = () => switchCase(i);
-        const isActive = i === activeCaseIndex;
-        btn.className = `px-3.5 py-1.5 rounded-lg text-xs font-tech font-bold uppercase tracking-wider transition-all cursor-pointer ${
-          isActive 
-            ? 'bg-orange-500 text-black shadow-md' 
-            : 'bg-white/5 hover:bg-white/10 text-zinc-400 hover:text-white border border-white/10'
-        }`;
-        btn.textContent = `0${i + 1} // ${c.name.split(' ')[0] || 'Кейс'}`;
-        container.appendChild(btn);
-      });
+    function renderCases() {
+      const count = (currentClient.cases || []).length;
+      if (activeCaseIndex >= count) activeCaseIndex = Math.max(0, count - 1);
+      updateCaseCounter();
+      loadActiveCaseData();
+    }
+
+    function renderCasesTabs() {
+      renderCases();
     }
 
     function switchCase(index) {
       saveActiveCaseData();
       activeCaseIndex = index;
-      renderCasesTabs();
+      updateCaseCounter();
+      loadActiveCaseData();
+    }
+
+    function prevCase() {
+      const len = (currentClient.cases || []).length;
+      if (len <= 1) return;
+      saveActiveCaseData();
+      activeCaseIndex = (activeCaseIndex - 1 + len) % len;
+      updateCaseCounter();
+      loadActiveCaseData();
+    }
+
+    function nextCase() {
+      const len = (currentClient.cases || []).length;
+      if (len <= 1) return;
+      saveActiveCaseData();
+      activeCaseIndex = (activeCaseIndex + 1) % len;
+      updateCaseCounter();
       loadActiveCaseData();
     }
 
     function saveActiveCaseData() {
       if (!currentClient.cases || !currentClient.cases[activeCaseIndex]) return;
       const c = currentClient.cases[activeCaseIndex];
-      c.name = document.getElementById('caseName').value.trim();
-      c.description = document.getElementById('caseDescription').value.trim();
-      c.initialStats = document.getElementById('caseStatA').value.trim();
-      c.resultStats = document.getElementById('caseStatB').value.trim();
+      const nameEl = document.getElementById('caseName');
+      const descEl = document.getElementById('caseDescription');
+      const statAEl = document.getElementById('caseStatA');
+      const statBEl = document.getElementById('caseStatB');
+      if (nameEl) c.name = nameEl.value.trim();
+      if (descEl) c.description = descEl.value.trim();
+      if (statAEl) c.initialStats = statAEl.value.trim();
+      if (statBEl) c.resultStats = statBEl.value.trim();
       const bImgKey = 'newCaseBefore_' + activeCaseIndex;
       const aImgKey = 'newCaseAfter_' + activeCaseIndex;
       if (pendingImages[bImgKey] && pendingImages[bImgKey].data) {
@@ -807,14 +858,69 @@
     }
 
     function loadActiveCaseData() {
-      if (!currentClient.cases || !currentClient.cases[activeCaseIndex]) return;
+      const cases = currentClient.cases || [];
+      if (!cases[activeCaseIndex]) return;
+      const c = cases[activeCaseIndex];
+      const codeBadge = document.getElementById('activeCaseCodeBadge');
+      if (codeBadge) codeBadge.textContent = String(activeCaseIndex + 1).padStart(2, '0');
+      const nameEl = document.getElementById('caseName');
+      const descEl = document.getElementById('caseDescription');
+      const statAEl = document.getElementById('caseStatA');
+      const statBEl = document.getElementById('caseStatB');
+      const beforePrev = document.getElementById('caseBeforePreview');
+      const afterPrev = document.getElementById('caseAfterPreview');
+      if (nameEl) nameEl.value = c.name || '';
+      if (descEl) descEl.value = c.description || '';
+      if (statAEl) statAEl.value = c.initialStats || '';
+      if (statBEl) statBEl.value = c.resultStats || '';
+      if (beforePrev) beforePrev.src = c.beforeImage || '';
+      if (afterPrev) afterPrev.src = c.afterImage || '';
+    }
+
+    function handleCaseBeforeImage(event) {
+      handleImageUpload(event, 'caseBeforePreview', 'newCaseBefore_' + activeCaseIndex);
+    }
+
+    function handleCaseAfterImage(event) {
+      handleImageUpload(event, 'caseAfterPreview', 'newCaseAfter_' + activeCaseIndex);
+    }
+
+    function addCase() {
+      if (!currentClient.cases) currentClient.cases = [];
+      if (currentClient.cases.length >= 5) {
+        alert('Максимальное количество кейсов — 5.');
+        return;
+      }
+      saveActiveCaseData();
+      const nextNum = currentClient.cases.length + 1;
+      const codeStr = String(nextNum).padStart(2, '0');
+      currentClient.cases.push({
+        id: nextNum,
+        name: 'КЕЙС ' + codeStr + ' // ТРАНСФОРМАЦИЯ',
+        tag: '+5 КГ МАССЫ // РЕЛЬЕФ',
+        badge: 'ПРОГРЕСС ЗА 12 НЕДЕЛЬ',
+        beforeImage: '/cases/vladislav_case_before.jpg',
+        afterImage: '/cases/vladislav_case_after.jpg',
+        objectPosition: 'center',
+        description: 'Индивидуальная трансформация подопечного под руководством наставника.',
+        initialStats: 'ТОЧКА А // СТАРТ',
+        resultStats: 'ТОЧКА Б // РЕЗУЛЬТАТ'
+      });
+      activeCaseIndex = currentClient.cases.length - 1;
+      renderCases();
+    }
+
+    function deleteActiveCase() {
+      if (!currentClient.cases || currentClient.cases.length <= 1) {
+        alert('В системе должен оставаться хотя бы один кейс.');
+        return;
+      }
       const c = currentClient.cases[activeCaseIndex];
-      document.getElementById('caseName').value = c.name || '';
-      document.getElementById('caseDescription').value = c.description || '';
-      document.getElementById('caseStatA').value = c.initialStats || '';
-      document.getElementById('caseStatB').value = c.resultStats || '';
-      document.getElementById('caseBeforePreview').src = c.beforeImage || '';
-      document.getElementById('caseAfterPreview').src = c.afterImage || '';
+      const caseName = (c && c.name) ? c.name : `Кейс 0${activeCaseIndex + 1}`;
+      if (!confirm(`Удалить «${caseName}»?`)) return;
+      currentClient.cases.splice(activeCaseIndex, 1);
+      activeCaseIndex = Math.max(0, activeCaseIndex - 1);
+      renderCases();
     }
 
     let activeReviewIndex = 0;
