@@ -425,13 +425,10 @@
         <div class="flex items-center justify-between gap-2 mb-4 border-b border-white/10 pb-3">
           <div class="flex items-center gap-2 min-w-0">
             <span class="text-xl shrink-0">💬</span>
-            <h3 class="font-display text-base sm:text-xl uppercase tracking-wide text-white truncate">ОТЗЫВЫ</h3>
+            <h3 class="font-display text-base sm:text-xl uppercase tracking-wide text-white whitespace-nowrap">ОТЗЫВЫ</h3>
           </div>
-          <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
-            <span id="reviewsCountBadge" class="text-xs font-mono font-bold px-2 py-1 rounded-lg bg-white/5 text-zinc-400 border border-white/10 shrink-0">15/15</span>
-            <button type="button" onclick="resetReviewsToServer()" class="px-2 sm:px-2.5 py-1 rounded-lg border border-white/15 bg-white/5 hover:bg-white/10 text-zinc-300 hover:text-white font-tech font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-1 cursor-pointer active:scale-95 shrink-0" title="Загрузить все 15 отзывов с сервера">
-              <span>🔄 СБРОСИТЬ</span>
-            </button>
+          <div class="flex items-center gap-2 shrink-0">
+            <span id="reviewsCountBadge" class="text-xs font-mono font-bold px-2.5 py-1 rounded-lg bg-white/5 text-zinc-400 border border-white/10 shrink-0">15/15</span>
             <button type="button" onclick="addReview()" class="px-2.5 sm:px-3 py-1 rounded-lg bg-orange-500 hover:bg-orange-400 text-black font-tech font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-1 cursor-pointer shadow-sm active:scale-95 shrink-0">
               <span>+ ДОБАВИТЬ</span>
             </button>
