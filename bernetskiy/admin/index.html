@@ -817,7 +817,7 @@
       const descEl = document.getElementById('caseDescription');
       const statAEl = document.getElementById('caseStatA');
       const statBEl = document.getElementById('caseStatB');
-      if (nameEl) c.name = nameEl.value.trim();
+      if (nameEl) c.name = nameEl.value.trim().replace(/^кей[сc]\s*\d+\s*\/\/\s*/i, '');
       if (descEl) c.description = descEl.value.trim();
       if (statAEl) c.initialStats = statAEl.value.trim();
       if (statBEl) c.resultStats = statBEl.value.trim();
@@ -843,7 +843,7 @@
       const statBEl = document.getElementById('caseStatB');
       const beforePrev = document.getElementById('caseBeforePreview');
       const afterPrev = document.getElementById('caseAfterPreview');
-      if (nameEl) nameEl.value = c.name || '';
+      if (nameEl) nameEl.value = (c.name || '').replace(/^кей[сc]\s*\d+\s*\/\/\s*/i, '');
       if (descEl) descEl.value = c.description || '';
       if (statAEl) statAEl.value = c.initialStats || '';
       if (statBEl) statBEl.value = c.resultStats || '';
@@ -870,7 +870,7 @@
       const codeStr = String(nextNum).padStart(2, '0');
       currentClient.cases.push({
         id: nextNum,
-        name: 'КЕЙС ' + codeStr + ' // ТРАНСФОРМАЦИЯ',
+        name: 'ТРАНСФОРМАЦИЯ',
         tag: '+5 КГ МАССЫ // РЕЛЬЕФ',
         badge: 'ПРОГРЕСС ЗА 12 НЕДЕЛЬ',
         beforeImage: '/cases/vladislav_case_before.jpg',

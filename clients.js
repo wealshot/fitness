@@ -182,7 +182,7 @@ window.CLIENTS = {
       },
       {
         "id": 2,
-        "name": "КЕЙС 02 // ТРАНСФОРМАЦИЯ",
+        "name": "ТРАНСФОРМАЦИЯ",
         "tag": "+8 КГ МАССЫ // РЕЛЬЕФ",
         "badge": "ПРОГРЕСС ЗА 12 НЕДЕЛЬ",
         "beforeImage": "/cases/vladislav_case_before.jpg",
@@ -194,7 +194,7 @@ window.CLIENTS = {
       },
       {
         "id": 3,
-        "name": "КЕЙС 03 // СУШКА И РЕЛЬЕФ",
+        "name": "СУШКА И РЕЛЬЕФ",
         "tag": "-9 КГ ЖИРА // ПРЕСС",
         "badge": "ПРОГРЕСС ЗА 10 НЕДЕЛЬ",
         "beforeImage": "/cases/vladislav_case_before.jpg",
@@ -206,7 +206,7 @@ window.CLIENTS = {
       },
       {
         "id": 4,
-        "name": "КЕЙС 04 // НАБОР МАССЫ",
+        "name": "НАБОР МАССЫ",
         "tag": "+7 КГ ЧИСТОЙ МАССЫ",
         "badge": "ПРОГРЕСС ЗА 14 НЕДЕЛЬ",
         "beforeImage": "/cases/vladislav_case_before.jpg",
@@ -218,7 +218,7 @@ window.CLIENTS = {
       },
       {
         "id": 5,
-        "name": "КЕЙС 05 // СИЛОВОЙ ПРОГРЕСС",
+        "name": "СИЛОВОЙ ПРОГРЕСС",
         "tag": "+45 КГ В СУММЕ ТРОЕБОРЬЯ",
         "badge": "ПРОГРЕСС ЗА 16 НЕДЕЛЬ",
         "beforeImage": "/cases/vladislav_case_before.jpg",
