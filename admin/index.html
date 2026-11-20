@@ -279,31 +279,28 @@
           </div>
         </div>
 
-        <!-- Horizontal Tier Navigation (Full Width) -->
-        <div class="w-full flex items-center justify-between bg-white/5 border border-white/10 p-1.5 rounded-xl mb-4">
-          <button type="button" onclick="prevTier()" class="h-9 w-12 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer font-bold text-base" title="Предыдущий тариф">
+        <!-- Horizontal Tier Navigation (Full Width with Trash) -->
+        <div class="relative w-full flex items-center justify-between bg-white/5 border border-white/10 p-1.5 rounded-xl mb-4">
+          <button type="button" onclick="prevTier()" class="h-9 w-12 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer font-bold text-base shrink-0" title="Предыдущий тариф">
             <span>←</span>
           </button>
-          <div class="font-tech text-sm sm:text-base text-zinc-400 px-3 flex items-center gap-2 font-bold tracking-wider select-none">
+          <div class="absolute left-1/2 -translate-x-1/2 font-tech text-sm sm:text-base text-zinc-400 px-3 flex items-center gap-2 font-bold tracking-wider select-none pointer-events-none">
             <span class="text-white text-base sm:text-lg font-extrabold" id="tierCounterCurrent">01</span>
             <span class="text-zinc-600 font-normal">/</span>
             <span id="tierCounterTotal">03</span>
           </div>
-          <button type="button" onclick="nextTier()" class="h-9 w-12 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer font-bold text-base" title="Следующий тариф">
-            <span>→</span>
-          </button>
+          <div class="flex items-center gap-1.5 shrink-0">
+            <button type="button" onclick="deleteActiveTier()" class="h-9 w-9 rounded-lg border border-red-500/25 bg-red-500/10 hover:bg-red-500/20 text-red-400 hover:text-red-300 flex items-center justify-center transition-all active:scale-95 cursor-pointer text-sm" title="Удалить этот тариф">
+              <span>🗑️</span>
+            </button>
+            <button type="button" onclick="nextTier()" class="h-9 w-12 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer font-bold text-base" title="Следующий тариф">
+              <span>→</span>
+            </button>
+          </div>
         </div>
 
         <!-- Active Tier Editor Card -->
         <div class="p-5 rounded-xl bg-white/[0.02] border border-white/10 flex flex-col gap-4 relative">
-          <div class="flex items-center justify-between border-b border-white/10 pb-3">
-            <div class="flex items-center gap-2">
-              <span id="activeTierCodeBadge" class="w-7 h-7 rounded-md bg-orange-500/20 text-orange-400 border border-orange-500/30 flex items-center justify-center font-mono text-xs font-bold">01</span>
-            </div>
-            <button type="button" onclick="deleteActiveTier()" class="h-8 w-8 rounded-lg bg-red-500/10 hover:bg-red-500/20 text-red-400 hover:text-red-300 text-sm flex items-center justify-center transition-all cursor-pointer border border-red-500/20 active:scale-95" title="Удалить тариф">
-              <span>🗑️</span>
-            </button>
-          </div>
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div>
               <label class="block text-[11px] font-mono text-zinc-400 mb-1">Название тарифа</label>
@@ -351,32 +348,28 @@
           </div>
         </div>
 
-        <!-- Horizontal Case Navigation (Full Width) -->
-        <div class="w-full flex items-center justify-between bg-white/5 border border-white/10 p-1.5 rounded-xl mb-4">
-          <button type="button" onclick="prevCase()" class="h-9 w-12 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer font-bold text-base" title="Предыдущий кейс">
+        <!-- Horizontal Case Navigation (Full Width with Trash) -->
+        <div class="relative w-full flex items-center justify-between bg-white/5 border border-white/10 p-1.5 rounded-xl mb-4">
+          <button type="button" onclick="prevCase()" class="h-9 w-12 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer font-bold text-base shrink-0" title="Предыдущий кейс">
             <span>←</span>
           </button>
-          <div class="font-tech text-sm sm:text-base text-zinc-400 px-3 flex items-center gap-2 font-bold tracking-wider select-none">
+          <div class="absolute left-1/2 -translate-x-1/2 font-tech text-sm sm:text-base text-zinc-400 px-3 flex items-center gap-2 font-bold tracking-wider select-none pointer-events-none">
             <span class="text-white text-base sm:text-lg font-extrabold" id="caseCounterCurrent">01</span>
             <span class="text-zinc-600 font-normal">/</span>
             <span id="caseCounterTotal">05</span>
           </div>
-          <button type="button" onclick="nextCase()" class="h-9 w-12 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer font-bold text-base" title="Следующий кейс">
-            <span>→</span>
-          </button>
+          <div class="flex items-center gap-1.5 shrink-0">
+            <button type="button" onclick="deleteActiveCase()" class="h-9 w-9 rounded-lg border border-red-500/25 bg-red-500/10 hover:bg-red-500/20 text-red-400 hover:text-red-300 flex items-center justify-center transition-all active:scale-95 cursor-pointer text-sm" title="Удалить этот кейс">
+              <span>🗑️</span>
+            </button>
+            <button type="button" onclick="nextCase()" class="h-9 w-12 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer font-bold text-base" title="Следующий кейс">
+              <span>→</span>
+            </button>
+          </div>
         </div>
 
         <!-- Active Case Editor Card -->
         <div class="p-5 rounded-xl bg-white/[0.02] border border-white/10 flex flex-col gap-4 relative">
-          <div class="flex items-center justify-between border-b border-white/10 pb-3">
-            <div class="flex items-center gap-2">
-              <span id="activeCaseCodeBadge" class="w-7 h-7 rounded-md bg-orange-500/20 text-orange-400 border border-orange-500/30 flex items-center justify-center font-mono text-xs font-bold">01</span>
-            </div>
-            <button type="button" onclick="deleteActiveCase()" class="h-8 w-8 rounded-lg bg-red-500/10 hover:bg-red-500/20 text-red-400 hover:text-red-300 text-sm flex items-center justify-center transition-all cursor-pointer border border-red-500/20 active:scale-95" title="Удалить кейс">
-              <span>🗑️</span>
-            </button>
-          </div>
-
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-1">
             <!-- BEFORE IMAGE -->
             <div>
@@ -435,31 +428,28 @@
           </div>
         </div>
 
-        <!-- Horizontal Review Navigation (Full Width) -->
-        <div class="w-full flex items-center justify-between bg-white/5 border border-white/10 p-1.5 rounded-xl mb-4">
-          <button type="button" onclick="prevReview()" class="h-9 w-12 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer font-bold text-base" title="Предыдущий отзыв">
+        <!-- Horizontal Review Navigation (Full Width with Trash) -->
+        <div class="relative w-full flex items-center justify-between bg-white/5 border border-white/10 p-1.5 rounded-xl mb-4">
+          <button type="button" onclick="prevReview()" class="h-9 w-12 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer font-bold text-base shrink-0" title="Предыдущий отзыв">
             <span>←</span>
           </button>
-          <div class="font-tech text-sm sm:text-base text-zinc-400 px-3 flex items-center gap-2 font-bold tracking-wider select-none">
+          <div class="absolute left-1/2 -translate-x-1/2 font-tech text-sm sm:text-base text-zinc-400 px-3 flex items-center gap-2 font-bold tracking-wider select-none pointer-events-none">
             <span class="text-white text-base sm:text-lg font-extrabold" id="reviewCounterCurrent">01</span>
             <span class="text-zinc-600 font-normal">/</span>
             <span id="reviewCounterTotal">15</span>
           </div>
-          <button type="button" onclick="nextReview()" class="h-9 w-12 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer font-bold text-base" title="Следующий отзыв">
-            <span>→</span>
-          </button>
+          <div class="flex items-center gap-1.5 shrink-0">
+            <button type="button" onclick="deleteActiveReview()" class="h-9 w-9 rounded-lg border border-red-500/25 bg-red-500/10 hover:bg-red-500/20 text-red-400 hover:text-red-300 flex items-center justify-center transition-all active:scale-95 cursor-pointer text-sm" title="Удалить этот отзыв">
+              <span>🗑️</span>
+            </button>
+            <button type="button" onclick="nextReview()" class="h-9 w-12 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer font-bold text-base" title="Следующий отзыв">
+              <span>→</span>
+            </button>
+          </div>
         </div>
 
         <!-- Active Review Editor Card -->
         <div class="p-5 rounded-xl bg-white/[0.02] border border-white/10 flex flex-col gap-4 relative">
-          <div class="flex items-center justify-between border-b border-white/10 pb-3">
-            <div class="flex items-center gap-2">
-              <span id="activeReviewNumBadge" class="w-7 h-7 rounded-md bg-orange-500/20 text-orange-400 border border-orange-500/30 flex items-center justify-center font-mono text-xs font-bold">#1</span>
-            </div>
-            <button type="button" onclick="deleteActiveReview()" class="h-8 w-8 rounded-lg bg-red-500/10 hover:bg-red-500/20 text-red-400 hover:text-red-300 text-sm flex items-center justify-center transition-all cursor-pointer border border-red-500/20 active:scale-95" title="Удалить отзыв">
-              <span>🗑️</span>
-            </button>
-          </div>
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 items-center">
             <div>
               <label class="block text-[11px] font-mono text-zinc-400 mb-1.5">Фото отзыва</label>
@@ -733,7 +723,7 @@
       const t = tiers[activeTierIndex];
       const codeStr = '0' + (activeTierIndex + 1);
       t.code = codeStr;
-      document.getElementById('activeTierCodeBadge').textContent = codeStr;
+      const tcBadge = document.getElementById('activeTierCodeBadge'); if (tcBadge) tcBadge.textContent = codeStr;
       const tTitle = document.getElementById('activeTierTitle'); if (tTitle) tTitle.textContent = `ТАРИФ ${activeTierIndex + 1} ИЗ ${tiers.length}`;
       document.getElementById('tierNameInput').value = t.name || '';
       document.getElementById('tierBadgeInput').value = t.badge || '';
@@ -989,7 +979,7 @@
       const reviews = currentClient.reviews || [];
       if (!reviews[activeReviewIndex]) return;
       const r = reviews[activeReviewIndex];
-      document.getElementById('activeReviewNumBadge').textContent = `#${activeReviewIndex + 1}`;
+      const rNumBadge = document.getElementById('activeReviewNumBadge'); if (rNumBadge) rNumBadge.textContent = `#${activeReviewIndex + 1}`;
       const rTitle = document.getElementById('activeReviewTitle'); if (rTitle) rTitle.textContent = `ОТЗЫВ ${activeReviewIndex + 1} ИЗ ${reviews.length}`;
       document.getElementById('activeReviewPreview').src = r.image || '';
       document.getElementById('reviewAuthorInput').value = r.author || '';
