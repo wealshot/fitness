@@ -182,7 +182,7 @@ window.CLIENTS = {
       },
       {
         "id": 2,
-        "name": "ТРАНСФОРМАЦИЯ",
+        "name": "КЕЙС 02 // ТРАНСФОРМАЦИЯ",
         "tag": "+8 КГ МАССЫ // РЕЛЬЕФ",
         "badge": "ПРОГРЕСС ЗА 12 НЕДЕЛЬ",
         "beforeImage": "/cases/vladislav_case_before.jpg",
@@ -194,7 +194,7 @@ window.CLIENTS = {
       },
       {
         "id": 3,
-        "name": "СУШКА И РЕЛЬЕФ",
+        "name": "КЕЙС 03 // СУШКА И РЕЛЬЕФ",
         "tag": "-9 КГ ЖИРА // ПРЕСС",
         "badge": "ПРОГРЕСС ЗА 10 НЕДЕЛЬ",
         "beforeImage": "/cases/vladislav_case_before.jpg",
@@ -206,25 +206,13 @@ window.CLIENTS = {
       },
       {
         "id": 4,
-        "name": "НАБОР МАССЫ",
+        "name": "КЕЙС 04 // НАБОР МАССЫ",
         "tag": "+7 КГ ЧИСТОЙ МАССЫ",
         "badge": "ПРОГРЕСС ЗА 14 НЕДЕЛЬ",
         "beforeImage": "/cases/vladislav_case_before.jpg",
         "afterImage": "/cases/vladislav_case_after.jpg",
         "objectPosition": "center",
         "description": "Качественная гипертрофия мышечного корсета и увеличение рабочих весов без травм.",
-        "initialStats": "ТОЧКА А // СТАРТ",
-        "resultStats": "ТОЧКА Б // РЕЗУЛЬТАТ"
-      },
-      {
-        "id": 5,
-        "name": "СИЛОВОЙ ПРОГРЕСС",
-        "tag": "+45 КГ В СУММЕ ТРОЕБОРЬЯ",
-        "badge": "ПРОГРЕСС ЗА 16 НЕДЕЛЬ",
-        "beforeImage": "/cases/vladislav_case_before.jpg",
-        "afterImage": "/cases/vladislav_case_after.jpg",
-        "objectPosition": "center",
-        "description": "Выход из затяжного тренировочного плато и постановка безупречной соревновательной техники.",
         "initialStats": "ТОЧКА А // СТАРТ",
         "resultStats": "ТОЧКА Б // РЕЗУЛЬТАТ"
       }
