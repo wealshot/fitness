@@ -378,20 +378,20 @@
     </main>
 
     <!-- STICKY BOTTOM SAVE BAR -->
-    <div class="fixed bottom-0 left-0 right-0 z-40 bg-[#050507]/90 border-t border-white/10 backdrop-blur-xl px-4 py-3.5 shadow-2xl">
-      <div class="max-w-4xl mx-auto flex items-center justify-between gap-4">
-        <div class="flex items-center gap-2 text-xs font-mono text-zinc-400">
-          <span id="saveStatusDot" class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
-          <span id="saveStatusText">Все данные актуальны</span>
+    <div class="fixed bottom-0 left-0 right-0 z-40 bg-[#050507]/95 border-t border-white/10 backdrop-blur-xl px-3 sm:px-6 py-2.5 sm:py-3.5 shadow-2xl">
+      <div class="max-w-4xl mx-auto flex items-center justify-between gap-2 sm:gap-4">
+        <div class="flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs font-mono text-zinc-400 min-w-0">
+          <span id="saveStatusDot" class="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-emerald-400 shrink-0"></span>
+          <span id="saveStatusText" class="truncate">Все данные актуальны</span>
         </div>
-        <div class="flex items-center gap-2.5">
-          <button type="button" onclick="clearLocalOverrides()" class="px-4 py-3 rounded-xl border border-red-500/30 bg-red-500/10 hover:bg-red-500/20 text-red-300 text-xs font-tech font-bold uppercase tracking-wider transition-all cursor-pointer active:scale-95 flex items-center gap-1.5" title="Сбросить все изменения">
-            <span>↺</span>
+        <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+          <button type="button" onclick="clearLocalOverrides()" class="h-10 w-10 sm:w-auto px-2 sm:px-3.5 rounded-xl border border-red-500/30 bg-red-500/10 hover:bg-red-500/20 text-red-300 text-xs font-tech font-bold uppercase tracking-wider transition-all cursor-pointer active:scale-95 flex items-center justify-center gap-1.5 shrink-0" title="Сбросить все изменения">
+            <span class="text-sm">↺</span>
             <span class="hidden sm:inline">Сбросить всё</span>
           </button>
-          <button id="saveChangesBtn" onclick="saveAllChanges()" class="px-6 py-3 rounded-xl font-display uppercase tracking-wider text-black bg-white hover:bg-zinc-200 transition-all font-bold text-sm shadow-xl flex items-center gap-2 cursor-pointer active:scale-95">
+          <button id="saveChangesBtn" onclick="saveAllChanges()" class="h-10 px-3.5 sm:px-6 rounded-xl font-display uppercase tracking-wider text-black bg-white hover:bg-zinc-200 transition-all font-bold text-xs sm:text-sm shadow-xl flex items-center justify-center gap-1.5 cursor-pointer active:scale-95 shrink-0 whitespace-nowrap">
             <span>💾</span>
-            <span>СОХРАНИТЬ ИЗМЕНЕНИЯ</span>
+            <span>СОХРАНИТЬ</span><span class="hidden sm:inline">&nbsp;ИЗМЕНЕНИЯ</span>
           </button>
         </div>
       </div>
@@ -847,7 +847,7 @@
       const statusText = document.getElementById('saveStatusText');
       
       btn.disabled = true;
-      btn.innerHTML = `<span class="animate-spin text-lg">⏳</span><span>СОХРАНЕНИЕ...</span>`;
+      btn.innerHTML = `<span class="animate-spin text-sm">⏳</span><span>СОХРАНЕНИЕ...</span>`;
       dot.className = 'w-2.5 h-2.5 rounded-full bg-amber-400 animate-ping';
       statusText.textContent = 'Применение изменений...';
 
@@ -941,7 +941,7 @@
         statusText.textContent = 'Сохранено локально';
       } finally {
         btn.disabled = false;
-        btn.innerHTML = `<span>💾</span><span>СОХРАНИТЬ ИЗМЕНЕНИЯ</span>`;
+        btn.innerHTML = `<span>💾</span><span>СОХРАНИТЬ</span><span class="hidden sm:inline">&nbsp;ИЗМЕНЕНИЯ</span>`;
       }
     }
 
