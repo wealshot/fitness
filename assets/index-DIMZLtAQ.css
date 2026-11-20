@@ -4,3 +4,11 @@
 
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+.overflow-x-auto { overflow-x: auto !important; }
+.scroll-smooth { scroll-behavior: smooth !important; }
+#desktopReviewsTrack {
+  overflow-x: auto !important;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
