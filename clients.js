@@ -191,8 +191,8 @@ window.CLIENTS = {
           "name": "АТЛЕТИЧЕСКАЯ РЕКОМПОЗИЦИЯ",
           "tag": "+11 КГ СУХОЙ МАССЫ // РЕЛЬЕФ",
           "badge": "С 64 КГ ➔ ДО 75 КГ",
-          "beforeImage": "/cases/vladislav_case_before.png",
-          "afterImage": "/cases/vladislav_case_after.png",
+          "beforeImage": "/cases/vladislav_case_before.jpg",
+          "afterImage": "/cases/vladislav_case_after.jpg",
           "objectPosition": "center",
           "description": "Тотальное преображение: прибавили 11 кг плотного мышечного корсета. Разогнали силовые показатели в базовых движениях, убрали дефицит веса и сформировали мощный V-образный силуэт без лишнего жира.",
           "initialStats": "ТОЧКА А // 64 КГ (ДЕФИЦИТ МАССЫ)",
@@ -280,7 +280,7 @@ window.CLIENTS = {
         },
         {
           "id": 4,
-          "image": "/cases/Vladislav1.png",
+          "image": "/cases/Vladislav1.jpg",
           "author": "Артём",
           "result": "+8.5 кг плотного мяса // V-конус",
           "tag": "ГИПЕРТРОФИЯ",
@@ -290,7 +290,7 @@ window.CLIENTS = {
         },
         {
           "id": 5,
-          "image": "/cases/Vladislav2.png",
+          "image": "/cases/Vladislav2.jpg",
           "author": "Максим",
           "result": "Рельеф и венозность за 8 недель",
           "tag": "СУШКА БЕЗ СРЫВОВ",
@@ -1408,12 +1408,11 @@ if (typeof window !== "undefined" && window.localStorage) {
           try {
             const overrideData = JSON.parse(raw);
             const serverData = window.CLIENTS[targetSlug];
-            // If server has more cases than stale local override, keep server cases!
-            if (serverData.cases && overrideData.cases && overrideData.cases.length < serverData.cases.length) {
+            // Always use fresh server media & preloaded assets!
+            if (serverData.cases) {
               delete overrideData.cases;
             }
-            // If server has more reviews than stale local override, keep server reviews!
-            if (serverData.reviews && overrideData.reviews && overrideData.reviews.length < serverData.reviews.length) {
+            if (serverData.reviews) {
               delete overrideData.reviews;
             }
             Object.assign(serverData, overrideData);
