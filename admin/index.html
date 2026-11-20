@@ -266,12 +266,17 @@
 
       <!-- SECTION 3: TIERS & PRICES -->
       <section class="glass-card rounded-2xl p-5 sm:p-7">
-        <div class="flex items-center justify-between mb-5 border-b border-white/10 pb-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5 border-b border-white/10 pb-4">
           <div class="flex items-center gap-2">
             <span class="text-xl">💎</span>
             <h3 class="font-display text-xl uppercase tracking-wide text-white">ТАРИФЫ ВЕДЕНИЯ & ЦЕНЫ</h3>
           </div>
-          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/5 text-zinc-400">3 ТАРИФА</span>
+          <div class="flex flex-wrap items-center gap-2 sm:gap-3">
+            <span id="tiersCountBadge" class="text-[10px] font-mono px-2.5 py-1 rounded bg-white/5 text-zinc-400 border border-white/10">3 ИЗ 5 ТАРИФОВ</span>
+            <button type="button" onclick="addTier()" class="px-3.5 py-1.5 rounded-lg bg-orange-500 hover:bg-orange-400 text-black font-tech font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-1.5 cursor-pointer shadow-md active:scale-95">
+              <span>+ ДОБАВИТЬ ТАРИФ</span>
+            </button>
+          </div>
         </div>
 
         <div class="flex flex-col gap-5" id="tiersContainer"></div>
@@ -510,37 +515,120 @@
       }
     }
 
+    function collectTiersFromDOM() {
+      if (!currentClient || !currentClient.tiers) return;
+      currentClient.tiers.forEach((t, i) => {
+        const badgeEl = document.getElementById(`tierBadge${i}`);
+        const nameEl = document.getElementById(`tierName${i}`);
+        const priceEl = document.getElementById(`tierPrice${i}`);
+        const periodEl = document.getElementById(`tierPeriod${i}`);
+        const featEl = document.getElementById(`tierFeatures${i}`);
+        const goalEl = document.getElementById(`tierGoal${i}`);
+        if (badgeEl) t.badge = badgeEl.value.trim();
+        if (nameEl) t.name = nameEl.value.trim();
+        if (priceEl) t.price = priceEl.value.trim();
+        if (periodEl) t.period = periodEl.value.trim();
+        if (goalEl) t.recommendedGoal = goalEl.value;
+        if (featEl) {
+          t.features = featEl.value
+            .split('\n')
+            .map(s => s.trim())
+            .filter(Boolean);
+        }
+      });
+    }
+
     function renderTiers() {
+      const count = (currentClient.tiers || []).length;
+      const badge = document.getElementById('tiersCountBadge');
+      if (badge) badge.textContent = `${count} ИЗ 5 ТАРИФОВ`;
       const container = document.getElementById('tiersContainer');
       container.innerHTML = '';
       (currentClient.tiers || []).forEach((t, i) => {
+        const codeStr = '0' + (i + 1);
+        t.code = codeStr;
         const card = document.createElement('div');
-        card.className = 'p-4 rounded-xl bg-white/[0.02] border border-white/10 flex flex-col gap-3';
+        card.className = 'p-5 rounded-xl bg-white/[0.02] border border-white/10 flex flex-col gap-4 relative';
         card.innerHTML = `
-          <div class="flex items-center justify-between">
-            <span class="font-tech text-xs text-orange-400 font-bold uppercase">ТАРИФ ${t.code || (i + 1)}</span>
-            <input type="text" id="tierBadge${i}" value="${t.badge || ''}" placeholder="Бейдж" class="px-2 py-1 rounded text-[11px] font-mono text-zinc-300" />
+          <div class="flex items-center justify-between border-b border-white/10 pb-3">
+            <div class="flex items-center gap-2">
+              <span class="w-6 h-6 rounded-md bg-orange-500/20 text-orange-400 border border-orange-500/30 flex items-center justify-center font-mono text-xs font-bold">${codeStr}</span>
+              <span class="font-tech text-xs uppercase text-white font-bold tracking-wider">ТАРИФ ${i + 1} ИЗ ${count}</span>
+            </div>
+            <button type="button" onclick="deleteTier(${i})" class="px-2.5 py-1 rounded-md bg-red-500/10 hover:bg-red-500/20 text-red-400 hover:text-red-300 text-xs font-tech font-bold uppercase transition-all flex items-center gap-1 cursor-pointer border border-red-500/20" title="Удалить тариф">
+              <span>🗑️ Удалить</span>
+            </button>
           </div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div>
               <label class="block text-[11px] font-mono text-zinc-400 mb-1">Название тарифа</label>
               <input type="text" id="tierName${i}" value="${t.name || ''}" class="w-full px-3 py-2 rounded-lg text-sm font-bold" />
             </div>
             <div>
+              <label class="block text-[11px] font-mono text-zinc-400 mb-1">Бейдж / Статус</label>
+              <input type="text" id="tierBadge${i}" value="${t.badge || ''}" placeholder="ХИТ ПРОДАЖ, ALL INCLUSIVE..." class="w-full px-3 py-2 rounded-lg text-xs font-mono" />
+            </div>
+            <div>
               <label class="block text-[11px] font-mono text-zinc-400 mb-1">Цена и период</label>
               <div class="grid grid-cols-2 gap-2">
-                <input type="text" id="tierPrice${i}" value="${t.price || ''}" placeholder="Цена" class="px-3 py-2 rounded-lg text-sm font-mono text-orange-400 font-bold" />
-                <input type="text" id="tierPeriod${i}" value="${t.period || ''}" placeholder="Период" class="px-3 py-2 rounded-lg text-xs font-mono" />
+                <input type="text" id="tierPrice${i}" value="${t.price || ''}" placeholder="14 900 ₽" class="px-3 py-2 rounded-lg text-sm font-mono text-orange-400 font-bold" />
+                <input type="text" id="tierPeriod${i}" value="${t.period || ''}" placeholder="В МЕСЯЦ" class="px-3 py-2 rounded-lg text-xs font-mono" />
               </div>
             </div>
           </div>
           <div>
-            <label class="block text-[11px] font-mono text-zinc-400 mb-1">Пункты программы (по одному на строке)</label>
+            <label class="block text-[11px] font-mono text-zinc-400 mb-1">Рекомендуемая цель</label>
+            <select id="tierGoal${i}" class="w-full sm:w-64 px-3 py-1.5 rounded-lg text-xs font-mono">
+              <option value="recomp" ${t.recommendedGoal === 'recomp' ? 'selected' : ''}>Рекомпозиция (recomp)</option>
+              <option value="cut" ${t.recommendedGoal === 'cut' ? 'selected' : ''}>Сушка и рельеф (cut)</option>
+              <option value="bulk" ${t.recommendedGoal === 'bulk' ? 'selected' : ''}>Набор массы (bulk)</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-[11px] font-mono text-zinc-400 mb-1">Пункты программы (по одному на каждой строке)</label>
             <textarea id="tierFeatures${i}" rows="3" class="w-full px-3 py-2 rounded-lg text-xs font-mono resize-none">${(t.features || []).join('\n')}</textarea>
           </div>
         `;
         container.appendChild(card);
       });
+    }
+
+    function addTier() {
+      if (!currentClient.tiers) currentClient.tiers = [];
+      if (currentClient.tiers.length >= 5) {
+        alert('Максимальное количество тарифов — 5.');
+        return;
+      }
+      collectTiersFromDOM();
+      const nextNum = currentClient.tiers.length + 1;
+      const codeStr = '0' + nextNum;
+      currentClient.tiers.push({
+        id: 'tier-custom-' + Date.now(),
+        code: codeStr,
+        name: 'ТАРИФ ' + codeStr + ' // ФОРМАТ',
+        badge: 'ФОРМАТ ' + nextNum,
+        price: '19 900 ₽',
+        period: 'В МЕСЯЦ',
+        recommendedGoal: (nextNum === 1 ? 'recomp' : nextNum === 2 ? 'cut' : nextNum === 3 ? 'bulk' : 'recomp'),
+        features: [
+          'Индивидуальный тренировочный план',
+          'Расчёт и ведение по КБЖУ',
+          'Поддержка в Telegram и видеоанализ техники'
+        ]
+      });
+      renderTiers();
+    }
+
+    function deleteTier(index) {
+      if (!currentClient.tiers || currentClient.tiers.length <= 1) {
+        alert('В системе должен оставаться хотя бы один тариф (от 1 до 5).');
+        return;
+      }
+      collectTiersFromDOM();
+      const tierName = currentClient.tiers[index].name || 'Тариф 0' + (index + 1);
+      if (!confirm(`Удалить «${tierName}»?`)) return;
+      currentClient.tiers.splice(index, 1);
+      renderTiers();
     }
 
     let activeCaseIndex = 0;
@@ -883,16 +971,7 @@
         label: document.getElementById(`statLabel${i}`).value.trim()
       }));
 
-      (currentClient.tiers || []).forEach((t, i) => {
-        t.badge = document.getElementById(`tierBadge${i}`).value.trim();
-        t.name = document.getElementById(`tierName${i}`).value.trim();
-        t.price = document.getElementById(`tierPrice${i}`).value.trim();
-        t.period = document.getElementById(`tierPeriod${i}`).value.trim();
-        t.features = document.getElementById(`tierFeatures${i}`).value
-          .split('\n')
-          .map(s => s.trim())
-          .filter(Boolean);
-      });
+      collectTiersFromDOM();
 
       saveActiveCaseData();
       collectReviewsFromDOM();
