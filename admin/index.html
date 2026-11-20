@@ -473,15 +473,9 @@
                   <input type="text" id="reviewTagInput" class="w-full px-3 py-1.5 rounded-lg text-xs font-mono" />
                 </div>
               </div>
-              <div class="grid grid-cols-3 gap-2">
-                <div class="col-span-2">
-                  <label class="block text-[10px] font-mono text-zinc-400 mb-0.5">Результат (главная строка)</label>
-                  <input type="text" id="reviewResultInput" class="w-full px-3 py-1.5 rounded-lg text-xs font-bold text-orange-400" />
-                </div>
-                <div>
-                  <label class="block text-[10px] font-mono text-zinc-400 mb-0.5">Время</label>
-                  <input type="text" id="reviewTimeInput" placeholder="14:25" class="w-full px-3 py-1.5 rounded-lg text-xs font-mono" />
-                </div>
+              <div>
+                <label class="block text-[10px] font-mono text-zinc-400 mb-0.5">Результат (главная строка)</label>
+                <input type="text" id="reviewResultInput" class="w-full px-3 py-1.5 rounded-lg text-xs font-bold text-orange-400" />
               </div>
               <div>
                 <label class="block text-[10px] font-mono text-zinc-400 mb-0.5">Текст отзыва</label>
@@ -985,7 +979,7 @@
       document.getElementById('reviewAuthorInput').value = r.author || '';
       document.getElementById('reviewTagInput').value = r.tag || '';
       document.getElementById('reviewResultInput').value = r.result || '';
-      document.getElementById('reviewTimeInput').value = r.time || '14:00';
+      const timeEl = document.getElementById('reviewTimeInput'); if (timeEl) timeEl.value = r.time || '';
       document.getElementById('reviewTextInput').value = r.text || '';
     }
 
