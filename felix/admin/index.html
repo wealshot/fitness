@@ -566,15 +566,8 @@
 
       const serverClient = JSON.parse(JSON.stringify(window.CLIENTS[currentSlug]));
       if (localOverride) {
-        if (serverClient.reviews && (!localOverride.reviews || localOverride.reviews.length < serverClient.reviews.length)) {
-          localOverride.reviews = JSON.parse(JSON.stringify(serverClient.reviews));
-          try {
-            localStorage.setItem('pulse_override_' + currentSlug, JSON.stringify(localOverride));
-          } catch(e) {}
-        }
-        if (serverClient.cases && (!localOverride.cases || localOverride.cases.length < serverClient.cases.length)) {
-          localOverride.cases = serverClient.cases;
-        }
+        delete localOverride.reviews;
+        delete localOverride.cases;
         currentClient = Object.assign(serverClient, localOverride);
       } else {
         currentClient = serverClient;
