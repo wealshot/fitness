@@ -11,7 +11,7 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
-  <script src="/clients.js?v=20261120_1835"></script>
+  <script src="/clients.js?v=20261121_1625"></script>
   <style>
     body { font-family: 'Inter', sans-serif; background-color: #050507; color: #f4f4f5; }
     .font-display { font-family: 'Anton', sans-serif; }
@@ -568,6 +568,7 @@
       if (localOverride) {
         delete localOverride.reviews;
         delete localOverride.cases;
+        delete localOverride.stats;
         currentClient = Object.assign(serverClient, localOverride);
       } else {
         currentClient = serverClient;
