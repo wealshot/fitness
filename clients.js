@@ -138,7 +138,7 @@ window.CLIENTS = {
     "firstName": "ВЛАДИСЛАВ",
     "lastName": "БЕРНЕЦКИЙ",
     "tagline": "КУЗНИЦА СПОРТСМЕНОВ 🛠️",
-    "spec": "СТРОИМ ТЕЛО ИЗ ЖЕЛЕЗА И ВИТАМИНОВ ⚡️бу",
+    "spec": "СТРОИМ ТЕЛО ИЗ ЖЕЛЕЗА И ВИТАМИНОВ ⚡️",
     "bio": "Строим мощное функциональное тело из железа, дисциплины и выверенной системы. Довожу до формы и спортивных разрядов без пустых обещаний.",
     "heroImage": "/images/bernetskiy-hero.jpg",
     "heroImageStyle": {
@@ -526,7 +526,8 @@ window.CLIENTS = {
     "secondaryBtnText": "",
     "scarcityCode": "",
     "ctaButtonText": "",
-    "hasCasesSection": true
+    "hasCasesSection": true,
+    "hasFaqSection": true
   },
   "felix": {
     "slug": "felix",
