@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="ru" class="dark">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -7,51 +8,79 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap"
+    rel="stylesheet">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
-  <script src="/clients.js?v=20261121_2215"></script>
+  <script src="/clients.js?v=20261121_2325"></script>
   <style>
-    body { font-family: 'Inter', sans-serif; background-color: #050507; color: #f4f4f5; }
-    .font-display { font-family: 'Anton', sans-serif; }
-    .font-tech { font-family: 'Space Grotesk', sans-serif; }
-    input, textarea, select {
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #050507;
+      color: #f4f4f5;
+    }
+
+    .font-display {
+      font-family: 'Anton', sans-serif;
+    }
+
+    .font-tech {
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    input,
+    textarea,
+    select {
       background-color: rgba(255, 255, 255, 0.04);
       border: 1px solid rgba(255, 255, 255, 0.12);
       color: #fff;
       transition: all 0.2s ease;
     }
-    input:focus, textarea:focus, select:focus {
+
+    input:focus,
+    textarea:focus,
+    select:focus {
       outline: none;
       border-color: var(--accent, #FF6B00);
       box-shadow: 0 0 15px var(--accent-dim, rgba(255, 107, 0, 0.25));
       background-color: rgba(255, 255, 255, 0.07);
     }
+
     .glass-card {
       background-color: #090A0F;
       border: 1px solid rgba(255, 255, 255, 0.1);
     }
   </style>
 </head>
+
 <body class="min-h-screen flex flex-col pb-28">
 
   <!-- AUTH MODAL -->
-  <div id="authOverlay" class="fixed inset-0 z-50 bg-[#050507]/95 backdrop-blur-xl flex items-center justify-center p-4">
-    <div class="glass-card max-w-md w-full rounded-2xl p-6 sm:p-8 shadow-2xl relative border border-white/10 text-center">
-      <div class="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mx-auto mb-4 text-2xl shadow-inner">
+  <div id="authOverlay"
+    class="fixed inset-0 z-50 bg-[#050507]/95 backdrop-blur-xl flex items-center justify-center p-4">
+    <div
+      class="glass-card max-w-md w-full rounded-2xl p-6 sm:p-8 shadow-2xl relative border border-white/10 text-center">
+      <div
+        class="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mx-auto mb-4 text-2xl shadow-inner">
         рџ”’
       </div>
       <h2 class="font-display text-2xl sm:text-3xl uppercase tracking-wider text-white">Р›РР§РќР«Р™ РљРђР‘РРќР•Рў РќРђРЎРўРђР’РќРРљРђ</h2>
-      <p id="authSubtitle" class="text-zinc-400 text-xs sm:text-sm mt-1 mb-6">РђРІС‚РѕСЂРёР·Р°С†РёСЏ РІ СЃРёСЃС‚РµРјРµ СѓРїСЂР°РІР»РµРЅРёСЏ РїСЂРѕС„РёР»РµРј Рё С‚Р°СЂРёС„Р°РјРё</p>
-      
+      <p id="authSubtitle" class="text-zinc-400 text-xs sm:text-sm mt-1 mb-6">РђРІС‚РѕСЂРёР·Р°С†РёСЏ РІ СЃРёСЃС‚РµРјРµ СѓРїСЂР°РІР»РµРЅРёСЏ РїСЂРѕС„РёР»РµРј
+        Рё С‚Р°СЂРёС„Р°РјРё</p>
+
       <form id="authForm" onsubmit="handleAuth(event)">
         <div class="mb-4 text-left">
-          <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1.5">РљР»СЋС‡ РґРѕСЃС‚СѓРїР° / РџР°СЂРѕР»СЊ РЅР°СЃС‚Р°РІРЅРёРєР°</label>
-          <input type="password" id="adminPasswordInput" placeholder="Р’РІРµРґРёС‚Рµ РїР°СЂРѕР»СЊ..." class="w-full px-4 py-3 rounded-xl text-center text-lg font-mono tracking-widest" required autofocus />
-          <p id="authError" class="text-red-400 text-xs mt-1.5 hidden text-center">РќРµРІРµСЂРЅС‹Р№ РїР°СЂРѕР»СЊ. РџРѕРїСЂРѕР±СѓР№С‚Рµ РµС‰Рµ СЂР°Р·.</p>
+          <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1.5">РљР»СЋС‡ РґРѕСЃС‚СѓРїР° / РџР°СЂРѕР»СЊ
+            РЅР°СЃС‚Р°РІРЅРёРєР°</label>
+          <input type="password" id="adminPasswordInput" placeholder="Р’РІРµРґРёС‚Рµ РїР°СЂРѕР»СЊ..."
+            class="w-full px-4 py-3 rounded-xl text-center text-lg font-mono tracking-widest" required autofocus />
+          <p id="authError" class="text-red-400 text-xs mt-1.5 hidden text-center">РќРµРІРµСЂРЅС‹Р№ РїР°СЂРѕР»СЊ. РџРѕРїСЂРѕР±СѓР№С‚Рµ РµС‰Рµ СЂР°Р·.
+          </p>
         </div>
-        <button type="submit" id="authSubmitBtn" class="w-full py-3.5 rounded-xl font-bold uppercase tracking-wider text-black bg-white hover:bg-zinc-200 transition-all cursor-pointer font-tech shadow-lg active:scale-95">
+        <button type="submit" id="authSubmitBtn"
+          class="w-full py-3.5 rounded-xl font-bold uppercase tracking-wider text-black bg-white hover:bg-zinc-200 transition-all cursor-pointer font-tech shadow-lg active:scale-95">
           Р’РѕР№С‚Рё РІ Р»РёС‡РЅС‹Р№ РєР°Р±РёРЅРµС‚ в†’
         </button>
       </form>
@@ -62,13 +91,16 @@
   <!-- MAIN APP -->
   <div id="adminApp" class="hidden">
     <!-- TOP HEADER -->
-    <header class="border-b border-white/10 bg-[#050507]/95 backdrop-blur-md sticky top-0 z-30 px-3 sm:px-8 py-2.5 sm:py-3.5 flex items-center justify-between gap-2">
+    <header
+      class="border-b border-white/10 bg-[#050507]/95 backdrop-blur-md sticky top-0 z-30 px-3 sm:px-8 py-2.5 sm:py-3.5 flex items-center justify-between gap-2">
       <div class="flex items-center gap-2 sm:gap-3 min-w-0">
-        <div class="w-8 h-8 rounded-lg bg-orange-500/20 border border-orange-500/40 flex items-center justify-center text-sm font-bold text-orange-400 font-tech shrink-0">
+        <div
+          class="w-8 h-8 rounded-lg bg-orange-500/20 border border-orange-500/40 flex items-center justify-center text-sm font-bold text-orange-400 font-tech shrink-0">
           P
         </div>
         <div class="min-w-0">
-          <div class="font-display text-sm sm:text-base md:text-lg tracking-wider text-white leading-tight truncate" id="headerCoachName">РљРђР‘РРќР•Рў РЈРџР РђР’Р›Р•РќРРЇ</div>
+          <div class="font-display text-sm sm:text-base md:text-lg tracking-wider text-white leading-tight truncate"
+            id="headerCoachName">РљРђР‘РРќР•Рў РЈРџР РђР’Р›Р•РќРРЇ</div>
           <div class="text-[10px] font-mono text-zinc-400 truncate flex items-center gap-1.5">
             <span class="text-orange-400 font-semibold hidden sm:inline">РљРђР‘РРќР•Рў</span>
             <span class="text-zinc-600 hidden sm:inline">вЂў</span>
@@ -77,14 +109,18 @@
         </div>
       </div>
       <div class="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
-        <button type="button" onclick="clearLocalOverrides()" class="h-8 px-2 sm:px-3 rounded-lg border border-red-500/30 bg-red-500/10 hover:bg-red-500/20 text-xs font-tech text-red-300 transition-all flex items-center justify-center gap-1 cursor-pointer" title="РЎР±СЂРѕСЃРёС‚СЊ РІСЃРµ РїСЂР°РІРєРё Рє РёСЃС…РѕРґРЅРѕРјСѓ СЃР°Р№С‚Сѓ">
+        <button type="button" onclick="clearLocalOverrides()"
+          class="h-8 px-2 sm:px-3 rounded-lg border border-red-500/30 bg-red-500/10 hover:bg-red-500/20 text-xs font-tech text-red-300 transition-all flex items-center justify-center gap-1 cursor-pointer"
+          title="РЎР±СЂРѕСЃРёС‚СЊ РІСЃРµ РїСЂР°РІРєРё Рє РёСЃС…РѕРґРЅРѕРјСѓ СЃР°Р№С‚Сѓ">
           <span class="text-sm">в†є</span>
           <span class="hidden md:inline text-[11px]">РЎР±СЂРѕСЃРёС‚СЊ</span>
         </button>
-        <a id="viewLiveSiteBtn" href="/bernetskiy" target="_blank" class="h-8 px-2 sm:px-3.5 rounded-lg border border-emerald-500/30 bg-emerald-500/10 hover:bg-emerald-500/20 text-xs font-tech text-emerald-400 transition-all flex items-center gap-1 font-bold whitespace-nowrap">
+        <a id="viewLiveSiteBtn" href="/bernetskiy" target="_blank"
+          class="h-8 px-2 sm:px-3.5 rounded-lg border border-emerald-500/30 bg-emerald-500/10 hover:bg-emerald-500/20 text-xs font-tech text-emerald-400 transition-all flex items-center gap-1 font-bold whitespace-nowrap">
           <span>РЎР°Р№С‚</span> <span class="hidden sm:inline">С‚СЂРµРЅРµСЂР°</span> в†—
         </a>
-        <button onclick="logout()" class="h-8 px-2 sm:px-3 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-xs font-tech text-zinc-400 hover:text-white transition-all cursor-pointer whitespace-nowrap">
+        <button onclick="logout()"
+          class="h-8 px-2 sm:px-3 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-xs font-tech text-zinc-400 hover:text-white transition-all cursor-pointer whitespace-nowrap">
           Р’С‹Р№С‚Рё
         </button>
       </div>
@@ -98,49 +134,66 @@
         <div class="flex items-center justify-between gap-2 mb-5 border-b border-white/10 pb-4">
           <div class="flex items-center gap-2 min-w-0">
             <span class="text-xl shrink-0">рџ”Ґ</span>
-            <h3 class="font-display text-sm xs:text-base sm:text-xl uppercase tracking-wide text-white whitespace-nowrap">Р“Р›РђР’РќР«Р™ Р­РљР РђРќ (HERO)</h3>
+            <h3
+              class="font-display text-sm xs:text-base sm:text-xl uppercase tracking-wide text-white whitespace-nowrap">
+              Р“Р›РђР’РќР«Р™ Р­РљР РђРќ (HERO)</h3>
           </div>
-          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/5 text-zinc-400 whitespace-nowrap shrink-0">РџР•Р Р’Р«Р™ Р­РљР РђРќ</span>
+          <span
+            class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/5 text-zinc-400 whitespace-nowrap shrink-0">РџР•Р Р’Р«Р™
+            Р­РљР РђРќ</span>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-5 items-center">
           <div>
-            <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-2">Р“Р»Р°РІРЅРѕРµ С„РѕС‚Рѕ С‚СЂРµРЅРµСЂР°</label>
-            <div class="relative rounded-xl overflow-hidden border border-white/15 bg-black/40 aspect-[3/4] flex items-center justify-center group">
+            <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-2">Р“Р»Р°РІРЅРѕРµ С„РѕС‚Рѕ
+              С‚СЂРµРЅРµСЂР°</label>
+            <div
+              class="relative rounded-xl overflow-hidden border border-white/15 bg-black/40 aspect-[3/4] flex items-center justify-center group">
               <img id="coachHeroPreview" src="" class="w-full h-full object-cover object-top" />
-              <label class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center cursor-pointer text-xs font-tech text-white">
+              <label
+                class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center cursor-pointer text-xs font-tech text-white">
                 <span class="text-2xl mb-1">рџ“Ѓ</span>
                 <span>Р—Р°РјРµРЅРёС‚СЊ С„РѕС‚Рѕ</span>
-                <input type="file" accept="image/*" class="hidden" onchange="handleImageUpload(event, 'coachHeroPreview', 'newHeroImage')" />
+                <input type="file" accept="image/*" class="hidden"
+                  onchange="handleImageUpload(event, 'coachHeroPreview', 'newHeroImage')" />
               </label>
             </div>
           </div>
           <div class="sm:col-span-2 flex flex-col gap-4">
             <div>
-              <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1">Р“Р»Р°РІРЅС‹Р№ РєСЂСѓРїРЅС‹Р№ Р·Р°РіРѕР»РѕРІРѕРє</label>
-              <input type="text" id="coachHeroTitle" placeholder="РўР’РћР• РўР•Р›Рћ. РўР’РћР™ Р Р•Р—РЈР›Р¬РўРђРў." class="w-full px-3.5 py-2.5 rounded-xl text-sm font-bold" />
+              <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1">Р“Р»Р°РІРЅС‹Р№ РєСЂСѓРїРЅС‹Р№
+                Р·Р°РіРѕР»РѕРІРѕРє</label>
+              <input type="text" id="coachHeroTitle" placeholder="РўР’РћР• РўР•Р›Рћ. РўР’РћР™ Р Р•Р—РЈР›Р¬РўРђРў."
+                class="w-full px-3.5 py-2.5 rounded-xl text-sm font-bold" />
               <p class="text-[11px] text-zinc-500 mt-1">РћС‚РѕР±СЂР°Р¶Р°РµС‚СЃСЏ РѕРіСЂРѕРјРЅС‹РјРё Р±СѓРєРІР°РјРё РЅР° РіР»Р°РІРЅРѕРј СЌРєСЂР°РЅРµ РєРѕРјРїСЊСЋС‚РµСЂР°.</p>
             </div>
             <div>
-              <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1">РћРїРёСЃР°РЅРёРµ РЅР° РіР»Р°РІРЅРѕРј СЌРєСЂР°РЅРµ (Р°Р±Р·Р°С† РїРѕРґ Р·Р°РіРѕР»РѕРІРєРѕРј)</label>
-              <textarea id="coachHeroDescription" rows="3" placeholder="РќР°СѓС‡РЅС‹Р№ РїРѕРґС…РѕРґ Рє РіРёРїРµСЂС‚СЂРѕС„РёРё..." class="w-full px-3.5 py-2.5 rounded-xl text-sm resize-none"></textarea>
+              <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1">РћРїРёСЃР°РЅРёРµ РЅР° РіР»Р°РІРЅРѕРј
+                СЌРєСЂР°РЅРµ (Р°Р±Р·Р°С† РїРѕРґ Р·Р°РіРѕР»РѕРІРєРѕРј)</label>
+              <textarea id="coachHeroDescription" rows="3" placeholder="РќР°СѓС‡РЅС‹Р№ РїРѕРґС…РѕРґ Рє РіРёРїРµСЂС‚СЂРѕС„РёРё..."
+                class="w-full px-3.5 py-2.5 rounded-xl text-sm resize-none"></textarea>
             </div>
             <div>
-              <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1">Р‘РµР№РґР¶ РЅР°Рґ Р·Р°РіРѕР»РѕРІРєРѕРј</label>
-              <input type="text" id="coachSpec" placeholder="РЎРўР РћРРњ РўР•Р›Рћ РР— Р–Р•Р›Р•Р—Рђ Р Р’РРўРђРњРРќРћР’ вљЎ" class="w-full px-3.5 py-2 rounded-xl text-xs font-mono" />
+              <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1">Р‘РµР№РґР¶ РЅР°Рґ
+                Р·Р°РіРѕР»РѕРІРєРѕРј</label>
+              <input type="text" id="coachSpec" placeholder="РЎРўР РћРРњ РўР•Р›Рћ РР— Р–Р•Р›Р•Р—Рђ Р Р’РРўРђРњРРќРћР’ вљЎ"
+                class="w-full px-3.5 py-2 rounded-xl text-xs font-mono" />
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
               <div>
                 <label class="block text-[11px] font-mono text-zinc-400 mb-1">Р“Р»Р°РІРЅР°СЏ РєРЅРѕРїРєР° Hero (РљР°Р»СЊРєСѓР»СЏС‚РѕСЂ)</label>
-                <input type="text" id="coachPrimaryBtnText" placeholder="Р Р°СЃСЃС‡РёС‚Р°С‚СЊ С„РѕСЂРјСѓ Рё РєР°Р»РѕСЂРёРё" class="w-full px-3 py-2 rounded-lg text-xs" />
+                <input type="text" id="coachPrimaryBtnText" placeholder="Р Р°СЃСЃС‡РёС‚Р°С‚СЊ С„РѕСЂРјСѓ Рё РєР°Р»РѕСЂРёРё"
+                  class="w-full px-3 py-2 rounded-lg text-xs" />
               </div>
               <div>
                 <label class="block text-[11px] font-mono text-zinc-400 mb-1">Р’С‚РѕСЂР°СЏ РєРЅРѕРїРєР° Hero (Telegram)</label>
-                <input type="text" id="coachSecondaryBtnText" placeholder="РќР°РїРёСЃР°С‚СЊ РІ Telegram" class="w-full px-3 py-2 rounded-lg text-xs" />
+                <input type="text" id="coachSecondaryBtnText" placeholder="РќР°РїРёСЃР°С‚СЊ РІ Telegram"
+                  class="w-full px-3 py-2 rounded-lg text-xs" />
               </div>
               <div>
                 <label class="block text-[11px] font-mono text-zinc-400 mb-1">РљРЅРѕРїРєР° РІ С€Р°РїРєРµ (CTA)</label>
-                <input type="text" id="coachCtaBtnText" placeholder="Р—Р°Р±СЂР°С‚СЊ РїР»Р°РЅ [2342 РєРєР°Р»]" class="w-full px-3 py-2 rounded-lg text-xs" />
+                <input type="text" id="coachCtaBtnText" placeholder="Р—Р°Р±СЂР°С‚СЊ РїР»Р°РЅ [2342 РєРєР°Р»]"
+                  class="w-full px-3 py-2 rounded-lg text-xs" />
               </div>
             </div>
           </div>
@@ -152,9 +205,12 @@
         <div class="flex items-center justify-between gap-2 mb-5 border-b border-white/10 pb-4">
           <div class="flex items-center gap-2 min-w-0">
             <span class="text-xl shrink-0">рџ‘¤</span>
-            <h3 class="font-display text-sm xs:text-base sm:text-xl uppercase tracking-wide text-white whitespace-nowrap">РРњРЇ & Р‘Р•Р™Р”Р–Р</h3>
+            <h3
+              class="font-display text-sm xs:text-base sm:text-xl uppercase tracking-wide text-white whitespace-nowrap">
+              РРњРЇ & Р‘Р•Р™Р”Р–Р</h3>
           </div>
-          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/5 text-zinc-400 whitespace-nowrap shrink-0">РџР РћР¤РР›Р¬</span>
+          <span
+            class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/5 text-zinc-400 whitespace-nowrap shrink-0">РџР РћР¤РР›Р¬</span>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
@@ -167,31 +223,39 @@
             <input type="text" id="coachLastName" class="w-full px-3.5 py-2.5 rounded-xl text-sm" />
           </div>
           <div>
-            <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1">РџРѕРґР·Р°РіРѕР»РѕРІРѕРє РїРѕРґ РёРјРµРЅРµРј (РЅР°РїСЂ. РљРЈР—РќРР¦Рђ РЎРџРћР РўРЎРњР•РќРћР’ рџ› пёЏ)</label>
+            <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1">РџРѕРґР·Р°РіРѕР»РѕРІРѕРє РїРѕРґ РёРјРµРЅРµРј
+              (РЅР°РїСЂ. РљРЈР—РќРР¦Рђ РЎРџРћР РўРЎРњР•РќРћР’ рџ› пёЏ)</label>
             <input type="text" id="coachTagline" class="w-full px-3.5 py-2.5 rounded-xl text-sm" />
           </div>
           <div>
-            <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1">Telegram username (РєСѓРґР° Р»РµС‚СЏС‚ Р·Р°СЏРІРєРё)</label>
+            <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1">Telegram username (РєСѓРґР°
+              Р»РµС‚СЏС‚ Р·Р°СЏРІРєРё)</label>
             <div class="relative">
               <span class="absolute left-3.5 top-2.5 text-zinc-400 font-mono text-sm">@</span>
-              <input type="text" id="coachTelegram" class="w-full pl-8 pr-3.5 py-2.5 rounded-xl text-sm font-mono" placeholder="username" />
+              <input type="text" id="coachTelegram" class="w-full pl-8 pr-3.5 py-2.5 rounded-xl text-sm font-mono"
+                placeholder="username" />
             </div>
           </div>
           <div>
-            <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1">Р’РµСЂС…РЅСЏСЏ РїР»Р°С€РєР° СЃС‚Р°С‚СѓСЃР° (РЅР°РїСЂ. РњРђРЎРўР•Р  РЎРџРћР РўРђ // РћРќР›РђР™Рќ-РќРђРЎРўРђР’РќРРљ)</label>
+            <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1">Р’РµСЂС…РЅСЏСЏ РїР»Р°С€РєР° СЃС‚Р°С‚СѓСЃР°
+              (РЅР°РїСЂ. РњРђРЎРўР•Р  РЎРџРћР РўРђ // РћРќР›РђР™Рќ-РќРђРЎРўРђР’РќРРљ)</label>
             <input type="text" id="coachBrandTag" class="w-full px-3.5 py-2.5 rounded-xl text-xs font-mono" />
           </div>
           <div>
-            <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1">Р›РѕРєР°С†РёСЏ (РЅР°РїСЂ. РћРќР›РђР™Рќ // РЎРќР“ & РњРР )</label>
+            <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1">Р›РѕРєР°С†РёСЏ (РЅР°РїСЂ. РћРќР›РђР™Рќ //
+              РЎРќР“ & РњРР )</label>
             <input type="text" id="coachLocation" class="w-full px-3.5 py-2.5 rounded-xl text-xs font-mono" />
           </div>
           <div>
             <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1">РџР»Р°С€РєР° РјРµСЃС‚</label>
-            <input type="text" id="coachScarcityBadge" placeholder="РћРўР‘РћР  РќРђ Р’Р•Р”Р•РќРР•: РЎР’РћР‘РћР”РќРћ 2 РњР•РЎРўРђ" class="w-full px-3.5 py-2.5 rounded-xl text-xs font-mono text-orange-400 font-bold" />
+            <input type="text" id="coachScarcityBadge" placeholder="РћРўР‘РћР  РќРђ Р’Р•Р”Р•РќРР•: РЎР’РћР‘РћР”РќРћ 2 РњР•РЎРўРђ"
+              class="w-full px-3.5 py-2.5 rounded-xl text-xs font-mono text-orange-400 font-bold" />
           </div>
           <div>
-            <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1">РҐСЌС€С‚РµРі/РєРѕРґ РІ РїСЂР°РІРѕРј СѓРіР»Сѓ</label>
-            <input type="text" id="coachScarcityCode" placeholder="#BERNETSKIY-2026" class="w-full px-3.5 py-2.5 rounded-xl text-xs font-mono text-zinc-400" />
+            <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1">РҐСЌС€С‚РµРі/РєРѕРґ РІ РїСЂР°РІРѕРј
+              СѓРіР»Сѓ</label>
+            <input type="text" id="coachScarcityCode" placeholder="#BERNETSKIY-2026"
+              class="w-full px-3.5 py-2.5 rounded-xl text-xs font-mono text-zinc-400" />
           </div>
           <div class="sm:col-span-2">
             <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1">Рћ СЃРµР±Рµ (Р‘РёРѕ)</label>
@@ -205,28 +269,36 @@
         <div class="flex items-center justify-between gap-2 mb-4 border-b border-white/10 pb-3">
           <div class="flex items-center gap-2 min-w-0">
             <span class="text-xl shrink-0">рџЋ›пёЏ</span>
-            <h3 class="font-display text-sm xs:text-base sm:text-xl uppercase tracking-wide text-white whitespace-nowrap">РЈРџР РђР’Р›Р•РќРР• РЎР•РљР¦РРЇРњР</h3>
+            <h3
+              class="font-display text-sm xs:text-base sm:text-xl uppercase tracking-wide text-white whitespace-nowrap">
+              РЈРџР РђР’Р›Р•РќРР• РЎР•РљР¦РРЇРњР</h3>
           </div>
-          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/5 text-zinc-400 whitespace-nowrap shrink-0">Р’РљР› / Р’Р«РљР›</span>
+          <span
+            class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/5 text-zinc-400 whitespace-nowrap shrink-0">Р’РљР› /
+            Р’Р«РљР›</span>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <label class="flex items-center gap-3 p-3.5 rounded-xl bg-white/[0.02] border border-white/10 cursor-pointer hover:bg-white/[0.04] transition-all">
+          <label
+            class="flex items-center gap-3 p-3.5 rounded-xl bg-white/[0.02] border border-white/10 cursor-pointer hover:bg-white/[0.04] transition-all">
             <input type="checkbox" id="toggleReviewsSection" class="w-5 h-5 rounded accent-orange-500 cursor-pointer" />
             <div>
               <div class="text-sm font-bold text-white">Р‘Р»РѕРє РѕС‚Р·С‹РІРѕРІ</div>
               <div class="text-xs text-zinc-400">РљР°СЂСѓСЃРµР»СЊ РѕС‚Р·С‹РІРѕРІ РїРѕРґРѕРїРµС‡РЅС‹С…</div>
             </div>
           </label>
-          <label class="flex items-center gap-3 p-3.5 rounded-xl bg-white/[0.02] border border-white/10 cursor-pointer hover:bg-white/[0.04] transition-all">
+          <label
+            class="flex items-center gap-3 p-3.5 rounded-xl bg-white/[0.02] border border-white/10 cursor-pointer hover:bg-white/[0.04] transition-all">
             <input type="checkbox" id="toggleCasesSection" class="w-5 h-5 rounded accent-orange-500 cursor-pointer" />
             <div>
               <div class="text-sm font-bold text-white">Р‘Р»РѕРє РєРµР№СЃРѕРІ (Р”Рѕ / РџРѕСЃР»Рµ)</div>
               <div class="text-xs text-zinc-400">РЎР»Р°Р№РґРµСЂ СЂРµР·СѓР»СЊС‚Р°С‚РѕРІ С‚СЂР°РЅСЃС„РѕСЂРјР°С†РёРё</div>
             </div>
           </label>
-          <label class="flex items-center gap-3 p-3.5 rounded-xl bg-white/[0.02] border border-white/10 cursor-pointer hover:bg-white/[0.04] transition-all">
-            <input type="checkbox" id="toggleApplicationForm" class="w-5 h-5 rounded accent-orange-500 cursor-pointer" />
+          <label
+            class="flex items-center gap-3 p-3.5 rounded-xl bg-white/[0.02] border border-white/10 cursor-pointer hover:bg-white/[0.04] transition-all">
+            <input type="checkbox" id="toggleApplicationForm"
+              class="w-5 h-5 rounded accent-orange-500 cursor-pointer" />
             <div>
               <div class="text-sm font-bold text-white">Р¤РѕСЂРјР° Р°РЅРєРµС‚С‹</div>
               <div class="text-xs text-zinc-400">РЁР°Рі СЃ Р°РЅРєРµС‚РѕР№ Рё РѕС‚РїСЂР°РІРєРѕР№ РІ TG</div>
@@ -240,9 +312,12 @@
         <div class="flex items-center justify-between gap-2 mb-5 border-b border-white/10 pb-4">
           <div class="flex items-center gap-2 min-w-0">
             <span class="text-xl shrink-0">вљЎпёЏ</span>
-            <h3 class="font-display text-sm xs:text-base sm:text-xl uppercase tracking-wide text-white whitespace-nowrap">Р¦РР¤Р Р« & РћРџР«Рў</h3>
+            <h3
+              class="font-display text-sm xs:text-base sm:text-xl uppercase tracking-wide text-white whitespace-nowrap">
+              Р¦РР¤Р Р« & РћРџР«Рў</h3>
           </div>
-          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/5 text-zinc-400 whitespace-nowrap shrink-0">3 РљРђР РўРћР§РљР</span>
+          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/5 text-zinc-400 whitespace-nowrap shrink-0">3
+            РљРђР РўРћР§РљР</span>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -272,28 +347,38 @@
             <h3 class="font-display text-base sm:text-xl uppercase tracking-wide text-white truncate">РўРђР РР¤Р«</h3>
           </div>
           <div class="flex items-center gap-2 shrink-0">
-            <span id="tiersCountBadge" class="text-xs font-mono font-bold px-2.5 py-1 rounded-lg bg-white/5 text-zinc-400 border border-white/10 shrink-0">3/5</span>
-            <button type="button" onclick="addTier()" class="px-2.5 sm:px-3 py-1 rounded-lg bg-orange-500 hover:bg-orange-400 text-black font-tech font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-1 cursor-pointer shadow-sm active:scale-95 shrink-0">
+            <span id="tiersCountBadge"
+              class="text-xs font-mono font-bold px-2.5 py-1 rounded-lg bg-white/5 text-zinc-400 border border-white/10 shrink-0">3/5</span>
+            <button type="button" onclick="addTier()"
+              class="px-2.5 sm:px-3 py-1 rounded-lg bg-orange-500 hover:bg-orange-400 text-black font-tech font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-1 cursor-pointer shadow-sm active:scale-95 shrink-0">
               <span>+ Р”РћР‘РђР’РРўР¬</span>
             </button>
           </div>
         </div>
 
         <!-- Horizontal Tier Navigation (Full Width with Trash) -->
-        <div class="relative w-full flex items-center justify-between bg-white/5 border border-white/10 p-1.5 rounded-xl mb-4">
-          <button type="button" onclick="prevTier()" class="h-9 w-12 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer font-bold text-base shrink-0" title="РџСЂРµРґС‹РґСѓС‰РёР№ С‚Р°СЂРёС„">
+        <div
+          class="relative w-full flex items-center justify-between bg-white/5 border border-white/10 p-1.5 rounded-xl mb-4">
+          <button type="button" onclick="prevTier()"
+            class="h-9 w-12 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer font-bold text-base shrink-0"
+            title="РџСЂРµРґС‹РґСѓС‰РёР№ С‚Р°СЂРёС„">
             <span>в†ђ</span>
           </button>
-          <div class="absolute left-1/2 -translate-x-1/2 font-tech text-sm sm:text-base text-zinc-400 px-3 flex items-center gap-2 font-bold tracking-wider select-none pointer-events-none">
+          <div
+            class="absolute left-1/2 -translate-x-1/2 font-tech text-sm sm:text-base text-zinc-400 px-3 flex items-center gap-2 font-bold tracking-wider select-none pointer-events-none">
             <span class="text-white text-base sm:text-lg font-extrabold" id="tierCounterCurrent">01</span>
             <span class="text-zinc-600 font-normal">/</span>
             <span id="tierCounterTotal">03</span>
           </div>
           <div class="flex items-center gap-1.5 shrink-0">
-            <button type="button" onclick="deleteActiveTier()" class="h-9 w-9 rounded-lg border border-red-500/25 bg-red-500/10 hover:bg-red-500/20 text-red-400 hover:text-red-300 flex items-center justify-center transition-all active:scale-95 cursor-pointer text-sm" title="РЈРґР°Р»РёС‚СЊ СЌС‚РѕС‚ С‚Р°СЂРёС„">
+            <button type="button" onclick="deleteActiveTier()"
+              class="h-9 w-9 rounded-lg border border-red-500/25 bg-red-500/10 hover:bg-red-500/20 text-red-400 hover:text-red-300 flex items-center justify-center transition-all active:scale-95 cursor-pointer text-sm"
+              title="РЈРґР°Р»РёС‚СЊ СЌС‚РѕС‚ С‚Р°СЂРёС„">
               <span>рџ—‘пёЏ</span>
             </button>
-            <button type="button" onclick="nextTier()" class="h-9 w-12 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer font-bold text-base" title="РЎР»РµРґСѓСЋС‰РёР№ С‚Р°СЂРёС„">
+            <button type="button" onclick="nextTier()"
+              class="h-9 w-12 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer font-bold text-base"
+              title="РЎР»РµРґСѓСЋС‰РёР№ С‚Р°СЂРёС„">
               <span>в†’</span>
             </button>
           </div>
@@ -308,13 +393,16 @@
             </div>
             <div>
               <label class="block text-[11px] font-mono text-zinc-400 mb-1">Р‘РµР№РґР¶ / РЎС‚Р°С‚СѓСЃ</label>
-              <input type="text" id="tierBadgeInput" placeholder="РҐРРў РџР РћР”РђР–, ALL INCLUSIVE..." class="w-full px-3 py-2 rounded-lg text-xs font-mono" />
+              <input type="text" id="tierBadgeInput" placeholder="РҐРРў РџР РћР”РђР–, ALL INCLUSIVE..."
+                class="w-full px-3 py-2 rounded-lg text-xs font-mono" />
             </div>
             <div>
               <label class="block text-[11px] font-mono text-zinc-400 mb-1">Р¦РµРЅР° Рё РїРµСЂРёРѕРґ</label>
               <div class="grid grid-cols-2 gap-2">
-                <input type="text" id="tierPriceInput" placeholder="14 900 в‚Ѕ" class="px-3 py-2 rounded-lg text-sm font-mono text-orange-400 font-bold" />
-                <input type="text" id="tierPeriodInput" placeholder="Р’ РњР•РЎРЇР¦" class="px-3 py-2 rounded-lg text-xs font-mono" />
+                <input type="text" id="tierPriceInput" placeholder="14 900 в‚Ѕ"
+                  class="px-3 py-2 rounded-lg text-sm font-mono text-orange-400 font-bold" />
+                <input type="text" id="tierPeriodInput" placeholder="Р’ РњР•РЎРЇР¦"
+                  class="px-3 py-2 rounded-lg text-xs font-mono" />
               </div>
             </div>
           </div>
@@ -327,8 +415,10 @@
             </select>
           </div>
           <div>
-            <label class="block text-[11px] font-mono text-zinc-400 mb-1">РџСѓРЅРєС‚С‹ РїСЂРѕРіСЂР°РјРјС‹ (РїРѕ РѕРґРЅРѕРјСѓ РЅР° РєР°Р¶РґРѕР№ СЃС‚СЂРѕРєРµ)</label>
-            <textarea id="tierFeaturesInput" rows="4" class="w-full px-3 py-2 rounded-lg text-xs font-mono resize-none"></textarea>
+            <label class="block text-[11px] font-mono text-zinc-400 mb-1">РџСѓРЅРєС‚С‹ РїСЂРѕРіСЂР°РјРјС‹ (РїРѕ РѕРґРЅРѕРјСѓ РЅР° РєР°Р¶РґРѕР№
+              СЃС‚СЂРѕРєРµ)</label>
+            <textarea id="tierFeaturesInput" rows="4"
+              class="w-full px-3 py-2 rounded-lg text-xs font-mono resize-none"></textarea>
           </div>
         </div>
       </section>
@@ -341,28 +431,38 @@
             <h3 class="font-display text-base sm:text-xl uppercase tracking-wide text-white truncate">РљР•Р™РЎР«</h3>
           </div>
           <div class="flex items-center gap-2 shrink-0">
-            <span id="casesCountBadge" class="text-xs font-mono font-bold px-2.5 py-1 rounded-lg bg-white/5 text-zinc-400 border border-white/10 shrink-0">5/5</span>
-            <button type="button" onclick="addCase()" class="px-2.5 sm:px-3 py-1 rounded-lg bg-orange-500 hover:bg-orange-400 text-black font-tech font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-1 cursor-pointer shadow-sm active:scale-95 shrink-0">
+            <span id="casesCountBadge"
+              class="text-xs font-mono font-bold px-2.5 py-1 rounded-lg bg-white/5 text-zinc-400 border border-white/10 shrink-0">5/5</span>
+            <button type="button" onclick="addCase()"
+              class="px-2.5 sm:px-3 py-1 rounded-lg bg-orange-500 hover:bg-orange-400 text-black font-tech font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-1 cursor-pointer shadow-sm active:scale-95 shrink-0">
               <span>+ Р”РћР‘РђР’РРўР¬</span>
             </button>
           </div>
         </div>
 
         <!-- Horizontal Case Navigation (Full Width with Trash) -->
-        <div class="relative w-full flex items-center justify-between bg-white/5 border border-white/10 p-1.5 rounded-xl mb-4">
-          <button type="button" onclick="prevCase()" class="h-9 w-12 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer font-bold text-base shrink-0" title="РџСЂРµРґС‹РґСѓС‰РёР№ РєРµР№СЃ">
+        <div
+          class="relative w-full flex items-center justify-between bg-white/5 border border-white/10 p-1.5 rounded-xl mb-4">
+          <button type="button" onclick="prevCase()"
+            class="h-9 w-12 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer font-bold text-base shrink-0"
+            title="РџСЂРµРґС‹РґСѓС‰РёР№ РєРµР№СЃ">
             <span>в†ђ</span>
           </button>
-          <div class="absolute left-1/2 -translate-x-1/2 font-tech text-sm sm:text-base text-zinc-400 px-3 flex items-center gap-2 font-bold tracking-wider select-none pointer-events-none">
+          <div
+            class="absolute left-1/2 -translate-x-1/2 font-tech text-sm sm:text-base text-zinc-400 px-3 flex items-center gap-2 font-bold tracking-wider select-none pointer-events-none">
             <span class="text-white text-base sm:text-lg font-extrabold" id="caseCounterCurrent">01</span>
             <span class="text-zinc-600 font-normal">/</span>
             <span id="caseCounterTotal">05</span>
           </div>
           <div class="flex items-center gap-1.5 shrink-0">
-            <button type="button" onclick="deleteActiveCase()" class="h-9 w-9 rounded-lg border border-red-500/25 bg-red-500/10 hover:bg-red-500/20 text-red-400 hover:text-red-300 flex items-center justify-center transition-all active:scale-95 cursor-pointer text-sm" title="РЈРґР°Р»РёС‚СЊ СЌС‚РѕС‚ РєРµР№СЃ">
+            <button type="button" onclick="deleteActiveCase()"
+              class="h-9 w-9 rounded-lg border border-red-500/25 bg-red-500/10 hover:bg-red-500/20 text-red-400 hover:text-red-300 flex items-center justify-center transition-all active:scale-95 cursor-pointer text-sm"
+              title="РЈРґР°Р»РёС‚СЊ СЌС‚РѕС‚ РєРµР№СЃ">
               <span>рџ—‘пёЏ</span>
             </button>
-            <button type="button" onclick="nextCase()" class="h-9 w-12 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer font-bold text-base" title="РЎР»РµРґСѓСЋС‰РёР№ РєРµР№СЃ">
+            <button type="button" onclick="nextCase()"
+              class="h-9 w-12 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer font-bold text-base"
+              title="РЎР»РµРґСѓСЋС‰РёР№ РєРµР№СЃ">
               <span>в†’</span>
             </button>
           </div>
@@ -374,29 +474,35 @@
             <!-- BEFORE IMAGE -->
             <div>
               <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-2">Р¤РѕС‚Рѕ Р”Рћ</label>
-              <div class="relative rounded-xl overflow-hidden border border-white/15 bg-black/40 aspect-[4/3] flex items-center justify-center group">
+              <div
+                class="relative rounded-xl overflow-hidden border border-white/15 bg-black/40 aspect-[4/3] flex items-center justify-center group">
                 <img id="caseBeforePreview" src="" class="w-full h-full object-cover" />
-                <label class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center cursor-pointer text-xs font-tech text-white">
+                <label
+                  class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center cursor-pointer text-xs font-tech text-white">
                   <span class="text-2xl mb-1">рџ“Ѓ</span>
                   <span>РќР°Р¶РјРёС‚Рµ С‡С‚РѕР±С‹ Р·Р°РјРµРЅРёС‚СЊ</span>
                   <input type="file" accept="image/*" class="hidden" onchange="handleCaseBeforeImage(event)" />
                 </label>
               </div>
-              <input type="text" id="caseStatA" class="w-full mt-2 px-3 py-2 rounded-lg text-xs font-mono" placeholder="РџРѕРґРїРёСЃСЊ: РўРћР§РљРђ Рђ // ..." />
+              <input type="text" id="caseStatA" class="w-full mt-2 px-3 py-2 rounded-lg text-xs font-mono"
+                placeholder="РџРѕРґРїРёСЃСЊ: РўРћР§РљРђ Рђ // ..." />
             </div>
 
             <!-- AFTER IMAGE -->
             <div>
               <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-2">Р¤РѕС‚Рѕ РџРћРЎР›Р•</label>
-              <div class="relative rounded-xl overflow-hidden border border-white/15 bg-black/40 aspect-[4/3] flex items-center justify-center group">
+              <div
+                class="relative rounded-xl overflow-hidden border border-white/15 bg-black/40 aspect-[4/3] flex items-center justify-center group">
                 <img id="caseAfterPreview" src="" class="w-full h-full object-cover" />
-                <label class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center cursor-pointer text-xs font-tech text-white">
+                <label
+                  class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center cursor-pointer text-xs font-tech text-white">
                   <span class="text-2xl mb-1">рџ“Ѓ</span>
                   <span>РќР°Р¶РјРёС‚Рµ С‡С‚РѕР±С‹ Р·Р°РјРµРЅРёС‚СЊ</span>
                   <input type="file" accept="image/*" class="hidden" onchange="handleCaseAfterImage(event)" />
                 </label>
               </div>
-              <input type="text" id="caseStatB" class="w-full mt-2 px-3 py-2 rounded-lg text-xs font-mono" placeholder="РџРѕРґРїРёСЃСЊ: РўРћР§РљРђ Р‘ // ..." />
+              <input type="text" id="caseStatB" class="w-full mt-2 px-3 py-2 rounded-lg text-xs font-mono"
+                placeholder="РџРѕРґРїРёСЃСЊ: РўРћР§РљРђ Р‘ // ..." />
             </div>
           </div>
 
@@ -406,8 +512,10 @@
               <input type="text" id="caseName" class="w-full px-3.5 py-2.5 rounded-xl text-sm font-bold" />
             </div>
             <div>
-              <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1">РћРїРёСЃР°РЅРёРµ С‚СЂР°РЅСЃС„РѕСЂРјР°С†РёРё</label>
-              <textarea id="caseDescription" rows="2" class="w-full px-3.5 py-2.5 rounded-xl text-sm resize-none"></textarea>
+              <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1">РћРїРёСЃР°РЅРёРµ
+                С‚СЂР°РЅСЃС„РѕСЂРјР°С†РёРё</label>
+              <textarea id="caseDescription" rows="2"
+                class="w-full px-3.5 py-2.5 rounded-xl text-sm resize-none"></textarea>
             </div>
           </div>
         </div>
@@ -418,31 +526,42 @@
         <div class="flex items-center justify-between gap-2 mb-4 border-b border-white/10 pb-3">
           <div class="flex items-center gap-2 min-w-0">
             <span class="text-xl shrink-0">рџ’¬</span>
-            <h3 class="font-display text-base sm:text-xl uppercase tracking-wide text-white whitespace-nowrap">РћРўР—Р«Р’Р«</h3>
+            <h3 class="font-display text-base sm:text-xl uppercase tracking-wide text-white whitespace-nowrap">РћРўР—Р«Р’Р«
+            </h3>
           </div>
           <div class="flex items-center gap-2 shrink-0">
-            <span id="reviewsCountBadge" class="text-xs font-mono font-bold px-2.5 py-1 rounded-lg bg-white/5 text-zinc-400 border border-white/10 shrink-0">15/15</span>
-            <button type="button" onclick="addReview()" class="px-2.5 sm:px-3 py-1 rounded-lg bg-orange-500 hover:bg-orange-400 text-black font-tech font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-1 cursor-pointer shadow-sm active:scale-95 shrink-0">
+            <span id="reviewsCountBadge"
+              class="text-xs font-mono font-bold px-2.5 py-1 rounded-lg bg-white/5 text-zinc-400 border border-white/10 shrink-0">15/15</span>
+            <button type="button" onclick="addReview()"
+              class="px-2.5 sm:px-3 py-1 rounded-lg bg-orange-500 hover:bg-orange-400 text-black font-tech font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-1 cursor-pointer shadow-sm active:scale-95 shrink-0">
               <span>+ Р”РћР‘РђР’РРўР¬</span>
             </button>
           </div>
         </div>
 
         <!-- Horizontal Review Navigation (Full Width with Trash) -->
-        <div class="relative w-full flex items-center justify-between bg-white/5 border border-white/10 p-1.5 rounded-xl mb-4">
-          <button type="button" onclick="prevReview()" class="h-9 w-12 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer font-bold text-base shrink-0" title="РџСЂРµРґС‹РґСѓС‰РёР№ РѕС‚Р·С‹РІ">
+        <div
+          class="relative w-full flex items-center justify-between bg-white/5 border border-white/10 p-1.5 rounded-xl mb-4">
+          <button type="button" onclick="prevReview()"
+            class="h-9 w-12 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer font-bold text-base shrink-0"
+            title="РџСЂРµРґС‹РґСѓС‰РёР№ РѕС‚Р·С‹РІ">
             <span>в†ђ</span>
           </button>
-          <div class="absolute left-1/2 -translate-x-1/2 font-tech text-sm sm:text-base text-zinc-400 px-3 flex items-center gap-2 font-bold tracking-wider select-none pointer-events-none">
+          <div
+            class="absolute left-1/2 -translate-x-1/2 font-tech text-sm sm:text-base text-zinc-400 px-3 flex items-center gap-2 font-bold tracking-wider select-none pointer-events-none">
             <span class="text-white text-base sm:text-lg font-extrabold" id="reviewCounterCurrent">01</span>
             <span class="text-zinc-600 font-normal">/</span>
             <span id="reviewCounterTotal">15</span>
           </div>
           <div class="flex items-center gap-1.5 shrink-0">
-            <button type="button" onclick="deleteActiveReview()" class="h-9 w-9 rounded-lg border border-red-500/25 bg-red-500/10 hover:bg-red-500/20 text-red-400 hover:text-red-300 flex items-center justify-center transition-all active:scale-95 cursor-pointer text-sm" title="РЈРґР°Р»РёС‚СЊ СЌС‚РѕС‚ РѕС‚Р·С‹РІ">
+            <button type="button" onclick="deleteActiveReview()"
+              class="h-9 w-9 rounded-lg border border-red-500/25 bg-red-500/10 hover:bg-red-500/20 text-red-400 hover:text-red-300 flex items-center justify-center transition-all active:scale-95 cursor-pointer text-sm"
+              title="РЈРґР°Р»РёС‚СЊ СЌС‚РѕС‚ РѕС‚Р·С‹РІ">
               <span>рџ—‘пёЏ</span>
             </button>
-            <button type="button" onclick="nextReview()" class="h-9 w-12 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer font-bold text-base" title="РЎР»РµРґСѓСЋС‰РёР№ РѕС‚Р·С‹РІ">
+            <button type="button" onclick="nextReview()"
+              class="h-9 w-12 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer font-bold text-base"
+              title="РЎР»РµРґСѓСЋС‰РёР№ РѕС‚Р·С‹РІ">
               <span>в†’</span>
             </button>
           </div>
@@ -453,9 +572,11 @@
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 items-center">
             <div>
               <label class="block text-[11px] font-mono text-zinc-400 mb-1.5">Р¤РѕС‚Рѕ РѕС‚Р·С‹РІР°</label>
-              <div class="relative rounded-xl overflow-hidden border border-white/15 bg-black/40 aspect-[4/3] flex items-center justify-center group">
+              <div
+                class="relative rounded-xl overflow-hidden border border-white/15 bg-black/40 aspect-[4/3] flex items-center justify-center group">
                 <img id="activeReviewPreview" src="" class="w-full h-full object-cover" />
-                <label class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center cursor-pointer text-xs font-tech text-white">
+                <label
+                  class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center cursor-pointer text-xs font-tech text-white">
                   <span class="text-xl mb-1">рџ“Ѓ</span>
                   <span>Р—Р°РјРµРЅРёС‚СЊ С„РѕС‚Рѕ</span>
                   <input type="file" accept="image/*" class="hidden" onchange="handleActiveReviewImage(event)" />
@@ -475,11 +596,13 @@
               </div>
               <div>
                 <label class="block text-[10px] font-mono text-zinc-400 mb-0.5">Р РµР·СѓР»СЊС‚Р°С‚ (РіР»Р°РІРЅР°СЏ СЃС‚СЂРѕРєР°)</label>
-                <input type="text" id="reviewResultInput" class="w-full px-3 py-1.5 rounded-lg text-xs font-bold text-orange-400" />
+                <input type="text" id="reviewResultInput"
+                  class="w-full px-3 py-1.5 rounded-lg text-xs font-bold text-orange-400" />
               </div>
               <div>
                 <label class="block text-[10px] font-mono text-zinc-400 mb-0.5">РўРµРєСЃС‚ РѕС‚Р·С‹РІР°</label>
-                <textarea id="reviewTextInput" rows="3" class="w-full px-3 py-1.5 rounded-lg text-xs resize-none"></textarea>
+                <textarea id="reviewTextInput" rows="3"
+                  class="w-full px-3 py-1.5 rounded-lg text-xs resize-none"></textarea>
               </div>
             </div>
           </div>
@@ -494,14 +617,18 @@
         </summary>
         <div class="mt-4 pt-4 border-t border-white/10 flex flex-col gap-3">
           <p class="text-zinc-400 leading-relaxed">
-            РР·РјРµРЅРµРЅРёСЏ РІСЃС‚СѓРїР°СЋС‚ РІ СЃРёР»Сѓ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё РїСЂРё СЃРѕС…СЂР°РЅРµРЅРёРё. Р”Р»СЏ РїСЂРёРІСЏР·РєРё РїРµСЂСЃРѕРЅР°Р»СЊРЅРѕРіРѕ РєР»СЋС‡Р° РїСѓР±Р»РёРєР°С†РёРё РЅР° РіР»РѕР±Р°Р»СЊРЅРѕРј СЃРµСЂРІРµСЂРµ:
+            РР·РјРµРЅРµРЅРёСЏ РІСЃС‚СѓРїР°СЋС‚ РІ СЃРёР»Сѓ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё РїСЂРё СЃРѕС…СЂР°РЅРµРЅРёРё. Р”Р»СЏ РїСЂРёРІСЏР·РєРё РїРµСЂСЃРѕРЅР°Р»СЊРЅРѕРіРѕ РєР»СЋС‡Р° РїСѓР±Р»РёРєР°С†РёРё РЅР°
+            РіР»РѕР±Р°Р»СЊРЅРѕРј СЃРµСЂРІРµСЂРµ:
           </p>
-          <input type="password" id="githubTokenInput" placeholder="ghp_... РёР»Рё gho_..." class="w-full px-3 py-2 rounded-lg font-mono text-xs" />
+          <input type="password" id="githubTokenInput" placeholder="ghp_... РёР»Рё gho_..."
+            class="w-full px-3 py-2 rounded-lg font-mono text-xs" />
           <div class="flex items-center gap-2">
-            <button type="button" onclick="saveGithubToken()" class="px-3 py-1.5 rounded bg-white/10 hover:bg-white/20 text-white font-mono text-[11px] cursor-pointer">
+            <button type="button" onclick="saveGithubToken()"
+              class="px-3 py-1.5 rounded bg-white/10 hover:bg-white/20 text-white font-mono text-[11px] cursor-pointer">
               РЎРѕС…СЂР°РЅРёС‚СЊ С‚РѕРєРµРЅ
             </button>
-            <button type="button" onclick="clearLocalOverrides()" class="px-3 py-1.5 rounded bg-red-500/10 hover:bg-red-500/20 text-red-300 font-mono text-[11px] cursor-pointer">
+            <button type="button" onclick="clearLocalOverrides()"
+              class="px-3 py-1.5 rounded bg-red-500/10 hover:bg-red-500/20 text-red-300 font-mono text-[11px] cursor-pointer">
               РЎР±СЂРѕСЃРёС‚СЊ Рє РёСЃС…РѕРґРЅС‹Рј РЅР°СЃС‚СЂРѕР№РєР°Рј
             </button>
           </div>
@@ -511,18 +638,22 @@
     </main>
 
     <!-- STICKY BOTTOM SAVE BAR -->
-    <div class="fixed bottom-0 left-0 right-0 z-40 bg-[#050507]/95 border-t border-white/10 backdrop-blur-xl px-3 sm:px-6 py-2.5 sm:py-3.5 shadow-2xl">
+    <div
+      class="fixed bottom-0 left-0 right-0 z-40 bg-[#050507]/95 border-t border-white/10 backdrop-blur-xl px-3 sm:px-6 py-2.5 sm:py-3.5 shadow-2xl">
       <div class="max-w-4xl mx-auto flex items-center justify-between gap-2 sm:gap-4">
         <div class="flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs font-mono text-zinc-400 min-w-0">
           <span id="saveStatusDot" class="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-emerald-400 shrink-0"></span>
           <span id="saveStatusText" class="truncate">Р’СЃРµ РґР°РЅРЅС‹Рµ Р°РєС‚СѓР°Р»СЊРЅС‹</span>
         </div>
         <div class="flex items-center gap-2 sm:gap-3 shrink-0">
-          <button type="button" onclick="clearLocalOverrides()" class="h-10 w-10 sm:w-auto px-2 sm:px-3.5 rounded-xl border border-red-500/30 bg-red-500/10 hover:bg-red-500/20 text-red-300 text-xs font-tech font-bold uppercase tracking-wider transition-all cursor-pointer active:scale-95 flex items-center justify-center gap-1.5 shrink-0" title="РЎР±СЂРѕСЃРёС‚СЊ РІСЃРµ РёР·РјРµРЅРµРЅРёСЏ">
+          <button type="button" onclick="clearLocalOverrides()"
+            class="h-10 w-10 sm:w-auto px-2 sm:px-3.5 rounded-xl border border-red-500/30 bg-red-500/10 hover:bg-red-500/20 text-red-300 text-xs font-tech font-bold uppercase tracking-wider transition-all cursor-pointer active:scale-95 flex items-center justify-center gap-1.5 shrink-0"
+            title="РЎР±СЂРѕСЃРёС‚СЊ РІСЃРµ РёР·РјРµРЅРµРЅРёСЏ">
             <span class="text-sm">в†є</span>
             <span class="hidden sm:inline">РЎР±СЂРѕСЃРёС‚СЊ РІСЃС‘</span>
           </button>
-          <button id="saveChangesBtn" onclick="saveAllChanges()" class="h-10 px-3.5 sm:px-6 rounded-xl font-display uppercase tracking-wider text-black bg-white hover:bg-zinc-200 transition-all font-bold text-xs sm:text-sm shadow-xl flex items-center justify-center gap-1.5 cursor-pointer active:scale-95 shrink-0 whitespace-nowrap">
+          <button id="saveChangesBtn" onclick="saveAllChanges()"
+            class="h-10 px-3.5 sm:px-6 rounded-xl font-display uppercase tracking-wider text-black bg-white hover:bg-zinc-200 transition-all font-bold text-xs sm:text-sm shadow-xl flex items-center justify-center gap-1.5 cursor-pointer active:scale-95 shrink-0 whitespace-nowrap">
             <span>рџ’ѕ</span>
             <span>РЎРћРҐР РђРќРРўР¬</span><span class="hidden sm:inline">&nbsp;РР—РњР•РќР•РќРРЇ</span>
           </button>
@@ -532,7 +663,8 @@
   </div>
 
   <!-- TOAST NOTIFICATION -->
-  <div id="toast" class="fixed top-6 right-6 z-50 bg-emerald-500 text-black px-5 py-3 rounded-xl font-bold font-tech text-sm shadow-2xl transition-all transform translate-y-[-100px] opacity-0 flex items-center gap-2">
+  <div id="toast"
+    class="fixed top-6 right-6 z-50 bg-emerald-500 text-black px-5 py-3 rounded-xl font-bold font-tech text-sm shadow-2xl transition-all transform translate-y-[-100px] opacity-0 flex items-center gap-2">
     <span id="toastIcon">вњ…</span>
     <span id="toastMsg">РР·РјРµРЅРµРЅРёСЏ СѓСЃРїРµС€РЅРѕ СЃРѕС…СЂР°РЅРµРЅС‹!</span>
   </div>
@@ -557,12 +689,12 @@
         alert('РџСЂРѕС„РёР»СЊ ' + currentSlug + ' РЅРµ РЅР°Р№РґРµРЅ РІ СЃРёСЃС‚РµРјРµ.');
         return;
       }
-      
+
       let localOverride = null;
       try {
         const raw = localStorage.getItem('pulse_override_' + currentSlug);
         if (raw) localOverride = JSON.parse(raw);
-      } catch(e) {}
+      } catch (e) { }
 
       const serverClient = JSON.parse(JSON.stringify(window.CLIENTS[currentSlug]));
       if (localOverride) {
@@ -573,7 +705,7 @@
       } else {
         currentClient = serverClient;
       }
-      
+
       if (currentClient.accentColor) {
         document.documentElement.style.setProperty('--accent', currentClient.accentColor);
         document.documentElement.style.setProperty('--accent-dim', currentClient.accentDim || 'rgba(255, 107, 0, 0.25)');
@@ -582,7 +714,7 @@
       document.getElementById('headerCoachName').textContent = currentClient.name || 'РљРђР‘РРќР•Рў РќРђРЎРўРђР’РќРРљРђ';
       document.getElementById('headerSlug').textContent = `fitprod.vercel.app/${currentSlug}`;
       document.getElementById('viewLiveSiteBtn').href = `/${currentSlug}`;
-      
+
       // Hero
       document.getElementById('coachHeroPreview').src = currentClient.heroImage || '';
       document.getElementById('coachHeroTitle').value = currentClient.heroTitle || '';
@@ -988,8 +1120,8 @@
         return;
       }
       saveActiveReviewData();
-      const newId = (currentClient.reviews.length > 0) 
-        ? Math.max(...currentClient.reviews.map(r => r.id || 0)) + 1 
+      const newId = (currentClient.reviews.length > 0)
+        ? Math.max(...currentClient.reviews.map(r => r.id || 0)) + 1
         : 1;
 
       currentClient.reviews.push({
@@ -1031,7 +1163,7 @@
           parsed.reviews = serverReviews;
           localStorage.setItem('pulse_override_' + currentSlug, JSON.stringify(parsed));
         }
-      } catch(e) {}
+      } catch (e) { }
       activeReviewIndex = 0;
       renderReviews();
       alert('Р’СЃРµ 15 РѕС‚Р·С‹РІРѕРІ СѓСЃРїРµС€РЅРѕ СЃРёРЅС…СЂРѕРЅРёР·РёСЂРѕРІР°РЅС‹ СЃ СЃРµСЂРІРµСЂР°!');
@@ -1041,7 +1173,7 @@
       const file = e.target.files[0];
       if (!file) return;
       const reader = new FileReader();
-      reader.onload = function(evt) {
+      reader.onload = function (evt) {
         const base64 = evt.target.result;
         document.getElementById(previewId).src = base64;
         pendingImages[storeKey] = {
@@ -1060,12 +1192,12 @@
       const pwd = document.getElementById('adminPasswordInput').value.trim();
       const coachPasswords = {
         bernetskiy: ['vB8$kL!92xQ#2026', 'vB8$kL!92xQ'],
-        radionov:   ['nR9#mX2$84!vP2026', 'nR9#mX2$84!'],
-        felix:      ['fL7!qZ9#31$wK2026', 'fL7!qZ9#31$']
+        radionov: ['nR9#mX2$84!vP2026', 'nR9#mX2$84!'],
+        felix: ['fL7!qZ9#31$wK2026', 'fL7!qZ9#31$']
       };
       const masterPasswords = ['PulseAdmin#X9v2!2026', 'Pulse#SuperAdmin2026!'];
       const allowed = [...(coachPasswords[currentSlug] || []), ...masterPasswords];
-      
+
       if (allowed.includes(pwd)) {
         sessionStorage.setItem('pulse_admin_auth_' + currentSlug, pwd);
         document.getElementById('authOverlay').classList.add('hidden');
@@ -1088,7 +1220,7 @@
           }
           showToast('рџ”‘ GitHub Token СѓСЃРїРµС€РЅРѕ РїРѕРґРєР»СЋС‡РµРЅ!');
         }
-      } catch(e) {}
+      } catch (e) { }
 
       if (sessionStorage.getItem('pulse_admin_auth_' + currentSlug)) {
         document.getElementById('authOverlay').classList.add('hidden');
@@ -1138,7 +1270,7 @@
               adminPassword: sessionStorage.getItem('pulse_admin_auth_' + currentSlug) || ''
             })
           });
-        } catch(e) {}
+        } catch (e) { }
       }
       showToast('вњ… Р’СЃРµ РЅР°СЃС‚СЂРѕР№РєРё СЃР±СЂРѕС€РµРЅС‹ Рє РёСЃС…РѕРґРЅС‹Рј!');
       setTimeout(() => {
@@ -1150,7 +1282,7 @@
       const btn = document.getElementById('saveChangesBtn');
       const dot = document.getElementById('saveStatusDot');
       const statusText = document.getElementById('saveStatusText');
-      
+
       btn.disabled = true;
       btn.innerHTML = `<span class="animate-spin text-sm">вЏі</span><span>РЎРћРҐР РђРќР•РќРР•...</span>`;
       dot.className = 'w-2.5 h-2.5 rounded-full bg-amber-400 animate-ping';
@@ -1254,4 +1386,5 @@
     checkExistingAuth();
   </script>
 </body>
+
 </html>

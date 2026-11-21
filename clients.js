@@ -175,7 +175,7 @@ window.CLIENTS = {
         "badge": "С 73 КГ ➔ ДО 85 КГ",
         "beforeImage": "/cases/vlad_case1_evgeniy_before.jpg",
         "afterImage": "/cases/vlad_case1_evgeniy_after.jpg",
-        "objectPosition": "center",
+        "objectPosition": "center 15%",
         "description": "Качественный набор сухой массы: за 3 месяца работы прибавили 12 кг плотной мускулатуры. Грамотно выстроенный прогрессивный тренинг и профицит калорий позволили мощно расширить плечевой пояс и грудные мышцы без заплывания.",
         "initialStats": "ТОЧКА А // 73 КГ (ДЕФИЦИТ МАССЫ)",
         "resultStats": "ТОЧКА Б // 85 КГ (+12 КГ МАССЫ)"
@@ -187,7 +187,7 @@ window.CLIENTS = {
         "badge": "С 105 КГ ➔ ДО 95 КГ",
         "beforeImage": "/cases/vlad_case2_artem_before.jpg",
         "afterImage": "/cases/vlad_case2_artem_after.jpg",
-        "objectPosition": "center",
+        "objectPosition": "center 15%",
         "description": "Мощная сушка за 2 месяца работы: сожгли 10 кг чистого жира. Убрали объемы в боках и животе, проявили пропорции и сохранили силовые показатели за счет выверенного рациона и силового протокола.",
         "initialStats": "ТОЧКА А // 105 КГ (ЛИШНИЙ ВЕС, ЖИВОТ)",
         "resultStats": "ТОЧКА Б // 95 КГ (-10 КГ, РЕЛЬЕФ)"
@@ -199,7 +199,7 @@ window.CLIENTS = {
         "badge": "С 93 КГ ➔ ДО 85 КГ",
         "beforeImage": "/cases/vlad_case3_nn_before.jpg",
         "afterImage": "/cases/vlad_case3_nn_after.jpg",
-        "objectPosition": "center",
+        "objectPosition": "center 15%",
         "description": "Ударная трансформация: сбросили 8 кг лишнего веса, убрали выраженный живот и жировую прослойку в области талии. Четкий контроль дефицита и силовые тренировки вернули спортивную атлетичную форму.",
         "initialStats": "ТОЧКА А // 93 КГ (БОЛЬШОЙ ЖИВОТ)",
         "resultStats": "ТОЧКА Б // 85 КГ (-8 КГ, ПЛОСКИЙ ЖИВОТ)"
@@ -211,7 +211,7 @@ window.CLIENTS = {
         "badge": "ДОМАШНИЙ ФОРМАТ // ТОНУС",
         "beforeImage": "/cases/vlad_case4_daria_before.jpg",
         "afterImage": "/cases/vlad_case4_daria_after.jpg",
-        "objectPosition": "center",
+        "objectPosition": "center 12%",
         "description": "Трансформация в домашних условиях: убрали лишние сантиметры в талии и бедрах, подтянули ягодицы и открыли красивый плоский живот. Доказательство того, что грамотная система дает топовый результат даже без походов в зал.",
         "initialStats": "ТОЧКА А // МЯГКИЙ ЖИВОТИК, НЕТ ТОНУСА",
         "resultStats": "ТОЧКА Б // ПРЕСС, ПОДТЯНУТАЯ ФОРМА"
@@ -235,7 +235,7 @@ window.CLIENTS = {
         "badge": "С 61 КГ ➔ ДО 81 КГ",
         "beforeImage": "/cases/vlad_case6_oleg_before.jpg",
         "afterImage": "/cases/vlad_case6_oleg_after.jpg",
-        "objectPosition": "center",
+        "objectPosition": "center 12%",
         "description": "Грандиозный прогресс эктоморфа: за 5 месяцев работы набрали +20 кг мощного мышечного корсета. Из худощавого телосложения 61 кг построили массивную грудь, широкие плечи и мощные руки 81 кг.",
         "initialStats": "ТОЧКА А // 61 КГ (ХУДОЩАВОСТЬ)",
         "resultStats": "ТОЧКА Б // 81 КГ (+20 КГ МЫШЦ)"
@@ -247,7 +247,7 @@ window.CLIENTS = {
         "badge": "СО 102 КГ ➔ ДО 92 КГ",
         "beforeImage": "/cases/vlad_case7_aleksey_before.jpg",
         "afterImage": "/cases/vlad_case7_aleksey_after.jpg",
-        "objectPosition": "center",
+        "objectPosition": "center 15%",
         "description": "Комфортное похудение за 3 месяца: сбросили 10 кг лишнего веса без жестких ограничений и упадка сил. Убрали пивной живот и бока, раскрыли широкую грудную клетку и улучшили выносливость.",
         "initialStats": "ТОЧКА А // 102 КГ (ВЫПИРАЮЩИЙ ЖИВОТ)",
         "resultStats": "ТОЧКА Б // 92 КГ (-10 КГ, V-СИЛУЭТ)"
@@ -259,7 +259,7 @@ window.CLIENTS = {
         "badge": "С 93 КГ ➔ ДО 86 КГ",
         "beforeImage": "/cases/vlad_case8_bb_before.jpg",
         "afterImage": "/cases/vlad_case8_bb_after.jpg",
-        "objectPosition": "center",
+        "objectPosition": "center 15%",
         "description": "Качественная сушка к сезону: убрали 7 кг жировой прослойки. Сохранили всю мышечную массу в плечах и груди, открыв четкий рельеф мышц пресса и убрав лишнюю воду.",
         "initialStats": "ТОЧКА А // 93 КГ (СКРЫТЫЙ ПРЕСС)",
         "resultStats": "ТОЧКА Б // 86 КГ (-7 КГ, РЕЛЬЕФ ПРЕССА)"
@@ -271,7 +271,7 @@ window.CLIENTS = {
         "badge": "С 77 КГ ➔ ДО 70 КГ",
         "beforeImage": "/cases/vlad_case9_noname_before.jpg",
         "afterImage": "/cases/vlad_case9_noname_after.jpg",
-        "objectPosition": "center",
+        "objectPosition": "center 15%",
         "description": "Точечная сушка и избавление от проблемных зон: сбросили 7 кг с 77 до 70 кг. Сгладили бока, подсушили талию и сделали силуэт подтянутым, сухим и плотным.",
         "initialStats": "ТОЧКА А // 77 КГ (БОКА И ЖИВОТИК)",
         "resultStats": "ТОЧКА Б // 70 КГ (-7 КГ, ПОДТЯНУТЫЙ ТОРС)"
@@ -283,7 +283,7 @@ window.CLIENTS = {
         "badge": "СО 108 КГ ➔ ДО 78 КГ",
         "beforeImage": "/cases/vlad_case10_vladislav_before.jpg",
         "afterImage": "/cases/vlad_case10_vladislav_after.jpg",
-        "objectPosition": "center",
+        "objectPosition": "center 15%",
         "description": "Экстремальная трансформация: колоссальный результат минус 30 кг за 4 месяца! Со 108 кг избыточного веса вышли на сухие 78 кг, полностью изменив композицию тела, здоровье и качество жизни.",
         "initialStats": "ТОЧКА А // 108 КГ (ОЖИРЕНИЕ)",
         "resultStats": "ТОЧКА Б // 78 КГ (-30 КГ, УЗКАЯ ТАЛИЯ)"
