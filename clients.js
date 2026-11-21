@@ -152,6 +152,7 @@ window.CLIENTS = {
     "hasApplicationForm": true,
     "hasReviewsSection": true,
     "telegramUsername": "Bernetskiy",
+    "applicationBtnText": "ОТПРАВИТЬ АНКЕТУ В TELEGRAM",
     "instagram": "bernetskiy",
     "instagramUrl": "https://instagram.com/bernetskiy",
     "telegramChannel": "Master_fitness",
