@@ -194,15 +194,15 @@ window.CLIENTS = {
       },
       {
         "id": 3,
-        "name": "СУШКА И РЕЛЬЕФ",
-        "tag": "-9 КГ ЖИРА // ПРЕСС",
-        "badge": "ПРОГРЕСС ЗА 10 НЕДЕЛЬ",
-        "beforeImage": "/cases/vladislav_case_before.jpg",
-        "afterImage": "/cases/vladislav_case_after.jpg",
+        "name": "ДИСТАНЦИОННОЕ ВЕДЕНИЕ // СУШКА",
+        "tag": "-8 КГ ЗА 1 МЕСЯЦ // МИНУС ЖИВОТ",
+        "badge": "МИНУС 8 КГ ЗА 4 НЕДЕЛИ",
+        "beforeImage": "/cases/vladislav_case3_before.jpg",
+        "afterImage": "/cases/vladislav_case3_after.jpg",
         "objectPosition": "center",
-        "description": "Снижение процента жира с сохранением мышечных объемов и силовых показателей.",
-        "initialStats": "ТОЧКА А // СТАРТ",
-        "resultStats": "ТОЧКА Б // РЕЗУЛЬТАТ"
+        "description": "Дистанционное ведение: за 1 месяц сбросили 8 кг лишнего веса. Правильное сбалансированное питание, силовые тренировки и дисциплина: убрали живот и бока, сохранив мышечные объемы.",
+        "initialStats": "ТОЧКА А // ЛИШНИЙ ВЕС, ВЫПИРАЮЩИЙ ЖИВОТ",
+        "resultStats": "ТОЧКА Б // -8 КГ ЗА МЕСЯЦ, МИНУС БОКА"
       },
       {
         "id": 4,
