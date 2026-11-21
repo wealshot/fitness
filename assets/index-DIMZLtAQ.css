@@ -40,6 +40,11 @@
 }
 
 
+
+@media (min-width: 1024px) {
+  
+}
+
 .case-tabs-grid {
   display: grid !important;
   grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
@@ -50,4 +55,10 @@
   .case-tabs-grid {
     grid-template-columns: repeat(10, minmax(0, 1fr)) !important;
   }
+}
+.case-tabs-mobile-grid {
+  display: grid !important;
+  grid-template-columns: repeat(10, minmax(0, 1fr)) !important;
+  gap: 3px !important;
+  width: 100% !important;
 }
