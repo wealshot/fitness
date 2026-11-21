@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru" class="dark">
 <head>
   <meta charset="UTF-8" />
@@ -11,7 +11,8 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
-  <script src="/clients.js?v=20261122_0456"></script>
+  <script src="/clients.js?v=20261122_0520"></script>
+  <script src="/clients_defaults.js?v=20261122_0520"></script>
   <style>
     body { font-family: 'Inter', sans-serif; background-color: #050507; color: #f4f4f5; }
     .font-display { font-family: 'Anton', sans-serif; }
@@ -1300,7 +1301,7 @@
     }
 
     async function clearLocalOverrides() {
-      if (!confirm('Восстановить исходные параметры профиля? Все внесенные изменения будут сброшены.')) {
+      if (!confirm('Восстановить исходные параметры профиля по умолчанию? Все внесенные изменения будут сброшены к дефолтным.')) {
         return;
       }
       localStorage.removeItem('pulse_override_' + currentSlug);
@@ -1310,23 +1311,33 @@
           localStorage.removeItem(k);
         }
       }
-      const token = (document.getElementById('githubTokenInput')?.value || localStorage.getItem('pulse_github_token') || '').trim();
-      if (token && window.CLIENTS && window.CLIENTS[currentSlug]) {
-        showToast('⏳ Восстановление исходных параметров на сервере...');
+
+      // Restore canonical golden default configuration
+      const defaultConfig = (window.DEFAULT_CLIENTS && window.DEFAULT_CLIENTS[currentSlug]) 
+        ? JSON.parse(JSON.stringify(window.DEFAULT_CLIENTS[currentSlug]))
+        : (window.CLIENTS && window.CLIENTS[currentSlug] ? JSON.parse(JSON.stringify(window.CLIENTS[currentSlug])) : null);
+
+      if (defaultConfig) {
+        defaultConfig.updatedAt = new Date().toISOString();
+        showToast('⏳ Восстановление параметров по умолчанию на сервере...');
         try {
+          const token = (document.getElementById('githubTokenInput')?.value || localStorage.getItem('pulse_github_token') || '').trim();
           await fetch('/api/save', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
               slug: currentSlug,
-              clientData: window.CLIENTS[currentSlug],
+              clientData: defaultConfig,
               githubToken: token,
               adminPassword: sessionStorage.getItem('pulse_admin_auth_' + currentSlug) || ''
             })
           });
-        } catch(e) {}
+        } catch(e) {
+          console.warn('Reset server sync error:', e);
+        }
       }
-      showToast('✅ Все настройки сброшены к исходным!');
+
+      showToast('✅ Все настройки сброшены к значениям по умолчанию!');
       setTimeout(() => {
         window.location.reload();
       }, 700);
