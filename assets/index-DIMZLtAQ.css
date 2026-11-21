@@ -18,3 +18,13 @@
 #desktopReviewsTrack:active {
   cursor: grabbing;
 }
+
+.case-slider-box {
+  height: 420px;
+}
+@media (min-width: 1024px) {
+  .case-slider-box {
+    height: 620px !important;
+    max-height: 82vh;
+  }
+}
