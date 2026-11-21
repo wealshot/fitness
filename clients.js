@@ -156,6 +156,8 @@ window.CLIENTS = {
     "applicationBtnText": "ОТПРАВИТЬ АНКЕТУ В TELEGRAM",
     "instagram": "bernetskiy",
     "instagramUrl": "https://instagram.com/bernetskiy",
+    "instagramLabel": "INSTAGRAM",
+    "telegramChannelLabel": "ТГ-КАНАЛ",
     "telegramChannel": "Master_fitness",
     "telegramChannelUrl": "https://t.me/Master_fitness",
     "scarcityBadge": "ОТБОР НА ВЕДЕНИЕ: СВОБОДНО 2 МЕСТА",

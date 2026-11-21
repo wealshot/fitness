@@ -179,6 +179,28 @@
             </div>
           </div>
           <div>
+            <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1">Telegram-канал (кнопка «ТГ-КАНАЛ ↗»)</label>
+            <div class="relative">
+              <span class="absolute left-3.5 top-2.5 text-sky-400 font-mono text-sm">📢</span>
+              <input type="text" id="coachTelegramChannel" class="w-full pl-9 pr-3.5 py-2.5 rounded-xl text-sm font-mono" placeholder="Master_fitness или https://t.me/..." />
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1">Текст кнопки ТГ-канала</label>
+            <input type="text" id="coachTelegramChannelLabel" placeholder="ТГ-КАНАЛ" class="w-full px-3.5 py-2.5 rounded-xl text-xs font-mono font-bold" />
+          </div>
+          <div>
+            <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1">Instagram профиль (кнопка «INSTAGRAM ↗»)</label>
+            <div class="relative">
+              <span class="absolute left-3.5 top-2.5 text-pink-400 font-mono text-sm">📷</span>
+              <input type="text" id="coachInstagram" class="w-full pl-9 pr-3.5 py-2.5 rounded-xl text-sm font-mono" placeholder="bernetskiy или https://instagram.com/..." />
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1">Текст кнопки Instagram</label>
+            <input type="text" id="coachInstagramLabel" placeholder="INSTAGRAM" class="w-full px-3.5 py-2.5 rounded-xl text-xs font-mono font-bold" />
+          </div>
+          <div>
             <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1">Верхняя плашка статуса (напр. МАСТЕР СПОРТА // ОНЛАЙН-НАСТАВНИК)</label>
             <input type="text" id="coachBrandTag" class="w-full px-3.5 py-2.5 rounded-xl text-xs font-mono" />
           </div>
@@ -669,6 +691,10 @@
       document.getElementById('coachLastName').value = currentClient.lastName || '';
       document.getElementById('coachTagline').value = currentClient.tagline || '';
       document.getElementById('coachTelegram').value = (currentClient.telegramUsername || '').replace(/^@/, '');
+      document.getElementById('coachTelegramChannel').value = currentClient.telegramChannelUrl || (currentClient.telegramChannel ? '@' + currentClient.telegramChannel : '');
+      document.getElementById('coachTelegramChannelLabel').value = currentClient.telegramChannelLabel || '';
+      document.getElementById('coachInstagram').value = currentClient.instagramUrl || (currentClient.instagram ? '@' + currentClient.instagram : '');
+      document.getElementById('coachInstagramLabel').value = currentClient.instagramLabel || '';
       document.getElementById('coachBrandTag').value = currentClient.brandTag || '';
       document.getElementById('coachLocation').value = currentClient.location || '';
       document.getElementById('coachScarcityBadge').value = currentClient.scarcityBadge || '';
@@ -1369,6 +1395,38 @@
       currentClient.name = `${currentClient.firstName} ${currentClient.lastName}`.trim().toUpperCase();
       currentClient.tagline = document.getElementById('coachTagline').value.trim();
       currentClient.telegramUsername = document.getElementById('coachTelegram').value.trim().replace(/^@/, '');
+
+      const rawTgChan = document.getElementById('coachTelegramChannel').value.trim();
+      currentClient.telegramChannelLabel = document.getElementById('coachTelegramChannelLabel').value.trim();
+      if (rawTgChan) {
+        if (rawTgChan.startsWith('http://') || rawTgChan.startsWith('https://')) {
+          currentClient.telegramChannelUrl = rawTgChan;
+          currentClient.telegramChannel = rawTgChan.replace(/^https?:\/\/(www\.)?t\.me\//i, '').replace(/\/.*$/, '');
+        } else {
+          const cleanTgChan = rawTgChan.replace(/^@/, '');
+          currentClient.telegramChannel = cleanTgChan;
+          currentClient.telegramChannelUrl = `https://t.me/${cleanTgChan}`;
+        }
+      } else {
+        currentClient.telegramChannel = '';
+        currentClient.telegramChannelUrl = '';
+      }
+
+      const rawIg = document.getElementById('coachInstagram').value.trim();
+      currentClient.instagramLabel = document.getElementById('coachInstagramLabel').value.trim();
+      if (rawIg) {
+        if (rawIg.startsWith('http://') || rawIg.startsWith('https://')) {
+          currentClient.instagramUrl = rawIg;
+          currentClient.instagram = rawIg.replace(/^https?:\/\/(www\.)?instagram\.com\//i, '').replace(/\/.*$/, '');
+        } else {
+          const cleanIg = rawIg.replace(/^@/, '');
+          currentClient.instagram = cleanIg;
+          currentClient.instagramUrl = `https://instagram.com/${cleanIg}`;
+        }
+      } else {
+        currentClient.instagram = '';
+        currentClient.instagramUrl = '';
+      }
       currentClient.brandTag = document.getElementById('coachBrandTag').value.trim();
       currentClient.location = document.getElementById('coachLocation').value.trim();
       currentClient.scarcityBadge = document.getElementById('coachScarcityBadge').value.trim();
