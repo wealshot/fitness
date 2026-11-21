@@ -140,9 +140,9 @@ window.CLIENTS = {
     "tagline": "КУЗНИЦА СПОРТСМЕНОВ 🛠️",
     "spec": "СТРОИМ ТЕЛО ИЗ ЖЕЛЕЗА И ВИТАМИНОВ ⚡️",
     "bio": "Строим мощное функциональное тело из железа, дисциплины и выверенной системы. Довожу до формы и спортивных разрядов без пустых обещаний.",
-    "heroImage": "/images/vladislav.png",
+    "heroImage": "/images/vladislav8.JPG",
     "heroImageStyle": {
-      "objectPosition": "center 15%",
+      "objectPosition": "center 25%",
       "filter": "brightness(0.98) contrast(1.08)"
     },
     "accentColor": "#FF6B00",
