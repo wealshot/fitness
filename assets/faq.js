@@ -1,11 +1,15 @@
 /**
- * Pulse Platform - FAQ Accordion Module (v4 - Perfect Spacing & Distinct Card Gap)
+ * Pulse Platform - FAQ Accordion Module (v5 - All Closed Initially & Clean Header Spacing)
  */
 (function() {
   // Inject dedicated FAQ styles
-  if (!document.getElementById('faq-accordion-styles')) {
-    const styleEl = document.createElement('style');
-    styleEl.id = 'faq-accordion-styles';
+  function injectStyles() {
+    let styleEl = document.getElementById('faq-accordion-styles');
+    if (!styleEl) {
+      styleEl = document.createElement('style');
+      styleEl.id = 'faq-accordion-styles';
+      document.head.appendChild(styleEl);
+    }
     styleEl.textContent = `
       #faq-section-desktop {
         padding-top: 40px !important;
@@ -15,61 +19,18 @@
         padding-top: 30px !important;
         padding-bottom: 40px !important;
       }
-      .faq-accordion-container {
-        display: flex !important;
-        flex-direction: column !important;
-        gap: 16px !important;
+      .faq-header-badge {
+        margin-bottom: 18px !important;
+        display: inline-flex !important;
       }
-      .faq-card {
-        margin-bottom: 0 !important;
-        transition: border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
-                    box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
-                    background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      .faq-header-title {
+        margin-top: 0 !important;
+        margin-bottom: 10px !important;
+        line-height: 1.15 !important;
       }
-      .faq-card.is-open {
-        border-color: rgba(255, 107, 0, 0.5) !important;
-        box-shadow: 0 0 35px rgba(255, 107, 0, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
-        background: linear-gradient(180deg, rgba(255, 107, 0, 0.07) 0%, rgba(255, 255, 255, 0.02) 100%) !important;
-      }
-      .faq-card.is-open .faq-badge-icon {
-        border-color: rgba(255, 107, 0, 0.6) !important;
-        background-color: rgba(255, 107, 0, 0.22) !important;
-        color: #FF6B00 !important;
-        box-shadow: 0 0 20px rgba(255, 107, 0, 0.4) !important;
-      }
-      .faq-card.is-open .faq-svg-plus {
-        transform: rotate(45deg);
-      }
-      .faq-anim-grid {
-        display: grid;
-        grid-template-rows: 0fr;
-        transition: grid-template-rows 0.38s cubic-bezier(0.16, 1, 0.3, 1), 
-                    opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1);
-        opacity: 0;
-      }
-      .faq-anim-grid.is-open {
-        grid-template-rows: 1fr;
-        opacity: 1;
-      }
-      .faq-anim-inner {
-        overflow: hidden;
-      }
-      .faq-svg-plus {
-        transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1), color 0.25s ease;
-      }
-    `;
-    document.head.appendChild(styleEl);
-  } else {
-    // Update existing style element if already injected
-    const styleEl = document.getElementById('faq-accordion-styles');
-    styleEl.textContent = `
-      #faq-section-desktop {
-        padding-top: 40px !important;
-        padding-bottom: 70px !important;
-      }
-      #faq-section-mobile {
-        padding-top: 30px !important;
-        padding-bottom: 40px !important;
+      .faq-header-desc {
+        margin-top: 0 !important;
+        margin-bottom: 32px !important;
       }
       .faq-accordion-container {
         display: flex !important;
@@ -115,6 +76,7 @@
       }
     `;
   }
+  injectStyles();
 
   function getClientSlug() {
     if (typeof window === 'undefined') return 'bernetskiy';
@@ -138,7 +100,7 @@
 
   function buildFaqHtml(client, isDesktop) {
     const fullList = client.faq || [];
-    // Strictly 5 questions as requested
+    // Strictly 5 questions
     const faqList = fullList.slice(0, 5);
     if (!faqList.length) return '';
 
@@ -147,10 +109,9 @@
     let itemsHtml = '';
     faqList.forEach((item, index) => {
       const num = String(index + 1).padStart(2, '0');
-      const isInitiallyOpen = (index === 0);
 
       itemsHtml += `
-        <div class="faq-card ${isInitiallyOpen ? 'is-open' : ''} border border-white/10 bg-white/[0.03] hover:bg-white/[0.05] hover:border-white/20 rounded-2xl overflow-hidden">
+        <div class="faq-card border border-white/10 bg-white/[0.03] hover:bg-white/[0.05] hover:border-white/20 rounded-2xl overflow-hidden">
           <button type="button" class="faq-toggle w-full p-4 sm:p-5 lg:p-6 flex items-center justify-between gap-4 text-left cursor-pointer select-none group" data-faq-index="${index}">
             <div class="flex items-center gap-3.5 sm:gap-4 min-w-0">
               <span class="font-mono text-xs sm:text-sm font-black px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg border shrink-0" 
@@ -162,7 +123,7 @@
               </span>
             </div>
             
-            <!-- Prominent Large Plus/Minus Button Badge -->
+            <!-- Large Prominent Plus/Minus Button Badge -->
             <div class="faq-badge-icon w-11 h-11 sm:w-12 sm:h-12 rounded-xl border border-white/10 bg-white/[0.05] flex items-center justify-center text-zinc-300 group-hover:text-white group-hover:border-white/30 shrink-0 transition-all duration-300 shadow-sm">
               <svg class="faq-svg-plus w-5 h-5 sm:w-6 sm:h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="12" y1="5" x2="12" y2="19"></line>
@@ -171,8 +132,8 @@
             </div>
           </button>
 
-          <!-- Smooth Animated Answer Container -->
-          <div class="faq-anim-grid ${isInitiallyOpen ? 'is-open' : ''}">
+          <!-- Smooth Animated Answer Container (All Closed Initially) -->
+          <div class="faq-anim-grid">
             <div class="faq-anim-inner">
               <div class="px-4 sm:px-5 lg:px-6 pb-5 pt-1 text-zinc-300 text-xs sm:text-sm lg:text-base leading-relaxed border-t border-white/5">
                 <p class="pt-3 font-normal opacity-95">${item.answer}</p>
@@ -186,16 +147,16 @@
     if (isDesktop) {
       return `
         <section id="faq-section-desktop" class="w-full max-w-5xl mx-auto px-6 relative z-10">
-          <div class="mb-10">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-tech font-bold uppercase tracking-widest mb-3.5">
+          <div class="faq-header-wrap mb-8">
+            <div class="faq-header-badge inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-tech font-bold uppercase tracking-widest">
               <span class="w-2 h-2 rounded-full animate-ping" style="background-color: ${accent};"></span>
               <span style="color: ${accent};">[05. FAQ]</span>
               <span class="text-zinc-400">// ВОПРОС-ОТВЕТ</span>
             </div>
-            <h2 class="text-3xl lg:text-4xl font-display font-black text-white uppercase tracking-tight">
+            <h2 class="faq-header-title text-3xl lg:text-4xl font-display font-black text-white uppercase tracking-tight">
               ЧАСТО ЗАДАВАЕМЫЕ ВОПРОСЫ
             </h2>
-            <p class="text-zinc-400 text-sm mt-1.5 max-w-xl">
+            <p class="faq-header-desc text-zinc-400 text-sm max-w-xl">
               Разбираем главные сомнения перед стартом ведения: честно, открыто и по делу.
             </p>
           </div>
@@ -207,16 +168,16 @@
     } else {
       return `
         <section id="faq-section-mobile" class="w-full px-4 border-t border-white/10 relative z-10">
-          <div class="mb-6">
-            <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-tech font-bold uppercase tracking-widest mb-2.5">
+          <div class="faq-header-wrap mb-5">
+            <div class="faq-header-badge inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-tech font-bold uppercase tracking-widest">
               <span class="w-1.5 h-1.5 rounded-full" style="background-color: ${accent};"></span>
               <span style="color: ${accent};">[05. FAQ]</span>
               <span class="text-zinc-400">// ВОПРОСЫ</span>
             </div>
-            <h2 class="text-2xl font-display font-black text-white uppercase tracking-tight">
+            <h2 class="faq-header-title text-2xl font-display font-black text-white uppercase tracking-tight">
               ОТВЕТЫ НА ВОПРОСЫ
             </h2>
-            <p class="text-zinc-400 text-xs mt-1">
+            <p class="faq-header-desc text-zinc-400 text-xs">
               Всё, что важно знать перед началом работы
             </p>
           </div>
@@ -237,15 +198,16 @@
         e.preventDefault();
         const card = toggle.closest('.faq-card');
         const grid = card.querySelector('.faq-anim-grid');
-        const isOpen = grid.classList.contains('is-open');
+        const wasOpen = card.classList.contains('is-open');
 
-        // Close other open cards for an accordion feel
+        // Close all cards in container
         const allCards = container.querySelectorAll('.faq-card');
         const allGrids = container.querySelectorAll('.faq-anim-grid');
         allCards.forEach(c => c.classList.remove('is-open'));
         allGrids.forEach(g => g.classList.remove('is-open'));
 
-        if (!isOpen) {
+        // Toggle clicked card
+        if (!wasOpen) {
           card.classList.add('is-open');
           grid.classList.add('is-open');
         }
@@ -291,10 +253,12 @@
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
+      injectStyles();
       mountFaq();
       startObserver();
     });
   } else {
+    injectStyles();
     mountFaq();
     startObserver();
   }
