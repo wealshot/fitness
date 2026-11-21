@@ -624,6 +624,18 @@
       } catch(e) {}
 
       const serverClient = JSON.parse(JSON.stringify(window.CLIENTS[currentSlug]));
+
+      // Auto-purge stale local override when server is newer or override has no timestamp / is > 2 minutes old
+      if (localOverride) {
+        const overrideTime = localOverride.updatedAt ? new Date(localOverride.updatedAt).getTime() : 0;
+        const serverTime = serverClient.updatedAt ? new Date(serverClient.updatedAt).getTime() : 0;
+        if (!overrideTime || serverTime >= overrideTime || (Date.now() - overrideTime > 120000)) {
+          console.log('[PULSE] Purged stale local override in admin for:', currentSlug);
+          localStorage.removeItem('pulse_override_' + currentSlug);
+          localOverride = null;
+        }
+      }
+
       if (localOverride) {
         delete localOverride.reviews;
         delete localOverride.cases;
@@ -1367,6 +1379,8 @@
       saveActiveCaseData();
       saveActiveReviewData();
       saveActiveFaqData();
+
+      currentClient.updatedAt = new Date().toISOString();
 
       // 1. INSTANT LOCAL OVERRIDE
       try {

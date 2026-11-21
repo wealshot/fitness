@@ -65,6 +65,9 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Invalid, missing or empty slug/clientData' });
   }
 
+  // Always update server timestamp for multi-device sync
+  clientData.updatedAt = new Date().toISOString();
+
   // Password verification
   const coachPasswords = {
     bernetskiy: ['bernetskiy26fit@'],

@@ -132,6 +132,7 @@ window.CLIENTS = {
   },
   "bernetskiy": {
     "slug": "bernetskiy",
+    "updatedAt": "2026-11-22T05:10:00.000Z",
     "brandTag": "МСМК // ОНЛАЙН-НАСТАВНИК",
     "location": "ОНЛАЙН // СНГ & МИР",
     "name": "ВЛАДИСЛАВ БЕРНЕЦКИЙ",
@@ -1507,8 +1508,8 @@ if (typeof window !== "undefined" && window.localStorage) {
       window.location.replace(window.location.pathname);
     }
 
-    // 2. Apply saved admin overrides (safe merge - preserve updated cases & reviews from server)
-    for (let i = 0; i < window.localStorage.length; i++) {
+    // 2. Multi-device sync: purge stale local overrides so edits from other devices reflect immediately!
+    for (let i = window.localStorage.length - 1; i >= 0; i--) {
       const k = window.localStorage.key(i);
       if (k && k.startsWith("pulse_override_")) {
         const targetSlug = k.replace("pulse_override_", "").toLowerCase();
@@ -1517,16 +1518,23 @@ if (typeof window !== "undefined" && window.localStorage) {
           try {
             const overrideData = JSON.parse(raw);
             const serverData = window.CLIENTS[targetSlug];
-            // Always use fresh server media & preloaded assets!
-            if (serverData.cases) {
-              delete overrideData.cases;
+            const overrideTime = overrideData.updatedAt ? new Date(overrideData.updatedAt).getTime() : 0;
+            const serverTime = serverData.updatedAt ? new Date(serverData.updatedAt).getTime() : 0;
+
+            // If server is newer OR override has no timestamp OR is older than 2 minutes (120s): PURGE IT!
+            if (!overrideTime || serverTime >= overrideTime || (Date.now() - overrideTime > 120000)) {
+              window.localStorage.removeItem(k);
+              console.log("[PULSE] Purged stale local override for:", targetSlug);
+              continue;
             }
-            if (serverData.reviews) {
-              delete overrideData.reviews;
-            }
+
+            if (serverData.cases) delete overrideData.cases;
+            if (serverData.reviews) delete overrideData.reviews;
             Object.assign(serverData, overrideData);
-            console.log("[PULSE] Applied local admin override safely for:", targetSlug);
-          } catch(e) {}
+            console.log("[PULSE] Applied fresh local admin override for:", targetSlug);
+          } catch(e) {
+            window.localStorage.removeItem(k);
+          }
         }
       }
     }
