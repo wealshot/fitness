@@ -152,6 +152,10 @@ window.CLIENTS = {
     "hasApplicationForm": true,
     "hasReviewsSection": true,
     "telegramUsername": "Bernetskiy",
+    "instagram": "bernetskiy",
+    "instagramUrl": "https://instagram.com/bernetskiy",
+    "telegramChannel": "Bernetskiy",
+    "telegramChannelUrl": "https://t.me/Bernetskiy",
     "scarcityBadge": "ОТБОР НА ВЕДЕНИЕ: СВОБОДНО 2 МЕСТА",
     "stats": [
       {
