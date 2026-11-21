@@ -11,7 +11,7 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
-  <script src="/clients.js?v=20261122_0350"></script>
+  <script src="/clients.js?v=20261122_0405"></script>
   <style>
     body { font-family: 'Inter', sans-serif; background-color: #050507; color: #f4f4f5; }
     .font-display { font-family: 'Anton', sans-serif; }
@@ -486,6 +486,61 @@
         </div>
       </section>
 
+      
+      <!-- SECTION: FAQ (ВОПРОС-ОТВЕТ) -->
+      <section class="glass-card rounded-2xl p-4 sm:p-6 mb-6">
+        <div class="flex items-center justify-between pb-3 mb-4 border-b border-white/10 gap-2">
+          <div class="flex items-center gap-2 min-w-0">
+            <span class="text-orange-500 font-mono text-sm sm:text-base font-bold shrink-0">08</span>
+            <h3 class="font-display text-base sm:text-xl uppercase tracking-wide text-white whitespace-nowrap">ВОПРОС-ОТВЕТ (FAQ)</h3>
+          </div>
+          <div class="flex items-center gap-2 shrink-0">
+            <span id="faqCountBadge" class="text-xs font-mono font-bold px-2.5 py-1 rounded-lg bg-white/5 text-zinc-400 border border-white/10 shrink-0">6/6</span>
+            <button type="button" onclick="addFaq()" class="px-2.5 sm:px-3 py-1 rounded-lg bg-orange-500 hover:bg-orange-400 text-black font-tech font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-1 cursor-pointer shadow-sm active:scale-95 shrink-0">
+              <span>+ ДОБАВИТЬ</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Horizontal FAQ Navigation -->
+        <div class="relative w-full flex items-center justify-between bg-white/5 border border-white/10 p-1.5 rounded-xl mb-4">
+          <button type="button" onclick="prevFaq()" class="h-9 w-12 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer font-bold text-base shrink-0" title="Предыдущий вопрос">
+            <span>←</span>
+          </button>
+          <div class="absolute left-1/2 -translate-x-1/2 font-tech text-sm sm:text-base text-zinc-400 px-3 flex items-center gap-2 font-bold tracking-wider select-none pointer-events-none">
+            <span class="text-white text-base sm:text-lg font-extrabold" id="faqCounterCurrent">01</span>
+            <span class="text-zinc-600 font-normal">/</span>
+            <span class="text-zinc-400 text-xs sm:text-sm font-semibold" id="faqCounterTotal">06</span>
+          </div>
+          <div class="flex items-center gap-1.5 z-10">
+            <button type="button" onclick="deleteFaq()" class="h-9 px-2.5 rounded-lg border border-red-500/20 bg-red-500/10 hover:bg-red-500/20 text-red-400 flex items-center justify-center transition-all active:scale-95 cursor-pointer text-xs font-bold gap-1" title="Удалить вопрос">
+              <span>🗑️</span>
+              <span class="hidden sm:inline">УДАЛИТЬ</span>
+            </button>
+            <button type="button" onclick="nextFaq()" class="h-9 w-12 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer font-bold text-base shrink-0" title="Следующий вопрос">
+              <span>→</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- FAQ Quick Select Pills -->
+        <div id="faqPillsList" class="flex items-center gap-1.5 overflow-x-auto pb-2 mb-4 scrollbar-thin"></div>
+
+        <!-- FAQ Item Edit Card -->
+        <div class="bg-black/30 border border-white/10 rounded-xl p-4 sm:p-5">
+          <div class="space-y-4">
+            <div>
+              <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1.5">Текст вопроса</label>
+              <input type="text" id="faqQuestionInput" oninput="saveActiveFaqData(); renderFaqPills();" class="w-full px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold bg-white/5 border border-white/10 text-white focus:outline-none focus:border-orange-500/50" placeholder="Например: Подойдёт ли программа, если у меня нет опыта?" />
+            </div>
+            <div>
+              <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1.5">Развёрнутый ответ наставника</label>
+              <textarea id="faqAnswerInput" oninput="saveActiveFaqData();" rows="4" class="w-full px-3 py-2 rounded-lg text-xs sm:text-sm bg-white/5 border border-white/10 text-zinc-200 resize-none focus:outline-none focus:border-orange-500/50" placeholder="Подробный ответ наставника..."></textarea>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- ADVANCED SERVER SYNC -->
       <details class="glass-card rounded-2xl p-5 border border-white/5 text-xs text-zinc-400">
         <summary class="cursor-pointer font-mono font-bold text-zinc-300 flex items-center justify-between">
@@ -630,6 +685,7 @@
       }
 
       renderReviews();
+      renderFaq();
 
       const savedToken = localStorage.getItem('pulse_github_token');
       if (savedToken) {
@@ -912,6 +968,123 @@
       if (badge) badge.textContent = `${totalNum}/15`;
     }
 
+    
+    // ==========================================
+    // FAQ LOGIC
+    // ==========================================
+    let activeFaqIndex = 0;
+
+    function renderFaq() {
+      if (!currentClient.faq) currentClient.faq = [];
+      const count = currentClient.faq.length;
+      if (activeFaqIndex >= count) activeFaqIndex = Math.max(0, count - 1);
+      updateFaqCounter();
+      loadActiveFaqData();
+      renderFaqPills();
+    }
+
+    function renderFaqPills() {
+      const container = document.getElementById('faqPillsList');
+      if (!container) return;
+      const list = currentClient.faq || [];
+      container.innerHTML = list.map((item, idx) => {
+        const isActive = idx === activeFaqIndex;
+        const num = String(idx + 1).padStart(2, '0');
+        const activeClass = isActive 
+          ? 'bg-orange-500 text-black border-orange-500 font-bold' 
+          : 'bg-white/5 text-zinc-400 border-white/10 hover:bg-white/10 hover:text-white';
+        const qTitle = item.question ? (item.question.length > 28 ? item.question.slice(0, 28) + '...' : item.question) : ('Вопрос ' + (idx + 1));
+        return `<button type="button" onclick="switchFaq(${idx})" class="px-2.5 py-1 rounded-lg text-xs font-mono border transition-all cursor-pointer whitespace-nowrap shrink-0 ${activeClass}">
+          ${num} // ${qTitle}
+        </button>`;
+      }).join('');
+    }
+
+    function switchFaq(index) {
+      saveActiveFaqData();
+      activeFaqIndex = index;
+      updateFaqCounter();
+      loadActiveFaqData();
+      renderFaqPills();
+    }
+
+    function prevFaq() {
+      const len = (currentClient.faq || []).length;
+      if (len <= 1) return;
+      saveActiveFaqData();
+      activeFaqIndex = (activeFaqIndex - 1 + len) % len;
+      updateFaqCounter();
+      loadActiveFaqData();
+      renderFaqPills();
+    }
+
+    function nextFaq() {
+      const len = (currentClient.faq || []).length;
+      if (len <= 1) return;
+      saveActiveFaqData();
+      activeFaqIndex = (activeFaqIndex + 1) % len;
+      updateFaqCounter();
+      loadActiveFaqData();
+      renderFaqPills();
+    }
+
+    function updateFaqCounter() {
+      const count = (currentClient.faq || []).length;
+      const curEl = document.getElementById('faqCounterCurrent');
+      const totEl = document.getElementById('faqCounterTotal');
+      const bEl = document.getElementById('faqCountBadge');
+      if (curEl) curEl.textContent = count ? String(activeFaqIndex + 1).padStart(2, '0') : '00';
+      if (totEl) totEl.textContent = String(count).padStart(2, '0');
+      if (bEl) bEl.textContent = `${count}/${count}`;
+    }
+
+    function loadActiveFaqData() {
+      const list = currentClient.faq || [];
+      const item = list[activeFaqIndex];
+      const qInput = document.getElementById('faqQuestionInput');
+      const aInput = document.getElementById('faqAnswerInput');
+      if (!item) {
+        if (qInput) qInput.value = '';
+        if (aInput) aInput.value = '';
+        return;
+      }
+      if (qInput) qInput.value = item.question || '';
+      if (aInput) aInput.value = item.answer || '';
+    }
+
+    function saveActiveFaqData() {
+      if (!currentClient.faq || !currentClient.faq[activeFaqIndex]) return;
+      const item = currentClient.faq[activeFaqIndex];
+      const qInput = document.getElementById('faqQuestionInput');
+      const aInput = document.getElementById('faqAnswerInput');
+      if (qInput) item.question = qInput.value.trim();
+      if (aInput) item.answer = aInput.value.trim();
+    }
+
+    function addFaq() {
+      saveActiveFaqData();
+      if (!currentClient.faq) currentClient.faq = [];
+      const newId = currentClient.faq.length + 1;
+      currentClient.faq.push({
+        id: newId,
+        question: "Новый вопрос?",
+        answer: "Подробный ответ наставника..."
+      });
+      activeFaqIndex = currentClient.faq.length - 1;
+      renderFaq();
+    }
+
+    function deleteFaq() {
+      const len = (currentClient.faq || []).length;
+      if (len === 0) return;
+      if (!confirm('Удалить этот вопрос из списка?')) return;
+      currentClient.faq.splice(activeFaqIndex, 1);
+      if (activeFaqIndex >= currentClient.faq.length) {
+        activeFaqIndex = Math.max(0, currentClient.faq.length - 1);
+      }
+      renderFaq();
+    }
+
     function renderReviews() {
       const count = (currentClient.reviews || []).length;
       if (activeReviewIndex >= count) activeReviewIndex = Math.max(0, count - 1);
@@ -921,6 +1094,7 @@
 
     function switchReview(index) {
       saveActiveReviewData();
+      saveActiveFaqData();
       activeReviewIndex = index;
       updateReviewCounter();
       loadActiveReviewData();
@@ -930,6 +1104,7 @@
       const len = (currentClient.reviews || []).length;
       if (len <= 1) return;
       saveActiveReviewData();
+      saveActiveFaqData();
       activeReviewIndex = (activeReviewIndex - 1 + len) % len;
       updateReviewCounter();
       loadActiveReviewData();
@@ -939,6 +1114,7 @@
       const len = (currentClient.reviews || []).length;
       if (len <= 1) return;
       saveActiveReviewData();
+      saveActiveFaqData();
       activeReviewIndex = (activeReviewIndex + 1) % len;
       updateReviewCounter();
       loadActiveReviewData();
@@ -988,6 +1164,7 @@
         return;
       }
       saveActiveReviewData();
+      saveActiveFaqData();
       const newId = (currentClient.reviews.length > 0) 
         ? Math.max(...currentClient.reviews.map(r => r.id || 0)) + 1 
         : 1;
@@ -1004,6 +1181,7 @@
       });
       activeReviewIndex = currentClient.reviews.length - 1;
       renderReviews();
+      renderFaq();
     }
 
     function deleteActiveReview() {
@@ -1017,6 +1195,7 @@
       currentClient.reviews.splice(activeReviewIndex, 1);
       activeReviewIndex = Math.max(0, activeReviewIndex - 1);
       renderReviews();
+      renderFaq();
     }
 
     function resetReviewsToServer() {
@@ -1034,6 +1213,7 @@
       } catch(e) {}
       activeReviewIndex = 0;
       renderReviews();
+      renderFaq();
       alert('Все 15 отзывов успешно синхронизированы с сервера!');
     }
 
@@ -1192,6 +1372,7 @@
       saveActiveTierData();
       saveActiveCaseData();
       saveActiveReviewData();
+      saveActiveFaqData();
 
       // 1. INSTANT LOCAL OVERRIDE
       try {
