@@ -526,7 +526,8 @@ window.CLIENTS = {
     "secondaryBtnText": "",
     "scarcityCode": "",
     "ctaButtonText": "",
-    "hasCasesSection": true
+    "hasCasesSection": true,
+    "hasFaqSection": true
   },
   "felix": {
     "slug": "felix",

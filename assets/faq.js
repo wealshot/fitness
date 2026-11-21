@@ -217,7 +217,13 @@
 
   function mountFaq() {
     const client = getClientData();
-    if (!client || !client.faq || !client.faq.length) return;
+    if (!client || client.hasFaqSection === false || !client.faq || !client.faq.length) {
+      const existingDesktop = document.getElementById('faq-section-desktop');
+      if (existingDesktop) existingDesktop.remove();
+      const existingMobile = document.getElementById('faq-section-mobile');
+      if (existingMobile) existingMobile.remove();
+      return;
+    }
 
     // 1. Mount Desktop FAQ
     const desktopContainer = document.querySelector('#root .hidden.lg\\:block');

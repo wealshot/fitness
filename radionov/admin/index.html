@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru" class="dark">
 <head>
   <meta charset="UTF-8" />
@@ -11,7 +11,7 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
-  <script src="/clients.js?v=20261122_0425"></script>
+  <script src="/clients.js?v=20261122_0456"></script>
   <style>
     body { font-family: 'Inter', sans-serif; background-color: #050507; color: #f4f4f5; }
     .font-display { font-family: 'Anton', sans-serif; }
@@ -210,7 +210,7 @@
           <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/5 text-zinc-400 whitespace-nowrap shrink-0">ВКЛ / ВЫКЛ</span>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <label class="flex items-center gap-3 p-3.5 rounded-xl bg-white/[0.02] border border-white/10 cursor-pointer hover:bg-white/[0.04] transition-all">
             <input type="checkbox" id="toggleReviewsSection" class="w-5 h-5 rounded accent-orange-500 cursor-pointer" />
             <div>
@@ -225,7 +225,14 @@
               <div class="text-xs text-zinc-400">Слайдер результатов трансформации</div>
             </div>
           </label>
-          <label class="flex items-center gap-3 p-3.5 rounded-xl bg-white/[0.02] border border-white/10 cursor-pointer hover:bg-white/[0.04] transition-all">
+                    <label class="flex items-center gap-3 p-3.5 rounded-xl bg-white/[0.02] border border-white/10 cursor-pointer hover:bg-white/[0.04] transition-all">
+            <input type="checkbox" id="toggleFaqSection" class="w-5 h-5 rounded accent-orange-500 cursor-pointer" />
+            <div>
+              <div class="text-sm font-bold text-white">Блок вопросов (FAQ)</div>
+              <div class="text-xs text-zinc-400">Часто задаваемые вопросы</div>
+            </div>
+          </label>
+<label class="flex items-center gap-3 p-3.5 rounded-xl bg-white/[0.02] border border-white/10 cursor-pointer hover:bg-white/[0.04] transition-all">
             <input type="checkbox" id="toggleApplicationForm" class="w-5 h-5 rounded accent-orange-500 cursor-pointer" />
             <div>
               <div class="text-sm font-bold text-white">Форма анкеты</div>
@@ -341,7 +348,7 @@
             <h3 class="font-display text-base sm:text-xl uppercase tracking-wide text-white truncate">КЕЙСЫ</h3>
           </div>
           <div class="flex items-center gap-2 shrink-0">
-            <span id="casesCountBadge" class="text-xs font-mono font-bold px-2.5 py-1 rounded-lg bg-white/5 text-zinc-400 border border-white/10 shrink-0">5/5</span>
+            <span id="casesCountBadge" class="text-xs font-mono font-bold px-2.5 py-1 rounded-lg bg-white/5 text-zinc-400 border border-white/10 shrink-0">10/10</span>
             <button type="button" onclick="addCase()" class="px-2.5 sm:px-3 py-1 rounded-lg bg-orange-500 hover:bg-orange-400 text-black font-tech font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-1 cursor-pointer shadow-sm active:scale-95 shrink-0">
               <span>+ ДОБАВИТЬ</span>
             </button>
@@ -523,15 +530,12 @@
           </div>
         </div>
 
-        <!-- FAQ Quick Select Pills -->
-        <div id="faqPillsList" class="flex items-center gap-1.5 overflow-x-auto pb-2 mb-4 scrollbar-thin"></div>
-
         <!-- FAQ Item Edit Card -->
         <div class="bg-black/30 border border-white/10 rounded-xl p-4 sm:p-5">
           <div class="space-y-4">
             <div>
               <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1.5">Текст вопроса</label>
-              <input type="text" id="faqQuestionInput" oninput="saveActiveFaqData(); renderFaqPills();" class="w-full px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold bg-white/5 border border-white/10 text-white focus:outline-none focus:border-orange-500/50" placeholder="Например: Подойдёт ли программа, если у меня нет опыта?" />
+              <input type="text" id="faqQuestionInput" oninput="saveActiveFaqData();" class="w-full px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold bg-white/5 border border-white/10 text-white focus:outline-none focus:border-orange-500/50" placeholder="Например: Подойдёт ли программа, если у меня нет опыта?" />
             </div>
             <div>
               <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1.5">Развёрнутый ответ наставника</label>
@@ -663,6 +667,7 @@
       // Toggles
       document.getElementById('toggleReviewsSection').checked = currentClient.hasReviewsSection !== false;
       document.getElementById('toggleCasesSection').checked = currentClient.hasCasesSection !== false;
+      document.getElementById('toggleFaqSection').checked = currentClient.hasFaqSection !== false;
       document.getElementById('toggleApplicationForm').checked = currentClient.hasApplicationForm !== false;
 
       // Stats
@@ -705,6 +710,7 @@
       if (currentEl) currentEl.textContent = String(currentNum).padStart(2, '0');
       if (totalEl) totalEl.textContent = String(totalNum).padStart(2, '0');
       if (badge) badge.textContent = `${totalNum}/5`;
+
     }
 
     function renderTiers() {
@@ -828,7 +834,9 @@
       const totalNum = cases.length;
       if (currentEl) currentEl.textContent = String(currentNum).padStart(2, '0');
       if (totalEl) totalEl.textContent = String(totalNum).padStart(2, '0');
-      if (badge) badge.textContent = `${totalNum}/5`;
+      const maxCases = Math.max(10, totalNum);
+      if (badge) badge.textContent = `${totalNum}/${maxCases}`;
+
     }
 
     function renderCases() {
@@ -918,8 +926,8 @@
 
     function addCase() {
       if (!currentClient.cases) currentClient.cases = [];
-      if (currentClient.cases.length >= 5) {
-        alert('Максимальное количество кейсов — 5.');
+      if (currentClient.cases.length >= 10) {
+        alert('Максимальное количество кейсов — 10.');
         return;
       }
       saveActiveCaseData();
@@ -983,22 +991,7 @@
       renderFaqPills();
     }
 
-    function renderFaqPills() {
-      const container = document.getElementById('faqPillsList');
-      if (!container) return;
-      const list = currentClient.faq || [];
-      container.innerHTML = list.map((item, idx) => {
-        const isActive = idx === activeFaqIndex;
-        const num = String(idx + 1).padStart(2, '0');
-        const activeClass = isActive 
-          ? 'bg-orange-500 text-black border-orange-500 font-bold' 
-          : 'bg-white/5 text-zinc-400 border-white/10 hover:bg-white/10 hover:text-white';
-        const qTitle = item.question ? (item.question.length > 28 ? item.question.slice(0, 28) + '...' : item.question) : ('Вопрос ' + (idx + 1));
-        return `<button type="button" onclick="switchFaq(${idx})" class="px-2.5 py-1 rounded-lg text-xs font-mono border transition-all cursor-pointer whitespace-nowrap shrink-0 ${activeClass}">
-          ${num} // ${qTitle}
-        </button>`;
-      }).join('');
-    }
+    function renderFaqPills() {}
 
     function switchFaq(index) {
       saveActiveFaqData();
@@ -1362,6 +1355,7 @@
 
       currentClient.hasReviewsSection = document.getElementById('toggleReviewsSection').checked;
       currentClient.hasCasesSection = document.getElementById('toggleCasesSection').checked;
+      currentClient.hasFaqSection = document.getElementById('toggleFaqSection').checked;
       currentClient.hasApplicationForm = document.getElementById('toggleApplicationForm').checked;
 
       currentClient.stats = [0, 1, 2].map(i => ({
@@ -1437,3 +1431,4 @@
   </script>
 </body>
 </html>
+
