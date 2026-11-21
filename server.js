@@ -30,6 +30,7 @@ const server = http.createServer((req, res) => {
 
   const ext = path.extname(filePath).toLowerCase();
   const contentType = MIME_TYPES[ext] || 'application/octet-stream';
+  const isCacheable = ['.jpg', '.jpeg', '.png', '.webp', '.svg', '.css', '.js'].includes(ext);
 
   fs.readFile(filePath, (err, content) => {
     if (err) {
@@ -38,7 +39,8 @@ const server = http.createServer((req, res) => {
     } else {
       res.writeHead(200, {
         'Content-Type': contentType,
-        'Access-Control-Allow-Origin': '*'
+        'Access-Control-Allow-Origin': '*',
+        'Cache-Control': isCacheable ? 'public, max-age=31536000, immutable' : 'no-cache'
       });
       res.end(content);
     }
@@ -50,7 +52,7 @@ server.listen(PORT, () => {
   console.log(`🚀 PULSE Engine запущен! Тренер: САВВА ДУЖАК`);
   console.log(`👉 Откройте: http://localhost:${PORT}/savva (или http://localhost:${PORT}/)`);
   console.log(`========================================\n`);
-  
+
   // Auto-open browser on Windows
   exec(`start http://localhost:${PORT}/savva`);
 });
