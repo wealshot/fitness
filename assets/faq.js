@@ -1,5 +1,5 @@
 /**
- * Pulse Platform - FAQ Accordion Module (v3 - Pixel-Perfect Spacing & Smooth Transitions)
+ * Pulse Platform - FAQ Accordion Module (v4 - Perfect Spacing & Distinct Card Gap)
  */
 (function() {
   // Inject dedicated FAQ styles
@@ -8,14 +8,20 @@
     styleEl.id = 'faq-accordion-styles';
     styleEl.textContent = `
       #faq-section-desktop {
-        padding-top: 100px !important;
-        padding-bottom: 90px !important;
+        padding-top: 40px !important;
+        padding-bottom: 70px !important;
       }
       #faq-section-mobile {
-        padding-top: 55px !important;
-        padding-bottom: 45px !important;
+        padding-top: 30px !important;
+        padding-bottom: 40px !important;
+      }
+      .faq-accordion-container {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 16px !important;
       }
       .faq-card {
+        margin-bottom: 0 !important;
         transition: border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
                     box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
                     background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -53,6 +59,61 @@
       }
     `;
     document.head.appendChild(styleEl);
+  } else {
+    // Update existing style element if already injected
+    const styleEl = document.getElementById('faq-accordion-styles');
+    styleEl.textContent = `
+      #faq-section-desktop {
+        padding-top: 40px !important;
+        padding-bottom: 70px !important;
+      }
+      #faq-section-mobile {
+        padding-top: 30px !important;
+        padding-bottom: 40px !important;
+      }
+      .faq-accordion-container {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 16px !important;
+      }
+      .faq-card {
+        margin-bottom: 0 !important;
+        transition: border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+                    box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+                    background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .faq-card.is-open {
+        border-color: rgba(255, 107, 0, 0.5) !important;
+        box-shadow: 0 0 35px rgba(255, 107, 0, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+        background: linear-gradient(180deg, rgba(255, 107, 0, 0.07) 0%, rgba(255, 255, 255, 0.02) 100%) !important;
+      }
+      .faq-card.is-open .faq-badge-icon {
+        border-color: rgba(255, 107, 0, 0.6) !important;
+        background-color: rgba(255, 107, 0, 0.22) !important;
+        color: #FF6B00 !important;
+        box-shadow: 0 0 20px rgba(255, 107, 0, 0.4) !important;
+      }
+      .faq-card.is-open .faq-svg-plus {
+        transform: rotate(45deg);
+      }
+      .faq-anim-grid {
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows 0.38s cubic-bezier(0.16, 1, 0.3, 1), 
+                    opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+        opacity: 0;
+      }
+      .faq-anim-grid.is-open {
+        grid-template-rows: 1fr;
+        opacity: 1;
+      }
+      .faq-anim-inner {
+        overflow: hidden;
+      }
+      .faq-svg-plus {
+        transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1), color 0.25s ease;
+      }
+    `;
   }
 
   function getClientSlug() {
@@ -89,7 +150,7 @@
       const isInitiallyOpen = (index === 0);
 
       itemsHtml += `
-        <div class="faq-card ${isInitiallyOpen ? 'is-open' : ''} border border-white/10 bg-white/[0.03] hover:bg-white/[0.05] hover:border-white/20 rounded-2xl overflow-hidden mb-3.5">
+        <div class="faq-card ${isInitiallyOpen ? 'is-open' : ''} border border-white/10 bg-white/[0.03] hover:bg-white/[0.05] hover:border-white/20 rounded-2xl overflow-hidden">
           <button type="button" class="faq-toggle w-full p-4 sm:p-5 lg:p-6 flex items-center justify-between gap-4 text-left cursor-pointer select-none group" data-faq-index="${index}">
             <div class="flex items-center gap-3.5 sm:gap-4 min-w-0">
               <span class="font-mono text-xs sm:text-sm font-black px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg border shrink-0" 
