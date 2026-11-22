@@ -796,47 +796,47 @@ window.DEFAULT_CLIENTS = {
   },
   "new": {
     "slug": "new",
-    "updatedAt": "2026-11-22T09:09:35.617Z",
-    "brandTag": "МСМК // ОНЛАЙН-НАСТАВНИК",
-    "location": "ОНЛАЙН // СНГ & МИР",
-    "name": "NEW COACH // ШАБЛОН",
-    "firstName": "NEW",
-    "lastName": "COACH",
-    "tagline": "КУЗНИЦА СПОРТСМЕНОВ 🛠️",
-    "spec": "СТРОИМ ТЕЛО ИЗ ЖЕЛЕЗА И ВИТАМИНОВ ⚡️",
-    "bio": "Строим мощное функциональное тело из железа, дисциплины и выверенной системы. Довожу до формы и спортивных разрядов без пустых обещаний.",
+    "updatedAt": "2026-11-22T11:22:38.353Z",
+    "brandTag": "// STRIDE THEORY • FITNESS STUDIO",
+    "location": "ОНЛАЙН // РОССИЯ & МИР",
+    "name": "STRIDE THEORY",
+    "firstName": "STRIDE",
+    "lastName": "THEORY",
+    "tagline": "MOVE WITH PURPOSE ⚡️",
+    "spec": "EXPERT-LED COACHING // HIGH-ENERGY COMMUNITY ⚜️",
+    "bio": "Экспертный подход, сильное комьюнити и передовая система тренировок, которая строит реальный, долговечный результат без откатов и истощения.",
     "heroImage": "/images/bernetskiy-hero.jpg",
     "heroImageStyle": {
       "objectPosition": "center 15%",
       "filter": "brightness(0.98) contrast(1.08)"
     },
-    "accentColor": "#FF6B00",
-    "accentSecondary": "#EA580C",
-    "accentDim": "rgba(255, 107, 0, 0.14)",
-    "accentGlow": "rgba(255, 107, 0, 0.45)",
+    "accentColor": "#CCFF00",
+    "accentSecondary": "#99CC00",
+    "accentDim": "rgba(204, 255, 0, 0.12)",
+    "accentGlow": "rgba(204, 255, 0, 0.4)",
     "hasApplicationForm": true,
     "hasReviewsSection": true,
-    "telegramUsername": "Bernetskiy",
-    "applicationBtnText": "ОТПРАВИТЬ АНКЕТУ В TELEGRAM",
-    "instagram": "bernetskiy",
-    "instagramUrl": "https://instagram.com/bernetskiy",
+    "telegramUsername": "StrideTheory",
+    "applicationBtnText": "BOOK A CLASS // НАЧАТЬ ТРАНСФОРМАЦИЮ",
+    "instagram": "stridetheory",
+    "instagramUrl": "https://instagram.com/stridetheory",
     "instagramLabel": "INSTAGRAM",
     "telegramChannelLabel": "ТГ-КАНАЛ",
-    "telegramChannel": "Master_fitness",
-    "telegramChannelUrl": "https://t.me/Master_fitness",
-    "scarcityBadge": "ОТБОР НА ВЕДЕНИЕ: СВОБОДНО 2 МЕСТА",
+    "telegramChannel": "stridetheory",
+    "telegramChannelUrl": "https://t.me/stridetheory",
+    "scarcityBadge": "LIMITED SPOTS // СВОБОДНО 2 МЕСТА",
     "stats": [
       {
-        "value": "15+ ЛЕТ",
-        "label": "СПОРТИВНЫЙ СТАЖ"
+        "label": "EXPERT COACHES",
+        "value": "08+ ЛЕТ"
       },
       {
-        "value": "МСМК",
-        "label": "КВАЛИФИКАЦИЯ"
+        "label": "INCLUSIVE COMMUNITY",
+        "value": "500+"
       },
       {
-        "value": "100%",
-        "label": "РЕЗУЛЬТАТИВНОСТЬ"
+        "label": "REAL RESULTS",
+        "value": "100%"
       }
     ],
     "cases": [
@@ -1115,48 +1115,50 @@ window.DEFAULT_CLIENTS = {
     ],
     "tiers": [
       {
-        "id": "tier-vlad-audit",
-        "code": "01",
-        "name": "ДИАГНОСТИКА & СИЛОВОЙ РАЗБОР",
-        "badge": "БЫСТРЫЙ СТАРТ",
-        "price": "ПО ЗАПРОСУ",
-        "period": "РАЗОВАЯ СЕССИЯ",
-        "recommendedGoal": "recomp",
+        "id": "tier-essential",
+        "code": "01 // ESSENTIAL",
+        "name": "ESSENTIAL",
+        "price": "9 900 ₽",
+        "period": "1 МЕСЯЦ",
+        "desc": "Базовый персональный протокол тренировок и питания для уверенного старта.",
+        "badge": "БАЗОВЫЙ ПЛАН",
         "features": [
-          "Анализ тренировочного объема, техники упражнений и скрытых ошибок",
-          "Индивидуальный расчет КБЖУ под набор чистой массы или сушку",
-          "План выхода из тренировочного плато без травм суставов",
-          "Личная консультация в Telegram с Владиславом (слово «Кузница»)"
+          "Индивидуальный план тренировок под ваши цели",
+          "Расчёт нормы КБЖУ и гибкая схема питания",
+          "Чат с наставником в Telegram с ответами в течение дня",
+          "Корректировка программы каждые 2 недели"
         ]
       },
       {
-        "id": "tier-vlad-coaching",
-        "code": "02",
-        "name": "ОНЛАЙН-ВЕДЕНИЕ // КУЗНИЦА СПОРТСМЕНОВ",
-        "badge": "ВЫБОР АТЛЕТОВ",
-        "price": "ИНДИВИДУАЛЬНО",
-        "period": "В МЕСЯЦ // УТОЧНЯЙТЕ В ЛС",
-        "recommendedGoal": "bulk",
+        "id": "tier-unlimited",
+        "code": "02 // UNLIMITED",
+        "name": "UNLIMITED",
+        "price": "19 900 ₽",
+        "period": "1 МЕСЯЦ",
+        "desc": "Полное персональное ведение с максимальной поддержкой и доведением до формы.",
+        "badge": "MOST POPULAR",
         "features": [
-          "Персональная программа тренировок с прогрессией весов",
-          "Сытный рацион питания без изнурительных ограничений",
-          "Видеоконтроль техники каждого подхода в тяжелых движениях",
-          "Ежедневная связь, ответы на любые вопросы и поддержка 24/7"
+          "Всё, что входит в тариф Essential",
+          "Еженедельный видео-разбор техники выполнения упражнений",
+          "Ежедневный контроль отчётов по питанию и весу",
+          "Приоритетная связь в личном чате 24/7",
+          "Доступ в закрытое комьюнити атлетов"
         ]
       },
       {
-        "id": "tier-vlad-vip",
-        "code": "03",
-        "name": "КУРС «ТЕЛО ИЗ ЖЕЛЕЗА»",
-        "badge": "МАКСИМАЛЬНЫЙ ФОКУС",
-        "price": "ИНДИВИДУАЛЬНО",
-        "period": "КУРС ДО ЦЕЛИ",
-        "recommendedGoal": "cut",
+        "id": "tier-premier",
+        "code": "03 // PREMIER",
+        "name": "PREMIER VIP",
+        "price": "39 900 ₽",
+        "period": "3 МЕСЯЦА",
+        "desc": "Премиальное наставничество «под ключ» с гарантией результата и созвонами.",
+        "badge": "PREMIER VIP",
         "features": [
-          "Тотальная трансформация физической формы и силовых кондиций",
-          "Подготовка к спортивным разрядам или соревновательному помосту",
-          "Приоритетный личный трекинг Владислава 24/7",
-          "Пожизненный фундамент силы, здоровья и уверенности в себе"
+          "Всё из тарифа Unlimited на 3 месяца вперёд",
+          "Личные созвоны 1-на-1 раз в неделю для разбора прогресса",
+          "Индивидуальный подбор нутрицевтиков и добавок",
+          "Прямой контакт с главным тренером без задержек",
+          "Гарантия результата при соблюдении протокола"
         ]
       }
     ],
