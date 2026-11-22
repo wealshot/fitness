@@ -873,8 +873,18 @@
       if (c) {
         document.getElementById('caseBeforeImg').src = c.beforeImage || '';
         document.getElementById('caseAfterImg').src = c.afterImage || '';
-        document.getElementById('caseClientName').textContent = c.clientName || ('Кейс ' + (idx + 1));
-        document.getElementById('caseStats').textContent = '⚖️ ' + (c.resultStats || '-12 кг');
+        
+        let displayName = c.clientName || ('Кейс ' + (idx + 1));
+        if (displayName.includes('//')) {
+          displayName = displayName.split('//')[1].split('(')[0].trim();
+        }
+        document.getElementById('caseClientName').textContent = displayName;
+        
+        let statsStr = c.resultStats || '-12 кг';
+        if (statsStr.includes('//')) {
+          statsStr = statsStr.split('//').pop().trim();
+        }
+        document.getElementById('caseStats').textContent = '⚖️ ' + statsStr;
         document.getElementById('caseDuration').textContent = '📅 ' + (c.duration || '12 недель');
         if (c.reviewQuote) {
           document.getElementById('caseQuote').textContent = '«' + c.reviewQuote + '»';
