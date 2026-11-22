@@ -1,757 +1,146 @@
-<!DOCTYPE html>
-<html lang="ru" class="dark scroll-smooth">
+﻿<!DOCTYPE html>
+<html lang="ru" class="dark overflow-x-hidden w-full max-w-full">
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
-  <title>КЛУБ ТРАНСФОРМАЦИИ // Персональное ведение и наставничество</title>
-  <meta name="description" content="Проект для тех, кто решительно настроен достигнуть своих спортивных целей и сохранить результат." />
+  <title>ВЛАДИСЛАВ БЕРНЕЦКИЙ — КУЗНИЦА СПОРТСМЕНОВ 🛠️</title>
+  <meta name="description"
+    content="Строим мощное функциональное тело из железа, дисциплины и выверенной системы. Довожу до формы и спортивных разрядов без пустых обещаний." />
 
-  <!-- OpenGraph Meta Tags -->
+  <!-- OpenGraph / Telegram Preview Meta Tags -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="КЛУБ ТРАНСФОРМАЦИИ // Наставничество" />
-  <meta property="og:description" content="Достижение отличной спортивной формы доступно каждому при наличии системы и наставника." />
+  <meta property="og:title" content="ВЛАДИСЛАВ БЕРНЕЦКИЙ • СТРОИМ ТЕЛО ИЗ ЖЕЛЕЗА И ВИТАМИНОВ ⚡️" />
+  <meta property="og:description"
+    content="Строим мощное функциональное тело из железа, дисциплины и выверенной системы. Довожу до формы и спортивных разрядов без пустых обещаний." />
   <meta property="og:image" content="https://fitprod.vercel.app/images/vladislav8.JPG" />
-  <meta property="og:url" content="https://fitprod.vercel.app/new" />
+  <meta property="og:url" content="https://fitprod.vercel.app/bernetskiy" />
 
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            brand: {
-              orange: '#FF6428',
-              orangeHover: '#FF7740',
-              orangeDark: '#E04F16',
-              dim: 'rgba(255, 100, 40, 0.15)',
-              glow: 'rgba(255, 100, 40, 0.35)'
-            },
-            surface: {
-              bg: '#121316',
-              card: '#191B20',
-              cardHover: '#202229',
-              cardWhite: '#FFFFFF',
-              border: 'rgba(255, 255, 255, 0.08)'
-            }
-          },
-          fontFamily: {
-            display: ['"Unbounded"', '"Plus Jakarta Sans"', 'sans-serif'],
-            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
-            mono: ['"Space Grotesk"', 'monospace']
-          }
-        }
-      }
-    }
-  </script>
-
-  <!-- Google Fonts: Unbounded & Plus Jakarta Sans -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ВЛАДИСЛАВ БЕРНЕЦКИЙ • СТРОИМ ТЕЛО ИЗ ЖЕЛЕЗА И ВИТАМИНОВ ⚡️" />
+  <meta name="twitter:description"
+    content="Строим мощное функциональное тело из железа, дисциплины и выверенной системы. Довожу до формы и спортивных разрядов без пустых обещаний." />
+  <meta name="twitter:image" content="https://fitprod.vercel.app/images/vladislav8.JPG" />
 
   <!-- Telegram WebApp Script -->
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
   <!-- Client Database (Multi-Tenant) -->
-  <script src="/clients.js?v=20261122_1100"></script>
-  <script src="/clients_defaults.js?v=20261122_1100"></script>
+  <script src="/clients.js?v=20261122_0755"></script>
+  <script src="/clients_defaults.js?v=20261122_0755"></script>
 
+  <!-- React SPA Bundle -->
+    <!-- FAQ Section Accordion Script -->
+  <script src="/assets/faq.js?v=20261122_0515"></script>
+  <script type="module" crossorigin src="/assets/index-v2.js?v=20261122_0755"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-DIMZLtAQ.css?v=20261122_0235">
+
+  <!-- Prefetch all 10 Transformation Cases and Reviews -->
+  <link rel="prefetch" as="image" href="/cases/vlad_case1_evgeniy_before.jpg" />
+  <link rel="prefetch" as="image" href="/cases/vlad_case1_evgeniy_after.jpg" />
+  <link rel="prefetch" as="image" href="/cases/vlad_case2_artem_before.jpg" />
+  <link rel="prefetch" as="image" href="/cases/vlad_case2_artem_after.jpg" />
+  <link rel="prefetch" as="image" href="/cases/vlad_case3_nn_before.jpg" />
+  <link rel="prefetch" as="image" href="/cases/vlad_case3_nn_after.jpg" />
+  <link rel="prefetch" as="image" href="/cases/vlad_case4_daria_before.jpg" />
+  <link rel="prefetch" as="image" href="/cases/vlad_case4_daria_after.jpg" />
+  <link rel="prefetch" as="image" href="/cases/vlad_case5_alina_before.jpg" />
+  <link rel="prefetch" as="image" href="/cases/vlad_case5_alina_after.jpg" />
+  <link rel="prefetch" as="image" href="/cases/vlad_case6_oleg_before.jpg" />
+  <link rel="prefetch" as="image" href="/cases/vlad_case6_oleg_after.jpg" />
+  <link rel="prefetch" as="image" href="/cases/vlad_case7_aleksey_before.jpg" />
+  <link rel="prefetch" as="image" href="/cases/vlad_case7_aleksey_after.jpg" />
+  <link rel="prefetch" as="image" href="/cases/vlad_case8_bb_before.jpg" />
+  <link rel="prefetch" as="image" href="/cases/vlad_case8_bb_after.jpg" />
+  <link rel="prefetch" as="image" href="/cases/vlad_case9_noname_before.jpg" />
+  <link rel="prefetch" as="image" href="/cases/vlad_case9_noname_after.jpg" />
+  <link rel="prefetch" as="image" href="/cases/vlad_case10_vladislav_before.jpg" />
+  <link rel="prefetch" as="image" href="/cases/vlad_case10_vladislav_after.jpg" />
+  <link rel="prefetch" as="image" href="/cases/vladislav_danya.jpg" />
+  <link rel="prefetch" as="image" href="/cases/vladislav_denis.jpg" />
+  <link rel="prefetch" as="image" href="/cases/vladislav_ignat.jpg" />
+  <link rel="prefetch" as="image" href="/cases/vladislav_sandra.jpg" />
+  <link rel="prefetch" as="image" href="/cases/vladislav_kostya.jpg" />
+  <link rel="prefetch" as="image" href="/cases/vladislav_nikita.jpg" />
+  <link rel="prefetch" as="image" href="/cases/vladislav_danil_squash.jpg" />
+
+  <!-- Background Concurrent Image Preloader -->
+  <script>
+    (function() {
+      var preloads = [
+        '/cases/vlad_case1_evgeniy_before.jpg', '/cases/vlad_case1_evgeniy_after.jpg',
+        '/cases/vlad_case2_artem_before.jpg', '/cases/vlad_case2_artem_after.jpg',
+        '/cases/vlad_case3_nn_before.jpg', '/cases/vlad_case3_nn_after.jpg',
+        '/cases/vlad_case4_daria_before.jpg', '/cases/vlad_case4_daria_after.jpg',
+        '/cases/vlad_case5_alina_before.jpg', '/cases/vlad_case5_alina_after.jpg',
+        '/cases/vlad_case6_oleg_before.jpg', '/cases/vlad_case6_oleg_after.jpg',
+        '/cases/vlad_case7_aleksey_before.jpg', '/cases/vlad_case7_aleksey_after.jpg',
+        '/cases/vlad_case8_bb_before.jpg', '/cases/vlad_case8_bb_after.jpg',
+        '/cases/vlad_case9_noname_before.jpg', '/cases/vlad_case9_noname_after.jpg',
+        '/cases/vlad_case10_vladislav_before.jpg', '/cases/vlad_case10_vladislav_after.jpg',
+        '/cases/vladislav_danya.jpg', '/cases/vladislav_denis.jpg',
+        '/cases/vladislav_ignat.jpg',
+        '/cases/vladislav_sandra.jpg', '/cases/vladislav_kostya.jpg',
+        '/cases/vladislav_nikita.jpg', '/cases/vladislav_danil_squash.jpg'
+      ];
+      for (var i = 0; i < preloads.length; i++) {
+        var img = new Image();
+        img.src = preloads[i];
+      }
+    })();
+  </script>
   <style>
-    body {
-      background-color: #121316;
-      color: #F4F4F6;
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      overflow-x: hidden;
-      -webkit-tap-highlight-color: transparent;
+    .case-tabs-grid {
+      display: grid !important;
+      grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+      gap: 8px !important;
+      width: 100% !important;
     }
 
-    /* Modern Russian Cyrillic display font */
-    .font-club {
-      font-family: 'Unbounded', sans-serif;
-      font-weight: 800;
-      letter-spacing: -0.02em;
+    @media (min-width: 1024px) {
+      .case-tabs-grid {
+        grid-template-columns: repeat(10, minmax(0, 1fr)) !important;
+      }
     }
 
-    /* Starburst Sticker Badge */
-    .sticker-star {
-      background: #FFFFFF;
-      color: #121316;
-      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    .case-tabs-mobile-grid {
+      display: grid !important;
+      grid-template-columns: repeat(10, minmax(0, 1fr)) !important;
+      gap: 3px !important;
+      width: 100% !important;
     }
 
-    /* Circular Badge */
-    .sticker-circle {
-      border-radius: 9999px;
-      box-shadow: 0 4px 15px rgba(255, 100, 40, 0.4);
+    .case-slider-box {
+      height: 420px;
     }
 
-    .no-scrollbar::-webkit-scrollbar {
-      display: none;
-    }
-    .no-scrollbar {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
+    @media (min-width: 1024px) {
+      .case-slider-box {
+        height: 620px !important;
+        max-height: 82vh;
+      }
     }
 
-    /* Warm orange ambient backlight */
-    .orange-ambient {
-      background: radial-gradient(circle at 50% 0%, rgba(255, 100, 40, 0.22) 0%, transparent 60%);
+    .slider-hint-pill {
+      position: absolute !important;
+      bottom: 14px !important;
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+      white-space: nowrap !important;
+      z-index: 20 !important;
+      pointer-events: none !important;
     }
   </style>
 </head>
 
-<body class="min-h-screen flex flex-col bg-[#121316] text-zinc-100 antialiased selection:bg-[#FF6428] selection:text-white">
-
-  <!-- TOP HEADER (MATCHING REFERENCE NAVBAR) -->
-  <header class="w-full max-w-xl mx-auto px-4 pt-4 pb-2 flex items-center justify-between">
-    <div class="flex items-center gap-2">
-      <div class="w-7 h-7 rounded-full bg-[#FF6428] flex items-center justify-center text-white font-extrabold text-xs">
-        ⚡
-      </div>
-      <span class="text-xs font-mono font-bold tracking-wider text-zinc-300 uppercase" id="navCoachName">ВЛАДИСЛАВ БЕРНЕЦКИЙ</span>
-    </div>
-
-    <!-- Navigation Pills -->
-    <nav class="hidden sm:flex items-center gap-4 text-xs font-medium text-zinc-400">
-      <button onclick="switchTab('cases')" class="hover:text-white transition-colors cursor-pointer">О клубе</button>
-      <button onclick="switchTab('diagnostic')" class="hover:text-white transition-colors cursor-pointer">Диагностика</button>
-      <button onclick="switchTab('tiers')" class="hover:text-white transition-colors cursor-pointer">Тарифы</button>
-    </nav>
-
-    <!-- Socials / Contacts -->
-    <div class="flex items-center gap-2">
-      <a id="linkTg" href="https://t.me/Master_fitness" target="_blank" class="w-8 h-8 rounded-full bg-white/10 hover:bg-[#FF6428] flex items-center justify-center text-white text-xs transition-colors">
-        ✈
-      </a>
-      <a id="linkIg" href="https://instagram.com/bernetskiy" target="_blank" class="w-8 h-8 rounded-full bg-white/10 hover:bg-[#FF6428] flex items-center justify-center text-white text-xs transition-colors">
-        📷
-      </a>
-    </div>
-  </header>
-
-  <!-- ========================================================================= -->
-  <!-- MAIN TAPLINK APP CONTAINER (Max width 480px, exactly like reference!) -->
-  <!-- ========================================================================= -->
-  <main class="w-full max-w-md sm:max-w-lg mx-auto px-3 sm:px-4 space-y-4 pb-24">
-
-    <!-- 1. HERO CARD (EXACT COPY OF TOP HERO IN REFERENCE!) -->
-    <section class="bg-[#191B20] text-white rounded-[32px] p-6 sm:p-7 relative overflow-hidden border border-white/[0.08] shadow-2xl orange-ambient">
-      
-      <!-- Top Graphic Stickers Row (Starburst, Checkmark, Dumbbell) -->
-      <div class="flex items-center justify-between mb-4 relative z-20">
-        <!-- Orange Checkmark Sticker -->
-        <div class="w-8 h-8 rounded-full bg-[#FF6428] flex items-center justify-center text-white font-extrabold text-sm shadow-md">
-          ✓
-        </div>
-
-        <!-- White Starburst Sticker: "тело и форма вашей мечты" -->
-        <div class="px-3.5 py-1.5 rounded-2xl bg-white text-black text-[10px] font-extrabold uppercase tracking-tight flex items-center gap-1 shadow-lg transform -rotate-2">
-          <span>⭐</span>
-          <span>тело и форма вашей мечты</span>
-        </div>
-
-        <!-- Orange Thumbs-up / Experience Sticker -->
-        <div class="w-8 h-8 rounded-full bg-[#FF6428] flex items-center justify-center text-white text-sm shadow-md">
-          👍
-        </div>
-      </div>
-
-      <!-- Main Headline: "КЛУБ ДЛЯ СЕБЯШНИКИ" -->
-      <div class="relative z-20 mt-1 mb-4">
-        <h1 class="font-club text-2xl sm:text-3xl text-white uppercase leading-[1.08] tracking-tight">
-          КЛУБ ДЛЯ <br />
-          <span class="text-white">СЕБЯШНИКИ</span>
-        </h1>
-        <div class="text-[#FF6428] font-bold text-xs sm:text-sm mt-1" id="heroSubtitle">
-          от Владислава Бернецкого
-        </div>
-      </div>
-
-      <!-- Experience Badge on Right -->
-      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-[11px] font-mono text-zinc-300 mb-5">
-        <span class="text-[#FF6428]">🏋️</span>
-        <span>от тренера с 8+ годами практики</span>
-      </div>
-
-      <!-- CTA Button: "Хочу попасть в клуб →" -->
-      <button onclick="switchTab('application')" class="w-full py-4 rounded-full bg-[#FF6428] hover:bg-[#FF7740] text-white font-club text-xs uppercase tracking-wider shadow-[0_4px_25px_rgba(255,100,40,0.45)] transition-all active:scale-95 cursor-pointer flex items-center justify-center gap-2">
-        <span>Хочу попасть в клуб</span>
-        <span class="text-base">→</span>
-      </button>
-    </section>
-
-    <!-- 2. SPLIT FEATURE CARD (LEFT TEXT + ATHLETE DIAGRAM FROM REFERENCE) -->
-    <section class="bg-[#191B20] text-white rounded-[32px] p-6 sm:p-7 border border-white/[0.08] shadow-xl">
-      <!-- Title with orange highlight -->
-      <h2 class="font-club text-base sm:text-lg text-white leading-snug mb-3">
-        Проект для тех, кто решительно настроен <span class="text-[#FF6428]">достигнуть своих спортивных целей</span> и сохранить результат!
-      </h2>
-      <p class="text-zinc-400 text-xs leading-relaxed mb-6">
-        Этот клуб — логическая система, которая на протяжении 8 лет доказывает: достижение отличной спортивной формы доступно любому при наличии четкого алгоритма.
-      </p>
-
-      <!-- Athlete Diagram Card with 4 Nodes -->
-      <div class="relative rounded-2xl overflow-hidden bg-black/40 border border-white/5 aspect-[16/10] flex items-center justify-center p-4">
-        <img src="/images/vladislav8.JPG" alt="Runner" class="absolute inset-0 w-full h-full object-cover object-top opacity-35 filter grayscale contrast-125" />
-        <div class="absolute inset-0 bg-gradient-to-t from-[#191B20] via-transparent to-transparent"></div>
-
-        <!-- 4 Diagram Nodes with Orange Line Connectors -->
-        <div class="relative z-10 w-full h-full flex flex-col justify-between p-2">
-          <div class="flex justify-between items-center">
-            <span class="px-2.5 py-1 rounded-lg bg-black/75 border border-[#FF6428]/50 text-[10px] font-mono text-white">
-              ● Дисциплина
-            </span>
-            <span class="px-2.5 py-1 rounded-lg bg-black/75 border border-[#FF6428]/50 text-[10px] font-mono text-white">
-              ● Мотивация
-            </span>
-          </div>
-          <div class="flex justify-between items-center">
-            <span class="px-2.5 py-1 rounded-lg bg-black/75 border border-[#FF6428]/50 text-[10px] font-mono text-white">
-              ● Результат
-            </span>
-            <span class="px-2.5 py-1 rounded-lg bg-black/75 border border-[#FF6428]/50 text-[10px] font-mono text-white">
-              ● Здоровье
-            </span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========================================================================= -->
-    <!-- STICKY COMPACT TAB CONTROLLER (PRESERVING COMPACT MOBILE EXPERIENCE!) -->
-    <!-- ========================================================================= -->
-    <div class="sticky top-2 z-40 bg-[#121316]/95 backdrop-blur-xl py-1.5">
-      <div class="bg-[#191B20] border border-white/10 rounded-2xl p-1 grid grid-cols-4 gap-1 shadow-2xl">
-        <button id="btnTab-cases" onclick="switchTab('cases')" class="tab-pill py-2.5 px-0.5 text-center font-bold text-[10px] sm:text-xs uppercase tracking-wider rounded-xl transition-all flex items-center justify-center gap-1 cursor-pointer bg-[#FF6428] text-white font-extrabold shadow-[0_0_15px_rgba(255,100,40,0.4)]">
-          <span class="opacity-80 text-[9px] font-mono">01</span>
-          <span>КЕЙСЫ</span>
-        </button>
-        <button id="btnTab-diagnostic" onclick="switchTab('diagnostic')" class="tab-pill py-2.5 px-0.5 text-center font-bold text-[10px] sm:text-xs uppercase tracking-wider rounded-xl transition-all flex items-center justify-center gap-1 cursor-pointer text-zinc-400 hover:text-white">
-          <span class="opacity-50 text-[9px] font-mono">02</span>
-          <span>КБЖУ</span>
-        </button>
-        <button id="btnTab-tiers" onclick="switchTab('tiers')" class="tab-pill py-2.5 px-0.5 text-center font-bold text-[10px] sm:text-xs uppercase tracking-wider rounded-xl transition-all flex items-center justify-center gap-1 cursor-pointer text-zinc-400 hover:text-white">
-          <span class="opacity-50 text-[9px] font-mono">03</span>
-          <span>ТАРИФЫ</span>
-        </button>
-        <button id="btnTab-application" onclick="switchTab('application')" class="tab-pill py-2.5 px-0.5 text-center font-bold text-[10px] sm:text-xs uppercase tracking-wider rounded-xl transition-all flex items-center justify-center gap-1 cursor-pointer text-zinc-400 hover:text-white">
-          <span class="opacity-50 text-[9px] font-mono">04</span>
-          <span>АНКЕТА</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- ========================================================================= -->
-    <!-- TAB 01: "ДОСТИЖЕНИЯ ТЕХ, КТО УЖЕ С НАМИ!" (CASES SLIDER & GALLERY) -->
-    <!-- ========================================================================= -->
-    <div id="view-cases" class="tab-view space-y-4">
-      <div class="bg-[#191B20] text-white rounded-[32px] p-6 sm:p-7 border border-white/[0.08] shadow-xl">
-        <h2 class="font-club text-lg sm:text-xl text-white leading-tight mb-2">
-          Достижения тех, кто уже с нами!
-        </h2>
-        <p class="text-zinc-400 text-xs mb-4">Нажмите на подопечного и перетягивайте шторку для просмотра результата.</p>
-
-        <!-- Case selection pills -->
-        <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-2" id="caseTabsContainer">
-          <!-- Injected via JS -->
-        </div>
-
-        <!-- Interactive Slider Box -->
-        <div class="relative w-full aspect-[4/5] rounded-2xl overflow-hidden select-none bg-black cursor-ew-resize border border-white/10 my-3" id="sliderContainer">
-          <img id="caseImgAfter" src="/cases/vlad_case1_evgeniy_after.jpg" alt="После" class="absolute inset-0 w-full h-full object-cover pointer-events-none" />
-          <div class="absolute top-3 right-3 z-20 px-3 py-1 rounded-full bg-black/80 text-[#FF6428] font-mono text-[10px] font-bold">ПОСЛЕ</div>
-
-          <div id="caseBeforeWrapper" class="absolute inset-0 w-full h-full overflow-hidden" style="clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);">
-            <img id="caseImgBefore" src="/cases/vlad_case1_evgeniy_before.jpg" alt="До" class="absolute inset-0 w-full h-full object-cover pointer-events-none" />
-            <div class="absolute top-3 left-3 z-20 px-3 py-1 rounded-full bg-black/80 text-white font-mono text-[10px] font-bold">ДО</div>
-          </div>
-
-          <div id="sliderHandle" class="absolute top-0 bottom-0 z-30 w-0.5 bg-[#FF6428]" style="left: 50%; transform: translateX(-50%);">
-            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-[#FF6428] text-white font-extrabold flex items-center justify-center shadow-lg text-[10px]">
-              ↔
-            </div>
-          </div>
-        </div>
-
-        <!-- Case Details Summary (as caption in reference) -->
-        <div class="p-4 rounded-2xl bg-white/[0.03] border border-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-          <div>
-            <div class="font-bold text-white text-sm" id="caseClientName">Евгений</div>
-            <div class="text-[#FF6428] font-mono text-xs font-bold mt-0.5" id="caseResultStats">
-              До: 150г углей (5 июля) / После: 350г углей (-14 кг)
-            </div>
-          </div>
-          <button onclick="switchTab('application')" class="px-4 py-2 rounded-full bg-[#FF6428] hover:bg-[#FF7740] text-white font-bold text-xs uppercase tracking-wider self-start sm:self-auto cursor-pointer">
-            Хочу так же →
-          </button>
-        </div>
-      </div>
-
-      <!-- AUDIENCE PROBLEM CARDS (FROM TOP RIGHT OF REFERENCE) -->
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
-        <div class="p-4 rounded-2xl bg-[#191B20] border border-white/5 text-xs text-zinc-300 leading-snug">
-          <div class="text-[#FF6428] font-bold text-sm mb-1.5">01 // Знания</div>
-          Понимать, что происходит с организмом во время тренировок, как строится питание и как это всё грамотно настраивать.
-        </div>
-        <div class="p-4 rounded-2xl bg-[#191B20] border border-[#FF6428]/30 text-xs text-zinc-200 leading-snug shadow-[0_0_15px_rgba(255,100,40,0.15)]">
-          <div class="text-[#FF6428] font-bold text-sm mb-1.5">02 // Здоровье</div>
-          Не «результат любой ценой», а бережная забота о здоровье, суставах и сохранение формы навсегда.
-        </div>
-        <div class="p-4 rounded-2xl bg-[#191B20] border border-white/5 text-xs text-zinc-300 leading-snug">
-          <div class="text-[#FF6428] font-bold text-sm mb-1.5">03 // Окружение</div>
-          Круг сильных единомышленников, идущих к лучшей физической форме без выгорания и срывов.
-        </div>
-      </div>
-
-      <!-- ABOUT THE CLUB & GOAL PILLS (FROM BOTTOM LEFT OF REFERENCE) -->
-      <div class="bg-[#191B20] text-white rounded-[32px] p-6 sm:p-7 border border-white/[0.08] shadow-xl">
-        <h3 class="font-club text-base sm:text-lg text-white mb-2">
-          Клуб «ДляСебяшники»
-        </h3>
-        <p class="text-zinc-400 text-xs leading-relaxed mb-4">
-          Это не марафон на выживание и не временная диета. Это мотивационно-образовательное сообщество, где вы получаете отработанные годами алгоритмы для достижения тела мечты.
-        </p>
-
-        <!-- Goal Selection Interactive Pills -->
-        <div class="flex flex-wrap gap-2 pt-1">
-          <span class="px-3 py-2 rounded-xl bg-black/40 border border-white/10 hover:border-[#FF6428] text-xs font-medium text-zinc-200 cursor-pointer transition-colors">
-            🔥 Хотите похудеть?
-          </span>
-          <span class="px-3 py-2 rounded-xl bg-black/40 border border-white/10 hover:border-[#FF6428] text-xs font-medium text-zinc-200 cursor-pointer transition-colors">
-            ⚖️ Выровнять пропорции?
-          </span>
-          <span class="px-3 py-2 rounded-xl bg-black/40 border border-white/10 hover:border-[#FF6428] text-xs font-medium text-zinc-200 cursor-pointer transition-colors">
-            💪 Набрать мышечную массу?
-          </span>
-          <span class="px-3 py-2 rounded-xl bg-black/40 border border-white/10 hover:border-[#FF6428] text-xs font-medium text-zinc-200 cursor-pointer transition-colors">
-            🥗 Узнать правила рациона
-          </span>
-          <span class="px-3 py-2 rounded-xl bg-black/40 border border-white/10 hover:border-[#FF6428] text-xs font-medium text-zinc-200 cursor-pointer transition-colors">
-            📋 Подобрать программы тренировок
-          </span>
-        </div>
-      </div>
-
-      <!-- ATMOSPHERE VIDEO CARD (FROM BOTTOM RIGHT OF REFERENCE) -->
-      <div class="bg-[#191B20] text-white rounded-[32px] p-6 sm:p-7 border border-white/[0.08] shadow-xl space-y-4">
-        <div>
-          <h3 class="font-club text-base sm:text-lg text-white mb-1.5 leading-snug">
-            Почувствуйте атмосферу клуба уже сейчас!
-          </h3>
-          <p class="text-zinc-400 text-xs leading-relaxed">
-            Посмотрите вводный урок, чтобы узнать, каких целей можно достигнуть в команде и как устроено сопровождение.
-          </p>
-        </div>
-
-        <div class="relative rounded-2xl overflow-hidden aspect-video bg-black/60 border border-white/10 flex items-center justify-center group cursor-pointer" onclick="switchTab('application')">
-          <img src="/images/vladislav8.JPG" alt="Preview" class="absolute inset-0 w-full h-full object-cover opacity-40 filter grayscale group-hover:scale-105 transition-transform duration-500" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-          
-          <!-- Play Button (Orange Triangle in Badge) -->
-          <div class="relative z-10 w-14 h-14 rounded-full bg-[#FF6428] text-white flex items-center justify-center text-xl shadow-[0_0_30px_rgba(255,100,40,0.6)] group-hover:scale-110 transition-transform">
-            ▶
-          </div>
-          <span class="absolute bottom-3 left-4 text-[11px] font-mono text-zinc-300">Вводный видеоурок // 4 мин</span>
-        </div>
-
-        <button onclick="switchTab('application')" class="w-full py-3.5 rounded-full bg-[#FF6428] hover:bg-[#FF7740] text-white font-club text-xs uppercase tracking-wider shadow-md transition-all">
-          Получить доступ →
-        </button>
-      </div>
-    </div>
-
-    <!-- ========================================================================= -->
-    <!-- TAB 02: ИНТЕРАКТИВНАЯ ДИАГНОСТИКА & КБЖУ -->
-    <!-- ========================================================================= -->
-    <div id="view-diagnostic" class="tab-view hidden space-y-4">
-      <div class="bg-[#191B20] text-white rounded-[32px] p-6 border border-white/[0.08] shadow-xl">
-        <h2 class="font-club text-lg sm:text-xl text-white mb-2">
-          Интерактивный расчёт КБЖУ
-        </h2>
-        <p class="text-zinc-400 text-xs mb-5">Калькулятор нормы калорий и макронутриентов под ваши параметры.</p>
-
-        <div class="space-y-4">
-          <div class="p-3.5 rounded-2xl bg-black/40 border border-white/5">
-            <div class="flex justify-between text-xs font-mono mb-1">
-              <span class="text-zinc-400">ТЕКУЩИЙ ВЕС</span>
-              <span class="text-[#FF6428] font-bold" id="val-weight">85 кг</span>
-            </div>
-            <input type="range" id="input-weight" min="45" max="140" value="85" oninput="updateCalc()" class="w-full accent-[#FF6428]" />
-          </div>
-
-          <div class="p-3.5 rounded-2xl bg-black/40 border border-white/5">
-            <div class="flex justify-between text-xs font-mono mb-1">
-              <span class="text-zinc-400">ЦЕЛЕВОЙ ВЕС</span>
-              <span class="text-[#FF6428] font-bold" id="val-targetWeight">76 кг</span>
-            </div>
-            <input type="range" id="input-targetWeight" min="45" max="140" value="76" oninput="updateCalc()" class="w-full accent-[#FF6428]" />
-          </div>
-
-          <div class="p-3.5 rounded-2xl bg-black/40 border border-white/5">
-            <div class="flex justify-between text-xs font-mono mb-1">
-              <span class="text-zinc-400">РОСТ</span>
-              <span class="text-[#FF6428] font-bold" id="val-height">182 см</span>
-            </div>
-            <input type="range" id="input-height" min="140" max="210" value="182" oninput="updateCalc()" class="w-full accent-[#FF6428]" />
-          </div>
-        </div>
-
-        <div class="mt-6 p-5 rounded-2xl bg-[#121316] border border-[#FF6428]/40 shadow-lg">
-          <div class="text-[10px] font-mono uppercase text-zinc-400 font-bold">СУТОЧНАЯ НОРМА КАЛОРИЙ</div>
-          <div class="text-3xl font-club text-[#FF6428] mt-1" id="res-calories">2 180 ккал</div>
-          <div class="grid grid-cols-3 gap-2 mt-4 pt-3 border-t border-white/10 text-center text-xs">
-            <div><span class="text-zinc-400 text-[10px] block">БЕЛКИ</span><strong id="res-protein" class="text-white">187г</strong></div>
-            <div><span class="text-zinc-400 text-[10px] block">ЖИРЫ</span><strong id="res-fat" class="text-white">76г</strong></div>
-            <div><span class="text-zinc-400 text-[10px] block">УГЛЕВОДЫ</span><strong id="res-carbs" class="text-white">187г</strong></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ========================================================================= -->
-    <!-- TAB 03: "ЧТО ЕЩЕ БУДЕТ В КЛУБЕ? & ТАРИФЫ" (EXACT COPY OF RIGHT SCREEN) -->
-    <!-- ========================================================================= -->
-    <div id="view-tiers" class="tab-view hidden space-y-4">
-      
-      <!-- "ЧТО ЕЩЕ БУДЕТ В КЛУБЕ?" LESSON PREVIEW CARDS (from reference!) -->
-      <div class="bg-[#191B20] text-white rounded-[32px] p-6 border border-white/[0.08] shadow-xl">
-        <h2 class="font-club text-lg sm:text-xl text-white mb-4">
-          Что еще будет в клубе?
-        </h2>
-
-        <!-- 3 Cards (Orange, White, Dark) as in reference! -->
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-          <!-- CARD 1: ORANGE BACKGROUND -->
-          <div class="bg-[#FF6428] text-white rounded-2xl p-4 flex flex-col justify-between shadow-lg">
-            <div>
-              <div class="flex items-center justify-between mb-3">
-                <span class="text-[10px] font-mono uppercase opacity-90">1 урок</span>
-                <span class="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center text-xs">👤</span>
-              </div>
-              <h3 class="font-bold text-sm leading-tight mb-1">Общие сведения</h3>
-              <p class="text-[11px] opacity-90 leading-tight">Важные настройки и действия перед стартом</p>
-            </div>
-          </div>
-
-          <!-- CARD 2: WHITE BACKGROUND -->
-          <div class="bg-white text-black rounded-2xl p-4 flex flex-col justify-between shadow-lg">
-            <div>
-              <div class="flex items-center justify-between mb-3">
-                <span class="text-[10px] font-mono uppercase text-zinc-500 font-bold">2 урок</span>
-                <span class="w-6 h-6 rounded-full bg-black/10 flex items-center justify-center text-xs">👤</span>
-              </div>
-              <h3 class="font-bold text-sm leading-tight mb-1 text-black">Определение физических параметров</h3>
-              <p class="text-[11px] text-zinc-600 leading-tight">Важные настройки и действия перед стартом</p>
-            </div>
-          </div>
-
-          <!-- CARD 3: DARK CHARCOAL BACKGROUND -->
-          <div class="bg-[#121316] text-white rounded-2xl p-4 flex flex-col justify-between border border-white/10 shadow-lg">
-            <div>
-              <div class="flex items-center justify-between mb-3">
-                <span class="text-[10px] font-mono uppercase text-zinc-400">3 урок</span>
-                <span class="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center text-xs">👤</span>
-              </div>
-              <h3 class="font-bold text-sm leading-tight mb-1">Тренировочный протокол и техника</h3>
-              <p class="text-[11px] text-zinc-400 leading-tight">Пошаговое внедрение нагрузки без травм</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- TARIFF CARDS SECTION (3 TIERS) -->
-      <div class="space-y-3 pt-2">
-        <h2 class="font-club text-xl text-white">
-          Форматы участия
-        </h2>
-
-        <!-- Tier 1: Старт -->
-        <div class="bg-[#191B20] text-white rounded-[28px] p-5 border border-white/5 flex flex-col justify-between shadow-md">
-          <div class="flex justify-between items-start mb-2">
-            <div>
-              <h3 class="font-bold text-base text-white">Тариф «Старт»</h3>
-              <div class="text-xs text-zinc-400 mt-1">• Доступ к клубу • План питания • База знаний</div>
-            </div>
-            <div class="text-right">
-              <span class="font-club text-xl text-white">9 900 ₽</span>
-              <div class="text-[10px] text-zinc-500 font-mono">1 МЕСЯЦ</div>
-            </div>
-          </div>
-          <button onclick="selectTierAndGoToApp('Тариф «Старт»')" class="w-full mt-3 py-3 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-white font-bold text-xs uppercase tracking-wider transition-all">
-            Выбрать Старт →
-          </button>
-        </div>
-
-        <!-- Tier 2: Продвинутый (Рекомендуемый) -->
-        <div class="bg-[#191B20] text-white rounded-[28px] p-5 border-2 border-[#FF6428] shadow-[0_0_25px_rgba(255,100,40,0.25)] flex flex-col justify-between relative">
-          <div class="absolute -top-3 right-6 px-3 py-0.5 rounded-full bg-[#FF6428] text-white font-extrabold text-[9px] uppercase tracking-wider">
-            ХИТ ВЫБОРА
-          </div>
-          <div class="flex justify-between items-start mb-2 mt-1">
-            <div>
-              <h3 class="font-bold text-base text-white">Тариф «Продвинутый»</h3>
-              <div class="text-xs text-zinc-300 mt-1">• Чат 24/7 • Проверка техники по видео • Отчёты</div>
-            </div>
-            <div class="text-right">
-              <span class="font-club text-xl text-[#FF6428]">19 900 ₽</span>
-              <div class="text-[10px] text-zinc-400 font-mono">1 МЕСЯЦ</div>
-            </div>
-          </div>
-          <button onclick="selectTierAndGoToApp('Тариф «Продвинутый»')" class="w-full mt-3 py-3 rounded-full bg-[#FF6428] hover:bg-[#FF7740] text-white font-extrabold text-xs uppercase tracking-wider shadow-md transition-all">
-            Выбрать Продвинутый →
-          </button>
-        </div>
-
-        <!-- Tier 3: VIP -->
-        <div class="bg-[#191B20] text-white rounded-[28px] p-5 border border-white/5 flex flex-col justify-between shadow-md">
-          <div class="flex justify-between items-start mb-2">
-            <div>
-              <h3 class="font-bold text-base text-white">Тариф «VIP Наставничество»</h3>
-              <div class="text-xs text-zinc-400 mt-1">• Личные созвоны 1-на-1 • Доведение до формы</div>
-            </div>
-            <div class="text-right">
-              <span class="font-club text-xl text-white">39 900 ₽</span>
-              <div class="text-[10px] text-zinc-500 font-mono">3 МЕСЯЦА</div>
-            </div>
-          </div>
-          <button onclick="selectTierAndGoToApp('Тариф «VIP»')" class="w-full mt-3 py-3 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-white font-bold text-xs uppercase tracking-wider transition-all">
-            Выбрать VIP →
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- ========================================================================= -->
-    <!-- TAB 04: АНКЕТА ЗАПИСИ (ФОРМА) -->
-    <!-- ========================================================================= -->
-    <div id="view-application" class="tab-view hidden space-y-4">
-      <div class="bg-[#191B20] text-white rounded-[32px] p-6 sm:p-7 border border-white/[0.08] shadow-2xl">
-        <h2 class="font-club text-xl text-white mb-2">
-          Записаться в клуб
-        </h2>
-        <p class="text-zinc-400 text-xs mb-5">Заполните поля, и наставник свяжется с вами в Telegram.</p>
-
-        <form id="appForm" onsubmit="submitApplication(event)" class="space-y-4">
-          <div>
-            <label class="block text-[11px] font-mono uppercase tracking-wider text-zinc-400 mb-1">ВАШЕ ИМЯ *</label>
-            <input type="text" id="app-name" required placeholder="Имя" class="w-full px-4 py-3 rounded-2xl bg-black/40 border border-white/10 text-white text-sm focus:outline-none focus:border-[#FF6428]" />
-          </div>
-
-          <div>
-            <label class="block text-[11px] font-mono uppercase tracking-wider text-zinc-400 mb-1">TELEGRAM @USERNAME ИЛИ ТЕЛЕФОН *</label>
-            <input type="text" id="app-contact" required placeholder="@username или +7..." class="w-full px-4 py-3 rounded-2xl bg-black/40 border border-white/10 text-white text-sm focus:outline-none focus:border-[#FF6428]" />
-          </div>
-
-          <div>
-            <label class="block text-[11px] font-mono uppercase tracking-wider text-zinc-400 mb-1">ТАРИФ</label>
-            <select id="app-tier" class="w-full px-4 py-3 rounded-2xl bg-[#121316] border border-white/10 text-white text-sm font-semibold focus:outline-none">
-              <option value="Тариф «Продвинутый» (19 900 ₽)">Тариф «Продвинутый» — 19 900 ₽ (ХИТ)</option>
-              <option value="Тариф «Старт» (9 900 ₽)">Тариф «Старт» — 9 900 ₽</option>
-              <option value="Тариф «VIP» (39 900 ₽)">Тариф «VIP» — 39 900 ₽</option>
-            </select>
-          </div>
-
-          <div>
-            <label class="block text-[11px] font-mono uppercase tracking-wider text-zinc-400 mb-1">ЦЕЛЬ И ТРЕНИРОВОЧНЫЙ ОПЫТ</label>
-            <textarea id="app-goal" rows="2" placeholder="Ваша цель..." class="w-full px-4 py-3 rounded-2xl bg-black/40 border border-white/10 text-white text-sm focus:outline-none"></textarea>
-          </div>
-
-          <button type="submit" class="w-full py-4 rounded-full bg-[#FF6428] hover:bg-[#FF7740] text-white font-club text-xs uppercase tracking-wider shadow-[0_4px_25px_rgba(255,100,40,0.45)] active:scale-95 transition-all">
-            ОТПРАВИТЬ АНКЕТУ В TELEGRAM →
-          </button>
-        </form>
-      </div>
-    </div>
-
-    <!-- 3. AUTHOR / COACH CARD ("АВТОР КЛУБА ВЛАДИСЛАВ БЕРНЕЦКИЙ") -->
-    <section class="bg-[#191B20] text-white rounded-[32px] p-6 sm:p-7 border border-white/[0.08] shadow-xl space-y-4">
-      <div class="flex items-center gap-4">
-        <div class="w-16 h-16 rounded-2xl overflow-hidden border border-[#FF6428] shrink-0">
-          <img src="/images/vladislav8.JPG" alt="Coach" class="w-full h-full object-cover object-top" />
-        </div>
-        <div>
-          <div class="text-[10px] font-mono text-[#FF6428] uppercase tracking-wider font-bold">АВТОР КЛУБА</div>
-          <h3 class="font-club text-base sm:text-lg text-white" id="authorName">Владислав Бернецкий</h3>
-        </div>
-      </div>
-
-      <div class="space-y-2.5 pt-2">
-        <div class="p-3.5 rounded-2xl bg-black/30 border border-white/5 flex items-start gap-3">
-          <span class="text-base text-[#FF6428]">⭐</span>
-          <div class="text-xs text-zinc-300">
-            <strong>240+ подготовленных подопечных</strong> по всему миру с доказанным результатом.
-          </div>
-        </div>
-        <div class="p-3.5 rounded-2xl bg-black/30 border border-white/5 flex items-start gap-3">
-          <span class="text-base text-[#FF6428]">🎓</span>
-          <div class="text-xs text-zinc-300">
-            <strong>Автор выверенной системы</strong> рекомпозиции и силового прогресса без жестких диет.
-          </div>
-        </div>
-        <div class="p-3.5 rounded-2xl bg-black/30 border border-white/5 flex items-start gap-3">
-          <span class="text-base text-[#FF6428]">👥</span>
-          <div class="text-xs text-zinc-300">
-            <strong>Закрытое сообщество</strong> с поддержкой 24/7 и видео-разборами техники.
-          </div>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- JAVASCRIPT LOGIC -->
-  <script>
-    let currentClient = null;
-    let activeCaseIndex = 0;
-
-    function switchTab(tabId) {
-      document.querySelectorAll('.tab-view').forEach(el => el.classList.add('hidden'));
-      const activeEl = document.getElementById('view-' + tabId);
-      if (activeEl) activeEl.classList.remove('hidden');
-
-      document.querySelectorAll('.tab-pill').forEach(btn => {
-        btn.className = 'tab-pill py-2.5 px-0.5 text-center font-bold text-[10px] sm:text-xs uppercase tracking-wider rounded-xl transition-all flex items-center justify-center gap-1 cursor-pointer text-zinc-400 hover:text-white';
-      });
-
-      const activeBtn = document.getElementById('btnTab-' + tabId);
-      if (activeBtn) {
-        activeBtn.className = 'tab-pill py-2.5 px-0.5 text-center font-bold text-[10px] sm:text-xs uppercase tracking-wider rounded-xl transition-all flex items-center justify-center gap-1 cursor-pointer bg-[#FF6428] text-white font-extrabold shadow-[0_0_15px_rgba(255,100,40,0.4)]';
-      }
-
-      const tabsBar = document.querySelector('.sticky');
-      if (tabsBar) {
-        tabsBar.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-
-    function selectTierAndGoToApp(tierName) {
-      const sel = document.getElementById('app-tier');
-      for (let i = 0; i < sel.options.length; i++) {
-        if (sel.options[i].text.includes(tierName)) {
-          sel.selectedIndex = i;
-          break;
-        }
-      }
-      switchTab('application');
-    }
-
-    // Slider Drag Logic
-    const sliderContainer = document.getElementById('sliderContainer');
-    const beforeWrapper = document.getElementById('caseBeforeWrapper');
-    const sliderHandle = document.getElementById('sliderHandle');
-    let isDragging = false;
-
-    function setSliderPosition(x) {
-      if (!sliderContainer) return;
-      const rect = sliderContainer.getBoundingClientRect();
-      let pos = (x - rect.left) / rect.width;
-      pos = Math.max(0, Math.min(1, pos));
-      const pct = (pos * 100).toFixed(1);
-      beforeWrapper.style.clipPath = `polygon(0 0, ${pct}% 0, ${pct}% 100%, 0 100%)`;
-      sliderHandle.style.left = `${pct}%`;
-    }
-
-    if (sliderContainer) {
-      sliderContainer.addEventListener('mousedown', (e) => { isDragging = true; setSliderPosition(e.clientX); });
-      window.addEventListener('mouseup', () => { isDragging = false; });
-      window.addEventListener('mousemove', (e) => { if (isDragging) setSliderPosition(e.clientX); });
-
-      sliderContainer.addEventListener('touchstart', (e) => { isDragging = true; setSliderPosition(e.touches[0].clientX); }, { passive: true });
-      window.addEventListener('touchend', () => { isDragging = false; });
-      window.addEventListener('touchmove', (e) => { if (isDragging) setSliderPosition(e.touches[0].clientX); }, { passive: true });
-    }
-
-    function selectCase(idx) {
-      if (!currentClient || !currentClient.cases) return;
-      activeCaseIndex = idx;
-      const c = currentClient.cases[idx];
-      if (!c) return;
-
-      document.getElementById('caseImgBefore').src = c.beforeImage || '';
-      document.getElementById('caseImgAfter').src = c.afterImage || '';
-      document.getElementById('caseClientName').textContent = c.clientName || ('Кейс ' + (idx + 1));
-      document.getElementById('caseResultStats').textContent = (c.resultStats ? c.resultStats : '') + (c.duration ? ' // ' + c.duration : '');
-
-      renderCaseTabs();
-    }
-
-    function renderCaseTabs() {
-      const container = document.getElementById('caseTabsContainer');
-      if (!container || !currentClient || !currentClient.cases) return;
-      container.innerHTML = '';
-
-      currentClient.cases.forEach((c, i) => {
-        const btn = document.createElement('button');
-        const isActive = i === activeCaseIndex;
-        btn.className = isActive 
-          ? 'px-3.5 py-1.5 rounded-full bg-[#FF6428] text-white font-extrabold text-xs whitespace-nowrap shadow-sm'
-          : 'px-3.5 py-1.5 rounded-full bg-white/5 text-zinc-300 font-bold text-xs whitespace-nowrap border border-white/10';
-        btn.textContent = (i + 1 < 10 ? '0' + (i + 1) : (i + 1)) + ' // ' + (c.clientName ? c.clientName.split(',')[0].split(' ')[0] : 'Кейс');
-        btn.onclick = () => selectCase(i);
-        container.appendChild(btn);
-      });
-    }
-
-    function updateCalc() {
-      const w = Number(document.getElementById('input-weight').value);
-      const tw = Number(document.getElementById('input-targetWeight').value);
-      const h = Number(document.getElementById('input-height').value);
-
-      document.getElementById('val-weight').textContent = w + ' кг';
-      document.getElementById('val-targetWeight').textContent = tw + ' кг';
-      document.getElementById('val-height').textContent = h + ' см';
-
-      let bmr = 10 * w + 6.25 * h - 140;
-      let targetKcal = Math.round(bmr * 1.4 * 0.85);
-      let prot = Math.round(w * 2.2);
-      let fat = Math.round(w * 0.9);
-      let carbs = Math.max(0, Math.round((targetKcal - prot * 4 - fat * 9) / 4));
-
-      document.getElementById('res-calories').textContent = targetKcal + ' ккал';
-      document.getElementById('res-protein').textContent = prot + 'г';
-      document.getElementById('res-fat').textContent = fat + 'г';
-      document.getElementById('res-carbs').textContent = carbs + 'г';
-    }
-
-    function submitApplication(e) {
-      e.preventDefault();
-      const name = document.getElementById('app-name').value.trim();
-      const contact = document.getElementById('app-contact').value.trim();
-      const tier = document.getElementById('app-tier').value;
-      const goal = document.getElementById('app-goal').value.trim();
-
-      const tgUser = (currentClient && currentClient.telegramUsername) ? currentClient.telegramUsername.replace(/^@/, '') : 'Master_fitness';
-      const msg = `⚡️ НОВАЯ АНКЕТА (КЛУБ СЕБЯШНИКИ):\n\n👤 Имя: ${name}\n📱 Контакт: ${contact}\n💳 Тариф: ${tier}\n🎯 Цель: ${goal}`;
-      
-      const tgUrl = `https://t.me/${tgUser}?text=${encodeURIComponent(msg)}`;
-      window.open(tgUrl, '_blank');
-      alert('Анкета создана! Сейчас откроется Telegram для отправки.');
-    }
-
-    function init() {
-      currentClient = (window.CLIENTS && window.CLIENTS['new']) || (window.DEFAULT_CLIENTS && window.DEFAULT_CLIENTS['new']) || null;
-      if (currentClient) {
-        if (currentClient.name) {
-          document.getElementById('navCoachName').textContent = currentClient.name;
-          document.getElementById('authorName').textContent = currentClient.name;
-          document.getElementById('heroSubtitle').textContent = 'от ' + currentClient.name;
-        }
-        if (currentClient.cases) {
-          selectCase(0);
-        }
-      }
-      updateCalc();
-      switchTab('cases');
-    }
-
-    window.addEventListener('DOMContentLoaded', init);
-  </script>
+<body
+  class="bg-[#050507] text-zinc-100 antialiased selection:bg-white selection:text-black min-h-[100dvh] overflow-x-hidden w-full max-w-full">
+  <div id="root"></div>
 </body>
+
 </html>
