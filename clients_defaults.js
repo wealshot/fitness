@@ -797,45 +797,45 @@ window.DEFAULT_CLIENTS = {
   "new": {
     "slug": "new",
     "updatedAt": "2026-11-22T11:22:38.353Z",
-    "brandTag": "// STRIDE THEORY • FITNESS STUDIO",
+    "brandTag": "// КЛУБ ДЛЯ СЕБЯШНИКИ • НАСТАВНИЧЕСТВО",
     "location": "ОНЛАЙН // РОССИЯ & МИР",
-    "name": "STRIDE THEORY",
-    "firstName": "STRIDE",
-    "lastName": "THEORY",
-    "tagline": "MOVE WITH PURPOSE ⚡️",
-    "spec": "EXPERT-LED COACHING // HIGH-ENERGY COMMUNITY ⚜️",
-    "bio": "Экспертный подход, сильное комьюнити и передовая система тренировок, которая строит реальный, долговечный результат без откатов и истощения.",
+    "name": "АЛЕКСАНДР ФИЛИППОВ",
+    "firstName": "АЛЕКСАНДР",
+    "lastName": "ФИЛИППОВ",
+    "tagline": "КЛУБ ДЛЯ СЕБЯШНИКИ // МОТИВАЦИОННО-ОБРАЗОВАТЕЛЬНЫЙ ПРОЕКТ ⚡️",
+    "spec": "СИСТЕМА РЕКОМПОЗИЦИИ, СИЛОВОГО ПРОГРЕССА И ПИТАНИЯ ⚜️",
+    "bio": "Подготовил чемпионов и призеров Мира, Европы, России. Автор выверенной системы рекомпозиции и силового прогресса без жестких диет и срывов.",
     "heroImage": "/images/bernetskiy-hero.jpg",
     "heroImageStyle": {
       "objectPosition": "center 15%",
       "filter": "brightness(0.98) contrast(1.08)"
     },
-    "accentColor": "#CCFF00",
-    "accentSecondary": "#99CC00",
-    "accentDim": "rgba(204, 255, 0, 0.12)",
-    "accentGlow": "rgba(204, 255, 0, 0.4)",
+    "accentColor": "#FF6428",
+    "accentSecondary": "#E04F16",
+    "accentDim": "rgba(255, 100, 40, 0.15)",
+    "accentGlow": "rgba(255, 100, 40, 0.4)",
     "hasApplicationForm": true,
     "hasReviewsSection": true,
-    "telegramUsername": "StrideTheory",
-    "applicationBtnText": "BOOK A CLASS // НАЧАТЬ ТРАНСФОРМАЦИЮ",
-    "instagram": "stridetheory",
-    "instagramUrl": "https://instagram.com/stridetheory",
+    "telegramUsername": "Master_fitness",
+    "applicationBtnText": "ХОЧУ В КЛУБ // ПОДАТЬ ЗАЯВКУ",
+    "instagram": "sorryunot",
+    "instagramUrl": "https://instagram.com/sorryunot",
     "instagramLabel": "INSTAGRAM",
     "telegramChannelLabel": "ТГ-КАНАЛ",
-    "telegramChannel": "stridetheory",
-    "telegramChannelUrl": "https://t.me/stridetheory",
-    "scarcityBadge": "LIMITED SPOTS // СВОБОДНО 2 МЕСТА",
+    "telegramChannel": "Master_fitness",
+    "telegramChannelUrl": "https://t.me/Master_fitness",
+    "scarcityBadge": "ОТБОР В КЛУБ: СВОБОДНО 3 МЕСТА",
     "stats": [
       {
-        "label": "EXPERT COACHES",
-        "value": "08+ ЛЕТ"
+        "label": "ОПЫТ ТРЕНЕРА",
+        "value": "18+ ЛЕТ"
       },
       {
-        "label": "INCLUSIVE COMMUNITY",
-        "value": "500+"
+        "label": "УЧАСТНИКОВ КЛУБА",
+        "value": "9000+"
       },
       {
-        "label": "REAL RESULTS",
+        "label": "РЕЗУЛЬТАТЫ",
         "value": "100%"
       }
     ],
