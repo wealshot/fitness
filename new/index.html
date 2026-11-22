@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru" class="dark overflow-x-hidden w-full max-w-full">
+<html lang="ru" class="dark scroll-smooth">
 
 <head>
   <meta charset="UTF-8" />
@@ -17,7 +17,40 @@
   <meta property="og:image" content="https://fitprod.vercel.app/images/vladislav8.JPG" />
   <meta property="og:url" content="https://fitprod.vercel.app/new" />
 
-  <!-- Fonts: Plus Jakarta Sans for modern sports-studio typography -->
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            lime: {
+              DEFAULT: '#CCFF00',
+              neon: '#CCFF00',
+              dark: '#A6D900',
+              hover: '#DFFF26',
+              glow: 'rgba(204, 255, 0, 0.45)',
+              dim: 'rgba(204, 255, 0, 0.12)'
+            },
+            dark: {
+              bg: '#08090C',
+              card: '#0E1015',
+              cardHover: '#13151D',
+              border: 'rgba(255, 255, 255, 0.08)'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+            display: ['"Plus Jakarta Sans"', 'sans-serif'],
+            tech: ['"Space Grotesk"', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts: Plus Jakarta Sans & Space Grotesk -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,800;1,900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
@@ -26,294 +59,908 @@
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
   <!-- Client Database (Multi-Tenant) -->
-  <script src="/clients.js?v=20261122_0930"></script>
-  <script src="/clients_defaults.js?v=20261122_0930"></script>
+  <script src="/clients.js?v=20261122_0945"></script>
+  <script src="/clients_defaults.js?v=20261122_0945"></script>
 
-  <!-- React SPA Bundle -->
-  <script src="/assets/faq.js?v=20261122_0515"></script>
-  <script type="module" crossorigin src="/assets/index-v2.js?v=20261122_0755"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-DIMZLtAQ.css?v=20261122_0235">
-
-  <!-- STRIDE THEORY CUSTOM THEME STYLES -->
   <style>
-    /* ============================================================
-       STRIDE THEORY THEME OVERRIDES (Neon Acid Lime + Deep Onyx + Rounded Pills)
-       ============================================================ */
     :root {
-      --accent-color: #CCFF00 !important;
-      --accent-secondary: #99CC00 !important;
-      --accent-glow: rgba(204, 255, 0, 0.45) !important;
-      --accent-dim: rgba(204, 255, 0, 0.12) !important;
-      --bg-base: #08090C !important;
-      --bg-card: #0F1116 !important;
-      --card-border: rgba(255, 255, 255, 0.08) !important;
+      --accent: #CCFF00;
+      --accent-glow: rgba(204, 255, 0, 0.4);
+      --bg: #08090C;
     }
 
     body {
-      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
-      background-color: #08090C !important;
-      color: #F3F4F6 !important;
-      letter-spacing: -0.01em;
+      background-color: #08090C;
+      color: #F4F4F6;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+      -webkit-tap-highlight-color: transparent;
     }
 
-    /* Replace Anton condensed headers with ultra-bold geometric modern sans */
-    .font-display, h1, h2, h3, .font-tech-display {
-      font-family: 'Plus Jakarta Sans', system-ui, sans-serif !important;
-      font-weight: 900 !important;
-      letter-spacing: -0.035em !important;
-      text-transform: uppercase !important;
+    .font-heavy {
+      font-weight: 900;
+      letter-spacing: -0.04em;
     }
 
-    /* Floating Top Navigation Bar (matching reference mockup 1) */
-    .stride-nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 50;
-      background: rgba(8, 9, 12, 0.85);
+    /* Slider Clip path */
+    .slider-handle {
+      box-shadow: 0 0 25px rgba(204, 255, 0, 0.6);
+    }
+
+    /* Custom scrollbar hiding */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* Ambient glow */
+    .glow-lime {
+      box-shadow: 0 0 35px rgba(204, 255, 0, 0.25);
+    }
+    .glow-lime-lg {
+      box-shadow: 0 0 50px rgba(204, 255, 0, 0.4);
+    }
+    .glow-border {
+      border-color: #CCFF00 !important;
+      box-shadow: 0 0 30px rgba(204, 255, 0, 0.25);
+    }
+
+    /* Glass effect */
+    .glass-card {
+      background: #0E1015;
+      border: 1px solid rgba(255, 255, 255, 0.08);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-      padding: 14px 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .stride-logo {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-weight: 900;
-      font-size: 1.15rem;
-      letter-spacing: -0.02em;
-      color: #fff;
-      text-decoration: none;
-    }
-    .stride-logo .slashes {
-      color: #CCFF00;
-      font-weight: 900;
-      letter-spacing: -0.05em;
-    }
-    .stride-links {
-      display: none;
-      align-items: center;
-      gap: 28px;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-    @media (min-width: 860px) {
-      .stride-links {
-        display: flex;
-      }
-    }
-    .stride-links a {
-      color: #9CA3AF;
-      text-decoration: none;
-      font-size: 0.88rem;
-      font-weight: 600;
-      transition: color 0.2s;
-    }
-    .stride-links a:hover, .stride-links a.active {
-      color: #CCFF00;
-    }
-    .stride-nav-btn {
-      background: #CCFF00 !important;
-      color: #000 !important;
-      font-weight: 800 !important;
-      font-size: 0.82rem !important;
-      padding: 9px 22px !important;
-      border-radius: 9999px !important;
-      text-decoration: none !important;
-      letter-spacing: 0.02em !important;
-      transition: transform 0.2s, box-shadow 0.2s !important;
-      box-shadow: 0 0 20px rgba(204, 255, 0, 0.25) !important;
-    }
-    .stride-nav-btn:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 0 25px rgba(204, 255, 0, 0.45) !important;
-    }
-
-    /* Padding for page under floating nav */
-    #root {
-      padding-top: 40px;
-    }
-
-    /* All Action Buttons become Rounded Pills */
-    button, a[role="button"], .btn-primary, .action-btn {
-      border-radius: 9999px !important;
-    }
-
-    /* Primary CTA buttons in Neon Lime with Black Bold text */
-    button.bg-accent, .btn-accent, button[type="submit"], #authSubmitBtn {
-      background-color: #CCFF00 !important;
-      color: #000000 !important;
-      font-weight: 900 !important;
-      letter-spacing: 0.01em !important;
-      border-radius: 9999px !important;
-      box-shadow: 0 0 25px rgba(204, 255, 0, 0.35) !important;
-    }
-    button.bg-accent:hover, #authSubmitBtn:hover {
-      background-color: #d8ff26 !important;
-      box-shadow: 0 0 35px rgba(204, 255, 0, 0.55) !important;
-    }
-
-    /* Pill-shaped Social and Secondary Buttons */
-    a[href*="instagram"], a[href*="t.me"] {
-      border-radius: 9999px !important;
-      background: rgba(255, 255, 255, 0.04) !important;
-      border: 1px solid rgba(255, 255, 255, 0.12) !important;
-      font-weight: 700 !important;
-    }
-    a[href*="instagram"]:hover, a[href*="t.me"]:hover {
-      border-color: #CCFF00 !important;
-      color: #CCFF00 !important;
-    }
-
-    /* Modern Rounded Cards with Deep Obsidian Glass */
-    .glass-card, [class*="bg-zinc-900"], [class*="bg-black/60"], [class*="rounded-2xl"], [class*="rounded-3xl"] {
-      background-color: #0E1015 !important;
-      border: 1px solid rgba(255, 255, 255, 0.08) !important;
-      border-radius: 24px !important;
-    }
-
-    /* SCHEDULE / CASES TABS: Styled like Date Picker Pills in Screen 2 */
-    .case-tabs-grid, .case-tabs-mobile-grid {
-      display: flex !important;
-      flex-wrap: wrap !important;
-      gap: 8px !important;
-      justify-content: center !important;
-      margin-bottom: 24px !important;
-    }
-    .case-tabs-grid button, .case-tabs-mobile-grid button {
-      border-radius: 9999px !important;
-      padding: 10px 20px !important;
-      font-weight: 800 !important;
-      font-size: 0.85rem !important;
-      letter-spacing: 0.02em !important;
-      border: 1px solid rgba(255, 255, 255, 0.1) !important;
-      background: #12141A !important;
-      color: #9CA3AF !important;
-      transition: all 0.2s ease !important;
-    }
-    .case-tabs-grid button:hover, .case-tabs-mobile-grid button:hover {
-      border-color: #CCFF00 !important;
-      color: #fff !important;
-    }
-    /* Active Case Tab is Bright Neon Lime Pill */
-    .case-tabs-grid button.active, .case-tabs-grid button[class*="bg-accent"],
-    .case-tabs-mobile-grid button.active, .case-tabs-mobile-grid button[class*="bg-accent"] {
-      background: #CCFF00 !important;
-      color: #000000 !important;
-      border-color: #CCFF00 !important;
-      box-shadow: 0 0 20px rgba(204, 255, 0, 0.4) !important;
-    }
-
-    /* Before / After Slider Box */
-    .case-slider-box {
-      border-radius: 28px !important;
-      overflow: hidden !important;
-      border: 1px solid rgba(204, 255, 0, 0.2) !important;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6) !important;
-    }
-    .slider-hint-pill {
-      background: rgba(8, 9, 12, 0.9) !important;
-      border: 1px solid rgba(204, 255, 0, 0.4) !important;
-      color: #CCFF00 !important;
-      border-radius: 9999px !important;
-      padding: 6px 18px !important;
-      font-weight: 700 !important;
-      font-size: 0.75rem !important;
-      letter-spacing: 0.05em !important;
-    }
-
-    /* MEMBERSHIP PLANS / TIERS: Matching Screen 3 */
-    /* Highlight the central / popular tier with neon lime border & glow */
-    [class*="border-accent"], [class*="ring-accent"] {
-      border: 2px solid #CCFF00 !important;
-      box-shadow: 0 0 35px rgba(204, 255, 0, 0.18) !important;
-      position: relative;
-    }
-
-    /* Badges in Neon Lime Pills */
-    [class*="bg-accent/20"], [class*="text-accent"] {
-      color: #CCFF00 !important;
-    }
-    .badge-pill, [class*="rounded-full"][class*="px-3"] {
-      border-radius: 9999px !important;
-      font-weight: 800 !important;
-      letter-spacing: 0.05em !important;
-    }
-
-    /* Diagnostic Calculator: Clean modern pills */
-    input[type="range"] {
-      accent-color: #CCFF00 !important;
-    }
-
-    /* FAQ items: Clean rounded cards */
-    .faq-item {
-      background: #0E1015 !important;
-      border: 1px solid rgba(255, 255, 255, 0.08) !important;
-      border-radius: 20px !important;
-      transition: all 0.2s ease;
-    }
-    .faq-item:hover {
-      border-color: rgba(204, 255, 0, 0.3) !important;
-    }
-
-    /* Subtle lime ambient light behind hero */
-    .hero-glow-bg {
-      position: absolute;
-      top: -150px;
-      right: 10%;
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, rgba(204, 255, 0, 0.12) 0%, transparent 70%);
-      pointer-events: none;
-      z-index: 0;
     }
   </style>
 </head>
 
-<body class="bg-[#08090C] text-zinc-100 antialiased selection:bg-[#CCFF00] selection:text-black min-h-[100dvh] overflow-x-hidden w-full max-w-full">
+<body class="min-h-screen flex flex-col bg-[#08090C] text-zinc-100 antialiased selection:bg-[#CCFF00] selection:text-black">
 
-  <!-- FLOATING STRIDE THEORY NAVIGATION BAR -->
-  <header class="stride-nav">
-    <a href="/new" class="stride-logo">
-      <span class="slashes">//</span>
-      <span>STRIDE THEORY</span>
+  <!-- TOP NAVIGATION (STRIDE THEORY NAVBAR) -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-[#08090C]/85 backdrop-blur-xl border-b border-white/[0.07] px-4 sm:px-8 py-3.5 flex items-center justify-between">
+    <a href="/new" class="flex items-center gap-2 group">
+      <span class="text-[#CCFF00] font-black text-xl tracking-tighter">//</span>
+      <span class="font-extrabold text-white text-base sm:text-lg tracking-tight uppercase" id="navBrandName">STRIDE THEORY</span>
     </a>
-    <ul class="stride-links">
-      <li><a href="#hero" class="active">Главная</a></li>
-      <li><a href="#cases">Результаты</a></li>
-      <li><a href="#diagnostic">Диагностика</a></li>
-      <li><a href="#tiers">Тарифы</a></li>
-      <li><a href="#reviews">Отзывы</a></li>
-      <li><a href="#faq">FAQ</a></li>
-    </ul>
-    <a href="#application" class="stride-nav-btn">Записаться →</a>
+
+    <!-- Desktop nav links -->
+    <nav class="hidden md:flex items-center gap-7 text-xs font-semibold uppercase tracking-wider text-zinc-400">
+      <button onclick="switchTab('diagnostic')" class="hover:text-[#CCFF00] transition-colors cursor-pointer">Диагностика</button>
+      <button onclick="switchTab('cases')" class="hover:text-[#CCFF00] transition-colors cursor-pointer">Кейсы</button>
+      <button onclick="switchTab('tiers')" class="hover:text-[#CCFF00] transition-colors cursor-pointer">Тарифы</button>
+      <button onclick="switchTab('reviews')" class="hover:text-[#CCFF00] transition-colors cursor-pointer">Отзывы</button>
+      <button onclick="switchTab('faq')" class="hover:text-[#CCFF00] transition-colors cursor-pointer">FAQ</button>
+    </nav>
+
+    <!-- Header CTA -->
+    <button onclick="switchTab('application')" class="bg-[#CCFF00] hover:bg-[#DFFF26] text-black font-extrabold text-xs px-5 py-2.5 rounded-full shadow-[0_0_20px_rgba(204,255,0,0.3)] transition-all cursor-pointer active:scale-95 uppercase tracking-wide">
+      Записаться →
+    </button>
   </header>
 
-  <!-- Ambient background glow -->
-  <div class="hero-glow-bg"></div>
+  <!-- HERO SECTION (Screen 1 from Reference) -->
+  <section id="hero" class="pt-24 sm:pt-28 pb-6 sm:pb-10 px-4 sm:px-8 max-w-7xl mx-auto w-full relative">
+    <!-- Ambient Neon Background Glow -->
+    <div class="absolute top-10 right-1/4 w-96 h-96 bg-[#CCFF00]/[0.08] blur-[120px] rounded-full pointer-events-none -z-10"></div>
 
-  <!-- SPA ROOT -->
-  <div id="root"></div>
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+      <!-- Left Content -->
+      <div class="lg:col-span-7 flex flex-col items-start text-left">
+        <!-- Live Scarcity Badge -->
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/10 text-[11px] font-mono uppercase tracking-wider text-zinc-300 mb-4">
+          <span class="w-2 h-2 rounded-full bg-[#CCFF00] animate-pulse"></span>
+          <span id="heroScarcity">LIMITED SPOTS // СВОБОДНО 2 МЕСТА</span>
+        </div>
 
+        <!-- Category Tag -->
+        <div class="text-[#CCFF00] text-xs sm:text-sm font-bold tracking-[0.25em] uppercase mb-2 font-mono" id="heroCategory">
+          FITNESS STUDIO // PERFORMANCE
+        </div>
+
+        <!-- Big Bold Title -->
+        <h1 class="font-heavy text-4xl sm:text-6xl lg:text-7xl uppercase text-white leading-[0.92] tracking-tight mb-5" id="heroTitle">
+          MOVE WITH <span class="text-[#CCFF00]">PURPOSE</span>
+        </h1>
+
+        <!-- Subtitle -->
+        <p class="text-zinc-400 text-sm sm:text-base leading-relaxed max-w-xl mb-7" id="heroBio">
+          Экспертный подход, сильное комьюнити и персональная система тренировок, которая строит реальный и долговременный результат без откатов.
+        </p>
+
+        <!-- CTA Action Buttons -->
+        <div class="flex flex-wrap items-center gap-3 w-full sm:w-auto mb-8">
+          <button onclick="switchTab('diagnostic')" class="w-full sm:w-auto px-7 py-3.5 rounded-full bg-[#CCFF00] hover:bg-[#DFFF26] text-black font-extrabold text-sm uppercase tracking-wide shadow-[0_0_25px_rgba(204,255,0,0.4)] transition-all cursor-pointer active:scale-95 flex items-center justify-center gap-2">
+            <span>Рассчитать КБЖУ</span>
+            <span>→</span>
+          </button>
+          <button onclick="switchTab('tiers')" class="w-full sm:w-auto px-7 py-3.5 rounded-full bg-white/[0.04] hover:bg-white/[0.08] border border-white/15 text-white font-bold text-sm uppercase tracking-wide transition-all cursor-pointer flex items-center justify-center">
+            Тарифы и ведение
+          </button>
+        </div>
+
+        <!-- 3 Feature Badges Row (as in reference mockup 1) -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full pt-4 border-t border-white/[0.08]">
+          <div class="flex items-start gap-2.5 p-2 rounded-xl bg-white/[0.02]">
+            <span class="text-[#CCFF00] text-lg shrink-0">⚡</span>
+            <div>
+              <div class="text-white text-xs font-bold uppercase tracking-tight">Expert Coaches</div>
+              <div class="text-zinc-400 text-[11px] leading-tight">Опыт 8+ лет, строгая биомеханика</div>
+            </div>
+          </div>
+          <div class="flex items-start gap-2.5 p-2 rounded-xl bg-white/[0.02]">
+            <span class="text-[#CCFF00] text-lg shrink-0">👥</span>
+            <div>
+              <div class="text-white text-xs font-bold uppercase tracking-tight">Community</div>
+              <div class="text-zinc-400 text-[11px] leading-tight">Закрытый чат и поддержка 24/7</div>
+            </div>
+          </div>
+          <div class="flex items-start gap-2.5 p-2 rounded-xl bg-white/[0.02]">
+            <span class="text-[#CCFF00] text-lg shrink-0">📊</span>
+            <div>
+              <div class="text-white text-xs font-bold uppercase tracking-tight">Real Results</div>
+              <div class="text-zinc-400 text-[11px] leading-tight">Гарантия рельефа и здоровья</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Photo Portrait with Neon Lime Accent -->
+      <div class="lg:col-span-5 relative flex justify-center">
+        <div class="relative w-full max-w-md aspect-[4/5] rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-zinc-900">
+          <img id="heroImage" src="/images/vladislav8.JPG" alt="Coach Hero" class="w-full h-full object-cover object-top filter brightness-95 contrast-105" />
+          <div class="absolute inset-0 bg-gradient-to-t from-[#08090C] via-transparent to-transparent"></div>
+          
+          <!-- Bottom Floating Badge on Photo -->
+          <div class="absolute bottom-4 left-4 right-4 p-3.5 rounded-2xl bg-[#0E1015]/90 backdrop-blur-md border border-white/10 flex items-center justify-between">
+            <div>
+              <div class="text-[10px] font-mono text-[#CCFF00] uppercase tracking-wider">АТЛЕТОВ В ФОРМЕ</div>
+              <div class="text-white font-heavy text-xl tracking-tight" id="heroStatAtleths">240+ ВЕДЕНИЙ</div>
+            </div>
+            <div class="text-right">
+              <div class="text-[10px] font-mono text-zinc-400 uppercase tracking-wider">СТАЖ НАСТАВНИКА</div>
+              <div class="text-white font-heavy text-xl tracking-tight" id="heroStatExp">08+ ЛЕТ</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- MOBILE-FIRST COMPACT TAB SWITCHER (EXACTLY AS IN USER'S SCREENSHOT!) -->
+  <!-- Keeps mobile site ultra-compact, fast, app-like, and not endlessly long! -->
+  <!-- ========================================================================= -->
+  <section class="sticky top-[58px] z-40 bg-[#08090C]/95 backdrop-blur-xl border-y border-white/[0.08] py-2 px-3 sm:px-8">
+    <div class="max-w-4xl mx-auto">
+      <div class="bg-[#0E1015] border border-white/10 rounded-2xl p-1 sm:p-1.5 grid grid-cols-4 gap-1 shadow-xl">
+        <button id="btnTab-diagnostic" onclick="switchTab('diagnostic')" class="tab-pill py-2.5 sm:py-3 px-1 text-center font-bold text-[10px] sm:text-xs uppercase tracking-wider rounded-xl transition-all flex items-center justify-center gap-1 cursor-pointer text-zinc-400 hover:text-white">
+          <span class="opacity-60 text-[9px] sm:text-[10px] font-mono">01</span>
+          <span>ДИАГНОСТИКА</span>
+        </button>
+        <button id="btnTab-cases" onclick="switchTab('cases')" class="tab-pill py-2.5 sm:py-3 px-1 text-center font-bold text-[10px] sm:text-xs uppercase tracking-wider rounded-xl transition-all flex items-center justify-center gap-1 cursor-pointer bg-[#CCFF00] text-black font-extrabold shadow-[0_0_15px_rgba(204,255,0,0.3)]">
+          <span class="opacity-80 text-[9px] sm:text-[10px] font-mono">02</span>
+          <span>КЕЙСЫ</span>
+        </button>
+        <button id="btnTab-tiers" onclick="switchTab('tiers')" class="tab-pill py-2.5 sm:py-3 px-1 text-center font-bold text-[10px] sm:text-xs uppercase tracking-wider rounded-xl transition-all flex items-center justify-center gap-1 cursor-pointer text-zinc-400 hover:text-white">
+          <span class="opacity-60 text-[9px] sm:text-[10px] font-mono">03</span>
+          <span>ТАРИФЫ</span>
+        </button>
+        <button id="btnTab-application" onclick="switchTab('application')" class="tab-pill py-2.5 sm:py-3 px-1 text-center font-bold text-[10px] sm:text-xs uppercase tracking-wider rounded-xl transition-all flex items-center justify-center gap-1 cursor-pointer text-zinc-400 hover:text-white">
+          <span class="opacity-60 text-[9px] sm:text-[10px] font-mono">04</span>
+          <span>АНКЕТА</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB CONTENT CONTAINER -->
+  <main class="flex-grow max-w-5xl mx-auto w-full px-4 sm:px-8 py-8 sm:py-12">
+
+    <!-- ========================================== -->
+    <!-- TAB 01: ИНТЕРАКТИВНАЯ ДИАГНОСТИКА & КБЖУ -->
+    <!-- ========================================== -->
+    <div id="view-diagnostic" class="tab-view hidden space-y-8">
+      <div class="text-center max-w-2xl mx-auto">
+        <div class="inline-block px-3 py-1 rounded-full bg-[#CCFF00]/10 border border-[#CCFF00]/30 text-[#CCFF00] text-xs font-mono font-bold uppercase tracking-wider mb-3">
+          [01. ДИАГНОСТИКА] // ENGINE
+        </div>
+        <h2 class="font-heavy text-3xl sm:text-4xl uppercase text-white tracking-tight">
+          РАСЧЁТ ТРАНСФОРМАЦИИ ЗА 8 НЕДЕЛЬ
+        </h2>
+        <p class="text-zinc-400 text-xs sm:text-sm mt-2">
+          Введите ваши параметры — диагностический движок мгновенно рассчитает точную норму калорий, баланс БЖУ и график достижения цели.
+        </p>
+      </div>
+
+      <!-- Calculator Card -->
+      <div class="glass-card rounded-3xl p-5 sm:p-8 space-y-6">
+        <!-- Gender & Goal -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-mono text-zinc-400 uppercase tracking-wider mb-2">ПОЛ</label>
+            <div class="grid grid-cols-2 gap-2">
+              <button type="button" onclick="setGender('male')" id="gender-male" class="py-2.5 rounded-xl border border-[#CCFF00] bg-[#CCFF00] text-black font-extrabold text-xs uppercase tracking-wider transition-all">
+                МУЖЧИНА
+              </button>
+              <button type="button" onclick="setGender('female')" id="gender-female" class="py-2.5 rounded-xl border border-white/10 bg-white/5 text-zinc-300 font-bold text-xs uppercase tracking-wider hover:border-white/30 transition-all">
+                ЖЕНЩИНА
+              </button>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-mono text-zinc-400 uppercase tracking-wider mb-2">ГЛАВНАЯ ЦЕЛЬ</label>
+            <div class="grid grid-cols-3 gap-1.5">
+              <button type="button" onclick="setGoal('cut')" id="goal-cut" class="py-2.5 px-1 rounded-xl border border-[#CCFF00] bg-[#CCFF00] text-black font-extrabold text-[11px] uppercase tracking-tight transition-all">
+                СУШКА
+              </button>
+              <button type="button" onclick="setGoal('bulk')" id="goal-bulk" class="py-2.5 px-1 rounded-xl border border-white/10 bg-white/5 text-zinc-300 font-bold text-[11px] uppercase tracking-tight hover:border-white/30 transition-all">
+                МАССА
+              </button>
+              <button type="button" onclick="setGoal('strength')" id="goal-strength" class="py-2.5 px-1 rounded-xl border border-white/10 bg-white/5 text-zinc-300 font-bold text-[11px] uppercase tracking-tight hover:border-white/30 transition-all">
+                СИЛА
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Metric Sliders -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+          <div class="p-4 rounded-2xl bg-white/[0.03] border border-white/5">
+            <div class="flex justify-between items-center mb-1">
+              <span class="text-xs font-mono text-zinc-400">ТЕКУЩИЙ ВЕС</span>
+              <span class="text-sm font-bold text-[#CCFF00]" id="val-weight">85 кг</span>
+            </div>
+            <input type="range" id="input-weight" min="45" max="150" value="85" oninput="updateCalc()" class="w-full accent-[#CCFF00] cursor-pointer" />
+          </div>
+
+          <div class="p-4 rounded-2xl bg-white/[0.03] border border-white/5">
+            <div class="flex justify-between items-center mb-1">
+              <span class="text-xs font-mono text-zinc-400">ЦЕЛЕВОЙ ВЕС</span>
+              <span class="text-sm font-bold text-[#CCFF00]" id="val-targetWeight">78 кг</span>
+            </div>
+            <input type="range" id="input-targetWeight" min="45" max="150" value="78" oninput="updateCalc()" class="w-full accent-[#CCFF00] cursor-pointer" />
+          </div>
+
+          <div class="p-4 rounded-2xl bg-white/[0.03] border border-white/5">
+            <div class="flex justify-between items-center mb-1">
+              <span class="text-xs font-mono text-zinc-400">РОСТ</span>
+              <span class="text-sm font-bold text-[#CCFF00]" id="val-height">182 см</span>
+            </div>
+            <input type="range" id="input-height" min="140" max="215" value="182" oninput="updateCalc()" class="w-full accent-[#CCFF00] cursor-pointer" />
+          </div>
+        </div>
+
+        <!-- Activity Level Buttons -->
+        <div>
+          <label class="block text-xs font-mono text-zinc-400 uppercase tracking-wider mb-2">УРОВЕНЬ НАГРУЗКИ</label>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+            <button type="button" onclick="setActivity(1.2)" id="act-1.2" class="p-2.5 rounded-xl border border-white/10 bg-white/5 text-center text-xs transition-all">
+              <div class="font-bold text-white">СИДЯЧИЙ</div>
+              <div class="text-[10px] text-zinc-400">0-1 тренировка</div>
+            </button>
+            <button type="button" onclick="setActivity(1.4)" id="act-1.4" class="p-2.5 rounded-xl border border-[#CCFF00] bg-[#CCFF00]/10 text-center text-xs transition-all text-[#CCFF00]">
+              <div class="font-bold text-white">УМЕРЕННЫЙ</div>
+              <div class="text-[10px] text-zinc-400">2-3 тренировки</div>
+            </button>
+            <button type="button" onclick="setActivity(1.6)" id="act-1.6" class="p-2.5 rounded-xl border border-white/10 bg-white/5 text-center text-xs transition-all">
+              <div class="font-bold text-white">ВЫСОКИЙ</div>
+              <div class="text-[10px] text-zinc-400">4-5 тренировок</div>
+            </button>
+            <button type="button" onclick="setActivity(1.8)" id="act-1.8" class="p-2.5 rounded-xl border border-white/10 bg-white/5 text-center text-xs transition-all">
+              <div class="font-bold text-white">АТЛЕТ</div>
+              <div class="text-[10px] text-zinc-400">Каждый день</div>
+            </button>
+          </div>
+        </div>
+
+        <!-- CALCULATION RESULTS PANEL -->
+        <div class="mt-8 p-6 rounded-2xl bg-[#08090C] border border-[#CCFF00]/30 glow-lime">
+          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-white/10 pb-5">
+            <div>
+              <span class="text-[11px] font-mono text-zinc-400 uppercase tracking-wider">ЦЕЛЕВАЯ НОРМА КАЛОРИЙ В СУТКИ</span>
+              <div class="text-4xl sm:text-5xl font-heavy text-[#CCFF00] tracking-tight mt-1" id="res-calories">
+                2 180 <span class="text-lg font-normal text-white">ккал</span>
+              </div>
+            </div>
+            <div class="px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-xs font-mono text-zinc-300">
+              <span id="res-targetDate">ПРОГНОЗ ДО: 18 ЯНВАРЯ</span>
+            </div>
+          </div>
+
+          <!-- Macros Breakdown (B/J/U) -->
+          <div class="grid grid-cols-3 gap-3 pt-5">
+            <div class="p-3 rounded-xl bg-white/[0.02] border border-white/5 text-center">
+              <div class="text-[10px] font-mono text-zinc-400">БЕЛКИ</div>
+              <div class="text-xl font-heavy text-white mt-0.5" id="res-protein">187г</div>
+              <div class="text-[10px] text-[#CCFF00]" id="res-protein-kcal">34% (748 ккал)</div>
+            </div>
+            <div class="p-3 rounded-xl bg-white/[0.02] border border-white/5 text-center">
+              <div class="text-[10px] font-mono text-zinc-400">ЖИРЫ</div>
+              <div class="text-xl font-heavy text-white mt-0.5" id="res-fat">76г</div>
+              <div class="text-[10px] text-[#CCFF00]" id="res-fat-kcal">31% (684 ккал)</div>
+            </div>
+            <div class="p-3 rounded-xl bg-white/[0.02] border border-white/5 text-center">
+              <div class="text-[10px] font-mono text-zinc-400">УГЛЕВОДЫ</div>
+              <div class="text-xl font-heavy text-white mt-0.5" id="res-carbs">187г</div>
+              <div class="text-[10px] text-[#CCFF00]" id="res-carbs-kcal">35% (748 ккал)</div>
+            </div>
+          </div>
+
+          <div class="pt-6 flex justify-center">
+            <button onclick="prefillAndGoToApp()" class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-[#CCFF00] hover:bg-[#DFFF26] text-black font-extrabold text-xs uppercase tracking-wider shadow-lg transition-all cursor-pointer active:scale-95">
+              Зафиксировать результат в анкете →
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- TAB 02: КЕЙСЫ ДО / ПОСЛЕ (Screen 2 style) -->
+    <!-- ========================================== -->
+    <div id="view-cases" class="tab-view space-y-6">
+      <div class="text-center max-w-2xl mx-auto">
+        <div class="inline-block px-3 py-1 rounded-full bg-[#CCFF00]/10 border border-[#CCFF00]/30 text-[#CCFF00] text-xs font-mono font-bold uppercase tracking-wider mb-2">
+          [02. КЕЙСЫ] // 10/10 ВЫПОЛНЕНО
+        </div>
+        <h2 class="font-heavy text-3xl sm:text-4xl uppercase text-white tracking-tight">
+          РЕАЛЬНЫЕ РЕЗУЛЬТАТЫ ПОДОПЕЧНЫХ
+        </h2>
+        <p class="text-zinc-400 text-xs sm:text-sm mt-1.5">
+          Никакого фотошопа. Только чистая дисциплина, выверенный калораж и тренировочный протокол.
+        </p>
+      </div>
+
+      <!-- Schedule-style Date/Case Pill Tabs (from Reference Screen 2) -->
+      <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-2 px-1" id="caseTabsContainer">
+        <!-- Injected via JS -->
+      </div>
+
+      <!-- BEFORE / AFTER INTERACTIVE SLIDER BOX -->
+      <div class="glass-card rounded-3xl p-4 sm:p-6 space-y-4">
+        <div class="relative w-full aspect-[4/5] sm:aspect-[16/10] max-h-[580px] rounded-2xl overflow-hidden select-none bg-black cursor-ew-resize border border-white/10" id="sliderContainer">
+          <!-- AFTER IMAGE (Base) -->
+          <img id="caseImgAfter" src="/cases/vlad_case1_evgeniy_after.jpg" alt="После" class="absolute inset-0 w-full h-full object-cover object-center pointer-events-none" />
+          <div class="absolute top-4 right-4 z-20 px-3 py-1 rounded-full bg-black/75 border border-[#CCFF00]/60 text-[#CCFF00] font-mono text-xs font-bold uppercase">
+            ПОСЛЕ // РЕЗУЛЬТАТ
+          </div>
+
+          <!-- BEFORE IMAGE (Clipped on Top) -->
+          <div id="caseBeforeWrapper" class="absolute inset-0 w-full h-full overflow-hidden" style="clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);">
+            <img id="caseImgBefore" src="/cases/vlad_case1_evgeniy_before.jpg" alt="До" class="absolute inset-0 w-full h-full object-cover object-center pointer-events-none" />
+            <div class="absolute top-4 left-4 z-20 px-3 py-1 rounded-full bg-black/75 border border-white/20 text-zinc-300 font-mono text-xs font-bold uppercase">
+              ДО // СТАРТ
+            </div>
+          </div>
+
+          <!-- DRAGGABLE DIVIDER LINE -->
+          <div id="sliderHandle" class="absolute top-0 bottom-0 z-30 w-1 bg-[#CCFF00] pointer-events-none" style="left: 50%; transform: translateX(-50%);">
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-[#CCFF00] text-black font-bold flex items-center justify-center shadow-[0_0_20px_rgba(204,255,0,0.8)] text-xs tracking-tighter">
+              ◀ ▶
+            </div>
+          </div>
+
+          <!-- Hint Pill -->
+          <div class="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 px-4 py-1.5 rounded-full bg-[#08090C]/90 border border-white/20 text-zinc-300 font-mono text-[11px] uppercase tracking-wider pointer-events-none whitespace-nowrap">
+            ТЯНИ ПОЛЗУНОК ДЛЯ СРАВНЕНИЯ ↔
+          </div>
+        </div>
+
+        <!-- Case Metadata Summary -->
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-4 rounded-2xl bg-white/[0.02] border border-white/5">
+          <div>
+            <div class="text-white font-heavy text-lg tracking-tight uppercase" id="caseClientName">Евгений, 32 года</div>
+            <div class="text-[#CCFF00] text-xs font-mono uppercase font-bold" id="caseResultStats">-14 КГ ЗА 3 МЕСЯЦА // СУХОЙ РЕЛЬЕФ</div>
+          </div>
+          <button onclick="switchTab('application')" class="px-5 py-2.5 rounded-full bg-[#CCFF00] hover:bg-[#DFFF26] text-black font-bold text-xs uppercase tracking-wide cursor-pointer active:scale-95">
+            Хочу такой же результат →
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- TAB 03: ТАРИФЫ (Screen 3 Membership Plans) -->
+    <!-- ========================================== -->
+    <div id="view-tiers" class="tab-view hidden space-y-8">
+      <div class="text-center max-w-2xl mx-auto">
+        <div class="inline-block px-3 py-1 rounded-full bg-[#CCFF00]/10 border border-[#CCFF00]/30 text-[#CCFF00] text-xs font-mono font-bold uppercase tracking-wider mb-2">
+          [03. ТАРИФЫ] // MEMBERSHIP
+        </div>
+        <h2 class="font-heavy text-3xl sm:text-4xl uppercase text-white tracking-tight">
+          ФОРМАТЫ И СТОИМОСТЬ ВЕДЕНИЯ
+        </h2>
+        <p class="text-zinc-400 text-xs sm:text-sm mt-1.5">
+          Гибкие форматы под любые цели — с полным доступом к наставнику, разборам и закрытому комьюнити.
+        </p>
+      </div>
+
+      <!-- 3 Tier Cards (as in Screen 3) -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch pt-3">
+        <!-- TIER 1: ESSENTIAL -->
+        <div class="glass-card rounded-3xl p-6 sm:p-7 flex flex-col justify-between hover:border-white/20 transition-all">
+          <div>
+            <div class="text-zinc-400 font-mono text-xs uppercase tracking-wider mb-1">01 // ESSENTIAL</div>
+            <h3 class="font-heavy text-2xl uppercase text-white tracking-tight mb-2">ESSENTIAL</h3>
+            <p class="text-zinc-400 text-xs leading-relaxed mb-6">Базовый персональный протокол тренировок и питания для быстрого и уверенного старта.</p>
+            
+            <div class="mb-6">
+              <span class="text-3xl font-heavy text-white">9 900 ₽</span>
+              <span class="text-zinc-500 text-xs font-mono uppercase"> / месяц</span>
+            </div>
+
+            <ul class="space-y-3 text-xs text-zinc-300 border-t border-white/5 pt-5 mb-8">
+              <li class="flex items-start gap-2.5">
+                <span class="text-[#CCFF00] font-bold">✓</span>
+                <span>Индивидуальный план тренировок</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="text-[#CCFF00] font-bold">✓</span>
+                <span>Расчёт нормы КБЖУ и схема питания</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="text-[#CCFF00] font-bold">✓</span>
+                <span>Чат с наставником в Telegram</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="text-[#CCFF00] font-bold">✓</span>
+                <span>Корректировка программы каждые 2 нед.</span>
+              </li>
+            </ul>
+          </div>
+          <button onclick="selectTierAndGoToApp('ESSENTIAL')" class="w-full py-3.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/15 text-white font-bold text-xs uppercase tracking-wider cursor-pointer active:scale-95 transition-all">
+            Выбрать Essential
+          </button>
+        </div>
+
+        <!-- TIER 2: UNLIMITED (MOST POPULAR - HIGHLIGHTED WITH LIME BORDER & GLOW) -->
+        <div class="glass-card rounded-3xl p-6 sm:p-7 flex flex-col justify-between border-2 border-[#CCFF00] shadow-[0_0_35px_rgba(204,255,0,0.18)] relative transform md:-translate-y-2">
+          <!-- Top Badge -->
+          <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-[#CCFF00] text-black font-extrabold text-[10px] uppercase tracking-wider shadow-md">
+            MOST POPULAR
+          </div>
+
+          <div>
+            <div class="text-[#CCFF00] font-mono text-xs uppercase tracking-wider mb-1 mt-1">02 // UNLIMITED</div>
+            <h3 class="font-heavy text-2xl uppercase text-white tracking-tight mb-2">UNLIMITED</h3>
+            <p class="text-zinc-400 text-xs leading-relaxed mb-6">Полное персональное ведение с максимальной поддержкой и доведением до формы мечты.</p>
+            
+            <div class="mb-6">
+              <span class="text-4xl font-heavy text-[#CCFF00]">19 900 ₽</span>
+              <span class="text-zinc-400 text-xs font-mono uppercase"> / месяц</span>
+            </div>
+
+            <ul class="space-y-3 text-xs text-zinc-200 border-t border-white/10 pt-5 mb-8">
+              <li class="flex items-start gap-2.5">
+                <span class="text-[#CCFF00] font-bold">✓</span>
+                <span class="font-semibold">Всё, что в тарифе Essential</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="text-[#CCFF00] font-bold">✓</span>
+                <span>Видео-разборы техники выполнения</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="text-[#CCFF00] font-bold">✓</span>
+                <span>Ежедневный контроль питания и веса</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="text-[#CCFF00] font-bold">✓</span>
+                <span>Приоритетная связь в чате 24/7</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="text-[#CCFF00] font-bold">✓</span>
+                <span>Доступ в закрытое комьюнити</span>
+              </li>
+            </ul>
+          </div>
+          <button onclick="selectTierAndGoToApp('UNLIMITED')" class="w-full py-4 rounded-full bg-[#CCFF00] hover:bg-[#DFFF26] text-black font-extrabold text-xs uppercase tracking-wider cursor-pointer active:scale-95 shadow-[0_0_20px_rgba(204,255,0,0.35)] transition-all">
+            Выбрать Unlimited →
+          </button>
+        </div>
+
+        <!-- TIER 3: PREMIER -->
+        <div class="glass-card rounded-3xl p-6 sm:p-7 flex flex-col justify-between hover:border-white/20 transition-all">
+          <div>
+            <div class="text-zinc-400 font-mono text-xs uppercase tracking-wider mb-1">03 // PREMIER VIP</div>
+            <h3 class="font-heavy text-2xl uppercase text-white tracking-tight mb-2">PREMIER VIP</h3>
+            <p class="text-zinc-400 text-xs leading-relaxed mb-6">Премиальное наставничество «под ключ» с гарантией результата и прямыми созвонами.</p>
+            
+            <div class="mb-6">
+              <span class="text-3xl font-heavy text-white">39 900 ₽</span>
+              <span class="text-zinc-500 text-xs font-mono uppercase"> / 3 месяца</span>
+            </div>
+
+            <ul class="space-y-3 text-xs text-zinc-300 border-t border-white/5 pt-5 mb-8">
+              <li class="flex items-start gap-2.5">
+                <span class="text-[#CCFF00] font-bold">✓</span>
+                <span>Всё из тарифа Unlimited на 3 мес.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="text-[#CCFF00] font-bold">✓</span>
+                <span>Личные созвоны 1-на-1 раз в неделю</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="text-[#CCFF00] font-bold">✓</span>
+                <span>Подбор нутрицевтиков и витаминов</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="text-[#CCFF00] font-bold">✓</span>
+                <span>Прямой контакт с главным тренером</span>
+              </li>
+            </ul>
+          </div>
+          <button onclick="selectTierAndGoToApp('PREMIER VIP')" class="w-full py-3.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/15 text-white font-bold text-xs uppercase tracking-wider cursor-pointer active:scale-95 transition-all">
+            Выбрать Premier
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- TAB 04: АНКЕТА ЗАПИСИ (Application Form) -->
+    <!-- ========================================== -->
+    <div id="view-application" class="tab-view hidden space-y-6">
+      <div class="text-center max-w-xl mx-auto">
+        <div class="inline-block px-3 py-1 rounded-full bg-[#CCFF00]/10 border border-[#CCFF00]/30 text-[#CCFF00] text-xs font-mono font-bold uppercase tracking-wider mb-2">
+          [04. АНКЕТА] // ЗАПИСЬ
+        </div>
+        <h2 class="font-heavy text-3xl sm:text-4xl uppercase text-white tracking-tight">
+          ЗАПИСАТЬСЯ НА ОНЛАЙН-ВЕДЕНИЕ
+        </h2>
+        <p class="text-zinc-400 text-xs sm:text-sm mt-1.5">
+          Заполните короткую анкету, и тренер лично свяжется с вами в Telegram для первичного разбора и согласования программы.
+        </p>
+      </div>
+
+      <form id="appForm" onsubmit="submitApplication(event)" class="glass-card rounded-3xl p-6 sm:p-8 max-w-xl mx-auto space-y-5">
+        <div>
+          <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1.5">ВАШЕ ИМЯ *</label>
+          <input type="text" id="app-name" required placeholder="Как вас зовут?" class="w-full px-4 py-3 rounded-2xl bg-white/[0.04] border border-white/10 text-white text-sm focus:outline-none focus:border-[#CCFF00] transition-colors" />
+        </div>
+
+        <div>
+          <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1.5">НИК В TELEGRAM ИЛИ ТЕЛЕФОН *</label>
+          <input type="text" id="app-contact" required placeholder="@username или +7..." class="w-full px-4 py-3 rounded-2xl bg-white/[0.04] border border-white/10 text-white text-sm focus:outline-none focus:border-[#CCFF00] transition-colors" />
+        </div>
+
+        <div>
+          <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1.5">ВЫБРАННЫЙ ТАРИФ</label>
+          <select id="app-tier" class="w-full px-4 py-3 rounded-2xl bg-zinc-900 border border-white/10 text-white text-sm focus:outline-none focus:border-[#CCFF00] transition-colors">
+            <option value="UNLIMITED (Рекомендуемый)">UNLIMITED — 19 900 ₽ / мес (ХИТ)</option>
+            <option value="ESSENTIAL (Базовый)">ESSENTIAL — 9 900 ₽ / мес</option>
+            <option value="PREMIER VIP">PREMIER VIP — 39 900 ₽ / 3 мес</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1.5">ВАША ЦЕЛЬ И ТЕКУЩИЙ ОПЫТ</label>
+          <textarea id="app-goal" rows="3" placeholder="Сбросить 8 кг, набрать сухую массу, есть ли ограничения по здоровью..." class="w-full px-4 py-3 rounded-2xl bg-white/[0.04] border border-white/10 text-white text-sm focus:outline-none focus:border-[#CCFF00] transition-colors"></textarea>
+        </div>
+
+        <!-- Calculated Summary Note -->
+        <div id="calcSummaryBox" class="p-3.5 rounded-xl bg-white/[0.02] border border-white/5 text-xs text-zinc-400 font-mono hidden">
+          ✓ Данные калькулятора прикреплены: <span class="text-[#CCFF00]" id="calcSummaryText"></span>
+        </div>
+
+        <button type="submit" class="w-full py-4 rounded-full bg-[#CCFF00] hover:bg-[#DFFF26] text-black font-extrabold text-sm uppercase tracking-wide cursor-pointer active:scale-95 shadow-[0_0_25px_rgba(204,255,0,0.4)] transition-all">
+          ОТПРАВИТЬ АНКЕТУ В TELEGRAM →
+        </button>
+      </form>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- REVIEWS & FAQ (ACCORDION & CAROUSEL) -->
+    <!-- ========================================== -->
+    <div id="view-reviews" class="tab-view hidden space-y-8">
+      <div class="text-center max-w-2xl mx-auto">
+        <div class="inline-block px-3 py-1 rounded-full bg-[#CCFF00]/10 border border-[#CCFF00]/30 text-[#CCFF00] text-xs font-mono font-bold uppercase tracking-wider mb-2">
+          [ОТЗЫВЫ] // TELEGRAM CHAT
+        </div>
+        <h2 class="font-heavy text-3xl sm:text-4xl uppercase text-white tracking-tight">
+          СКРИНШОТЫ ПЕРЕПИСОК
+        </h2>
+      </div>
+
+      <!-- Reviews Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4" id="reviewsContainer">
+        <!-- Injected via JS -->
+      </div>
+    </div>
+
+    <div id="view-faq" class="tab-view hidden space-y-6">
+      <div class="text-center max-w-2xl mx-auto">
+        <div class="inline-block px-3 py-1 rounded-full bg-[#CCFF00]/10 border border-[#CCFF00]/30 text-[#CCFF00] text-xs font-mono font-bold uppercase tracking-wider mb-2">
+          [FAQ] // ЧАСТЫЕ ВОПРОСЫ
+        </div>
+        <h2 class="font-heavy text-3xl sm:text-4xl uppercase text-white tracking-tight">
+          ОТВЕТЫ НА ВОПРОСЫ
+        </h2>
+      </div>
+
+      <div class="space-y-3 max-w-3xl mx-auto" id="faqContainer">
+        <!-- Injected via JS -->
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-white/[0.08] bg-[#050608] py-8 px-4 sm:px-8 text-center text-xs text-zinc-500 font-mono">
+    <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <span class="text-[#CCFF00] font-black">//</span>
+        <span class="text-white font-bold uppercase">STRIDE THEORY • FITNESS STUDIO</span>
+      </div>
+      <div>© 2026 PULSE ENGINE. ВСЕ ПРАВА ЗАЩИЩЕНЫ.</div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT LOGIC (CALCULATOR + TABS + CASES SLIDER + REVIEWS + FAQ) -->
   <script>
-    // Smooth scroll for nav links
-    document.addEventListener('click', function(e) {
-      var target = e.target.closest('a[href^="#"]');
-      if (target) {
-        var id = target.getAttribute('href').slice(1);
-        var el = document.getElementById(id);
-        if (el) {
-          e.preventDefault();
-          el.scrollIntoView({ behavior: 'smooth' });
+    let currentClient = null;
+    let activeTabId = 'cases';
+    let calcState = {
+      gender: 'male',
+      goal: 'cut',
+      weight: 85,
+      targetWeight: 78,
+      height: 182,
+      activity: 1.4
+    };
+
+    // 1. Tab Switching Logic (keeps mobile compact!)
+    function switchTab(tabId) {
+      activeTabId = tabId;
+      document.querySelectorAll('.tab-view').forEach(el => el.classList.add('hidden'));
+      const activeEl = document.getElementById('view-' + tabId);
+      if (activeEl) activeEl.classList.remove('hidden');
+
+      // Update Tab Buttons styling
+      document.querySelectorAll('.tab-pill').forEach(btn => {
+        btn.className = 'tab-pill py-2.5 sm:py-3 px-1 text-center font-bold text-[10px] sm:text-xs uppercase tracking-wider rounded-xl transition-all flex items-center justify-center gap-1 cursor-pointer text-zinc-400 hover:text-white';
+      });
+
+      const activeBtn = document.getElementById('btnTab-' + tabId);
+      if (activeBtn) {
+        activeBtn.className = 'tab-pill py-2.5 sm:py-3 px-1 text-center font-bold text-[10px] sm:text-xs uppercase tracking-wider rounded-xl transition-all flex items-center justify-center gap-1 cursor-pointer bg-[#CCFF00] text-black font-extrabold shadow-[0_0_15px_rgba(204,255,0,0.3)]';
+      }
+
+      // Smooth scroll to tabs section
+      const tabsSec = document.querySelector('section.sticky');
+      if (tabsSec) {
+        tabsSec.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    // 2. Calculator Logic
+    function setGender(g) {
+      calcState.gender = g;
+      document.getElementById('gender-male').className = g === 'male' ? 'py-2.5 rounded-xl border border-[#CCFF00] bg-[#CCFF00] text-black font-extrabold text-xs uppercase tracking-wider' : 'py-2.5 rounded-xl border border-white/10 bg-white/5 text-zinc-300 font-bold text-xs uppercase tracking-wider';
+      document.getElementById('gender-female').className = g === 'female' ? 'py-2.5 rounded-xl border border-[#CCFF00] bg-[#CCFF00] text-black font-extrabold text-xs uppercase tracking-wider' : 'py-2.5 rounded-xl border border-white/10 bg-white/5 text-zinc-300 font-bold text-xs uppercase tracking-wider';
+      updateCalc();
+    }
+
+    function setGoal(goal) {
+      calcState.goal = goal;
+      ['cut', 'bulk', 'strength'].forEach(g => {
+        const btn = document.getElementById('goal-' + g);
+        btn.className = g === goal ? 'py-2.5 px-1 rounded-xl border border-[#CCFF00] bg-[#CCFF00] text-black font-extrabold text-[11px] uppercase tracking-tight' : 'py-2.5 px-1 rounded-xl border border-white/10 bg-white/5 text-zinc-300 font-bold text-[11px] uppercase tracking-tight';
+      });
+      updateCalc();
+    }
+
+    function setActivity(act) {
+      calcState.activity = act;
+      [1.2, 1.4, 1.6, 1.8].forEach(a => {
+        const btn = document.getElementById('act-' + a);
+        btn.className = a === act ? 'p-2.5 rounded-xl border border-[#CCFF00] bg-[#CCFF00]/10 text-center text-xs text-[#CCFF00]' : 'p-2.5 rounded-xl border border-white/10 bg-white/5 text-center text-xs text-zinc-300';
+      });
+      updateCalc();
+    }
+
+    function updateCalc() {
+      calcState.weight = Number(document.getElementById('input-weight').value);
+      calcState.targetWeight = Number(document.getElementById('input-targetWeight').value);
+      calcState.height = Number(document.getElementById('input-height').value);
+
+      document.getElementById('val-weight').textContent = calcState.weight + ' кг';
+      document.getElementById('val-targetWeight').textContent = calcState.targetWeight + ' кг';
+      document.getElementById('val-height').textContent = calcState.height + ' см';
+
+      // Formula G5
+      let bmr = calcState.gender === 'male' 
+        ? 10 * calcState.weight + 6.25 * calcState.height - 140 + 5 
+        : 10 * calcState.weight + 6.25 * calcState.height - 140 - 161;
+      let tdee = Math.round(bmr * calcState.activity);
+
+      let targetKcal, protMult, fatMult;
+      if (calcState.goal === 'cut') {
+        targetKcal = Math.round(tdee * 0.8);
+        protMult = 2.2;
+        fatMult = 0.9;
+      } else if (calcState.goal === 'bulk') {
+        targetKcal = Math.round(tdee * 1.12);
+        protMult = 2.0;
+        fatMult = 1.0;
+      } else {
+        targetKcal = Math.round(tdee * 1.08);
+        protMult = 2.1;
+        fatMult = 1.0;
+      }
+
+      let protGrams = Math.round(calcState.weight * protMult);
+      let fatGrams = Math.round(calcState.weight * fatMult);
+      let carbGrams = Math.max(0, Math.round((targetKcal - protGrams * 4 - fatGrams * 9) / 4));
+
+      document.getElementById('res-calories').innerHTML = targetKcal.toLocaleString('ru-RU') + ' <span class="text-lg font-normal text-white">ккал</span>';
+      document.getElementById('res-protein').textContent = protGrams + 'г';
+      document.getElementById('res-fat').textContent = fatGrams + 'г';
+      document.getElementById('res-carbs').textContent = carbGrams + 'г';
+
+      document.getElementById('res-protein-kcal').textContent = Math.round((protGrams * 4 / targetKcal) * 100) + '% (' + (protGrams * 4) + ' ккал)';
+      document.getElementById('res-fat-kcal').textContent = Math.round((fatGrams * 9 / targetKcal) * 100) + '% (' + (fatGrams * 9) + ' ккал)';
+      document.getElementById('res-carbs-kcal').textContent = Math.round((carbGrams * 4 / targetKcal) * 100) + '% (' + (carbGrams * 4) + ' ккал)';
+
+      // 8-week target date
+      const targetDate = new Date();
+      targetDate.setDate(targetDate.getDate() + 56);
+      document.getElementById('res-targetDate').textContent = 'ПРОГНОЗ ДО: ' + targetDate.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long' }).toUpperCase();
+    }
+
+    function prefillAndGoToApp() {
+      const summary = `${calcState.weight} кг → ${calcState.targetWeight} кг (цель: ${calcState.goal}, калории: ${document.getElementById('res-calories').innerText})`;
+      document.getElementById('calcSummaryText').textContent = summary;
+      document.getElementById('calcSummaryBox').classList.remove('hidden');
+      switchTab('application');
+    }
+
+    function selectTierAndGoToApp(tierName) {
+      const sel = document.getElementById('app-tier');
+      for (let i = 0; i < sel.options.length; i++) {
+        if (sel.options[i].text.includes(tierName)) {
+          sel.selectedIndex = i;
+          break;
         }
       }
-    });
+      switchTab('application');
+    }
+
+    // 3. Before / After Slider Logic
+    const sliderContainer = document.getElementById('sliderContainer');
+    const beforeWrapper = document.getElementById('caseBeforeWrapper');
+    const sliderHandle = document.getElementById('sliderHandle');
+    let isDragging = false;
+
+    function setSliderPosition(x) {
+      const rect = sliderContainer.getBoundingClientRect();
+      let pos = (x - rect.left) / rect.width;
+      pos = Math.max(0, Math.min(1, pos));
+      const pct = (pos * 100).toFixed(1);
+      beforeWrapper.style.clipPath = `polygon(0 0, ${pct}% 0, ${pct}% 100%, 0 100%)`;
+      sliderHandle.style.left = `${pct}%`;
+    }
+
+    sliderContainer.addEventListener('mousedown', (e) => { isDragging = true; setSliderPosition(e.clientX); });
+    window.addEventListener('mouseup', () => { isDragging = false; });
+    window.addEventListener('mousemove', (e) => { if (isDragging) setSliderPosition(e.clientX); });
+
+    sliderContainer.addEventListener('touchstart', (e) => { isDragging = true; setSliderPosition(e.touches[0].clientX); }, { passive: true });
+    window.addEventListener('touchend', () => { isDragging = false; });
+    window.addEventListener('touchmove', (e) => { if (isDragging) setSliderPosition(e.touches[0].clientX); }, { passive: true });
+
+    // 4. Case Selection
+    let activeCaseIndex = 0;
+    function selectCase(idx) {
+      if (!currentClient || !currentClient.cases) return;
+      activeCaseIndex = idx;
+      const c = currentClient.cases[idx];
+      if (!c) return;
+
+      document.getElementById('caseImgBefore').src = c.beforeImage || '';
+      document.getElementById('caseImgAfter').src = c.afterImage || '';
+      document.getElementById('caseClientName').textContent = c.clientName || ('Кейс ' + (idx + 1));
+      document.getElementById('caseResultStats').textContent = (c.resultStats || '') + (c.duration ? ' // ' + c.duration : '');
+
+      renderCaseTabs();
+    }
+
+    function renderCaseTabs() {
+      const container = document.getElementById('caseTabsContainer');
+      if (!container || !currentClient || !currentClient.cases) return;
+      container.innerHTML = '';
+
+      currentClient.cases.forEach((c, i) => {
+        const btn = document.createElement('button');
+        const isActive = i === activeCaseIndex;
+        btn.className = isActive 
+          ? 'px-4 py-2 rounded-full bg-[#CCFF00] text-black font-extrabold text-xs whitespace-nowrap shadow-md cursor-pointer'
+          : 'px-4 py-2 rounded-full bg-white/5 hover:bg-white/10 text-zinc-300 font-bold text-xs whitespace-nowrap border border-white/10 cursor-pointer';
+        btn.textContent = (i + 1 < 10 ? '0' + (i + 1) : (i + 1)) + ' // ' + (c.clientName ? c.clientName.split(',')[0].split(' ')[0] : 'Кейс');
+        btn.onclick = () => selectCase(i);
+        container.appendChild(btn);
+      });
+    }
+
+    // 5. Submit Application to Telegram
+    function submitApplication(e) {
+      e.preventDefault();
+      const name = document.getElementById('app-name').value.trim();
+      const contact = document.getElementById('app-contact').value.trim();
+      const tier = document.getElementById('app-tier').value;
+      const goal = document.getElementById('app-goal').value.trim();
+
+      const tgUser = (currentClient && currentClient.telegramUsername) ? currentClient.telegramUsername.replace(/^@/, '') : 'StrideTheory';
+      const msg = `⚡️ НОВАЯ АНКЕТА НА ВЕДЕНИЕ (STRIDE THEORY):\n\n👤 Имя: ${name}\n📱 Контакт: ${contact}\n💳 Выбранный тариф: ${tier}\n🎯 Цель: ${goal}\n📊 Калькулятор: ${calcState.weight}кг -> ${calcState.targetWeight}кг (${calcState.goal})`;
+      
+      const tgUrl = `https://t.me/${tgUser}?text=${encodeURIComponent(msg)}`;
+      window.open(tgUrl, '_blank');
+      alert('Анкета сформирована! Сейчас откроется Telegram для отправки наставнику.');
+    }
+
+    // 6. Init Data from clients.js
+    function initData() {
+      const slug = 'new';
+      currentClient = (window.CLIENTS && window.CLIENTS[slug]) || (window.DEFAULT_CLIENTS && window.DEFAULT_CLIENTS[slug]) || null;
+      if (!currentClient) return;
+
+      if (currentClient.name) {
+        document.getElementById('navBrandName').textContent = currentClient.name;
+      }
+      if (currentClient.bio) {
+        document.getElementById('heroBio').textContent = currentClient.bio;
+      }
+      if (currentClient.tagline) {
+        document.getElementById('heroTitle').innerHTML = currentClient.tagline.replace('⚡️', '<span class="text-[#CCFF00]">⚡️</span>');
+      }
+      if (currentClient.scarcityBadge) {
+        document.getElementById('heroScarcity').textContent = currentClient.scarcityBadge;
+      }
+
+      // Cases
+      if (currentClient.cases && currentClient.cases.length > 0) {
+        selectCase(0);
+      }
+
+      // Reviews
+      const revContainer = document.getElementById('reviewsContainer');
+      if (revContainer && currentClient.reviews) {
+        revContainer.innerHTML = '';
+        currentClient.reviews.slice(0, 6).forEach((r, idx) => {
+          const div = document.createElement('div');
+          div.className = 'rounded-2xl overflow-hidden border border-white/10 bg-black/40 aspect-[4/5]';
+          div.innerHTML = `<img src="${r.image}" class="w-full h-full object-cover" alt="Отзыв ${idx+1}" />`;
+          revContainer.appendChild(div);
+        });
+      }
+
+      // FAQ
+      const faqContainer = document.getElementById('faqContainer');
+      if (faqContainer && currentClient.faq) {
+        faqContainer.innerHTML = '';
+        currentClient.faq.forEach((f, idx) => {
+          const item = document.createElement('div');
+          item.className = 'glass-card rounded-2xl p-4 sm:p-5';
+          item.innerHTML = `
+            <div class="flex items-center gap-2 text-[#CCFF00] font-mono text-xs font-bold mb-1">
+              <span>0${idx+1} //</span>
+              <span class="text-white">${f.question}</span>
+            </div>
+            <p class="text-zinc-400 text-xs sm:text-sm mt-2 leading-relaxed pl-6 border-l border-white/10">${f.answer}</p>
+          `;
+          faqContainer.appendChild(item);
+        });
+      }
+
+      updateCalc();
+      switchTab('cases');
+    }
+
+    window.addEventListener('DOMContentLoaded', initData);
   </script>
 </body>
 </html>
