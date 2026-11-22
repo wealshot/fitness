@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru" class="scroll-smooth dark">
+<html lang="ru" class="scroll-smooth">
 
 <head>
   <meta charset="UTF-8" />
@@ -7,7 +7,7 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
-  <title>ФИТНЕС ТРЕНЕР • Персональное ведение и тренировки</title>
+  <title>ФИТНЕС ТРЕНЕР • Твой персональный наставник</title>
   <meta name="description" content="Вместе создадим тело вашей мечты всего за 3 месяца. Эффективно и легко, без стресса и жестких диет." />
 
   <!-- Google Fonts: Unbounded (Ultra Bold Display), Inter (Clean Sans), Caveat (Handwritten Notes) -->
@@ -19,16 +19,15 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
-      darkMode: 'class',
       theme: {
         extend: {
           colors: {
-            brandBlue: '#0052FF',
-            brandBlueHover: '#0041CC',
-            brandBlueGlow: 'rgba(0, 82, 255, 0.45)',
-            brandDark: '#08090C',
-            cardBg: '#0E1017',
-            cardBorder: 'rgba(255, 255, 255, 0.08)'
+            brandBlue: '#0055FF',
+            brandBlueHover: '#0041D6',
+            brandBlueDark: '#0033B3',
+            brandDark: '#0A0B0E',
+            cardBg: '#FFFFFF',
+            pageBg: '#F8FAFC'
           },
           fontFamily: {
             display: ['"Unbounded"', 'sans-serif'],
@@ -41,62 +40,69 @@
   </script>
 
   <!-- Client Database -->
-  <script src="/clients.js?v=20261122_2340"></script>
-  <script src="/clients_defaults.js?v=20261122_2340"></script>
+  <script src="/clients.js?v=20261122_2345"></script>
+  <script src="/clients_defaults.js?v=20261122_2345"></script>
 
   <style>
     :root {
-      --blue-accent: #0052FF;
-      --blue-dark: #0038D1;
-      --dark-card: #0E1017;
+      --blue-primary: #0055FF;
+      --blue-gradient: linear-gradient(145deg, #0055FF 0%, #0036CC 100%);
+      --dark-primary: #0A0B0E;
     }
 
-    /* Dark Precision Blueprint / Cyber-Athletic Grid Background */
+    /* Light Precision Blueprint / Notebook Grid Background */
     body {
-      background-color: #07080B;
+      background-color: #F8FAFD;
       background-image: 
-        linear-gradient(to right, rgba(0, 82, 255, 0.06) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(0, 82, 255, 0.06) 1px, transparent 1px);
-      background-size: 32px 32px;
+        linear-gradient(to right, rgba(0, 0, 0, 0.035) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.035) 1px, transparent 1px);
+      background-size: 26px 26px;
       font-family: 'Inter', sans-serif;
-      color: #F4F4F5;
+      color: #0A0B0E;
       overflow-x: hidden;
     }
 
     .font-display {
       font-family: 'Unbounded', sans-serif;
-      letter-spacing: -0.03em;
+      letter-spacing: -0.035em;
     }
 
     .font-hand {
       font-family: 'Caveat', cursive;
     }
 
-    /* Dark Glassmorphism Cards */
-    .hero-dark-card {
-      background: #0E1017;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.7), 0 0 35px rgba(0, 82, 255, 0.08);
+    /* White Floating Hero Card */
+    .hero-floating-card {
+      background: #FFFFFF;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      box-shadow: 0 24px 50px -10px rgba(0, 85, 255, 0.12), 0 4px 18px rgba(0, 0, 0, 0.04);
+      border-radius: 30px;
+    }
+
+    /* Standard Clean White Cards */
+    .clean-white-card {
+      background: #FFFFFF;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      box-shadow: 0 18px 40px -12px rgba(0, 85, 255, 0.08), 0 2px 10px rgba(0, 0, 0, 0.03);
       border-radius: 28px;
     }
 
-    /* Electric Blue Gradient Block */
+    /* Electric Blue Card in "Работа со мной" */
     .blue-block-gradient {
-      background: linear-gradient(145deg, #0052FF 0%, #002FA6 100%);
-      box-shadow: 0 25px 50px -12px rgba(0, 82, 255, 0.4);
-      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: linear-gradient(145deg, #0055FF 0%, #0036CC 100%);
+      box-shadow: 0 25px 50px -12px rgba(0, 85, 255, 0.38);
     }
 
-    /* Frosted Glass Floating Notes in Blue Card */
+    /* Frosted Glass Floating Notes inside Blue Card */
     .frosted-glass-card {
-      background: rgba(255, 255, 255, 0.12);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.16);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, 0.32);
+      border-radius: 22px;
     }
 
-    /* Overlapping Circular CTA Button */
+    /* Split CTA Bar Container */
     .cta-split-container {
       position: relative;
       display: flex;
@@ -106,52 +112,47 @@
     }
 
     .cta-black-pill {
-      background: #141722;
+      background: #0A0B0E;
       color: #FFFFFF;
-      border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 9999px;
-      padding: 18px 65px 18px 24px;
+      padding: 18px 75px 18px 26px;
       font-size: 11px;
       font-weight: 800;
       letter-spacing: 0.05em;
       text-transform: uppercase;
       flex-grow: 1;
       white-space: nowrap;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.16);
       display: flex;
       align-items: center;
       justify-content: flex-start;
-      gap: 8px;
+      gap: 10px;
     }
 
     .cta-round-blue-btn {
       position: absolute;
       right: -8px;
-      width: 105px;
-      height: 105px;
+      width: 114px;
+      height: 114px;
       border-radius: 50%;
-      background: linear-gradient(135deg, #0055FF 0%, #0036C8 100%);
+      background: linear-gradient(135deg, #0055FF 0%, #0036CC 100%);
       color: #FFFFFF;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
-      font-family: 'Unbounded', sans-serif;
-      font-weight: 900;
-      font-size: 9.5px;
-      line-height: 1.15;
-      text-transform: uppercase;
-      box-shadow: 0 12px 28px rgba(0, 82, 255, 0.55), inset 0 2px 4px rgba(255, 255, 255, 0.4);
+      box-shadow: 0 14px 32px rgba(0, 85, 255, 0.48), inset 0 2px 4px rgba(255, 255, 255, 0.35);
       cursor: pointer;
       transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-      border: 3px solid #07080B;
-      z-index: 10;
+      border: 3px solid #FFFFFF;
+      z-index: 20;
+      overflow: hidden;
     }
 
     .cta-round-blue-btn:hover {
       transform: scale(1.06) rotate(-2deg);
-      box-shadow: 0 18px 40px rgba(0, 82, 255, 0.7), inset 0 2px 4px rgba(255, 255, 255, 0.5);
+      box-shadow: 0 20px 42px rgba(0, 85, 255, 0.6), inset 0 2px 4px rgba(255, 255, 255, 0.45);
     }
 
     .cta-round-blue-btn:active {
@@ -161,22 +162,21 @@
     /* 3 dots indicator decoration */
     .three-dots {
       display: inline-flex;
-      gap: 3px;
+      gap: 3.5px;
     }
     .three-dots span {
-      width: 4px;
-      height: 4px;
+      width: 4.5px;
+      height: 4.5px;
       border-radius: 50%;
       background-color: currentColor;
-      opacity: 0.9;
     }
 
-    /* Dark range slider custom styling */
+    /* Range slider custom styling */
     input[type=range] {
       -webkit-appearance: none;
       width: 100%;
       height: 8px;
-      background: #1C202E;
+      background: #E2E8F0;
       border-radius: 9999px;
       outline: none;
     }
@@ -186,9 +186,9 @@
       width: 24px;
       height: 24px;
       border-radius: 50%;
-      background: #0052FF;
+      background: #0055FF;
       cursor: pointer;
-      box-shadow: 0 0 14px rgba(0, 82, 255, 0.7);
+      box-shadow: 0 4px 12px rgba(0, 85, 255, 0.45);
       border: 2px solid #FFFFFF;
       transition: transform 0.15s;
     }
@@ -224,128 +224,163 @@
 <body class="selection:bg-brandBlue selection:text-white">
 
   <!-- ========================================== -->
-  <!-- MAIN WRAPPER (Max-W Mobile/Tablet Container) -->
+  <!-- MAIN CONTAINER (Mobile-First Card Frame)   -->
   <!-- ========================================== -->
-  <main class="max-w-[480px] sm:max-w-[540px] md:max-w-[680px] lg:max-w-[800px] mx-auto px-4 py-6 sm:py-10 space-y-12 sm:space-y-16">
+  <main class="max-w-[460px] sm:max-w-[500px] md:max-w-[640px] lg:max-w-[760px] mx-auto px-4 py-6 sm:py-10 space-y-12 sm:space-y-16">
 
     <!-- ========================================== -->
-    <!-- 1. HERO SECTION                            -->
+    <!-- 1. HERO SECTION (ТОЧЬ В ТОЧЬ ПО РЕФЕРЕНСУ) -->
     <!-- ========================================== -->
     <section id="hero" class="relative">
 
-      <!-- Top Label & Big Display Heading -->
-      <div class="space-y-2">
-        <!-- Dark Pill Badge with Glow Border -->
-        <div class="inline-flex items-center gap-2 bg-[#141722] text-white border border-white/10 px-3.5 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-wider shadow-sm">
-          <span>ТВОЙ ПЕРСОНАЛЬНЫЙ</span>
-        </div>
+      <!-- Top Header Row -->
+      <div class="flex items-start justify-between gap-2">
+        <!-- Left: Black Angled Badge & Giant Blue Heading -->
+        <div class="space-y-2">
+          <!-- Black Pill Tag (-2deg angled like reference) -->
+          <div class="inline-block bg-[#0A0B0E] text-white px-3.5 py-1.5 rounded-lg text-[11px] font-bold uppercase tracking-wider -rotate-2 shadow-sm">
+            ТВОЙ ПЕРСОНАЛЬНЫЙ
+          </div>
 
-        <!-- Giant Slanted Blue Heading with Subtle Glow -->
-        <div class="flex items-start justify-between gap-4">
-          <h1 class="font-display font-black text-4xl sm:text-5xl md:text-6xl text-brandBlue uppercase leading-[0.92] tracking-tight drop-shadow-sm">
+          <!-- Giant Slanted Blue Heading -->
+          <h1 class="font-display font-black text-4xl sm:text-5xl md:text-6xl text-[#0055FF] uppercase leading-[0.92] tracking-tight">
             ФИТНЕС<br/>ТРЕНЕР
           </h1>
+        </div>
 
-          <!-- 3 Dots & Subtitle on Right -->
-          <div class="text-right pt-2 max-w-[170px] sm:max-w-[210px]">
-            <div class="three-dots text-brandBlue mb-1 justify-end">
-              <span></span><span></span><span></span>
+        <!-- Right: 3 Dots + Subtitle with Highlighted Words -->
+        <div class="text-right pt-2 max-w-[170px] sm:max-w-[200px]">
+          <div class="three-dots text-[#0055FF] mb-1.5 justify-end">
+            <span></span><span></span><span></span>
+          </div>
+          <p class="text-xs sm:text-[13px] font-semibold text-zinc-800 leading-snug">
+            Вместе создадим<br/>
+            <span class="text-[#0055FF] font-black">тело</span> вашей мечты<br/>
+            всего <span class="text-[#0055FF] font-black">за 3 месяца</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Coach Hero Area with Background Elements -->
+      <div class="relative mt-2 z-0">
+        <!-- Urban City Skyline Backdrop Silhouette -->
+        <div class="absolute inset-x-0 top-0 h-[260px] bg-gradient-to-b from-slate-200/50 via-slate-100/30 to-transparent pointer-events-none rounded-t-3xl"></div>
+
+        <!-- Coach Photo Box -->
+        <div class="relative w-full h-[400px] sm:h-[460px] flex items-end justify-center overflow-visible">
+          <!-- Coach Image (Cutout style) -->
+          <img id="coachHeroImg" src="/images/gromov-coach.jpg" alt="Фитнес тренер" class="h-full w-auto max-w-full object-contain object-bottom filter contrast-[1.04]" />
+
+          <!-- Handwritten Coach Name (Left of coach's neck/shoulder) -->
+          <div class="absolute top-10 left-4 sm:left-8 z-10 select-none">
+            <div class="font-hand font-bold text-3xl sm:text-4xl text-black leading-none -rotate-6 drop-shadow-sm" id="coachHandwrittenName">
+              Максим<br/>Громов
             </div>
-            <p class="text-xs sm:text-sm text-zinc-400 font-medium leading-snug">
-              Вместе создадим <strong class="text-white font-bold underline decoration-brandBlue">тело</strong> вашей мечты всего <strong class="text-white font-bold">за 3 месяца</strong>
-            </p>
+          </div>
+
+          <!-- Faint Lightning Bolt Doodle (Behind right shoulder) -->
+          <div class="absolute top-8 right-12 sm:right-16 z-0 text-slate-300 text-4xl sm:text-5xl -rotate-12 select-none pointer-events-none">
+            ⚡
+          </div>
+
+          <!-- Instagram Handle Pill Badge (On coach chest/waist) -->
+          <div class="absolute bottom-20 right-6 sm:right-10 z-10">
+            <a id="coachIgBadgeLink" href="https://instagram.com/gromov.max" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 bg-[#0A0B0E]/90 backdrop-blur-sm text-white px-3 py-1.5 rounded-full text-xs font-mono font-medium hover:bg-black transition-all shadow-md">
+              <span class="text-[#0055FF] text-xs">📷</span>
+              <span id="coachIgHandle">@gromov.max</span>
+            </a>
           </div>
         </div>
       </div>
 
-      <!-- Coach Hero Portrait Box -->
-      <div class="relative mt-4 mb-[-50px] sm:mb-[-70px] z-0">
-        <!-- Coach Photo Container with Dark Vignette -->
-        <div class="relative w-full h-[460px] sm:h-[540px] md:h-[600px] rounded-3xl overflow-hidden shadow-2xl bg-gradient-to-b from-zinc-800 via-zinc-900 to-[#0E1017] border border-white/10">
-          <img id="coachHeroImg" src="/images/bernetskiy-hero.jpg" alt="Тренер" class="w-full h-full object-cover object-top filter brightness-[0.98] contrast-[1.08]" />
-          
-          <!-- Smooth Dark Vignette at bottom so card blends seamlessly -->
-          <div class="absolute inset-0 bg-gradient-to-t from-[#0E1017] via-black/40 to-transparent"></div>
-
-          <!-- Handwritten Coach Name Annotation (Top-Left on photo) -->
-          <div class="absolute top-6 left-6 z-10">
-            <div class="font-hand text-3xl sm:text-4xl text-white font-bold leading-none rotate-[-6deg] drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)] select-none" id="coachHandwrittenName">
-              Владислав<br/>Бернецкий
-            </div>
-            <span class="inline-block text-xl ml-8 rotate-[15deg] text-brandBlue drop-shadow-[0_0_8px_rgba(0,82,255,0.8)]">⚡️</span>
-          </div>
-
-          <!-- Instagram Handle Pill Tag (on coach body/chest) -->
-          <a id="coachIgBadgeLink" href="https://instagram.com/bernetskiy" target="_blank" rel="noopener" class="absolute bottom-20 right-6 z-10 inline-flex items-center gap-1.5 bg-black/80 backdrop-blur-md text-white border border-white/15 px-3 py-1.5 rounded-full text-xs font-mono font-medium hover:bg-brandBlue transition-all shadow-lg">
-            <span>📷</span>
-            <span id="coachIgHandle">@bernetskiy</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- Overlapping Floating Dark Card -->
-      <div class="hero-dark-card p-6 sm:p-8 relative z-10">
-        <p class="text-xs font-bold text-zinc-400 uppercase tracking-wider mb-1">
+      <!-- Overlapping Floating White Card (Exact replica) -->
+      <div class="hero-floating-card p-5 sm:p-7 relative z-10 -mt-14 sm:-mt-16">
+        <!-- Subtitle -->
+        <p class="text-xs font-bold text-zinc-500 uppercase tracking-wider text-center mb-1">
           Тренер, который доведёт тебя до результата
         </p>
 
-        <!-- Big Bold Title with Styled Ampersand -->
-        <h2 class="font-display font-black text-2xl sm:text-3xl text-white uppercase tracking-tight mb-5 flex items-center gap-1.5 flex-wrap">
+        <!-- Big Bold Title with Styled Blue Ampersand -->
+        <h2 class="font-display font-black text-2xl sm:text-3xl text-black uppercase tracking-tight text-center flex items-center justify-center gap-1.5 mb-5">
           <span>ЭФФЕКТИВНО</span>
-          <span class="text-brandBlue font-normal">&amp;</span>
+          <span class="font-hand text-[#0055FF] text-4xl sm:text-5xl font-bold -mx-0.5 leading-none">&amp;</span>
           <span>ЛЕГКО</span>
         </h2>
 
-        <!-- 3 Feature Rows with Dark Rounded Icons -->
-        <div class="space-y-3.5 mb-7">
-          <!-- Row 1 -->
-          <div class="flex items-start gap-3.5">
-            <div class="w-9 h-9 rounded-xl bg-white/5 border border-white/10 text-brandBlue flex items-center justify-center shrink-0 shadow-sm text-sm">
-              📋
+        <!-- 3 Feature Rows as Separate Rounded Cards with Black Square Icons -->
+        <div class="space-y-3 mb-6">
+          <!-- Item 1: Подходит всем -->
+          <div class="bg-white rounded-2xl p-3 border border-slate-100 shadow-[0_2px_8px_rgba(0,0,0,0.03)] flex items-center gap-3.5">
+            <div class="w-10 h-10 rounded-xl bg-[#0A0B0E] text-white flex items-center justify-center shrink-0 shadow-sm">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+              </svg>
             </div>
-            <div class="text-xs sm:text-sm text-zinc-300 leading-snug pt-1">
-              <strong class="text-white font-bold">Подходит всем:</strong> работаю с клиентами всех возрастов и любой подготовкой
-            </div>
-          </div>
-
-          <!-- Row 2 -->
-          <div class="flex items-start gap-3.5">
-            <div class="w-9 h-9 rounded-xl bg-white/5 border border-white/10 text-brandBlue flex items-center justify-center shrink-0 shadow-sm text-sm">
-              🎯
-            </div>
-            <div class="text-xs sm:text-sm text-zinc-300 leading-snug pt-1">
-              <strong class="text-white font-bold">Гарантия результата:</strong> верну деньги, если мы не достигнем вашей цели
+            <div class="text-xs sm:text-[13px] text-zinc-700 leading-snug">
+              <strong class="text-[#0055FF] font-bold">Подходит всем:</strong> работаю с клиентами всех возрастов и любой подготовкой
             </div>
           </div>
 
-          <!-- Row 3 -->
-          <div class="flex items-start gap-3.5">
-            <div class="w-9 h-9 rounded-xl bg-white/5 border border-white/10 text-brandBlue flex items-center justify-center shrink-0 shadow-sm text-sm">
-              🏋️
+          <!-- Item 2: Гарантия результата -->
+          <div class="bg-white rounded-2xl p-3 border border-slate-100 shadow-[0_2px_8px_rgba(0,0,0,0.03)] flex items-center gap-3.5">
+            <div class="w-10 h-10 rounded-xl bg-[#0A0B0E] text-white flex items-center justify-center shrink-0 shadow-sm">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="9" stroke-width="2" />
+                <circle cx="12" cy="12" r="5" stroke-width="2" />
+                <circle cx="12" cy="12" r="1.5" fill="currentColor" />
+              </svg>
             </div>
-            <div class="text-xs sm:text-sm text-zinc-300 leading-snug pt-1">
-              <strong class="text-white font-bold">Удобный формат:</strong> тренировки онлайн или в зале с детальным видеоразбором
+            <div class="text-xs sm:text-[13px] text-zinc-700 leading-snug">
+              <strong class="text-[#0055FF] font-bold">Гарантия результата:</strong> верну деньги, если мы не достигнем вашей цели
+            </div>
+          </div>
+
+          <!-- Item 3: Удобный формат -->
+          <div class="bg-white rounded-2xl p-3 border border-slate-100 shadow-[0_2px_8px_rgba(0,0,0,0.03)] flex items-center gap-3.5">
+            <div class="w-10 h-10 rounded-xl bg-[#0A0B0E] text-white flex items-center justify-center shrink-0 shadow-sm">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 8v8M18 8v8M4 10v4M20 10v4M6 12h12" />
+              </svg>
+            </div>
+            <div class="text-xs sm:text-[13px] text-zinc-700 leading-snug">
+              <strong class="text-[#0055FF] font-bold">Удобный формат:</strong> приеду в ближайший фитнес-зал и проведу тренировку
             </div>
           </div>
         </div>
 
-        <!-- Overlapping Split CTA Bar -->
+        <!-- Overlapping Split CTA Bar with Rotating Text Circular Button -->
         <div class="cta-split-container mx-auto">
+          <!-- Black Pill Bar -->
           <div class="cta-black-pill">
             <span>СКИДКА 15% НА ПЕРВОЕ ЗАНЯТИЕ</span>
-            <span class="text-brandBlue font-black text-sm">⟶</span>
+            <span class="text-white text-base font-light">⟶</span>
           </div>
-          <button onclick="openBookingModal()" class="cta-round-blue-btn">
-            <span>ЗАПИСАТЬСЯ</span>
-            <span class="mt-0.5 text-[8.5px] opacity-90">НА ТРЕНИРОВКУ</span>
+
+          <!-- Circular Blue Button with Rotating Text along rim -->
+          <button onclick="openBookingModal()" class="cta-round-blue-btn group">
+            <!-- Rotating Watermark Text -->
+            <svg class="absolute inset-0 w-full h-full animate-[spin_14s_linear_infinite] pointer-events-none opacity-40" viewBox="0 0 100 100">
+              <path id="circlePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="none" />
+              <text font-size="6.2" fill="white" font-family="'Unbounded', sans-serif" font-weight="800" letter-spacing="2.2">
+                <textPath href="#circlePath">
+                  ЗАПИСАТЬСЯ • ЗАПИСАТЬСЯ • ЗАПИСАТЬСЯ • 
+                </textPath>
+              </text>
+            </svg>
+
+            <!-- Center Text -->
+            <div class="relative z-10 text-center font-display font-black text-[9px] leading-[1.15] uppercase tracking-tight text-white drop-shadow-sm">
+              ЗАПИСАТЬСЯ<br/>
+              <span class="text-[7.5px] font-bold text-white/90">НА ТРЕНИРОВКУ</span>
+            </div>
           </button>
         </div>
       </div>
 
-      <!-- Down Arrow Scroll Cue -->
-      <div class="flex justify-center mt-6">
-        <a href="#about" class="w-8 h-8 rounded-full bg-[#141722] text-white border border-white/10 flex items-center justify-center text-xs shadow-md hover:bg-brandBlue transition-all">
-          ↓
+      <!-- Scroll Indicator Under Card -->
+      <div class="flex justify-center mt-5">
+        <a href="#about" class="w-7 h-7 rounded-full bg-[#0A0B0E] text-white flex items-center justify-center text-xs shadow-md hover:bg-[#0055FF] transition-all">
+          ∨
         </a>
       </div>
     </section>
@@ -355,24 +390,24 @@
     <!-- ========================================== -->
     <section id="about" class="space-y-3">
       <!-- Section Title -->
-      <h2 class="font-display font-black text-2xl sm:text-3xl md:text-4xl text-brandBlue uppercase tracking-tight text-center sm:text-left drop-shadow-sm">
+      <h2 class="font-display font-black text-2xl sm:text-3xl md:text-4xl text-[#0055FF] uppercase tracking-tight text-center sm:text-left">
         РАБОТА СО МНОЙ
       </h2>
 
       <!-- Big Electric Blue Card with Floating Frosted Cards -->
-      <div class="blue-block-gradient rounded-[32px] p-5 sm:p-8 text-white relative overflow-hidden">
+      <div class="blue-block-gradient rounded-[32px] p-5 sm:p-7 text-white relative overflow-hidden">
 
-        <!-- Background Ambient Doodles -->
+        <!-- Background Ambient Blur -->
         <div class="absolute -right-10 -bottom-10 w-64 h-64 rounded-full bg-white/10 blur-2xl pointer-events-none"></div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 relative z-10">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 relative z-10">
 
           <!-- Card 1: "с заботой" -->
           <div class="frosted-glass-card p-5 relative">
             <div class="font-hand text-2xl text-white font-bold mb-1">
               с заботой
             </div>
-            <div class="three-dots text-white/70 mb-2">
+            <div class="three-dots text-white/80 mb-2">
               <span></span><span></span><span></span>
             </div>
             <h4 class="font-display font-bold text-xs uppercase tracking-wider mb-1.5 text-white">
@@ -385,7 +420,7 @@
 
           <!-- Card 2: "без надрыва и насилия" -->
           <div class="frosted-glass-card p-5 flex flex-col justify-center text-center">
-            <div class="three-dots text-white/70 mb-2 justify-center">
+            <div class="three-dots text-white/80 mb-2 justify-center">
               <span></span><span></span><span></span>
             </div>
             <div class="font-hand text-3xl sm:text-4xl text-white font-bold leading-tight rotate-[-2deg]">
@@ -398,7 +433,7 @@
             <h3 class="font-display font-black text-xl sm:text-2xl uppercase tracking-tight text-white mb-1">
               ЭФФЕКТИВНО
             </h3>
-            <div class="three-dots text-white/70 mb-2">
+            <div class="three-dots text-white/80 mb-2">
               <span></span><span></span><span></span>
             </div>
             <h4 class="font-display font-bold text-xs uppercase tracking-wider mb-1.5 text-white">
@@ -412,7 +447,7 @@
           <!-- Card 4: "Индивидуальный подход" -->
           <div class="frosted-glass-card p-5 flex flex-col justify-between">
             <div>
-              <div class="three-dots text-white/70 mb-2">
+              <div class="three-dots text-white/80 mb-2">
                 <span></span><span></span><span></span>
               </div>
               <h4 class="font-display font-bold text-xs uppercase tracking-wider mb-1.5 text-white">
@@ -422,7 +457,7 @@
                 Я учитываю ваши цели, ограничения и физ-особенности, создавая личную программу для каждого моего подопечного.
               </p>
             </div>
-            <div class="font-hand text-2xl text-white/90 font-bold mt-3 text-right">
+            <div class="font-hand text-2xl text-white font-bold mt-3 text-right">
               и без скучных упражнений ✨
             </div>
           </div>
@@ -432,20 +467,166 @@
     </section>
 
     <!-- ========================================== -->
-    <!-- 3. КЕЙСЫ ДО / ПОСЛЕ (10 РЕАЛЬНЫХ ТРАНСФОРМАЦИЙ) -->
+    <!-- 3. ВАРИАНТЫ ТРЕНИРОВОК (ТАРИФЫ)            -->
+    <!-- ========================================== -->
+    <section id="pricing" class="clean-white-card p-6 sm:p-8 space-y-6">
+      <div>
+        <h2 class="font-display font-black text-2xl sm:text-3xl md:text-4xl text-[#0055FF] uppercase tracking-tight">
+          ВАРИАНТЫ ТРЕНИРОВОК
+        </h2>
+        <div class="flex items-center gap-2 mt-1">
+          <div class="three-dots text-[#0055FF]">
+            <span></span><span></span><span></span>
+          </div>
+          <p class="text-xs sm:text-sm text-zinc-600 font-medium">
+            Выбирайте удобный формат нашего взаимодействия. <strong class="text-black font-bold">Чем больше</strong> тренировок вы покупаете, <strong class="text-[#0055FF] font-bold">тем дешевле</strong> они стоят
+          </p>
+        </div>
+      </div>
+
+      <!-- Pricing Table Rows -->
+      <div class="divide-y divide-slate-100">
+        <!-- Row 1 -->
+        <div class="py-4 flex items-center justify-between gap-4">
+          <div class="text-xs sm:text-sm font-bold text-zinc-800">
+            Пробная тренировка + тестирование
+          </div>
+          <div class="font-display font-black text-sm sm:text-base text-black whitespace-nowrap">
+            1 500 руб.
+          </div>
+        </div>
+
+        <!-- Row 2 -->
+        <div class="py-4 flex items-center justify-between gap-4">
+          <div class="text-xs sm:text-sm font-bold text-zinc-800">
+            10 индивидуальных тренировок
+          </div>
+          <div class="font-display font-black text-sm sm:text-base text-[#0055FF] whitespace-nowrap">
+            18 000 руб.
+          </div>
+        </div>
+
+        <!-- Row 3 -->
+        <div class="py-4 flex items-center justify-between gap-4">
+          <div class="text-xs sm:text-sm font-bold text-zinc-800">
+            15 индивидуальных тренировок
+          </div>
+          <div class="font-display font-black text-sm sm:text-base text-black whitespace-nowrap">
+            25 000 руб.
+          </div>
+        </div>
+      </div>
+
+      <!-- Info Box with [i] icon -->
+      <div class="bg-blue-50/80 border border-blue-200/80 rounded-2xl p-4 flex items-start gap-3">
+        <div class="w-6 h-6 rounded-full bg-[#0055FF] text-white flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">
+          i
+        </div>
+        <div class="text-xs text-zinc-700 leading-snug">
+          Длительность одной тренировки 2 часа. Абонемент действует 3 месяца со дня первого занятия.
+        </div>
+      </div>
+
+      <!-- Split CTA Bar -->
+      <div class="cta-split-container mx-auto pt-2">
+        <div class="cta-black-pill">
+          <span>СКИДКА 15% НА ПРОБНОЕ ЗАНЯТИЕ</span>
+          <span class="text-white text-base font-light">⟶</span>
+        </div>
+        <button onclick="openBookingModal()" class="cta-round-blue-btn group">
+          <svg class="absolute inset-0 w-full h-full animate-[spin_14s_linear_infinite] pointer-events-none opacity-40" viewBox="0 0 100 100">
+            <path id="circlePathPricing" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="none" />
+            <text font-size="6.2" fill="white" font-family="'Unbounded', sans-serif" font-weight="800" letter-spacing="2.2">
+              <textPath href="#circlePathPricing">
+                ЗАПИСАТЬСЯ • ЗАПИСАТЬСЯ • ЗАПИСАТЬСЯ • 
+              </textPath>
+            </text>
+          </svg>
+          <div class="relative z-10 text-center font-display font-black text-[9px] leading-[1.15] uppercase tracking-tight text-white drop-shadow-sm">
+            ЗАПИСАТЬСЯ<br/>
+            <span class="text-[7.5px] font-bold text-white/90">НА ТРЕНИРОВКУ</span>
+          </div>
+        </button>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 4. ВАШИ ОТЗЫВЫ                             -->
+    <!-- ========================================== -->
+    <section id="reviews" class="space-y-4">
+      <div>
+        <div class="font-hand text-3xl sm:text-4xl text-black font-bold -mb-2 rotate-[-3deg]">
+          ваши
+        </div>
+        <h2 class="font-display font-black text-3xl sm:text-4xl md:text-5xl text-[#0055FF] uppercase tracking-tight">
+          ОТЗЫВЫ
+        </h2>
+      </div>
+
+      <!-- Horizontal Cards Carousel -->
+      <div class="reviews-track flex gap-4 overflow-x-auto pb-4">
+        <!-- Lead-in Electric Blue Card (Exact text from reference) -->
+        <div class="review-slide w-[280px] sm:w-[320px] blue-block-gradient text-white rounded-3xl p-6 flex flex-col justify-between shadow-lg">
+          <p class="text-xs sm:text-sm font-medium leading-relaxed">
+            Я с большим уважением отношусь к правилам конфиденциальности и никогда не настаиваю на отзыве. Есть клиенты, которые сами с удовольствием делятся результатами нашей работы, за что я им очень благодарен!
+          </p>
+          <div class="pt-6 font-display font-black text-xs uppercase tracking-wider flex items-center justify-between text-white/90">
+            <span>Некоторые вы можете почитать здесь</span>
+            <span class="text-lg">⟶</span>
+          </div>
+        </div>
+
+        <!-- Review Screenshot Slide 1 -->
+        <div class="review-slide w-[280px] sm:w-[320px] clean-white-card p-3 rounded-3xl overflow-hidden">
+          <img src="/cases/vladislav_danya.jpg" alt="Отзыв Даня" class="w-full h-[360px] object-cover rounded-2xl" />
+        </div>
+
+        <!-- Review Screenshot Slide 2 -->
+        <div class="review-slide w-[280px] sm:w-[320px] clean-white-card p-3 rounded-3xl overflow-hidden">
+          <img src="/cases/vladislav_denis.jpg" alt="Отзыв Денис" class="w-full h-[360px] object-cover rounded-2xl" />
+        </div>
+
+        <!-- Review Screenshot Slide 3 -->
+        <div class="review-slide w-[280px] sm:w-[320px] clean-white-card p-3 rounded-3xl overflow-hidden">
+          <img src="/cases/vladislav_ignat.jpg" alt="Отзыв Игнат" class="w-full h-[360px] object-cover rounded-2xl" />
+        </div>
+
+        <!-- Review Screenshot Slide 4 -->
+        <div class="review-slide w-[280px] sm:w-[320px] clean-white-card p-3 rounded-3xl overflow-hidden">
+          <img src="/cases/vladislav_sandra.jpg" alt="Отзыв Сандра" class="w-full h-[360px] object-cover rounded-2xl" />
+        </div>
+
+        <!-- Review Screenshot Slide 5 -->
+        <div class="review-slide w-[280px] sm:w-[320px] clean-white-card p-3 rounded-3xl overflow-hidden">
+          <img src="/cases/vladislav_danil_squash.jpg" alt="Отзыв Данил" class="w-full h-[360px] object-cover rounded-2xl" />
+        </div>
+      </div>
+
+      <!-- Pagination Dots Indicator -->
+      <div class="flex justify-center items-center gap-1.5 pt-1">
+        <span class="w-2.5 h-2.5 rounded-full bg-[#0055FF]"></span>
+        <span class="w-2 h-2 rounded-full bg-zinc-300"></span>
+        <span class="w-2 h-2 rounded-full bg-zinc-300"></span>
+        <span class="w-2 h-2 rounded-full bg-zinc-300"></span>
+        <span class="w-2 h-2 rounded-full bg-zinc-300"></span>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 5. КЕЙСЫ ДО / ПОСЛЕ (10 ТРАНСФОРМАЦИЙ)     -->
     <!-- ========================================== -->
     <section id="cases" class="space-y-4">
       <div class="flex items-end justify-between">
         <div>
-          <div class="font-hand text-2xl sm:text-3xl text-zinc-400 font-bold -mb-1">
+          <div class="font-hand text-2xl sm:text-3xl text-zinc-500 font-bold -mb-1">
             реальные
           </div>
-          <h2 class="font-display font-black text-2xl sm:text-3xl md:text-4xl text-brandBlue uppercase tracking-tight drop-shadow-sm">
+          <h2 class="font-display font-black text-2xl sm:text-3xl md:text-4xl text-[#0055FF] uppercase tracking-tight">
             РЕЗУЛЬТАТЫ ПОДОПЕЧНЫХ
           </h2>
         </div>
         <!-- 10/10 Badge -->
-        <div class="bg-[#141722] text-white border border-white/10 px-3 py-1.5 rounded-full text-xs font-mono font-bold">
+        <div class="bg-[#0A0B0E] text-white px-3 py-1.5 rounded-full text-xs font-mono font-bold">
           10/10 КЕЙСОВ
         </div>
       </div>
@@ -456,47 +637,47 @@
       </div>
 
       <!-- Interactive Before / After Comparison Box -->
-      <div class="hero-dark-card p-4 sm:p-6 space-y-4">
+      <div class="clean-white-card p-4 sm:p-6 space-y-4">
         <!-- Image Slider Box -->
-        <div id="caseSliderContainer" class="ba-slider-container w-full h-[380px] sm:h-[460px] md:h-[520px] bg-black relative border border-white/10">
+        <div id="caseSliderContainer" class="ba-slider-container w-full h-[380px] sm:h-[460px] md:h-[520px] bg-zinc-900 relative">
           <!-- After Image (Full background) -->
           <img id="caseImgAfter" src="/cases/vlad_case1_evgeniy_after.jpg" alt="После" class="absolute inset-0 w-full h-full object-cover object-top select-none pointer-events-none" />
-          <div class="absolute top-4 right-4 z-10 bg-brandBlue text-white text-[11px] font-bold uppercase px-3 py-1 rounded-full shadow-lg">
+          <div class="absolute top-4 right-4 z-10 bg-[#0055FF] text-white text-[11px] font-bold uppercase px-3 py-1 rounded-full shadow-md">
             ПОСЛЕ
           </div>
 
           <!-- Before Image (Clipped overlay) -->
           <div id="caseBeforeWrapper" class="absolute inset-0 w-1/2 overflow-hidden border-r-2 border-white select-none">
             <img id="caseImgBefore" src="/cases/vlad_case1_evgeniy_before.jpg" alt="До" class="absolute inset-0 w-full h-full object-cover object-top select-none pointer-events-none max-w-none" style="width: 100%; height: 100%;" />
-            <div class="absolute top-4 left-4 z-10 bg-[#0E1017] text-white border border-white/15 text-[11px] font-bold uppercase px-3 py-1 rounded-full shadow-lg">
+            <div class="absolute top-4 left-4 z-10 bg-[#0A0B0E] text-white text-[11px] font-bold uppercase px-3 py-1 rounded-full shadow-md">
               ДО
             </div>
           </div>
 
           <!-- Divider Drag Handle -->
           <div id="caseSliderHandle" class="absolute top-0 bottom-0 left-1/2 -ml-4 w-8 flex items-center justify-center cursor-ew-resize z-20">
-            <div class="w-8 h-8 rounded-full bg-white text-brandBlue flex items-center justify-center font-bold text-xs shadow-2xl border-2 border-brandBlue select-none">
+            <div class="w-8 h-8 rounded-full bg-white text-[#0055FF] flex items-center justify-center font-bold text-xs shadow-xl border-2 border-[#0055FF] select-none">
               ⇄
             </div>
           </div>
 
           <!-- Swipe Hint -->
-          <div class="absolute bottom-3 left-1/2 -translate-x-1/2 bg-black/80 backdrop-blur-md text-white border border-white/10 text-[10px] font-mono uppercase px-3 py-1 rounded-full pointer-events-none z-10">
+          <div class="absolute bottom-3 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-md text-white text-[10px] font-mono uppercase px-3 py-1 rounded-full pointer-events-none z-10">
             ← Потяните ползунок →
           </div>
         </div>
 
         <!-- Case Info Card -->
-        <div class="flex items-center justify-between flex-wrap gap-2 pt-1 border-t border-white/10">
+        <div class="flex items-center justify-between flex-wrap gap-2 pt-1 border-t border-zinc-100">
           <div>
-            <h3 id="caseClientTitle" class="font-display font-black text-lg sm:text-xl text-white uppercase">
+            <h3 id="caseClientTitle" class="font-display font-black text-lg sm:text-xl text-black uppercase">
               Евгений
             </h3>
-            <p id="caseClientStats" class="text-xs sm:text-sm text-brandBlue font-bold">
+            <p id="caseClientStats" class="text-xs sm:text-sm text-[#0055FF] font-bold">
               -14 КГ ЗА 3 МЕСЯЦА // СУШКА И РЕЛЬЕФ
             </p>
           </div>
-          <button onclick="openBookingModal()" class="px-4 py-2 rounded-xl bg-white/10 hover:bg-brandBlue text-white text-xs font-bold uppercase transition-all border border-white/10">
+          <button onclick="openBookingModal()" class="px-4 py-2 rounded-xl bg-[#0A0B0E] text-white hover:bg-[#0055FF] text-xs font-bold uppercase transition-all">
             Хочу такой же результат →
           </button>
         </div>
@@ -504,17 +685,17 @@
     </section>
 
     <!-- ========================================== -->
-    <!-- 4. ИНТЕРАКТИВНЫЙ КАЛЬКУЛЯТОР КБЖУ          -->
+    <!-- 6. ИНТЕРАКТИВНЫЙ КАЛЬКУЛЯТОР КБЖУ          -->
     <!-- ========================================== -->
-    <section id="calc" class="hero-dark-card p-6 sm:p-8 space-y-6">
+    <section id="calc" class="clean-white-card p-6 sm:p-8 space-y-6">
       <div class="text-center sm:text-left">
-        <div class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brandBlue bg-brandBlue/15 border border-brandBlue/20 px-3 py-1 rounded-full mb-1">
+        <div class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#0055FF] bg-blue-50 px-3 py-1 rounded-full mb-1">
           <span>⚡️ ЭКСПРЕСС-ДИАГНОСТИКА</span>
         </div>
-        <h2 class="font-display font-black text-2xl sm:text-3xl text-white uppercase tracking-tight">
+        <h2 class="font-display font-black text-2xl sm:text-3xl text-black uppercase tracking-tight">
           РАСЧЁТ ТРАНСФОРМАЦИИ
         </h2>
-        <p class="text-xs text-zinc-400 mt-1">
+        <p class="text-xs text-zinc-500 mt-1">
           Узнайте свою норму калорий, БЖУ и прогноз результата за 8 недель
         </p>
       </div>
@@ -523,15 +704,15 @@
       <div class="space-y-5">
         <!-- Goal Selector -->
         <div>
-          <label class="block text-xs font-bold uppercase tracking-wider text-zinc-400 mb-2">Ваша цель:</label>
+          <label class="block text-xs font-bold uppercase tracking-wider text-zinc-600 mb-2">Ваша цель:</label>
           <div class="grid grid-cols-3 gap-2">
-            <button onclick="setCalcGoal('cut')" id="goalBtn-cut" class="calc-goal-btn py-2.5 px-2 rounded-xl text-xs font-bold uppercase border border-brandBlue bg-brandBlue text-white shadow-lg transition-all text-center">
+            <button onclick="setCalcGoal('cut')" id="goalBtn-cut" class="calc-goal-btn py-2.5 px-2 rounded-xl text-xs font-bold uppercase border border-[#0055FF] bg-[#0055FF] text-white shadow-sm transition-all text-center">
               Сушка / Рельеф
             </button>
-            <button onclick="setCalcGoal('bulk')" id="goalBtn-bulk" class="calc-goal-btn py-2.5 px-2 rounded-xl text-xs font-bold uppercase border border-white/10 bg-white/5 text-zinc-300 hover:border-brandBlue transition-all text-center">
+            <button onclick="setCalcGoal('bulk')" id="goalBtn-bulk" class="calc-goal-btn py-2.5 px-2 rounded-xl text-xs font-bold uppercase border border-zinc-200 bg-white text-zinc-700 hover:border-[#0055FF] transition-all text-center">
               Набор массы
             </button>
-            <button onclick="setCalcGoal('strength')" id="goalBtn-strength" class="calc-goal-btn py-2.5 px-2 rounded-xl text-xs font-bold uppercase border border-white/10 bg-white/5 text-zinc-300 hover:border-brandBlue transition-all text-center">
+            <button onclick="setCalcGoal('strength')" id="goalBtn-strength" class="calc-goal-btn py-2.5 px-2 rounded-xl text-xs font-bold uppercase border border-zinc-200 bg-white text-zinc-700 hover:border-[#0055FF] transition-all text-center">
               Сила / База
             </button>
           </div>
@@ -540,8 +721,8 @@
         <!-- Slider 1: Current Weight -->
         <div>
           <div class="flex justify-between text-xs font-bold mb-1.5">
-            <span class="text-zinc-400 uppercase">Текущий вес:</span>
-            <span id="labelWeight" class="text-brandBlue font-display font-black text-sm">82 кг</span>
+            <span class="text-zinc-600 uppercase">Текущий вес:</span>
+            <span id="labelWeight" class="text-[#0055FF] font-display font-black text-sm">82 кг</span>
           </div>
           <input type="range" id="inputWeight" min="45" max="150" value="82" oninput="calculateKcal()" />
         </div>
@@ -549,8 +730,8 @@
         <!-- Slider 2: Target Weight -->
         <div>
           <div class="flex justify-between text-xs font-bold mb-1.5">
-            <span class="text-zinc-400 uppercase">Желаемый вес:</span>
-            <span id="labelTargetWeight" class="text-brandBlue font-display font-black text-sm">75 кг</span>
+            <span class="text-zinc-600 uppercase">Желаемый вес:</span>
+            <span id="labelTargetWeight" class="text-[#0055FF] font-display font-black text-sm">75 кг</span>
           </div>
           <input type="range" id="inputTargetWeight" min="45" max="150" value="75" oninput="calculateKcal()" />
         </div>
@@ -558,19 +739,19 @@
         <!-- Slider 3: Height -->
         <div>
           <div class="flex justify-between text-xs font-bold mb-1.5">
-            <span class="text-zinc-400 uppercase">Рост:</span>
-            <span id="labelHeight" class="text-brandBlue font-display font-black text-sm">180 см</span>
+            <span class="text-zinc-600 uppercase">Рост:</span>
+            <span id="labelHeight" class="text-[#0055FF] font-display font-black text-sm">180 см</span>
           </div>
           <input type="range" id="inputHeight" min="140" max="215" value="180" oninput="calculateKcal()" />
         </div>
       </div>
 
       <!-- Result Banner -->
-      <div class="bg-black/80 border border-white/10 rounded-2xl p-5 text-white space-y-4">
+      <div class="bg-[#0A0B0E] rounded-2xl p-5 text-white space-y-4">
         <div class="flex items-center justify-between border-b border-white/10 pb-3">
           <div>
             <div class="text-[10px] font-mono uppercase text-zinc-400">ЦЕЛЕВАЯ НОРМА:</div>
-            <div id="resCalories" class="font-display font-black text-3xl sm:text-4xl text-brandBlue">
+            <div id="resCalories" class="font-display font-black text-3xl sm:text-4xl text-white">
               2 180 <span class="text-base text-zinc-400 font-sans">ккал/день</span>
             </div>
           </div>
@@ -598,145 +779,9 @@
           </div>
         </div>
 
-        <button onclick="openBookingModal()" class="w-full py-3.5 rounded-xl bg-brandBlue hover:bg-brandBlueHover text-white font-display font-black text-xs uppercase tracking-wider transition-all shadow-lg active:scale-95">
+        <button onclick="openBookingModal()" class="w-full py-3.5 rounded-xl bg-[#0055FF] hover:bg-[#0041D6] text-white font-display font-black text-xs uppercase tracking-wider transition-all shadow-lg active:scale-95">
           Зафиксировать цель и записаться →
         </button>
-      </div>
-    </section>
-
-    <!-- ========================================== -->
-    <!-- 5. ВАРИАНТЫ ТРЕНИРОВОК (ТАРИФЫ)            -->
-    <!-- ========================================== -->
-    <section id="pricing" class="hero-dark-card p-6 sm:p-8 space-y-6">
-      <div>
-        <h2 class="font-display font-black text-2xl sm:text-3xl md:text-4xl text-brandBlue uppercase tracking-tight drop-shadow-sm">
-          ВАРИАНТЫ ТРЕНИРОВОК
-        </h2>
-        <div class="flex items-center gap-2 mt-1">
-          <div class="three-dots text-brandBlue">
-            <span></span><span></span><span></span>
-          </div>
-          <p class="text-xs sm:text-sm text-zinc-400 font-medium">
-            Выбирайте удобный формат нашего взаимодействия. <strong class="text-white">Чем больше</strong> тренировок вы покупаете, <strong class="text-brandBlue font-bold">тем дешевле</strong> они стоят
-          </p>
-        </div>
-      </div>
-
-      <!-- Pricing Table Rows -->
-      <div class="divide-y divide-white/10">
-        <!-- Row 1 -->
-        <div class="py-4 flex items-center justify-between gap-4">
-          <div class="text-xs sm:text-sm font-bold text-zinc-200">
-            Пробная тренировка + тестирование
-          </div>
-          <div class="font-display font-black text-sm sm:text-base text-white whitespace-nowrap">
-            1 500 руб.
-          </div>
-        </div>
-
-        <!-- Row 2 -->
-        <div class="py-4 flex items-center justify-between gap-4">
-          <div class="text-xs sm:text-sm font-bold text-white">
-            10 индивидуальных тренировок
-          </div>
-          <div class="font-display font-black text-sm sm:text-base text-brandBlue whitespace-nowrap">
-            18 000 руб.
-          </div>
-        </div>
-
-        <!-- Row 3 -->
-        <div class="py-4 flex items-center justify-between gap-4">
-          <div class="text-xs sm:text-sm font-bold text-zinc-200">
-            15 индивидуальных тренировок
-          </div>
-          <div class="font-display font-black text-sm sm:text-base text-white whitespace-nowrap">
-            25 000 руб.
-          </div>
-        </div>
-      </div>
-
-      <!-- Info Box with [i] icon -->
-      <div class="bg-brandBlue/10 border border-brandBlue/25 rounded-2xl p-4 flex items-start gap-3">
-        <div class="w-6 h-6 rounded-full bg-brandBlue text-white flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">
-          i
-        </div>
-        <div class="text-xs text-zinc-300 leading-snug">
-          Длительность одной тренировки 2 часа. Абонемент действует 3 месяца со дня первого занятия.
-        </div>
-      </div>
-
-      <!-- Split CTA Bar -->
-      <div class="cta-split-container mx-auto pt-2">
-        <div class="cta-black-pill">
-          <span>СКИДКА 15% НА ПРОБНОЕ ЗАНЯТИЕ</span>
-          <span class="text-brandBlue font-black text-sm">⟶</span>
-        </div>
-        <button onclick="openBookingModal()" class="cta-round-blue-btn">
-          <span>ЗАПИСАТЬСЯ</span>
-          <span class="mt-0.5 text-[8.5px] opacity-90">НА ТРЕНИРОВКУ</span>
-        </button>
-      </div>
-    </section>
-
-    <!-- ========================================== -->
-    <!-- 6. ВАШИ ОТЗЫВЫ                             -->
-    <!-- ========================================== -->
-    <section id="reviews" class="space-y-4">
-      <div>
-        <div class="font-hand text-3xl sm:text-4xl text-white font-bold -mb-2 rotate-[-3deg]">
-          ваши
-        </div>
-        <h2 class="font-display font-black text-3xl sm:text-4xl md:text-5xl text-brandBlue uppercase tracking-tight drop-shadow-sm">
-          ОТЗЫВЫ
-        </h2>
-      </div>
-
-      <!-- Horizontal Cards Carousel -->
-      <div class="reviews-track flex gap-4 overflow-x-auto pb-4">
-        <!-- Lead-in Electric Blue Card (Exact text from reference) -->
-        <div class="review-slide w-[280px] sm:w-[320px] blue-block-gradient text-white rounded-3xl p-6 flex flex-col justify-between shadow-2xl">
-          <p class="text-xs sm:text-sm font-medium leading-relaxed">
-            Я с большим уважением отношусь к правилам конфиденциальности и никогда не настаиваю на отзыве. Есть клиенты, которые сами с удовольствием делятся результатами нашей работы, за что я им очень благодарен!
-          </p>
-          <div class="pt-6 font-display font-black text-xs uppercase tracking-wider flex items-center justify-between text-white/90">
-            <span>Некоторые вы можете почитать здесь</span>
-            <span class="text-lg">⟶</span>
-          </div>
-        </div>
-
-        <!-- Review Screenshot Slide 1 -->
-        <div class="review-slide w-[280px] sm:w-[320px] hero-dark-card p-3 rounded-3xl overflow-hidden">
-          <img src="/cases/vladislav_danya.jpg" alt="Отзыв Даня" class="w-full h-[360px] object-cover rounded-2xl" />
-        </div>
-
-        <!-- Review Screenshot Slide 2 -->
-        <div class="review-slide w-[280px] sm:w-[320px] hero-dark-card p-3 rounded-3xl overflow-hidden">
-          <img src="/cases/vladislav_denis.jpg" alt="Отзыв Денис" class="w-full h-[360px] object-cover rounded-2xl" />
-        </div>
-
-        <!-- Review Screenshot Slide 3 -->
-        <div class="review-slide w-[280px] sm:w-[320px] hero-dark-card p-3 rounded-3xl overflow-hidden">
-          <img src="/cases/vladislav_ignat.jpg" alt="Отзыв Игнат" class="w-full h-[360px] object-cover rounded-2xl" />
-        </div>
-
-        <!-- Review Screenshot Slide 4 -->
-        <div class="review-slide w-[280px] sm:w-[320px] hero-dark-card p-3 rounded-3xl overflow-hidden">
-          <img src="/cases/vladislav_sandra.jpg" alt="Отзыв Сандра" class="w-full h-[360px] object-cover rounded-2xl" />
-        </div>
-
-        <!-- Review Screenshot Slide 5 -->
-        <div class="review-slide w-[280px] sm:w-[320px] hero-dark-card p-3 rounded-3xl overflow-hidden">
-          <img src="/cases/vladislav_danil_squash.jpg" alt="Отзыв Данил" class="w-full h-[360px] object-cover rounded-2xl" />
-        </div>
-      </div>
-
-      <!-- Pagination Dots Indicator -->
-      <div class="flex justify-center items-center gap-1.5 pt-1">
-        <span class="w-2.5 h-2.5 rounded-full bg-brandBlue shadow-[0_0_8px_rgba(0,82,255,0.8)]"></span>
-        <span class="w-2 h-2 rounded-full bg-zinc-700"></span>
-        <span class="w-2 h-2 rounded-full bg-zinc-700"></span>
-        <span class="w-2 h-2 rounded-full bg-zinc-700"></span>
-        <span class="w-2 h-2 rounded-full bg-zinc-700"></span>
       </div>
     </section>
 
@@ -744,61 +789,61 @@
     <!-- 7. ЧАСТЫЕ ВОПРОСЫ (FAQ)                    -->
     <!-- ========================================== -->
     <section id="faq" class="space-y-3">
-      <h2 class="font-display font-black text-2xl sm:text-3xl md:text-4xl text-brandBlue uppercase tracking-tight text-center sm:text-left drop-shadow-sm">
+      <h2 class="font-display font-black text-2xl sm:text-3xl md:text-4xl text-[#0055FF] uppercase tracking-tight text-center sm:text-left">
         ЧАСТЫЕ ВОПРОСЫ
       </h2>
 
       <div class="space-y-2.5">
         <!-- FAQ 1 -->
-        <div class="hero-dark-card rounded-2xl p-4 sm:p-5 transition-all">
+        <div class="clean-white-card rounded-2xl p-4 sm:p-5 transition-all">
           <div onclick="toggleFaq(1)" class="flex items-center justify-between gap-3 cursor-pointer">
-            <span class="text-xs sm:text-sm font-bold text-white">
+            <span class="text-xs sm:text-sm font-bold text-zinc-900">
               Как записаться на тренировку к тебе?
             </span>
             <div class="flex items-center gap-2 shrink-0">
-              <span class="text-[9px] font-mono text-zinc-500 hidden sm:inline uppercase">нажми, чтобы раскрыть</span>
-              <div id="faqIcon-1" class="w-7 h-7 rounded-full bg-brandBlue text-white flex items-center justify-center text-xs font-bold transition-transform shadow-md">
+              <span class="text-[9px] font-mono text-zinc-400 hidden sm:inline uppercase">нажми, чтобы раскрыть</span>
+              <div id="faqIcon-1" class="w-7 h-7 rounded-full bg-[#0055FF] text-white flex items-center justify-center text-xs font-bold transition-transform">
                 ↓
               </div>
             </div>
           </div>
-          <div id="faqAnswer-1" class="hidden text-xs text-zinc-400 pt-3 border-t border-white/10 mt-3 leading-relaxed">
+          <div id="faqAnswer-1" class="hidden text-xs text-zinc-600 pt-3 border-t border-zinc-100 mt-3 leading-relaxed">
             Нажмите кнопку «Записаться» на сайте или напишите напрямую в Telegram. Мы согласуем удобное время для вводной тренировки и диагностического созвона.
           </div>
         </div>
 
         <!-- FAQ 2 -->
-        <div class="hero-dark-card rounded-2xl p-4 sm:p-5 transition-all">
+        <div class="clean-white-card rounded-2xl p-4 sm:p-5 transition-all">
           <div onclick="toggleFaq(2)" class="flex items-center justify-between gap-3 cursor-pointer">
-            <span class="text-xs sm:text-sm font-bold text-white">
+            <span class="text-xs sm:text-sm font-bold text-zinc-900">
               А мне точно поможет твоя программа?
             </span>
             <div class="flex items-center gap-2 shrink-0">
-              <span class="text-[9px] font-mono text-zinc-500 hidden sm:inline uppercase">нажми, чтобы раскрыть</span>
-              <div id="faqIcon-2" class="w-7 h-7 rounded-full bg-brandBlue text-white flex items-center justify-center text-xs font-bold transition-transform shadow-md">
+              <span class="text-[9px] font-mono text-zinc-400 hidden sm:inline uppercase">нажми, чтобы раскрыть</span>
+              <div id="faqIcon-2" class="w-7 h-7 rounded-full bg-[#0055FF] text-white flex items-center justify-center text-xs font-bold transition-transform">
                 ↓
               </div>
             </div>
           </div>
-          <div id="faqAnswer-2" class="hidden text-xs text-zinc-400 pt-3 border-t border-white/10 mt-3 leading-relaxed">
+          <div id="faqAnswer-2" class="hidden text-xs text-zinc-600 pt-3 border-t border-zinc-100 mt-3 leading-relaxed">
             Программа составляется строго индивидуально с учётом ваших анализов, противопоказаний, уровня подготовки и образа жизни. При соблюдении рекомендаций результат гарантирован на 100%.
           </div>
         </div>
 
         <!-- FAQ 3 -->
-        <div class="hero-dark-card rounded-2xl p-4 sm:p-5 transition-all">
+        <div class="clean-white-card rounded-2xl p-4 sm:p-5 transition-all">
           <div onclick="toggleFaq(3)" class="flex items-center justify-between gap-3 cursor-pointer">
-            <span class="text-xs sm:text-sm font-bold text-white">
+            <span class="text-xs sm:text-sm font-bold text-zinc-900">
               Каких результатов я смогу добиться?
             </span>
             <div class="flex items-center gap-2 shrink-0">
-              <span class="text-[9px] font-mono text-zinc-500 hidden sm:inline uppercase">нажми, чтобы раскрыть</span>
-              <div id="faqIcon-3" class="w-7 h-7 rounded-full bg-brandBlue text-white flex items-center justify-center text-xs font-bold transition-transform shadow-md">
+              <span class="text-[9px] font-mono text-zinc-400 hidden sm:inline uppercase">нажми, чтобы раскрыть</span>
+              <div id="faqIcon-3" class="w-7 h-7 rounded-full bg-[#0055FF] text-white flex items-center justify-center text-xs font-bold transition-transform">
                 ↓
               </div>
             </div>
           </div>
-          <div id="faqAnswer-3" class="hidden text-xs text-zinc-400 pt-3 border-t border-white/10 mt-3 leading-relaxed">
+          <div id="faqAnswer-3" class="hidden text-xs text-zinc-600 pt-3 border-t border-zinc-100 mt-3 leading-relaxed">
             За первые 8-12 недель в среднем уходит от 6 до 12 кг лишнего жира с сохранением мышечного объема, выстраивается правильная осанка, повышается тонус и выносливость.
           </div>
         </div>
@@ -810,12 +855,12 @@
     <!-- ========================================== -->
     <section id="contacts" class="relative pt-12">
       <!-- Floating Round Avatar -->
-      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-24 rounded-full border-4 border-[#07080B] shadow-2xl overflow-hidden z-10 bg-zinc-800">
-        <img id="coachAvatarImg" src="/images/bernetskiy-hero.jpg" alt="Тренер" class="w-full h-full object-cover object-top" />
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-24 rounded-full border-4 border-white shadow-xl overflow-hidden z-10 bg-slate-100">
+        <img id="coachAvatarImg" src="/images/gromov-coach.jpg" alt="Тренер" class="w-full h-full object-cover object-top" />
       </div>
 
       <!-- Electric Blue Card -->
-      <div class="blue-block-gradient rounded-[32px] pt-16 pb-8 px-6 text-white text-center shadow-2xl space-y-5">
+      <div class="blue-block-gradient rounded-[32px] pt-16 pb-8 px-6 text-white text-center shadow-xl space-y-5">
         <h2 class="font-display font-black text-3xl sm:text-4xl uppercase tracking-tight">
           НА СВЯЗИ
         </h2>
@@ -823,20 +868,20 @@
         <!-- Two Dark Buttons (Telegram and Instagram) -->
         <div class="space-y-2.5 max-w-sm mx-auto">
           <!-- Telegram Button -->
-          <a id="linkTelegram" href="https://t.me/Bernetskiy" target="_blank" rel="noopener" class="w-full py-4 px-6 rounded-2xl bg-[#08090C] hover:bg-black text-white font-bold text-sm flex items-center justify-center gap-2.5 shadow-xl transition-all border border-white/10 active:scale-95">
+          <a id="linkTelegram" href="https://t.me/Bernetskiy" target="_blank" rel="noopener" class="w-full py-4 px-6 rounded-2xl bg-[#0A0B0E] hover:bg-black text-white font-bold text-sm flex items-center justify-center gap-2.5 shadow-md transition-all active:scale-95">
             <span class="text-base">✈️</span>
             <span>Телеграм</span>
           </a>
 
           <!-- Instagram Button -->
-          <a id="linkInstagram" href="https://instagram.com/bernetskiy" target="_blank" rel="noopener" class="w-full py-4 px-6 rounded-2xl bg-[#08090C] hover:bg-black text-white font-bold text-sm flex items-center justify-center gap-2.5 shadow-xl transition-all border border-white/10 active:scale-95">
+          <a id="linkInstagram" href="https://instagram.com/gromov.max" target="_blank" rel="noopener" class="w-full py-4 px-6 rounded-2xl bg-[#0A0B0E] hover:bg-black text-white font-bold text-sm flex items-center justify-center gap-2.5 shadow-md transition-all active:scale-95">
             <span class="text-base">📷</span>
             <span>Инстаграм</span>
           </a>
         </div>
 
         <!-- Handwritten Playful Note at Bottom -->
-        <div class="font-hand text-2xl sm:text-3xl text-white font-bold pt-2 select-none">
+        <div class="font-hand text-2xl sm:text-3xl text-white/90 font-bold pt-2 select-none">
           Хватай кроссовки, погнали на тренировку! :)
         </div>
       </div>
@@ -845,40 +890,40 @@
   </main>
 
   <!-- ========================================== -->
-  <!-- BOOKING MODAL (QUICK TELEGRAM LEAD CAPTURE) -->
+  <!-- BOOKING MODAL (QUICK LEAD CAPTURE)         -->
   <!-- ========================================== -->
-  <div id="bookingModal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
-    <div class="hero-dark-card p-6 sm:p-8 max-w-md w-full shadow-2xl relative border border-white/15 space-y-4">
-      <button onclick="closeBookingModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/10 text-white flex items-center justify-center font-bold text-sm hover:bg-white/20">
+  <div id="bookingModal" class="fixed inset-0 bg-black/70 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl relative border border-slate-100 space-y-4">
+      <button onclick="closeBookingModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-zinc-100 text-zinc-600 flex items-center justify-center font-bold text-sm hover:bg-zinc-200">
         ✕
       </button>
 
       <div>
-        <div class="text-[10px] font-mono text-brandBlue font-bold uppercase tracking-wider">
+        <div class="text-[10px] font-mono text-[#0055FF] font-bold uppercase tracking-wider">
           ЗАПИСЬ НА ТРЕНИРОВКУ
         </div>
-        <h3 class="font-display font-black text-2xl text-white uppercase tracking-tight">
+        <h3 class="font-display font-black text-2xl text-[#0A0B0E] uppercase tracking-tight">
           ЗАПОЛНИТЬ АНКЕТУ
         </h3>
-        <p class="text-xs text-zinc-400 mt-1">
+        <p class="text-xs text-zinc-500 mt-1">
           Ответьте на 2 вопроса, и мы сразу свяжемся с вами в Telegram
         </p>
       </div>
 
       <form onsubmit="handleBookingSubmit(event)" class="space-y-3.5">
         <div>
-          <label class="block text-xs font-bold uppercase text-zinc-300 mb-1">Ваше имя:</label>
-          <input type="text" id="modalName" required placeholder="Как вас зовут?" class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white text-sm font-medium focus:outline-none focus:border-brandBlue focus:ring-2 focus:ring-brandBlue/30" />
+          <label class="block text-xs font-bold uppercase text-zinc-700 mb-1">Ваше имя:</label>
+          <input type="text" id="modalName" required placeholder="Как вас зовут?" class="w-full px-4 py-3 rounded-xl bg-zinc-50 border border-zinc-200 text-sm font-medium focus:outline-none focus:border-[#0055FF] focus:ring-2 focus:ring-blue-100" />
         </div>
 
         <div>
-          <label class="block text-xs font-bold uppercase text-zinc-300 mb-1">Ваш Telegram (@username или телефон):</label>
-          <input type="text" id="modalContact" required placeholder="@username или +7..." class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white text-sm font-medium focus:outline-none focus:border-brandBlue focus:ring-2 focus:ring-brandBlue/30" />
+          <label class="block text-xs font-bold uppercase text-zinc-700 mb-1">Ваш Telegram (@username или телефон):</label>
+          <input type="text" id="modalContact" required placeholder="@username или +7..." class="w-full px-4 py-3 rounded-xl bg-zinc-50 border border-zinc-200 text-sm font-medium focus:outline-none focus:border-[#0055FF] focus:ring-2 focus:ring-blue-100" />
         </div>
 
         <div>
-          <label class="block text-xs font-bold uppercase text-zinc-300 mb-1">Главная цель:</label>
-          <select id="modalGoal" class="w-full px-4 py-3 rounded-xl bg-[#141722] border border-white/10 text-white text-sm font-medium focus:outline-none focus:border-brandBlue focus:ring-2 focus:ring-brandBlue/30">
+          <label class="block text-xs font-bold uppercase text-zinc-700 mb-1">Главная цель:</label>
+          <select id="modalGoal" class="w-full px-4 py-3 rounded-xl bg-zinc-50 border border-zinc-200 text-sm font-medium focus:outline-none focus:border-[#0055FF] focus:ring-2 focus:ring-blue-100">
             <option value="Сжечь лишний жир и рельеф">Сжечь лишний жир и рельеф</option>
             <option value="Набрать сухую мышечную массу">Набрать сухую мышечную массу</option>
             <option value="Увеличить силу и выносливость">Увеличить силу и выносливость</option>
@@ -886,7 +931,7 @@
           </select>
         </div>
 
-        <button type="submit" class="w-full py-4 rounded-xl bg-brandBlue hover:bg-brandBlueHover text-white font-display font-black text-xs uppercase tracking-wider transition-all shadow-lg active:scale-95">
+        <button type="submit" class="w-full py-4 rounded-xl bg-[#0055FF] hover:bg-[#0041D6] text-white font-display font-black text-xs uppercase tracking-wider transition-all shadow-lg active:scale-95">
           Отправить заявку в Telegram →
         </button>
       </form>
@@ -897,45 +942,17 @@
   <!-- JAVASCRIPT LOGIC & DYNAMICS                -->
   <!-- ========================================== -->
   <script>
-    // 1. DATA SYNC FROM CLIENTS.JS
     let currentClient = (window.CLIENTS && window.CLIENTS['new']) || (window.CLIENTS && window.CLIENTS['bernetskiy']) || null;
     let casesData = (currentClient && currentClient.cases) ? currentClient.cases : [];
     let currentCaseIdx = 0;
     let selectedGoal = 'cut';
 
-    // 2. INITIALIZE CLIENT DATA
     function initClient() {
-      if (!currentClient) return;
-
-      if (currentClient.name) {
-        const parts = currentClient.name.split(' ');
-        const first = parts[0] || 'Владислав';
-        const last = parts.slice(1).join(' ') || 'Бернецкий';
-        const el = document.getElementById('coachHandwrittenName');
-        if (el) el.innerHTML = `${first}<br/>${last}`;
-      }
-
-      if (currentClient.instagram) {
-        const handle = currentClient.instagram.replace(/^@/, '');
-        const badge = document.getElementById('coachIgHandle');
-        if (badge) badge.textContent = '@' + handle;
-        const link = document.getElementById('coachIgBadgeLink');
-        if (link) link.href = `https://instagram.com/${handle}`;
-        const mainIg = document.getElementById('linkInstagram');
-        if (mainIg) mainIg.href = `https://instagram.com/${handle}`;
-      }
-
-      if (currentClient.telegramUsername) {
-        const tg = currentClient.telegramUsername.replace(/^@/, '');
-        const linkTg = document.getElementById('linkTelegram');
-        if (linkTg) linkTg.href = `https://t.me/${tg}`;
-      }
-
       renderCaseTabs();
       calculateKcal();
     }
 
-    // 3. CASE TABS AND SLIDER
+    // CASE TABS AND SLIDER
     function renderCaseTabs() {
       const container = document.getElementById('caseTabsList');
       if (!container || casesData.length === 0) return;
@@ -945,8 +962,8 @@
         const btn = document.createElement('button');
         const isActive = idx === currentCaseIdx;
         btn.className = isActive
-          ? 'px-4 py-1.5 rounded-full bg-brandBlue text-white font-display font-black text-xs whitespace-nowrap shadow-lg'
-          : 'px-4 py-1.5 rounded-full bg-white/5 text-zinc-300 font-bold text-xs whitespace-nowrap border border-white/10 hover:border-brandBlue transition-all';
+          ? 'px-4 py-1.5 rounded-full bg-[#0055FF] text-white font-display font-black text-xs whitespace-nowrap shadow-sm'
+          : 'px-4 py-1.5 rounded-full bg-white text-zinc-700 font-bold text-xs whitespace-nowrap border border-zinc-200 hover:border-[#0055FF] transition-all';
         btn.textContent = (idx + 1 < 10 ? '0' + (idx + 1) : idx + 1) + ' // ' + (c.clientName ? c.clientName.split(',')[0].split(' ')[0] : 'Кейс');
         btn.onclick = () => selectCase(idx);
         container.appendChild(btn);
@@ -975,7 +992,7 @@
       if (stats) stats.textContent = (c.resultStats ? c.resultStats.toUpperCase() : '') + (c.duration ? ' // ' + c.duration.toUpperCase() : '');
     }
 
-    // 4. INTERACTIVE BEFORE / AFTER SLIDER TOUCH/DRAG
+    // INTERACTIVE BEFORE / AFTER SLIDER TOUCH/DRAG
     const sliderContainer = document.getElementById('caseSliderContainer');
     const beforeWrapper = document.getElementById('caseBeforeWrapper');
     const sliderHandle = document.getElementById('caseSliderHandle');
@@ -1001,15 +1018,15 @@
       window.addEventListener('touchmove', (e) => { if (isDragging) setSliderPosition(e.touches[0].clientX); }, { passive: true });
     }
 
-    // 5. CALCULATOR LOGIC
+    // CALCULATOR LOGIC
     function setCalcGoal(goal) {
       selectedGoal = goal;
       document.querySelectorAll('.calc-goal-btn').forEach(b => {
-        b.className = 'calc-goal-btn py-2.5 px-2 rounded-xl text-xs font-bold uppercase border border-white/10 bg-white/5 text-zinc-300 hover:border-brandBlue transition-all text-center';
+        b.className = 'calc-goal-btn py-2.5 px-2 rounded-xl text-xs font-bold uppercase border border-zinc-200 bg-white text-zinc-700 hover:border-[#0055FF] transition-all text-center';
       });
       const activeBtn = document.getElementById('goalBtn-' + goal);
       if (activeBtn) {
-        activeBtn.className = 'calc-goal-btn py-2.5 px-2 rounded-xl text-xs font-bold uppercase border border-brandBlue bg-brandBlue text-white shadow-lg transition-all text-center';
+        activeBtn.className = 'calc-goal-btn py-2.5 px-2 rounded-xl text-xs font-bold uppercase border border-[#0055FF] bg-[#0055FF] text-white shadow-sm transition-all text-center';
       }
       calculateKcal();
     }
@@ -1044,7 +1061,7 @@
       document.getElementById('resDiff').textContent = (diff > 0 ? '+' : '') + diff + ' кг';
     }
 
-    // 6. FAQ TOGGLE
+    // FAQ TOGGLE
     function toggleFaq(num) {
       const ans = document.getElementById('faqAnswer-' + num);
       const icon = document.getElementById('faqIcon-' + num);
@@ -1059,7 +1076,7 @@
       }
     }
 
-    // 7. BOOKING MODAL & TELEGRAM SUBMIT
+    // BOOKING MODAL
     function openBookingModal() {
       document.getElementById('bookingModal').classList.remove('hidden');
     }
@@ -1076,7 +1093,7 @@
       const w = document.getElementById('inputWeight').value;
       const tw = document.getElementById('inputTargetWeight').value;
 
-      const tgUser = (currentClient && currentClient.telegramUsername) ? currentClient.telegramUsername.replace(/^@/, '') : 'Bernetskiy';
+      const tgUser = (currentClient && currentClient.telegramUsername) ? currentClient.telegramUsername.replace(/^@/, '') : 'Master_fitness';
       const msg = `⚡️ НОВАЯ ЗАПИСЬ НА ТРЕНИРОВКУ:\n\n👤 Имя: ${name}\n📱 Контакт: ${contact}\n🎯 Цель: ${goal}\n⚖️ Вес: ${w} кг ⟶ ${tw} кг`;
 
       const tgUrl = `https://t.me/${tgUser}?text=${encodeURIComponent(msg)}`;
