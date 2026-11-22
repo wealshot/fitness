@@ -816,7 +816,13 @@ if (typeof window !== "undefined" && window.localStorage) {
       if (k && k.startsWith("pulse_override_")) {
         const targetSlug = k.replace("pulse_override_", "").toLowerCase();
         const raw = window.localStorage.getItem(k);
-        if (raw && window.CLIENTS && window.CLIENTS[targetSlug]) {
+        if (raw) {
+        // If coach doesn't exist in CLIENTS, purge it immediately!
+        if (!window.CLIENTS || !window.CLIENTS[targetSlug]) {
+          window.localStorage.removeItem(k);
+          console.log("[PULSE] Purged deleted coach override:", targetSlug);
+          continue;
+        }
           try {
             const overrideData = JSON.parse(raw);
             const serverData = window.CLIENTS[targetSlug];
