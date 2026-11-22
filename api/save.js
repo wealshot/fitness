@@ -73,7 +73,8 @@ export default async function handler(req, res) {
     bernetskiy: ['bernetskiy26fit@'],
     radionov:   ['nR9#mX2$84!vP2026', 'nR9#mX2$84!'],
     rodionov:   ['nR9#mX2$84!vP2026', 'nR9#mX2$84!'],
-    felix:      ['fL7!qZ9#31$wK2026', 'fL7!qZ9#31$']
+    felix:      ['fL7!qZ9#31$wK2026', 'fL7!qZ9#31$'],
+    new:        ['new2026', 'newPass123!']
   };
   const masterPasswords = ['PulseAdmin#X9v2!2026', 'Pulse#SuperAdmin2026!'];
   const allowed = [...(coachPasswords[slug] || []), ...masterPasswords];
