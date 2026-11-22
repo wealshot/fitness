@@ -1,5 +1,5 @@
-﻿<!DOCTYPE html>
-<html lang="ru" class="dark scroll-smooth overflow-x-hidden w-full max-w-full">
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
 
 <head>
   <meta charset="UTF-8" />
@@ -7,35 +7,32 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
-  <title>ВЛАДИСЛАВ БЕРНЕЦКИЙ — ТВОЕ ТЕЛО. ТВОЙ РЕЗУЛЬТАТ.</title>
-  <meta name="description" content="Научный подход к гипертрофии, рекомпозиции и преодолению срывов. Гибкая система питания с высокой калорийностью и сохранением мышечной массы." />
+  <title>ФИТНЕС ТРЕНЕР • Персональное ведение и тренировки</title>
+  <meta name="description" content="Вместе создадим тело вашей мечты всего за 3 месяца. Эффективно и легко, без стресса и жестких диет." />
 
-  <!-- Fonts -->
+  <!-- Google Fonts: Unbounded (Ultra Bold Display), Inter (Clean Sans), Caveat (Handwritten Notes) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@700;800;900&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700;800;900&family=Unbounded:wght@700;800;900&display=swap" rel="stylesheet">
 
-  <!-- Tailwind CSS CDN -->
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
-      darkMode: 'class',
       theme: {
         extend: {
           colors: {
-            brand: {
-              orange: '#FF6B00',
-              orangeDark: '#E05A00',
-              bgDark: '#0B0C10',
-              cardDark: '#12141C',
-              cardBorder: 'rgba(255, 255, 255, 0.08)'
-            }
+            brandBlue: '#0047FF',
+            brandBlueHover: '#0038D1',
+            brandBlueDark: '#002EAA',
+            brandDark: '#0A0B0E',
+            cardBg: '#FFFFFF',
+            pageBg: '#F3F5FA'
           },
           fontFamily: {
-            display: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
-            anton: ['Anton', 'sans-serif'],
-            tech: ['"Space Grotesk"', 'monospace'],
-            sans: ['Inter', 'sans-serif']
+            display: ['"Unbounded"', 'sans-serif'],
+            sans: ['"Inter"', 'sans-serif'],
+            hand: ['"Caveat"', 'cursive']
           }
         }
       }
@@ -43,975 +40,1049 @@
   </script>
 
   <!-- Client Database -->
-  <script src="/clients.js?v=20261122_0755"></script>
-  <script src="/clients_defaults.js?v=20261122_0755"></script>
+  <script src="/clients.js?v=20261122_2330"></script>
+  <script src="/clients_defaults.js?v=20261122_2330"></script>
 
   <style>
     :root {
-      --brand-orange: #FF6B00;
-      --brand-orange-glow: rgba(255, 107, 0, 0.45);
-      --brand-bg: #0B0C10;
-      --brand-card: #12141C;
+      --blue-accent: #0047FF;
+      --blue-dark: #0035C8;
+      --dark-card: #0A0B0E;
     }
 
+    /* Precision Blueprint / Technical Grid Background */
     body {
-      background-color: var(--brand-bg);
-      color: #F3F4F6;
+      background-color: #F3F5FA;
+      background-image: 
+        linear-gradient(to right, rgba(0, 71, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 71, 255, 0.04) 1px, transparent 1px);
+      background-size: 32px 32px;
       font-family: 'Inter', sans-serif;
+      color: #0A0B0E;
+      overflow-x: hidden;
     }
 
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #0B0C10;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #272A34;
-      border-radius: 9999px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: var(--brand-orange);
+    .font-display {
+      font-family: 'Unbounded', sans-serif;
+      letter-spacing: -0.03em;
     }
 
-    /* Glass Cards */
-    .bento-card {
-      background: #12141C;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 24px;
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .bento-card:hover {
-      border-color: rgba(255, 107, 0, 0.3);
+    .font-hand {
+      font-family: 'Caveat', cursive;
     }
 
-    /* Orange glowing aura */
-    .glow-orange {
-      box-shadow: 0 0 40px -10px var(--brand-orange-glow);
-    }
-    .glow-orange-sm {
-      box-shadow: 0 0 20px -5px var(--brand-orange-glow);
-    }
-
-    /* Subtle fiery corner spray textures */
-    .ambient-glow-top-right {
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle at 85% 15%, rgba(255, 107, 0, 0.28) 0%, rgba(255, 107, 0, 0.08) 45%, transparent 75%);
-      pointer-events: none;
-      z-index: 0;
-    }
-    .ambient-glow-bottom-right {
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      width: 700px;
-      height: 700px;
-      background: radial-gradient(circle at 90% 85%, rgba(255, 107, 0, 0.25) 0%, rgba(255, 107, 0, 0.06) 50%, transparent 80%);
-      pointer-events: none;
-      z-index: 0;
+    /* Floating White Card with Premium Drop Shadow */
+    .hero-white-card {
+      background: #FFFFFF;
+      border: 1px solid rgba(0, 71, 255, 0.08);
+      box-shadow: 0 20px 40px -15px rgba(0, 71, 255, 0.08), 0 1px 3px rgba(0, 0, 0, 0.05);
+      border-radius: 28px;
     }
 
-    /* Before-After Slider Container */
-    .slider-compare-container {
+    /* Electric Blue Card in "Работа со мной" */
+    .blue-block-gradient {
+      background: linear-gradient(145deg, #0047FF 0%, #0033CC 100%);
+      box-shadow: 0 25px 50px -12px rgba(0, 71, 255, 0.35);
+    }
+
+    /* Frosted Glass Floating Notes in Blue Card */
+    .frosted-glass-card {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 20px;
+    }
+
+    /* Overlapping Circular CTA Button */
+    .cta-split-container {
       position: relative;
-      user-select: none;
-      overflow: hidden;
-      touch-action: pan-y;
-    }
-    .slider-divider-line {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 2px;
-      background: #FFFFFF;
-      pointer-events: none;
-    }
-    .slider-handle-btn {
-      position: absolute;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      width: 32px;
-      height: 32px;
-      border-radius: 9999px;
-      background: #FFFFFF;
-      color: #000000;
       display: flex;
       align-items: center;
-      justify-content: center;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.5);
-      cursor: ew-resize;
-      pointer-events: none;
-      font-size: 11px;
-      font-weight: 900;
+      width: 100%;
+      max-width: 440px;
     }
 
-    /* Range input styling */
+    .cta-black-pill {
+      background: #0A0B0E;
+      color: #FFFFFF;
+      border-radius: 9999px;
+      padding: 18px 65px 18px 24px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      flex-grow: 1;
+      white-space: nowrap;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 8px;
+    }
+
+    .cta-round-blue-btn {
+      position: absolute;
+      right: -8px;
+      width: 105px;
+      height: 105px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #0055FF 0%, #003AE0 100%);
+      color: #FFFFFF;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-family: 'Unbounded', sans-serif;
+      font-weight: 900;
+      font-size: 9.5px;
+      line-height: 1.15;
+      text-transform: uppercase;
+      box-shadow: 0 12px 28px rgba(0, 71, 255, 0.45), inset 0 2px 4px rgba(255, 255, 255, 0.35);
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      border: 3px solid #FFFFFF;
+      z-index: 10;
+    }
+
+    .cta-round-blue-btn:hover {
+      transform: scale(1.06) rotate(-2deg);
+      box-shadow: 0 18px 36px rgba(0, 71, 255, 0.55), inset 0 2px 4px rgba(255, 255, 255, 0.4);
+    }
+
+    .cta-round-blue-btn:active {
+      transform: scale(0.96);
+    }
+
+    /* 3 dots indicator decoration */
+    .three-dots {
+      display: inline-flex;
+      gap: 3px;
+    }
+    .three-dots span {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background-color: currentColor;
+      opacity: 0.8;
+    }
+
+    /* Range slider custom styling */
     input[type=range] {
       -webkit-appearance: none;
-      background: rgba(255, 255, 255, 0.1);
+      width: 100%;
+      height: 8px;
+      background: #E2E8F0;
       border-radius: 9999px;
-      height: 6px;
+      outline: none;
     }
     input[type=range]::-webkit-slider-thumb {
       -webkit-appearance: none;
-      width: 18px;
-      height: 18px;
+      appearance: none;
+      width: 24px;
+      height: 24px;
       border-radius: 50%;
-      background: var(--brand-orange);
+      background: #0047FF;
       cursor: pointer;
-      box-shadow: 0 0 10px var(--brand-orange);
+      box-shadow: 0 4px 10px rgba(0, 71, 255, 0.4);
+      border: 2px solid #FFFFFF;
+      transition: transform 0.15s;
+    }
+    input[type=range]::-webkit-slider-thumb:hover {
+      transform: scale(1.15);
+    }
+
+    /* Before / After Slider Box */
+    .ba-slider-container {
+      position: relative;
+      overflow: hidden;
+      user-select: none;
+      touch-action: pan-y;
+      border-radius: 20px;
+    }
+
+    /* Reviews Horizontal Scroll */
+    .reviews-track {
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .reviews-track::-webkit-scrollbar {
+      display: none;
+    }
+    .review-slide {
+      scroll-snap-align: center;
+      flex-shrink: 0;
     }
   </style>
 </head>
 
-<body class="min-h-screen relative selection:bg-brand-orange selection:text-black">
+<body class="selection:bg-brandBlue selection:text-white">
 
-  <!-- Ambient background glow layers matching reference -->
-  <div class="ambient-glow-top-right"></div>
-  <div class="ambient-glow-bottom-right"></div>
+  <!-- ========================================== -->
+  <!-- MAIN WRAPPER (Max-W Mobile/Tablet Container) -->
+  <!-- ========================================== -->
+  <main class="max-w-[480px] sm:max-w-[540px] md:max-w-[680px] lg:max-w-[800px] mx-auto px-4 py-6 sm:py-10 space-y-12 sm:space-y-16">
 
-  <!-- MAIN WRAPPER CONTAINER -->
-  <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 relative z-10 space-y-6 sm:space-y-8">
+    <!-- ========================================== -->
+    <!-- 1. HERO SECTION                            -->
+    <!-- ========================================== -->
+    <section id="hero" class="relative">
 
-    <!-- 1. TOP HEADER -->
-    <header class="flex flex-wrap items-center justify-between gap-4 py-3 border-b border-white/5">
-      <!-- Logo + Name -->
-      <a href="/new" class="flex items-center gap-3 group">
-        <div class="w-10 h-10 rounded-xl bg-brand-orange flex items-center justify-center font-anton text-2xl text-black shadow-lg shadow-brand-orange/30 group-hover:scale-105 transition-transform">
-          P
-        </div>
-        <div>
-          <div class="font-display font-black text-sm sm:text-base tracking-wider text-white uppercase leading-none" id="headerCoachName">
-            ВЛАДИСЛАВ БЕРНЕЦКИЙ
-          </div>
-          <div class="font-tech text-[10px] sm:text-xs text-zinc-400 uppercase tracking-widest mt-1 flex items-center gap-1.5" id="headerBrandTag">
-            <span>КУЗНИЦА СПОРТСМЕНОВ</span>
-            <span class="text-zinc-600">✕</span>
-          </div>
-        </div>
-      </a>
-
-      <!-- Center Desktop Navigation -->
-      <nav class="hidden md:flex items-center gap-6 font-tech text-xs tracking-wider text-zinc-400">
-        <a href="#diagnostic" class="hover:text-white transition-colors">01 // ДИАГНОСТИКА</a>
-        <a href="#cases" class="hover:text-white transition-colors">02 // КЕЙСЫ</a>
-        <a href="#reviews" class="hover:text-white transition-colors">03 // ОТЗЫВЫ</a>
-        <a href="#tiers" class="hover:text-white transition-colors">04 // ТАРИФЫ</a>
-        <a href="#application" class="hover:text-white transition-colors">05 // АНКЕТА</a>
-      </nav>
-
-      <!-- Right Header CTA Button -->
-      <a href="#diagnostic" class="hidden sm:inline-flex items-center gap-2 bg-brand-orange hover:bg-brand-orangeDark text-black font-tech font-extrabold text-xs tracking-wider uppercase px-4 py-2.5 rounded-xl transition-all shadow-md shadow-brand-orange/20 active:scale-95">
-        <span>ЗАБРАТЬ ПЛАН [2342 ККАЛ]</span>
-        <span>↗</span>
-      </a>
-    </header>
-
-    <!-- 2. HERO SECTION -->
-    <section class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch pt-2 sm:pt-4" id="hero">
-      <!-- Left Column: Copy & Badges -->
-      <div class="lg:col-span-7 flex flex-col justify-between space-y-6">
-        
-        <!-- Top Badges -->
-        <div class="flex flex-wrap items-center gap-2.5">
-          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-[11px] font-tech uppercase tracking-wider text-zinc-300">
-            <span class="w-2 h-2 rounded-full bg-brand-orange animate-pulse"></span>
-            <span id="heroScarcity">ОТБОР НА ВЕДЕНИЕ: ОСТАЛОСЬ 2 МЕСТА</span>
-            <span class="text-zinc-600">✕</span>
-          </div>
-          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-[11px] font-tech uppercase tracking-wider text-zinc-400" id="heroRoleBadge">
-            <span class="text-brand-orange">●</span>
-            <span>МСМК // ОНЛАЙН-НАСТАВНИК</span>
-          </div>
+      <!-- Top Label & Big Display Heading -->
+      <div class="space-y-2">
+        <!-- Dark Pill Badge -->
+        <div class="inline-flex items-center gap-2 bg-brandDark text-white px-3.5 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-wider shadow-sm">
+          <span>ТВОЙ ПЕРСОНАЛЬНЫЙ</span>
         </div>
 
-        <!-- Big Impact Headline -->
-        <h1 class="font-display font-black text-4xl sm:text-6xl lg:text-7xl uppercase tracking-tight leading-[0.95] text-white">
-          <span>ТВОЕ ТЕЛО.</span><br />
-          <span class="text-brand-orange">ТВОЙ</span> <span>РЕЗУЛЬТАТ.</span>
-        </h1>
+        <!-- Giant Slanted Blue Heading -->
+        <div class="flex items-start justify-between gap-4">
+          <h1 class="font-display font-black text-4xl sm:text-5xl md:text-6xl text-brandBlue uppercase leading-[0.92] tracking-tight">
+            ФИТНЕС<br/>ТРЕНЕР
+          </h1>
 
-        <!-- Subtitle Paragraph -->
-        <p class="text-zinc-300 text-sm sm:text-base leading-relaxed max-w-xl" id="heroBio">
-          Научный подход к гипертрофии, рекомпозиции и преодолению срывов. Гибкая система питания с высокой калорийностью и сохранением мышечной массы без изнурительных ограничений.
-        </p>
-
-        <!-- Stats Row -->
-        <div class="grid grid-cols-3 gap-3 sm:gap-4 py-2 border-y border-white/10">
-          <div>
-            <div class="font-display font-black text-2xl sm:text-3xl text-brand-orange leading-none" id="statVal0">08+</div>
-            <div class="font-tech text-[10px] sm:text-xs text-zinc-400 uppercase tracking-wider mt-1.5 leading-tight" id="statLabel0">ЛЕТ<br class="hidden sm:inline" /> ОПЫТА</div>
-          </div>
-          <div>
-            <div class="font-display font-black text-2xl sm:text-3xl text-brand-orange leading-none" id="statVal1">240+</div>
-            <div class="font-tech text-[10px] sm:text-xs text-zinc-400 uppercase tracking-wider mt-1.5 leading-tight" id="statLabel1">АТЛЕТОВ<br class="hidden sm:inline" /> В ФОРМЕ</div>
-          </div>
-          <div>
-            <div class="font-display font-black text-2xl sm:text-3xl text-brand-orange leading-none" id="statVal2">100%</div>
-            <div class="font-tech text-[10px] sm:text-xs text-zinc-400 uppercase tracking-wider mt-1.5 leading-tight" id="statLabel2">ЧИСТАЯ СИСТЕМА<br class="hidden sm:inline" /> БЕЗ ОТКАТОВ</div>
-          </div>
-        </div>
-
-        <!-- Action Buttons Row -->
-        <div class="flex flex-wrap items-center gap-3 pt-1">
-          <a href="#application" class="inline-flex items-center gap-2 bg-brand-orange hover:bg-brand-orangeDark text-black font-tech font-extrabold text-xs sm:text-sm tracking-wider uppercase px-6 py-3.5 rounded-xl transition-all shadow-lg shadow-brand-orange/25 active:scale-95">
-            <span>ЗАПОЛНИТЬ АНКЕТУ</span>
-            <span>↗</span>
-          </a>
-          <a id="btnInstagram" href="https://instagram.com/bernetskiy" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-3.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white font-tech text-xs tracking-wider uppercase transition-all">
-            <svg class="w-4 h-4 text-zinc-300" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-            <span id="labelInstagram">INSTAGRAM</span>
-            <span>↗</span>
-          </a>
-          <a id="btnTelegram" href="https://t.me/Master_fitness" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-3.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white font-tech text-xs tracking-wider uppercase transition-all">
-            <svg class="w-4 h-4 text-sky-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.538-.196 1.006.128.832.941z"/></svg>
-            <span id="labelTelegram">ТГ-КАНАЛ</span>
-            <span>↗</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- Right Column: Coach Hero Media Card with Floating Badge -->
-      <div class="lg:col-span-5 relative flex items-center justify-center">
-        <div class="bento-card w-full h-[420px] sm:h-[500px] lg:h-full relative overflow-hidden flex items-end justify-center p-6 border-white/10 shadow-2xl">
-          <!-- Coach Photo -->
-          <img id="heroImage" src="/images/bernetskiy-hero.jpg" alt="Владислав Бернецкий" class="absolute inset-0 w-full h-full object-cover object-top filter brightness-95 contrast-105" />
-          
-          <!-- Gradient Vignette at bottom -->
-          <div class="absolute inset-0 bg-gradient-to-t from-[#0B0C10] via-[#0B0C10]/20 to-transparent"></div>
-
-          <!-- Bottom Floating Badge matching Reference -->
-          <div class="relative z-10 w-full flex items-center justify-between gap-3 p-3.5 rounded-2xl bg-[#12141C]/90 backdrop-blur-md border border-white/10 shadow-xl">
-            <div class="min-w-0">
-              <div class="font-tech text-[10px] text-brand-orange uppercase tracking-wider font-bold">
-                МСМК // ОНЛАЙН-НАСТАВНИК
-              </div>
-              <div class="font-display font-black text-sm sm:text-base text-white uppercase tracking-wider truncate" id="cardCoachName">
-                ВЛАДИСЛАВ БЕРНЕЦКИЙ
-              </div>
+          <!-- 3 Dots & Subtitle on Right -->
+          <div class="text-right pt-2 max-w-[170px] sm:max-w-[210px]">
+            <div class="three-dots text-brandBlue mb-1 justify-end">
+              <span></span><span></span><span></span>
             </div>
-            <!-- Orange Location Pin Circle -->
-            <div class="w-9 h-9 rounded-full bg-brand-orange flex items-center justify-center text-black shrink-0 shadow-md shadow-brand-orange/40">
-              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 3. ROW 2: CASES (Left) & DIAGNOSTIC CALCULATOR (Right) -->
-    <section class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch" id="cases">
-      
-      <!-- LEFT COL: [02. КЕЙСЫ] -->
-      <div class="lg:col-span-6 bento-card p-5 sm:p-7 flex flex-col justify-between space-y-4">
-        <!-- Header -->
-        <div>
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-orange/15 border border-brand-orange/30 text-[10px] font-tech uppercase tracking-wider text-brand-orange mb-2">
-            <span>●</span>
-            <span>02. КЕЙСЫ</span>
-          </div>
-          <h2 class="font-display font-black text-xl sm:text-2xl text-white uppercase tracking-wide">
-            РЕАЛЬНЫЕ РЕЗУЛЬТАТЫ ПОДОПЕЧНЫХ
-          </h2>
-        </div>
-
-        <!-- 10 Case Tabs Switcher -->
-        <div class="flex items-center gap-1.5 overflow-x-auto pb-1" id="caseTabsList">
-          <!-- Generated via JS: 01 .. 10 -->
-        </div>
-
-        <!-- Interactive Before/After Compare Box -->
-        <div class="slider-compare-container rounded-2xl bg-black/60 border border-white/10 h-[280px] sm:h-[320px] relative w-full overflow-hidden" id="caseCompareBox">
-          <!-- Image After (Underneath) -->
-          <img id="caseAfterImg" src="/cases/vlad_case1_evgeniy_after.jpg" alt="После" class="absolute inset-0 w-full h-full object-cover object-top" />
-          <span class="absolute top-3 right-3 px-2.5 py-1 rounded-lg bg-black/70 backdrop-blur-md border border-white/10 text-[10px] font-tech text-white uppercase tracking-wider z-10">ПОСЛЕ</span>
-
-          <!-- Image Before (Clipped on top) -->
-          <div id="caseBeforeClip" class="absolute inset-0 w-1/2 overflow-hidden border-r-2 border-white">
-            <img id="caseBeforeImg" src="/cases/vlad_case1_evgeniy_before.jpg" alt="До" class="absolute top-0 left-0 h-full max-w-none object-cover object-top" style="width: 200%;" />
-            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-lg bg-black/70 backdrop-blur-md border border-white/10 text-[10px] font-tech text-white uppercase tracking-wider z-10">ДО</span>
-          </div>
-
-          <!-- Divider Handle -->
-          <div id="sliderHandle" class="slider-handle-btn" style="left: 50%;">
-            <span>◀▶</span>
-          </div>
-
-          <!-- Case Details Overlay Card on the right matching Reference -->
-          <div class="absolute bottom-3 right-3 max-w-[210px] sm:max-w-[240px] p-3 rounded-xl bg-[#12141C]/90 backdrop-blur-md border border-white/10 shadow-xl z-20 pointer-events-none">
-            <div class="font-display font-black text-sm text-white truncate" id="caseClientName">Иван Петров</div>
-            <div class="flex items-center gap-2 text-[10px] font-tech text-zinc-300 mt-1">
-              <span class="inline-flex items-center gap-1 bg-white/5 px-1.5 py-0.5 rounded" id="caseDuration">📅 12 недель</span>
-              <span class="inline-flex items-center gap-1 bg-brand-orange/20 text-brand-orange px-1.5 py-0.5 rounded font-bold" id="caseStats">⚖️ -12 кг</span>
-            </div>
-            <p class="text-[11px] text-zinc-400 italic mt-1.5 line-clamp-2" id="caseQuote">
-              «Наконец-то увидел реальный результат!»
+            <p class="text-xs sm:text-sm text-zinc-600 font-medium leading-snug">
+              Вместе создадим <strong class="text-brandBlue font-bold underline decoration-brandBlue/30">тело</strong> вашей мечты всего <strong class="text-brandDark font-bold">за 3 месяца</strong>
             </p>
           </div>
         </div>
-
-        <!-- Slider Hint -->
-        <div class="text-center font-tech text-[10px] text-zinc-500 uppercase tracking-widest flex items-center justify-center gap-2">
-          <span>←</span>
-          <span>Свайп для сравнения</span>
-          <span>→</span>
-        </div>
       </div>
 
-      <!-- RIGHT COL: [03. ДИАГНОСТИКА] (Calculator & Target Chart) -->
-      <div class="lg:col-span-6 bento-card p-5 sm:p-7 flex flex-col justify-between space-y-4" id="diagnostic">
-        <!-- Header -->
-        <div class="flex items-center justify-between gap-2">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-orange/15 border border-brand-orange/30 text-[10px] font-tech uppercase tracking-wider text-brand-orange">
-            <span>●</span>
-            <span>03. ДИАГНОСТИКА</span>
-          </div>
-          <div class="flex items-center gap-1.5 font-tech text-xs text-zinc-400">
-            <span class="font-bold text-white">10/10</span>
-            <span class="px-1.5 py-0.5 rounded bg-white/5 border border-white/10 cursor-pointer">◀</span>
-            <span class="px-1.5 py-0.5 rounded bg-white/5 border border-white/10 cursor-pointer">▶</span>
-          </div>
-        </div>
-
-        <h2 class="font-display font-black text-xl sm:text-2xl text-white uppercase tracking-wide leading-tight">
-          ИНТЕРАКТИВНЫЙ РАСЧЁТ ТРАНСФОРМАЦИИ ЗА 8 НЕДЕЛЬ
-        </h2>
-
-        <!-- Interactive Calculator & Graph split layout -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 items-center">
+      <!-- Coach Hero Portrait Box -->
+      <div class="relative mt-4 mb-[-50px] sm:mb-[-70px] z-0">
+        <!-- Coach Photo Container -->
+        <div class="relative w-full h-[460px] sm:h-[540px] md:h-[600px] rounded-3xl overflow-hidden shadow-xl bg-gradient-to-b from-zinc-200 via-zinc-100 to-zinc-300">
+          <img id="coachHeroImg" src="/images/bernetskiy-hero.jpg" alt="Тренер" class="w-full h-full object-cover object-top filter brightness-[1.02] contrast-[1.05]" />
           
-          <!-- Controls -->
-          <div class="space-y-3.5">
-            <!-- Gender buttons -->
-            <div class="flex items-center gap-2">
-              <button id="btnGenderMale" onclick="setGender('male')" class="flex-1 py-2 rounded-xl text-xs font-tech font-bold uppercase transition-all bg-brand-orange text-black shadow-md shadow-brand-orange/20">
-                Мужчина
-              </button>
-              <button id="btnGenderFemale" onclick="setGender('female')" class="flex-1 py-2 rounded-xl text-xs font-tech font-bold uppercase transition-all bg-white/5 text-zinc-400 hover:text-white border border-white/10">
-                Женщина
-              </button>
-            </div>
+          <!-- Subtle vignette gradient at bottom so card blends seamlessly -->
+          <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
 
-            <!-- Current Weight Slider -->
-            <div class="space-y-1">
-              <div class="flex justify-between text-xs font-tech">
-                <span class="text-zinc-400">Текущий вес:</span>
-                <span class="text-white font-bold" id="valWeight">85 кг</span>
-              </div>
-              <input type="range" id="inputWeight" min="50" max="140" value="85" oninput="updateDiagnostics()" class="w-full" />
+          <!-- Handwritten Coach Name Annotation (Top-Left on photo) -->
+          <div class="absolute top-6 left-6 z-10">
+            <div class="font-hand text-3xl sm:text-4xl text-brandDark font-bold leading-none rotate-[-6deg] drop-shadow-sm select-none" id="coachHandwrittenName">
+              Владислав<br/>Бернецкий
             </div>
-
-            <!-- Target Weight Slider -->
-            <div class="space-y-1">
-              <div class="flex justify-between text-xs font-tech">
-                <span class="text-zinc-400">Желаемый вес:</span>
-                <span class="text-brand-orange font-bold" id="valTargetWeight">76.5 кг</span>
-              </div>
-              <input type="range" id="inputTargetWeight" min="45" max="130" value="76" oninput="updateDiagnostics()" class="w-full" />
-            </div>
-
-            <!-- Height Slider -->
-            <div class="space-y-1">
-              <div class="flex justify-between text-xs font-tech">
-                <span class="text-zinc-400">Рост:</span>
-                <span class="text-white font-bold" id="valHeight">180 см</span>
-              </div>
-              <input type="range" id="inputHeight" min="150" max="210" value="180" oninput="updateDiagnostics()" class="w-full" />
-            </div>
-
-            <!-- Calculate Action Button -->
-            <a href="#application" class="w-full inline-flex items-center justify-center gap-2 py-3 rounded-xl bg-brand-orange hover:bg-brand-orangeDark text-black font-tech font-extrabold text-xs tracking-wider uppercase transition-all shadow-md shadow-brand-orange/20">
-              <span>РАССЧИТАТЬ</span>
-              <span>→</span>
-            </a>
+            <span class="inline-block text-xl ml-8 rotate-[15deg] text-brandBlue">⚡️</span>
           </div>
 
-          <!-- Live Graph & Target Metric Card matching Reference -->
-          <div class="p-4 rounded-2xl bg-black/40 border border-white/10 flex flex-col justify-between h-full min-h-[190px] relative overflow-hidden">
-            <!-- Metric Badge Top Right -->
-            <div class="text-right">
-              <div class="font-display font-black text-2xl text-white leading-none" id="graphDiffVal">-8.5 кг</div>
-              <div class="font-tech text-[10px] text-zinc-400 uppercase tracking-wider mt-0.5">за 8 недель</div>
-            </div>
-
-            <!-- Glowing SVG Curve chart -->
-            <div class="py-2">
-              <svg viewBox="0 0 200 80" class="w-full h-20 overflow-visible">
-                <defs>
-                  <linearGradient id="curveGradient" x1="0" y1="0" x2="1" y2="0">
-                    <stop offset="0%" stop-color="#FF6B00" stop-opacity="0.3" />
-                    <stop offset="100%" stop-color="#FF6B00" stop-opacity="1" />
-                  </linearGradient>
-                </defs>
-                <!-- Dotted Reference line -->
-                <line x1="10" y1="70" x2="190" y2="70" stroke="rgba(255,255,255,0.08)" stroke-dasharray="3,3" />
-                <!-- Trajectory Curve -->
-                <path id="graphCurve" d="M 10 70 Q 100 45, 190 18" fill="none" stroke="url(#curveGradient)" stroke-width="3" stroke-linecap="round" />
-                <!-- Data Points with glowing halos -->
-                <circle cx="10" cy="70" r="3" fill="#FFFFFF" />
-                <circle cx="55" cy="57" r="3" fill="#FF6B00" opacity="0.8" />
-                <circle cx="100" cy="45" r="3.5" fill="#FF6B00" />
-                <circle cx="145" cy="32" r="3.5" fill="#FF6B00" />
-                <circle cx="190" cy="18" r="4.5" fill="#FFFFFF" stroke="#FF6B00" stroke-width="2" class="glow-orange-sm" />
-              </svg>
-            </div>
-
-            <!-- Calories Target Pill -->
-            <div class="flex items-center justify-between text-[11px] font-tech text-zinc-400 pt-1 border-t border-white/5">
-              <span>ПЛАН КБЖУ:</span>
-              <span class="text-brand-orange font-bold font-mono" id="graphCalories">2 342 ккал / день</span>
-            </div>
-          </div>
+          <!-- Instagram Handle Pill Tag (on coach body/chest) -->
+          <a id="coachIgBadgeLink" href="https://instagram.com/bernetskiy" target="_blank" rel="noopener" class="absolute bottom-20 right-6 z-10 inline-flex items-center gap-1.5 bg-black/75 backdrop-blur-md text-white px-3 py-1.5 rounded-full text-xs font-mono font-medium hover:bg-black transition-all shadow-md">
+            <span>📷</span>
+            <span id="coachIgHandle">@bernetskiy</span>
+          </a>
         </div>
       </div>
-    </section>
 
-    <!-- 4. ROW 3: [04. ТАРИФЫ] (Programs and Pricing Grid) -->
-    <section class="space-y-6 pt-4" id="tiers">
-      <!-- Section Title -->
-      <div>
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-orange/15 border border-brand-orange/30 text-[10px] font-tech uppercase tracking-wider text-brand-orange mb-2">
-          <span>●</span>
-          <span>04. ТАРИФЫ</span>
-        </div>
-        <h2 class="font-display font-black text-2xl sm:text-3xl text-white uppercase tracking-wide">
-          ПРОГРАММЫ И СТОИМОСТЬ ВЕДЕНИЯ
+      <!-- Overlapping Floating White Card -->
+      <div class="hero-white-card p-6 sm:p-8 relative z-10">
+        <p class="text-xs font-bold text-zinc-500 uppercase tracking-wider mb-1">
+          Тренер, который доведёт тебя до результата
+        </p>
+
+        <!-- Big Bold Title with Styled Ampersand -->
+        <h2 class="font-display font-black text-2xl sm:text-3xl text-brandDark uppercase tracking-tight mb-5 flex items-center gap-1.5 flex-wrap">
+          <span>ЭФФЕКТИВНО</span>
+          <span class="text-brandBlue font-normal">&amp;</span>
+          <span>ЛЕГКО</span>
         </h2>
+
+        <!-- 3 Feature Rows with Dark Rounded Icons -->
+        <div class="space-y-3.5 mb-7">
+          <!-- Row 1 -->
+          <div class="flex items-start gap-3.5">
+            <div class="w-9 h-9 rounded-xl bg-brandDark text-white flex items-center justify-center shrink-0 shadow-sm text-sm">
+              📋
+            </div>
+            <div class="text-xs sm:text-sm text-zinc-700 leading-snug pt-1">
+              <strong class="text-brandBlue font-bold">Подходит всем:</strong> работаю с клиентами всех возрастов и любой подготовкой
+            </div>
+          </div>
+
+          <!-- Row 2 -->
+          <div class="flex items-start gap-3.5">
+            <div class="w-9 h-9 rounded-xl bg-brandDark text-white flex items-center justify-center shrink-0 shadow-sm text-sm">
+              🎯
+            </div>
+            <div class="text-xs sm:text-sm text-zinc-700 leading-snug pt-1">
+              <strong class="text-brandBlue font-bold">Гарантия результата:</strong> верну деньги, если мы не достигнем вашей цели
+            </div>
+          </div>
+
+          <!-- Row 3 -->
+          <div class="flex items-start gap-3.5">
+            <div class="w-9 h-9 rounded-xl bg-brandDark text-white flex items-center justify-center shrink-0 shadow-sm text-sm">
+              🏋️
+            </div>
+            <div class="text-xs sm:text-sm text-zinc-700 leading-snug pt-1">
+              <strong class="text-brandBlue font-bold">Удобный формат:</strong> тренировки онлайн или в зале с детальным видеоразбором
+            </div>
+          </div>
+        </div>
+
+        <!-- Overlapping Split CTA Bar -->
+        <div class="cta-split-container mx-auto">
+          <div class="cta-black-pill">
+            <span>СКИДКА 15% НА ПЕРВОЕ ЗАНЯТИЕ</span>
+            <span class="text-brandBlue font-black text-sm">⟶</span>
+          </div>
+          <button onclick="openBookingModal()" class="cta-round-blue-btn">
+            <span>ЗАПИСАТЬСЯ</span>
+            <span class="mt-0.5 text-[8.5px] opacity-90">НА ТРЕНИРОВКУ</span>
+          </button>
+        </div>
       </div>
 
-      <!-- 3 Pricing Cards Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
-        
-        <!-- Tier 1: Базовый аудит -->
-        <div class="bento-card p-6 flex flex-col justify-between space-y-6 relative group">
-          <div class="space-y-4">
-            <div class="flex items-center gap-3">
-              <div class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-brand-orange text-lg">
-                🏋️
-              </div>
-              <div>
-                <h3 class="font-display font-black text-lg text-white uppercase leading-tight">Базовый аудит</h3>
-                <div class="font-tech text-[10px] text-zinc-400 uppercase tracking-wider">Анализ + рекомендации</div>
-              </div>
-            </div>
+      <!-- Down Arrow Scroll Cue -->
+      <div class="flex justify-center mt-6">
+        <a href="#about" class="w-8 h-8 rounded-full bg-brandDark text-white flex items-center justify-center text-xs shadow-md hover:bg-brandBlue transition-all">
+          ↓
+        </a>
+      </div>
+    </section>
 
-            <!-- Price -->
-            <div class="flex items-baseline gap-2 pt-2">
-              <span class="font-display font-black text-3xl text-white">4 990 ₽</span>
-              <span class="text-sm font-tech text-zinc-500 line-through">7 990 ₽</span>
-            </div>
+    <!-- ========================================== -->
+    <!-- 2. "РАБОТА СО МНОЙ" (Electric Blue Block)  -->
+    <!-- ========================================== -->
+    <section id="about" class="space-y-3">
+      <!-- Section Title -->
+      <h2 class="font-display font-black text-2xl sm:text-3xl md:text-4xl text-brandBlue uppercase tracking-tight text-center sm:text-left">
+        РАБОТА СО МНОЙ
+      </h2>
 
-            <!-- Features -->
-            <ul class="space-y-2.5 pt-2 text-xs text-zinc-300">
-              <li class="flex items-center gap-2">
-                <span class="text-brand-orange font-bold">✓</span>
-                <span>Разбор целей и диагностика</span>
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="text-brand-orange font-bold">✓</span>
-                <span>Индивидуальный план питания</span>
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="text-brand-orange font-bold">✓</span>
-                <span>Базовые тренировочные протоколы</span>
-              </li>
-            </ul>
+      <!-- Big Electric Blue Card with Floating Frosted Cards -->
+      <div class="blue-block-gradient rounded-[32px] p-5 sm:p-8 text-white relative overflow-hidden">
+
+        <!-- Background Ambient Doodles -->
+        <div class="absolute -right-10 -bottom-10 w-64 h-64 rounded-full bg-white/10 blur-2xl pointer-events-none"></div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 relative z-10">
+
+          <!-- Card 1: "с заботой" -->
+          <div class="frosted-glass-card p-5 relative">
+            <div class="font-hand text-2xl text-white font-bold mb-1">
+              с заботой
+            </div>
+            <div class="three-dots text-white/70 mb-2">
+              <span></span><span></span><span></span>
+            </div>
+            <h4 class="font-display font-bold text-xs uppercase tracking-wider mb-1.5 text-white">
+              Гибкий график и доступность
+            </h4>
+            <p class="text-xs text-white/90 leading-relaxed font-normal">
+              Я подстраиваюсь под своих клиентов и их рабочий график. Приеду в любой зал или разберу видео тренировки в удобное время. Даже если вам удобно ночью.
+            </p>
           </div>
 
-          <!-- Select Button -->
-          <a href="#application" class="w-full text-center py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white font-tech text-xs uppercase tracking-wider font-bold transition-all">
-            Выбрать →
-          </a>
-        </div>
-
-        <!-- Tier 2: Персональное ведение 1 месяц (ХИТ ПРОДАЖ - Highlighted!) -->
-        <div class="bento-card p-6 flex flex-col justify-between space-y-6 relative border-2 border-brand-orange shadow-2xl shadow-brand-orange/20 scale-[1.02] bg-[#151722]">
-          <!-- Floating "ХИТ ПРОДАЖ" Badge -->
-          <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-brand-orange text-black font-tech text-[10px] uppercase tracking-widest font-extrabold shadow-lg shadow-brand-orange/50">
-            ХИТ ПРОДАЖ
+          <!-- Card 2: "без надрыва и насилия" -->
+          <div class="frosted-glass-card p-5 flex flex-col justify-center text-center">
+            <div class="three-dots text-white/70 mb-2 justify-center">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="font-hand text-3xl sm:text-4xl text-white font-bold leading-tight rotate-[-2deg]">
+              без надрыва<br/>и насилия над собой
+            </div>
           </div>
 
-          <div class="space-y-4 pt-1">
-            <div class="flex items-center gap-3">
-              <div class="w-10 h-10 rounded-xl bg-brand-orange/20 border border-brand-orange/40 flex items-center justify-center text-brand-orange text-lg">
-                👑
-              </div>
-              <div>
-                <h3 class="font-display font-black text-lg text-white uppercase leading-tight">Персональное ведение</h3>
-                <div class="font-tech text-[10px] text-brand-orange uppercase tracking-wider font-bold">1 месяц под ключ</div>
-              </div>
+          <!-- Card 3: "ЭФФЕКТИВНО" -->
+          <div class="frosted-glass-card p-5">
+            <h3 class="font-display font-black text-xl sm:text-2xl uppercase tracking-tight text-white mb-1">
+              ЭФФЕКТИВНО
+            </h3>
+            <div class="three-dots text-white/70 mb-2">
+              <span></span><span></span><span></span>
             </div>
-
-            <!-- Price -->
-            <div class="flex items-baseline gap-2 pt-2">
-              <span class="font-display font-black text-3xl text-white">14 990 ₽</span>
-              <span class="text-sm font-tech text-zinc-500 line-through">19 990 ₽</span>
-            </div>
-
-            <!-- Features -->
-            <ul class="space-y-2.5 pt-2 text-xs text-zinc-200">
-              <li class="flex items-center gap-2">
-                <span class="text-brand-orange font-bold">✓</span>
-                <span>Полный план + еженедельный контроль</span>
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="text-brand-orange font-bold">✓</span>
-                <span>Связь и поддержка 24/7 в Telegram</span>
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="text-brand-orange font-bold">✓</span>
-                <span>Постоянные корректировки и отчётность</span>
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="text-brand-orange font-bold">✓</span>
-                <span>Видео-разбор техники упражнений</span>
-              </li>
-            </ul>
+            <h4 class="font-display font-bold text-xs uppercase tracking-wider mb-1.5 text-white">
+              Вы полюбите спорт и тренировки
+            </h4>
+            <p class="text-xs text-white/90 leading-relaxed font-normal">
+              Со мной вы влюбитесь в спорт и научитесь есть правильно. Без стресса, голода и жестких диет. Этот навык останется с вами навсегда.
+            </p>
           </div>
 
-          <!-- Select Button -->
-          <a href="#application" class="w-full text-center py-3.5 rounded-xl bg-brand-orange hover:bg-brand-orangeDark text-black font-tech text-xs uppercase tracking-wider font-extrabold transition-all shadow-lg shadow-brand-orange/30">
-            Выбрать →
-          </a>
-        </div>
-
-        <!-- Tier 3: VIP-наставничество -->
-        <div class="bento-card p-6 flex flex-col justify-between space-y-6 relative group">
-          <div class="space-y-4">
-            <div class="flex items-center gap-3">
-              <div class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-brand-orange text-lg">
-                💎
+          <!-- Card 4: "Индивидуальный подход" -->
+          <div class="frosted-glass-card p-5 flex flex-col justify-between">
+            <div>
+              <div class="three-dots text-white/70 mb-2">
+                <span></span><span></span><span></span>
               </div>
-              <div>
-                <h3 class="font-display font-black text-lg text-white uppercase leading-tight">VIP-наставничество</h3>
-                <div class="font-tech text-[10px] text-zinc-400 uppercase tracking-wider">До результата</div>
-              </div>
+              <h4 class="font-display font-bold text-xs uppercase tracking-wider mb-1.5 text-white">
+                Индивидуальный подход к каждому
+              </h4>
+              <p class="text-xs text-white/90 leading-relaxed font-normal">
+                Я учитываю ваши цели, ограничения и физ-особенности, создавая личную программу для каждого моего подопечного.
+              </p>
             </div>
-
-            <!-- Price -->
-            <div class="flex items-baseline gap-2 pt-2">
-              <span class="font-display font-black text-3xl text-white">29 990 ₽</span>
+            <div class="font-hand text-2xl text-white/90 font-bold mt-3 text-right">
+              и без скучных упражнений ✨
             </div>
-
-            <!-- Features -->
-            <ul class="space-y-2.5 pt-2 text-xs text-zinc-300">
-              <li class="flex items-center gap-2">
-                <span class="text-brand-orange font-bold">✓</span>
-                <span>Максимальный персональный подход</span>
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="text-brand-orange font-bold">✓</span>
-                <span>Еженедельные личные видео-созвоны</span>
-              </li>
-              <li class="flex items-center gap-2">
-                <span class="text-brand-orange font-bold">✓</span>
-                <span>100% гарантия достижения формы</span>
-              </li>
-            </ul>
           </div>
 
-          <!-- Select Button -->
-          <a href="#application" class="w-full text-center py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white font-tech text-xs uppercase tracking-wider font-bold transition-all">
-            Выбрать →
-          </a>
         </div>
       </div>
     </section>
 
-    <!-- 5. ROW 4: REVIEWS (Left) & FAQ ACCORDION (Right) -->
-    <section class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch pt-2" id="reviews">
-      
-      <!-- LEFT COL: [05. ОТЗЫВЫ] -->
-      <div class="lg:col-span-6 bento-card p-5 sm:p-7 flex flex-col justify-between space-y-4">
-        <!-- Header -->
-        <div class="flex items-center justify-between">
-          <div>
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-orange/15 border border-brand-orange/30 text-[10px] font-tech uppercase tracking-wider text-brand-orange mb-2">
-              <span>●</span>
-              <span>05. ОТЗЫВЫ</span>
-            </div>
-            <h2 class="font-display font-black text-xl sm:text-2xl text-white uppercase tracking-wide">
-              ЧТО ГОВОРЯТ ПОДОПЕЧНЫЕ
-            </h2>
-          </div>
-          <!-- Arrow buttons -->
-          <div class="flex items-center gap-2">
-            <button onclick="prevReview()" class="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center text-xs text-white transition-all">
-              ◀
-            </button>
-            <button onclick="nextReview()" class="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center text-xs text-white transition-all">
-              ▶
-            </button>
-          </div>
-        </div>
-
-        <!-- 3 Review cards carousel matching Reference mockups -->
-        <div class="grid grid-cols-3 gap-2.5 sm:gap-3 py-2" id="reviewCardsGrid">
-          <!-- Card 1 -->
-          <div class="p-3 rounded-2xl bg-black/40 border border-white/10 flex flex-col justify-between h-[210px] sm:h-[230px] relative overflow-hidden group">
-            <div class="w-full h-24 rounded-xl overflow-hidden bg-zinc-900 mb-2 relative">
-              <img id="reviewImg0" src="/cases/vladislav_danya.jpg" alt="Отзыв" class="w-full h-full object-cover object-top opacity-85 group-hover:scale-105 transition-transform" />
-            </div>
-            <div class="p-2 rounded-xl bg-white/5 border border-white/10 text-[11px] text-zinc-200 font-medium leading-snug">
-              Бро, форма огонь 🔥
-            </div>
-          </div>
-          <!-- Card 2 -->
-          <div class="p-3 rounded-2xl bg-black/40 border border-white/10 flex flex-col justify-between h-[210px] sm:h-[230px] relative overflow-hidden group">
-            <div class="w-full h-24 rounded-xl overflow-hidden bg-zinc-900 mb-2 relative">
-              <img id="reviewImg1" src="/cases/vladislav_denis.jpg" alt="Отзыв" class="w-full h-full object-cover object-top opacity-85 group-hover:scale-105 transition-transform" />
-            </div>
-            <div class="p-2 rounded-xl bg-white/5 border border-white/10 text-[11px] text-zinc-200 font-medium leading-snug">
-              -7 кг за 6 недель 🎯
-            </div>
-          </div>
-          <!-- Card 3 -->
-          <div class="p-3 rounded-2xl bg-black/40 border border-white/10 flex flex-col justify-between h-[210px] sm:h-[230px] relative overflow-hidden group">
-            <div class="w-full h-24 rounded-xl overflow-hidden bg-zinc-900 mb-2 relative">
-              <img id="reviewImg2" src="/cases/vladislav_ignat.jpg" alt="Отзыв" class="w-full h-full object-cover object-top opacity-85 group-hover:scale-105 transition-transform" />
-            </div>
-            <div class="p-2 rounded-xl bg-white/5 border border-white/10 text-[11px] text-zinc-200 font-medium leading-snug">
-              Спасибо! Ты лучший 💪
-            </div>
-          </div>
-        </div>
-
-        <!-- Dots Indicator -->
-        <div class="flex items-center justify-center gap-1.5 pt-1" id="reviewDots">
-          <span class="w-5 h-1.5 rounded-full bg-brand-orange"></span>
-          <span class="w-1.5 h-1.5 rounded-full bg-white/20"></span>
-          <span class="w-1.5 h-1.5 rounded-full bg-white/20"></span>
-        </div>
-      </div>
-
-      <!-- RIGHT COL: [06. FAQ] (Accordion) -->
-      <div class="lg:col-span-6 bento-card p-5 sm:p-7 flex flex-col justify-between space-y-4" id="faq">
-        <!-- Header -->
+    <!-- ========================================== -->
+    <!-- 3. КЕЙСЫ ДО / ПОСЛЕ (10 РЕАЛЬНЫХ ТРАНСФОРМАЦИЙ) -->
+    <!-- ========================================== -->
+    <section id="cases" class="space-y-4">
+      <div class="flex items-end justify-between">
         <div>
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-orange/15 border border-brand-orange/30 text-[10px] font-tech uppercase tracking-wider text-brand-orange mb-2">
-            <span>●</span>
-            <span>06. FAQ</span>
+          <div class="font-hand text-2xl sm:text-3xl text-zinc-500 font-bold -mb-1">
+            реальные
           </div>
-          <h2 class="font-display font-black text-xl sm:text-2xl text-white uppercase tracking-wide">
-            ОТВЕТЫ НА ЧАСТЫЕ ВОПРОСЫ
+          <h2 class="font-display font-black text-2xl sm:text-3xl md:text-4xl text-brandBlue uppercase tracking-tight">
+            РЕЗУЛЬТАТЫ ПОДОПЕЧНЫХ
           </h2>
         </div>
+        <!-- 10/10 Badge -->
+        <div class="bg-brandDark text-white px-3 py-1.5 rounded-full text-xs font-mono font-bold">
+          10/10 КЕЙСОВ
+        </div>
+      </div>
 
-        <!-- Accordion Items List -->
-        <div class="space-y-2.5 divide-y divide-white/5" id="faqAccordionList">
-          <!-- Item 1 -->
-          <div class="pt-2">
-            <button onclick="toggleFaq(0)" class="w-full flex items-center justify-between text-left py-2 font-tech text-xs sm:text-sm text-zinc-200 hover:text-white font-bold gap-3">
-              <span>01 // Подойдёт ли программа, если я новичок?</span>
-              <span id="faqIcon0" class="text-brand-orange text-base font-mono">+</span>
-            </button>
-            <div id="faqAnswer0" class="hidden text-xs text-zinc-400 pb-2 pl-4 leading-relaxed">
-              Да, абсолютно. Каждая программа и план питания рассчитываются индивидуально, исходя из вашего стартового уровня, состояния суставов и опыта тренировок.
+      <!-- Case Selection Tabs (Scrollable Pills) -->
+      <div id="caseTabsList" class="flex gap-2 overflow-x-auto pb-2 scrollbar-none">
+        <!-- Generated by JS -->
+      </div>
+
+      <!-- Interactive Before / After Comparison Box -->
+      <div class="hero-white-card p-4 sm:p-6 space-y-4">
+        <!-- Image Slider Box -->
+        <div id="caseSliderContainer" class="ba-slider-container w-full h-[380px] sm:h-[460px] md:h-[520px] bg-zinc-900 relative">
+          <!-- After Image (Full background) -->
+          <img id="caseImgAfter" src="/cases/vlad_case1_evgeniy_after.jpg" alt="После" class="absolute inset-0 w-full h-full object-cover object-top select-none pointer-events-none" />
+          <div class="absolute top-4 right-4 z-10 bg-brandBlue text-white text-[11px] font-bold uppercase px-3 py-1 rounded-full shadow-md">
+            ПОСЛЕ
+          </div>
+
+          <!-- Before Image (Clipped overlay) -->
+          <div id="caseBeforeWrapper" class="absolute inset-0 w-1/2 overflow-hidden border-r-2 border-white select-none">
+            <img id="caseImgBefore" src="/cases/vlad_case1_evgeniy_before.jpg" alt="До" class="absolute inset-0 w-full h-full object-cover object-top select-none pointer-events-none max-w-none" style="width: 100%; height: 100%;" />
+            <div class="absolute top-4 left-4 z-10 bg-brandDark text-white text-[11px] font-bold uppercase px-3 py-1 rounded-full shadow-md">
+              ДО
             </div>
           </div>
-          <!-- Item 2 -->
-          <div class="pt-2">
-            <button onclick="toggleFaq(1)" class="w-full flex items-center justify-between text-left py-2 font-tech text-xs sm:text-sm text-zinc-200 hover:text-white font-bold gap-3">
-              <span>02 // Придётся ли сидеть на жёсткой диете?</span>
-              <span id="faqIcon1" class="text-brand-orange text-base font-mono">+</span>
-            </button>
-            <div id="faqAnswer1" class="hidden text-xs text-zinc-400 pb-2 pl-4 leading-relaxed">
-              Никаких суровых голодовок и куриной грудки с гречкой каждый день. Мы составляем гибкое меню из привычных вам продуктов с точным соблюдением нормы КБЖУ.
+
+          <!-- Divider Drag Handle -->
+          <div id="caseSliderHandle" class="absolute top-0 bottom-0 left-1/2 -ml-4 w-8 flex items-center justify-center cursor-ew-resize z-20">
+            <div class="w-8 h-8 rounded-full bg-white text-brandBlue flex items-center justify-center font-bold text-xs shadow-xl border-2 border-brandBlue select-none">
+              ⇄
             </div>
           </div>
-          <!-- Item 3 -->
-          <div class="pt-2">
-            <button onclick="toggleFaq(2)" class="w-full flex items-center justify-between text-left py-2 font-tech text-xs sm:text-sm text-zinc-200 hover:text-white font-bold gap-3">
-              <span>03 // Что делать, если мало времени на спорт?</span>
-              <span id="faqIcon2" class="text-brand-orange text-base font-mono">+</span>
-            </button>
-            <div id="faqAnswer2" class="hidden text-xs text-zinc-400 pb-2 pl-4 leading-relaxed">
-              Протокол адаптируется под ваш график. Достаточно 3 эффективных тренировок по 45–60 минут в неделю для уверенного прогресса.
-            </div>
+
+          <!-- Swipe Hint -->
+          <div class="absolute bottom-3 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-md text-white text-[10px] font-mono uppercase px-3 py-1 rounded-full pointer-events-none z-10">
+            ← Потяните ползунок →
           </div>
-          <!-- Item 4 -->
-          <div class="pt-2">
-            <button onclick="toggleFaq(3)" class="w-full flex items-center justify-between text-left py-2 font-tech text-xs sm:text-sm text-zinc-200 hover:text-white font-bold gap-3">
-              <span>04 // Можно ли заниматься дома?</span>
-              <span id="faqIcon3" class="text-brand-orange text-base font-mono">+</span>
-            </button>
-            <div id="faqAnswer3" class="hidden text-xs text-zinc-400 pb-2 pl-4 leading-relaxed">
-              Да, программа легко выстраивается как для тренажёрного зала, так и для дома с минимальным инвентарём или резинками.
-            </div>
+        </div>
+
+        <!-- Case Info Card -->
+        <div class="flex items-center justify-between flex-wrap gap-2 pt-1 border-t border-zinc-100">
+          <div>
+            <h3 id="caseClientTitle" class="font-display font-black text-lg sm:text-xl text-brandDark uppercase">
+              Евгений
+            </h3>
+            <p id="caseClientStats" class="text-xs sm:text-sm text-brandBlue font-bold">
+              -14 КГ ЗА 3 МЕСЯЦА // СУШКА И РЕЛЬЕФ
+            </p>
           </div>
-          <!-- Item 5 -->
-          <div class="pt-2">
-            <button onclick="toggleFaq(4)" class="w-full flex items-center justify-between text-left py-2 font-tech text-xs sm:text-sm text-zinc-200 hover:text-white font-bold gap-3">
-              <span>05 // Как быстро я увижу результаты?</span>
-              <span id="faqIcon4" class="text-brand-orange text-base font-mono">+</span>
-            </button>
-            <div id="faqAnswer4" class="hidden text-xs text-zinc-400 pb-2 pl-4 leading-relaxed">
-              Первые изменения в энергии и в зеркале заметны уже через 2–3 недели, а заметная трансформация тела — через 6–8 недель.
-            </div>
-          </div>
+          <button onclick="openBookingModal()" class="px-4 py-2 rounded-xl bg-brandDark text-white hover:bg-brandBlue text-xs font-bold uppercase transition-all">
+            Хочу такой же результат →
+          </button>
         </div>
       </div>
     </section>
 
-    <!-- 6. ROW 5: [07. АНКЕТА] (Lead Capture Section) -->
-    <section class="bento-card p-6 sm:p-10 relative overflow-hidden" id="application">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-        
-        <!-- Left details -->
-        <div class="lg:col-span-5 space-y-3">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-orange/15 border border-brand-orange/30 text-[10px] font-tech uppercase tracking-wider text-brand-orange">
-            <span>●</span>
-            <span>07. АНКЕТА</span>
+    <!-- ========================================== -->
+    <!-- 4. ИНТЕРАКТИВНЫЙ КАЛЬКУЛЯТОР КБЖУ          -->
+    <!-- ========================================== -->
+    <section id="calc" class="hero-white-card p-6 sm:p-8 space-y-6">
+      <div class="text-center sm:text-left">
+        <div class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brandBlue bg-brandBlue/10 px-3 py-1 rounded-full mb-1">
+          <span>⚡️ ЭКСПРЕСС-ДИАГНОСТИКА</span>
+        </div>
+        <h2 class="font-display font-black text-2xl sm:text-3xl text-brandDark uppercase tracking-tight">
+          РАСЧЁТ ТРАНСФОРМАЦИИ
+        </h2>
+        <p class="text-xs text-zinc-500 mt-1">
+          Узнайте свою норму калорий, БЖУ и прогноз результата за 8 недель
+        </p>
+      </div>
+
+      <!-- Controls Grid -->
+      <div class="space-y-5">
+        <!-- Goal Selector -->
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-wider text-zinc-600 mb-2">Ваша цель:</label>
+          <div class="grid grid-cols-3 gap-2">
+            <button onclick="setCalcGoal('cut')" id="goalBtn-cut" class="calc-goal-btn py-2.5 px-2 rounded-xl text-xs font-bold uppercase border border-brandBlue bg-brandBlue text-white shadow-sm transition-all text-center">
+              Сушка / Рельеф
+            </button>
+            <button onclick="setCalcGoal('bulk')" id="goalBtn-bulk" class="calc-goal-btn py-2.5 px-2 rounded-xl text-xs font-bold uppercase border border-zinc-200 bg-white text-zinc-700 hover:border-brandBlue transition-all text-center">
+              Набор массы
+            </button>
+            <button onclick="setCalcGoal('strength')" id="goalBtn-strength" class="calc-goal-btn py-2.5 px-2 rounded-xl text-xs font-bold uppercase border border-zinc-200 bg-white text-zinc-700 hover:border-brandBlue transition-all text-center">
+              Сила / База
+            </button>
           </div>
-          <h2 class="font-display font-black text-3xl sm:text-4xl text-white uppercase tracking-tight leading-none">
-            ЗАПИСАТЬСЯ НА ОНЛАЙН-ВЕДЕНИЕ
-          </h2>
-          <p class="text-zinc-400 text-xs sm:text-sm leading-relaxed">
-            Персональный разбор целей и бронь места в потоке наставничества.
+        </div>
+
+        <!-- Slider 1: Current Weight -->
+        <div>
+          <div class="flex justify-between text-xs font-bold mb-1.5">
+            <span class="text-zinc-600 uppercase">Текущий вес:</span>
+            <span id="labelWeight" class="text-brandBlue font-display font-black text-sm">82 кг</span>
+          </div>
+          <input type="range" id="inputWeight" min="45" max="150" value="82" oninput="calculateKcal()" />
+        </div>
+
+        <!-- Slider 2: Target Weight -->
+        <div>
+          <div class="flex justify-between text-xs font-bold mb-1.5">
+            <span class="text-zinc-600 uppercase">Желаемый вес:</span>
+            <span id="labelTargetWeight" class="text-brandBlue font-display font-black text-sm">75 кг</span>
+          </div>
+          <input type="range" id="inputTargetWeight" min="45" max="150" value="75" oninput="calculateKcal()" />
+        </div>
+
+        <!-- Slider 3: Height -->
+        <div>
+          <div class="flex justify-between text-xs font-bold mb-1.5">
+            <span class="text-zinc-600 uppercase">Рост:</span>
+            <span id="labelHeight" class="text-brandBlue font-display font-black text-sm">180 см</span>
+          </div>
+          <input type="range" id="inputHeight" min="140" max="215" value="180" oninput="calculateKcal()" />
+        </div>
+      </div>
+
+      <!-- Result Banner -->
+      <div class="bg-brandDark rounded-2xl p-5 text-white space-y-4">
+        <div class="flex items-center justify-between border-b border-white/10 pb-3">
+          <div>
+            <div class="text-[10px] font-mono uppercase text-zinc-400">ЦЕЛЕВАЯ НОРМА:</div>
+            <div id="resCalories" class="font-display font-black text-3xl sm:text-4xl text-brandBlue text-white">
+              2 180 <span class="text-base text-zinc-400 font-sans">ккал/день</span>
+            </div>
+          </div>
+          <div class="text-right">
+            <div class="text-[10px] font-mono uppercase text-zinc-400">ПРОГНОЗ:</div>
+            <div id="resDiff" class="font-display font-black text-xl text-emerald-400">
+              -7.0 кг
+            </div>
+          </div>
+        </div>
+
+        <!-- Macros Grid -->
+        <div class="grid grid-cols-3 gap-2 text-center">
+          <div class="bg-white/5 rounded-xl p-2.5 border border-white/5">
+            <div class="text-[10px] font-mono text-zinc-400 uppercase">Белки</div>
+            <div id="resProt" class="font-display font-black text-sm sm:text-base text-white">180г</div>
+          </div>
+          <div class="bg-white/5 rounded-xl p-2.5 border border-white/5">
+            <div class="text-[10px] font-mono text-zinc-400 uppercase">Жиры</div>
+            <div id="resFat" class="font-display font-black text-sm sm:text-base text-white">74г</div>
+          </div>
+          <div class="bg-white/5 rounded-xl p-2.5 border border-white/5">
+            <div class="text-[10px] font-mono text-zinc-400 uppercase">Углеводы</div>
+            <div id="resCarb" class="font-display font-black text-sm sm:text-base text-white">198г</div>
+          </div>
+        </div>
+
+        <button onclick="openBookingModal()" class="w-full py-3.5 rounded-xl bg-brandBlue hover:bg-brandBlueHover text-white font-display font-black text-xs uppercase tracking-wider transition-all shadow-lg active:scale-95">
+          Зафиксировать цель и записаться →
+        </button>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 5. ВАРИАНТЫ ТРЕНИРОВОК (ТАРИФЫ)            -->
+    <!-- ========================================== -->
+    <section id="pricing" class="hero-white-card p-6 sm:p-8 space-y-6">
+      <div>
+        <h2 class="font-display font-black text-2xl sm:text-3xl md:text-4xl text-brandBlue uppercase tracking-tight">
+          ВАРИАНТЫ ТРЕНИРОВОК
+        </h2>
+        <div class="flex items-center gap-2 mt-1">
+          <div class="three-dots text-brandBlue">
+            <span></span><span></span><span></span>
+          </div>
+          <p class="text-xs sm:text-sm text-zinc-600 font-medium">
+            Выбирайте удобный формат нашего взаимодействия. <strong class="text-brandDark">Чем больше</strong> тренировок вы покупаете, <strong class="text-brandBlue font-bold">тем дешевле</strong> они стоят
           </p>
         </div>
+      </div>
 
-        <!-- Right: 4 Inputs + Big Orange Button matching Reference -->
-        <form onsubmit="submitForm(event)" class="lg:col-span-7 space-y-4">
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-            <div>
-              <input type="text" id="formName" required placeholder="Имя" class="w-full px-4 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-zinc-500 text-xs font-tech focus:outline-none focus:border-brand-orange transition-colors" />
-            </div>
-            <div>
-              <input type="text" id="formContact" required placeholder="Ник в Telegram (@username) или WhatsApp ↗" class="w-full px-4 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-zinc-500 text-xs font-tech focus:outline-none focus:border-brand-orange transition-colors" />
-            </div>
-            <div>
-              <input type="text" id="formGoal" placeholder="Цель тренировок" class="w-full px-4 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-zinc-500 text-xs font-tech focus:outline-none focus:border-brand-orange transition-colors" />
-            </div>
-            <div>
-              <input type="text" id="formExp" placeholder="Опыт и противопоказания" class="w-full px-4 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-zinc-500 text-xs font-tech focus:outline-none focus:border-brand-orange transition-colors" />
-            </div>
+      <!-- Pricing Table Rows -->
+      <div class="divide-y divide-zinc-100">
+        <!-- Row 1 -->
+        <div class="py-4 flex items-center justify-between gap-4">
+          <div class="text-xs sm:text-sm font-bold text-zinc-800">
+            Пробная тренировка + тестирование
           </div>
+          <div class="font-display font-black text-sm sm:text-base text-brandDark whitespace-nowrap">
+            1 500 руб.
+          </div>
+        </div>
 
-          <!-- Submit Button + Trust Badge -->
-          <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-1">
-            <button type="submit" class="w-full sm:w-auto flex-1 inline-flex items-center justify-center gap-3 py-4 px-8 rounded-xl bg-brand-orange hover:bg-brand-orangeDark text-black font-tech font-black text-xs sm:text-sm tracking-widest uppercase transition-all shadow-xl shadow-brand-orange/30 active:scale-98">
-              <span>ОТПРАВИТЬ АНКЕТУ В TELEGRAM</span>
-              <span>✈️</span>
-            </button>
-            <div class="flex items-center gap-2 text-[11px] font-tech text-zinc-400 shrink-0">
-              <span>🔒</span>
-              <span>Ваши данные в безопасности.<br class="hidden sm:inline" /> Всего 10 мест на месяц.</span>
-            </div>
+        <!-- Row 2 -->
+        <div class="py-4 flex items-center justify-between gap-4">
+          <div class="text-xs sm:text-sm font-bold text-zinc-800">
+            10 индивидуальных тренировок
           </div>
-        </form>
+          <div class="font-display font-black text-sm sm:text-base text-brandBlue whitespace-nowrap">
+            18 000 руб.
+          </div>
+        </div>
+
+        <!-- Row 3 -->
+        <div class="py-4 flex items-center justify-between gap-4">
+          <div class="text-xs sm:text-sm font-bold text-zinc-800">
+            15 индивидуальных тренировок
+          </div>
+          <div class="font-display font-black text-sm sm:text-base text-brandDark whitespace-nowrap">
+            25 000 руб.
+          </div>
+        </div>
+      </div>
+
+      <!-- Info Box with [i] icon -->
+      <div class="bg-blue-50/70 border border-brandBlue/20 rounded-2xl p-4 flex items-start gap-3">
+        <div class="w-6 h-6 rounded-full bg-brandBlue text-white flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">
+          i
+        </div>
+        <div class="text-xs text-zinc-700 leading-snug">
+          Длительность одной тренировки 2 часа. Абонемент действует 3 месяца со дня первого занятия.
+        </div>
+      </div>
+
+      <!-- Split CTA Bar -->
+      <div class="cta-split-container mx-auto pt-2">
+        <div class="cta-black-pill">
+          <span>СКИДКА 15% НА ПРОБНОЕ ЗАНЯТИЕ</span>
+          <span class="text-brandBlue font-black text-sm">⟶</span>
+        </div>
+        <button onclick="openBookingModal()" class="cta-round-blue-btn">
+          <span>ЗАПИСАТЬСЯ</span>
+          <span class="mt-0.5 text-[8.5px] opacity-90">НА ТРЕНИРОВКУ</span>
+        </button>
       </div>
     </section>
 
-    <!-- 7. FOOTER -->
-    <footer class="pt-8 pb-12 border-t border-white/10 flex flex-wrap items-center justify-between gap-6 text-xs text-zinc-400 font-tech">
-      <div class="flex items-center gap-3">
-        <div class="w-8 h-8 rounded-lg bg-brand-orange flex items-center justify-center font-anton text-lg text-black font-bold">
-          P
+    <!-- ========================================== -->
+    <!-- 6. ВАШИ ОТЗЫВЫ                             -->
+    <!-- ========================================== -->
+    <section id="reviews" class="space-y-4">
+      <div>
+        <div class="font-hand text-3xl sm:text-4xl text-brandDark font-bold -mb-2 rotate-[-3deg]">
+          ваши
         </div>
+        <h2 class="font-display font-black text-3xl sm:text-4xl md:text-5xl text-brandBlue uppercase tracking-tight">
+          ОТЗЫВЫ
+        </h2>
+      </div>
+
+      <!-- Horizontal Cards Carousel -->
+      <div class="reviews-track flex gap-4 overflow-x-auto pb-4">
+        <!-- Lead-in Electric Blue Card (Exact text from reference) -->
+        <div class="review-slide w-[280px] sm:w-[320px] blue-block-gradient text-white rounded-3xl p-6 flex flex-col justify-between shadow-lg">
+          <p class="text-xs sm:text-sm font-medium leading-relaxed">
+            Я с большим уважением отношусь к правилам конфиденциальности и никогда не настаиваю на отзыве. Есть клиенты, которые сами с удовольствием делятся результатами нашей работы, за что я им очень благодарен!
+          </p>
+          <div class="pt-6 font-display font-black text-xs uppercase tracking-wider flex items-center justify-between text-white/90">
+            <span>Некоторые вы можете почитать здесь</span>
+            <span class="text-lg">⟶</span>
+          </div>
+        </div>
+
+        <!-- Review Screenshot Slide 1 -->
+        <div class="review-slide w-[280px] sm:w-[320px] hero-white-card p-3 rounded-3xl overflow-hidden">
+          <img src="/cases/vladislav_danya.jpg" alt="Отзыв Даня" class="w-full h-[360px] object-cover rounded-2xl" />
+        </div>
+
+        <!-- Review Screenshot Slide 2 -->
+        <div class="review-slide w-[280px] sm:w-[320px] hero-white-card p-3 rounded-3xl overflow-hidden">
+          <img src="/cases/vladislav_denis.jpg" alt="Отзыв Денис" class="w-full h-[360px] object-cover rounded-2xl" />
+        </div>
+
+        <!-- Review Screenshot Slide 3 -->
+        <div class="review-slide w-[280px] sm:w-[320px] hero-white-card p-3 rounded-3xl overflow-hidden">
+          <img src="/cases/vladislav_ignat.jpg" alt="Отзыв Игнат" class="w-full h-[360px] object-cover rounded-2xl" />
+        </div>
+
+        <!-- Review Screenshot Slide 4 -->
+        <div class="review-slide w-[280px] sm:w-[320px] hero-white-card p-3 rounded-3xl overflow-hidden">
+          <img src="/cases/vladislav_sandra.jpg" alt="Отзыв Сандра" class="w-full h-[360px] object-cover rounded-2xl" />
+        </div>
+
+        <!-- Review Screenshot Slide 5 -->
+        <div class="review-slide w-[280px] sm:w-[320px] hero-white-card p-3 rounded-3xl overflow-hidden">
+          <img src="/cases/vladislav_danil_squash.jpg" alt="Отзыв Данил" class="w-full h-[360px] object-cover rounded-2xl" />
+        </div>
+      </div>
+
+      <!-- Pagination Dots Indicator -->
+      <div class="flex justify-center items-center gap-1.5 pt-1">
+        <span class="w-2.5 h-2.5 rounded-full bg-brandBlue"></span>
+        <span class="w-2 h-2 rounded-full bg-zinc-300"></span>
+        <span class="w-2 h-2 rounded-full bg-zinc-300"></span>
+        <span class="w-2 h-2 rounded-full bg-zinc-300"></span>
+        <span class="w-2 h-2 rounded-full bg-zinc-300"></span>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 7. ЧАСТЫЕ ВОПРОСЫ (FAQ)                    -->
+    <!-- ========================================== -->
+    <section id="faq" class="space-y-3">
+      <h2 class="font-display font-black text-2xl sm:text-3xl md:text-4xl text-brandBlue uppercase tracking-tight text-center sm:text-left">
+        ЧАСТЫЕ ВОПРОСЫ
+      </h2>
+
+      <div class="space-y-2.5">
+        <!-- FAQ 1 -->
+        <div class="hero-white-card rounded-2xl p-4 sm:p-5 transition-all">
+          <div onclick="toggleFaq(1)" class="flex items-center justify-between gap-3 cursor-pointer">
+            <span class="text-xs sm:text-sm font-bold text-zinc-900">
+              Как записаться на тренировку к тебе?
+            </span>
+            <div class="flex items-center gap-2 shrink-0">
+              <span class="text-[9px] font-mono text-zinc-400 hidden sm:inline uppercase">нажми, чтобы раскрыть</span>
+              <div id="faqIcon-1" class="w-7 h-7 rounded-full bg-brandBlue text-white flex items-center justify-center text-xs font-bold transition-transform">
+                ↓
+              </div>
+            </div>
+          </div>
+          <div id="faqAnswer-1" class="hidden text-xs text-zinc-600 pt-3 border-t border-zinc-100 mt-3 leading-relaxed">
+            Нажмите кнопку «Записаться» на сайте или напишите напрямую в Telegram. Мы согласуем удобное время для вводной тренировки и диагностического созвона.
+          </div>
+        </div>
+
+        <!-- FAQ 2 -->
+        <div class="hero-white-card rounded-2xl p-4 sm:p-5 transition-all">
+          <div onclick="toggleFaq(2)" class="flex items-center justify-between gap-3 cursor-pointer">
+            <span class="text-xs sm:text-sm font-bold text-zinc-900">
+              А мне точно поможет твоя программа?
+            </span>
+            <div class="flex items-center gap-2 shrink-0">
+              <span class="text-[9px] font-mono text-zinc-400 hidden sm:inline uppercase">нажми, чтобы раскрыть</span>
+              <div id="faqIcon-2" class="w-7 h-7 rounded-full bg-brandBlue text-white flex items-center justify-center text-xs font-bold transition-transform">
+                ↓
+              </div>
+            </div>
+          </div>
+          <div id="faqAnswer-2" class="hidden text-xs text-zinc-600 pt-3 border-t border-zinc-100 mt-3 leading-relaxed">
+            Программа составляется строго индивидуально с учётом ваших анализов, противопоказаний, уровня подготовки и образа жизни. При соблюдении рекомендаций результат гарантирован на 100%.
+          </div>
+        </div>
+
+        <!-- FAQ 3 -->
+        <div class="hero-white-card rounded-2xl p-4 sm:p-5 transition-all">
+          <div onclick="toggleFaq(3)" class="flex items-center justify-between gap-3 cursor-pointer">
+            <span class="text-xs sm:text-sm font-bold text-zinc-900">
+              Каких результатов я смогу добиться?
+            </span>
+            <div class="flex items-center gap-2 shrink-0">
+              <span class="text-[9px] font-mono text-zinc-400 hidden sm:inline uppercase">нажми, чтобы раскрыть</span>
+              <div id="faqIcon-3" class="w-7 h-7 rounded-full bg-brandBlue text-white flex items-center justify-center text-xs font-bold transition-transform">
+                ↓
+              </div>
+            </div>
+          </div>
+          <div id="faqAnswer-3" class="hidden text-xs text-zinc-600 pt-3 border-t border-zinc-100 mt-3 leading-relaxed">
+            За первые 8-12 недель в среднем уходит от 6 до 12 кг лишнего жира с сохранением мышечного объема, выстраивается правильная осанка, повышается тонус и выносливость.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 8. НА СВЯЗИ (CONTACTS & FOOTER)            -->
+    <!-- ========================================== -->
+    <section id="contacts" class="relative pt-12">
+      <!-- Floating Round Avatar -->
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-24 rounded-full border-4 border-white shadow-xl overflow-hidden z-10 bg-zinc-200">
+        <img id="coachAvatarImg" src="/images/bernetskiy-hero.jpg" alt="Тренер" class="w-full h-full object-cover object-top" />
+      </div>
+
+      <!-- Electric Blue Card -->
+      <div class="blue-block-gradient rounded-[32px] pt-16 pb-8 px-6 text-white text-center shadow-xl space-y-5">
+        <h2 class="font-display font-black text-3xl sm:text-4xl uppercase tracking-tight">
+          НА СВЯЗИ
+        </h2>
+
+        <!-- Two Dark Buttons (Telegram and Instagram) -->
+        <div class="space-y-2.5 max-w-sm mx-auto">
+          <!-- Telegram Button -->
+          <a id="linkTelegram" href="https://t.me/Bernetskiy" target="_blank" rel="noopener" class="w-full py-4 px-6 rounded-2xl bg-brandDark hover:bg-black text-white font-bold text-sm flex items-center justify-center gap-2.5 shadow-md transition-all active:scale-95">
+            <span class="text-base">✈️</span>
+            <span>Телеграм</span>
+          </a>
+
+          <!-- Instagram Button -->
+          <a id="linkInstagram" href="https://instagram.com/bernetskiy" target="_blank" rel="noopener" class="w-full py-4 px-6 rounded-2xl bg-brandDark hover:bg-black text-white font-bold text-sm flex items-center justify-center gap-2.5 shadow-md transition-all active:scale-95">
+            <span class="text-base">📷</span>
+            <span>Инстаграм</span>
+          </a>
+        </div>
+
+        <!-- Handwritten Playful Note at Bottom -->
+        <div class="font-hand text-2xl sm:text-3xl text-white/90 font-bold pt-2 select-none">
+          Хватай кроссовки, погнали на тренировку! :)
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================== -->
+  <!-- BOOKING MODAL (QUICK TELEGRAM LEAD CAPTURE) -->
+  <!-- ========================================== -->
+  <div id="bookingModal" class="fixed inset-0 bg-black/70 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl relative border border-brandBlue/10 space-y-4">
+      <button onclick="closeBookingModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-zinc-100 text-zinc-600 flex items-center justify-center font-bold text-sm hover:bg-zinc-200">
+        ✕
+      </button>
+
+      <div>
+        <div class="text-[10px] font-mono text-brandBlue font-bold uppercase tracking-wider">
+          ЗАПИСЬ НА ТРЕНИРОВКУ
+        </div>
+        <h3 class="font-display font-black text-2xl text-brandDark uppercase tracking-tight">
+          ЗАПОЛНИТЬ АНКЕТУ
+        </h3>
+        <p class="text-xs text-zinc-500 mt-1">
+          Ответьте на 2 вопроса, и мы сразу свяжемся с вами в Telegram
+        </p>
+      </div>
+
+      <form onsubmit="handleBookingSubmit(event)" class="space-y-3.5">
         <div>
-          <div class="font-bold text-white uppercase" id="footerCoachName">ВЛАДИСЛАВ БЕРНЕЦКИЙ</div>
-          <div class="text-[10px] text-zinc-500 uppercase">КУЗНИЦА СПОРТСМЕНОВ ✕</div>
+          <label class="block text-xs font-bold uppercase text-zinc-700 mb-1">Ваше имя:</label>
+          <input type="text" id="modalName" required placeholder="Как вас зовут?" class="w-full px-4 py-3 rounded-xl bg-zinc-50 border border-zinc-200 text-sm font-medium focus:outline-none focus:border-brandBlue focus:ring-2 focus:ring-brandBlue/20" />
         </div>
-      </div>
 
-      <!-- Social Icons -->
-      <div class="flex items-center gap-3">
-        <a id="footerTelegram" href="https://t.me/Master_fitness" target="_blank" rel="noopener" class="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center text-sky-400 transition-colors">
-          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.538-.196 1.006.128.832.941z"/></svg>
-        </a>
-        <a id="footerInstagram" href="https://instagram.com/bernetskiy" target="_blank" rel="noopener" class="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center text-zinc-300 transition-colors">
-          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-        </a>
-      </div>
+        <div>
+          <label class="block text-xs font-bold uppercase text-zinc-700 mb-1">Ваш Telegram (@username или телефон):</label>
+          <input type="text" id="modalContact" required placeholder="@username или +7..." class="w-full px-4 py-3 rounded-xl bg-zinc-50 border border-zinc-200 text-sm font-medium focus:outline-none focus:border-brandBlue focus:ring-2 focus:ring-brandBlue/20" />
+        </div>
 
-      <div class="flex items-center gap-4 text-zinc-500">
-        <a href="#" class="hover:text-zinc-300 transition-colors">Политика конфиденциальности</a>
-        <span>© 2026. Все права защищены.</span>
-      </div>
-    </footer>
+        <div>
+          <label class="block text-xs font-bold uppercase text-zinc-700 mb-1">Главная цель:</label>
+          <select id="modalGoal" class="w-full px-4 py-3 rounded-xl bg-zinc-50 border border-zinc-200 text-sm font-medium focus:outline-none focus:border-brandBlue focus:ring-2 focus:ring-brandBlue/20">
+            <option value="Сжечь лишний жир и рельеф">Сжечь лишний жир и рельеф</option>
+            <option value="Набрать сухую мышечную массу">Набрать сухую мышечную массу</option>
+            <option value="Увеличить силу и выносливость">Увеличить силу и выносливость</option>
+            <option value="Исправить осанку и укрепить здоровье">Исправить осанку и укрепить здоровье</option>
+          </select>
+        </div>
+
+        <button type="submit" class="w-full py-4 rounded-xl bg-brandBlue hover:bg-brandBlueHover text-white font-display font-black text-xs uppercase tracking-wider transition-all shadow-lg active:scale-95">
+          Отправить заявку в Telegram →
+        </button>
+      </form>
+    </div>
   </div>
 
-  <!-- SCRIPT: INTERACTION ENGINES -->
+  <!-- ========================================== -->
+  <!-- JAVASCRIPT LOGIC & DYNAMICS                -->
+  <!-- ========================================== -->
   <script>
-    let currentClient = (window.CLIENTS && window.CLIENTS['new']) || (window.DEFAULT_CLIENTS && window.DEFAULT_CLIENTS['new']) || {};
-    let activeCaseIndex = 0;
-    let selectedGender = 'male';
+    // 1. DATA SYNC FROM CLIENTS.JS
+    let currentClient = (window.CLIENTS && window.CLIENTS['new']) || (window.CLIENTS && window.CLIENTS['bernetskiy']) || null;
+    let casesData = (currentClient && currentClient.cases) ? currentClient.cases : [];
+    let currentCaseIdx = 0;
+    let selectedGoal = 'cut';
 
-    // 1. CASES TABS & SLIDER ENGINE
+    // 2. INITIALIZE CLIENT DATA
+    function initClient() {
+      if (!currentClient) return;
+
+      if (currentClient.name) {
+        const parts = currentClient.name.split(' ');
+        const first = parts[0] || 'Владислав';
+        const last = parts.slice(1).join(' ') || 'Бернецкий';
+        const el = document.getElementById('coachHandwrittenName');
+        if (el) el.innerHTML = `${first}<br/>${last}`;
+      }
+
+      if (currentClient.instagram) {
+        const handle = currentClient.instagram.replace(/^@/, '');
+        const badge = document.getElementById('coachIgHandle');
+        if (badge) badge.textContent = '@' + handle;
+        const link = document.getElementById('coachIgBadgeLink');
+        if (link) link.href = `https://instagram.com/${handle}`;
+        const mainIg = document.getElementById('linkInstagram');
+        if (mainIg) mainIg.href = `https://instagram.com/${handle}`;
+      }
+
+      if (currentClient.telegramUsername) {
+        const tg = currentClient.telegramUsername.replace(/^@/, '');
+        const linkTg = document.getElementById('linkTelegram');
+        if (linkTg) linkTg.href = `https://t.me/${tg}`;
+      }
+
+      renderCaseTabs();
+      calculateKcal();
+    }
+
+    // 3. CASE TABS AND SLIDER
     function renderCaseTabs() {
       const container = document.getElementById('caseTabsList');
-      if (!container) return;
+      if (!container || casesData.length === 0) return;
       container.innerHTML = '';
 
-      const totalCases = (currentClient.cases && currentClient.cases.length) ? currentClient.cases.length : 10;
-      for (let i = 0; i < totalCases; i++) {
+      casesData.forEach((c, idx) => {
         const btn = document.createElement('button');
-        const num = (i + 1 < 10 ? '0' + (i + 1) : (i + 1));
-        const isActive = (i === activeCaseIndex);
-        btn.className = isActive 
-          ? 'px-3 py-1.5 rounded-lg bg-brand-orange text-black font-tech font-extrabold text-xs shadow-md shadow-brand-orange/30 shrink-0 transition-all'
-          : 'px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-zinc-400 font-tech text-xs shrink-0 transition-all border border-white/5';
-        btn.textContent = num;
-        btn.onclick = () => selectCase(i);
+        const isActive = idx === currentCaseIdx;
+        btn.className = isActive
+          ? 'px-4 py-1.5 rounded-full bg-brandBlue text-white font-display font-black text-xs whitespace-nowrap shadow-sm'
+          : 'px-4 py-1.5 rounded-full bg-white text-zinc-700 font-bold text-xs whitespace-nowrap border border-zinc-200 hover:border-brandBlue transition-all';
+        btn.textContent = (idx + 1 < 10 ? '0' + (idx + 1) : idx + 1) + ' // ' + (c.clientName ? c.clientName.split(',')[0].split(' ')[0] : 'Кейс');
+        btn.onclick = () => selectCase(idx);
         container.appendChild(btn);
-      }
+      });
+
+      updateCaseDisplay();
     }
 
     function selectCase(idx) {
-      activeCaseIndex = idx;
+      currentCaseIdx = idx;
       renderCaseTabs();
-
-      const cases = currentClient.cases || [];
-      const c = cases[idx];
-      if (c) {
-        document.getElementById('caseBeforeImg').src = c.beforeImage || '';
-        document.getElementById('caseAfterImg').src = c.afterImage || '';
-        
-        let displayName = c.clientName || ('Кейс ' + (idx + 1));
-        if (displayName.includes('//')) {
-          displayName = displayName.split('//')[1].split('(')[0].trim();
-        }
-        document.getElementById('caseClientName').textContent = displayName;
-        
-        let statsStr = c.resultStats || '-12 кг';
-        if (statsStr.includes('//')) {
-          statsStr = statsStr.split('//').pop().trim();
-        }
-        document.getElementById('caseStats').textContent = '⚖️ ' + statsStr;
-        document.getElementById('caseDuration').textContent = '📅 ' + (c.duration || '12 недель');
-        if (c.reviewQuote) {
-          document.getElementById('caseQuote').textContent = '«' + c.reviewQuote + '»';
-        }
-      }
     }
 
-    // Interactive Comparison Drag Logic
-    const compareBox = document.getElementById('caseCompareBox');
-    const beforeClip = document.getElementById('caseBeforeClip');
-    const sliderHandle = document.getElementById('sliderHandle');
+    function updateCaseDisplay() {
+      const c = casesData[currentCaseIdx];
+      if (!c) return;
+
+      const imgBefore = document.getElementById('caseImgBefore');
+      const imgAfter = document.getElementById('caseImgAfter');
+      const title = document.getElementById('caseClientTitle');
+      const stats = document.getElementById('caseClientStats');
+
+      if (imgBefore && c.beforeImage) imgBefore.src = c.beforeImage;
+      if (imgAfter && c.afterImage) imgAfter.src = c.afterImage;
+      if (title && c.clientName) title.textContent = c.clientName;
+      if (stats) stats.textContent = (c.resultStats ? c.resultStats.toUpperCase() : '') + (c.duration ? ' // ' + c.duration.toUpperCase() : '');
+    }
+
+    // 4. INTERACTIVE BEFORE / AFTER SLIDER TOUCH/DRAG
+    const sliderContainer = document.getElementById('caseSliderContainer');
+    const beforeWrapper = document.getElementById('caseBeforeWrapper');
+    const sliderHandle = document.getElementById('caseSliderHandle');
     let isDragging = false;
 
     function setSliderPosition(x) {
-      const rect = compareBox.getBoundingClientRect();
-      let pct = ((x - rect.left) / rect.width) * 100;
-      pct = Math.max(5, Math.min(95, pct));
-      beforeClip.style.width = pct + '%';
+      const rect = sliderContainer.getBoundingClientRect();
+      let pos = (x - rect.left) / rect.width;
+      if (pos < 0.05) pos = 0.05;
+      if (pos > 0.95) pos = 0.95;
+      const pct = pos * 100;
+      beforeWrapper.style.width = pct + '%';
       sliderHandle.style.left = pct + '%';
-      const beforeImg = document.getElementById('caseBeforeImg');
-      if (beforeImg) {
-        beforeImg.style.width = (100 / (pct / 100)) + '%';
-      }
     }
 
-    compareBox.addEventListener('mousedown', (e) => { isDragging = true; setSliderPosition(e.clientX); });
-    window.addEventListener('mouseup', () => { isDragging = false; });
-    window.addEventListener('mousemove', (e) => { if (isDragging) setSliderPosition(e.clientX); });
+    if (sliderContainer) {
+      sliderContainer.addEventListener('mousedown', (e) => { isDragging = true; setSliderPosition(e.clientX); });
+      window.addEventListener('mouseup', () => { isDragging = false; });
+      window.addEventListener('mousemove', (e) => { if (isDragging) setSliderPosition(e.clientX); });
 
-    compareBox.addEventListener('touchstart', (e) => { isDragging = true; setSliderPosition(e.touches[0].clientX); }, { passive: true });
-    window.addEventListener('touchend', () => { isDragging = false; });
-    window.addEventListener('touchmove', (e) => { if (isDragging) setSliderPosition(e.touches[0].clientX); }, { passive: true });
-
-    // 2. DIAGNOSTICS & GRAPH ENGINE
-    function setGender(g) {
-      selectedGender = g;
-      const maleBtn = document.getElementById('btnGenderMale');
-      const femaleBtn = document.getElementById('btnGenderFemale');
-      if (g === 'male') {
-        maleBtn.className = 'flex-1 py-2 rounded-xl text-xs font-tech font-bold uppercase transition-all bg-brand-orange text-black shadow-md shadow-brand-orange/20';
-        femaleBtn.className = 'flex-1 py-2 rounded-xl text-xs font-tech font-bold uppercase transition-all bg-white/5 text-zinc-400 hover:text-white border border-white/10';
-      } else {
-        femaleBtn.className = 'flex-1 py-2 rounded-xl text-xs font-tech font-bold uppercase transition-all bg-brand-orange text-black shadow-md shadow-brand-orange/20';
-        maleBtn.className = 'flex-1 py-2 rounded-xl text-xs font-tech font-bold uppercase transition-all bg-white/5 text-zinc-400 hover:text-white border border-white/10';
-      }
-      updateDiagnostics();
+      sliderContainer.addEventListener('touchstart', (e) => { isDragging = true; setSliderPosition(e.touches[0].clientX); }, { passive: true });
+      window.addEventListener('touchend', () => { isDragging = false; });
+      window.addEventListener('touchmove', (e) => { if (isDragging) setSliderPosition(e.touches[0].clientX); }, { passive: true });
     }
 
-    function updateDiagnostics() {
+    // 5. CALCULATOR LOGIC
+    function setCalcGoal(goal) {
+      selectedGoal = goal;
+      document.querySelectorAll('.calc-goal-btn').forEach(b => {
+        b.className = 'calc-goal-btn py-2.5 px-2 rounded-xl text-xs font-bold uppercase border border-zinc-200 bg-white text-zinc-700 hover:border-brandBlue transition-all text-center';
+      });
+      const activeBtn = document.getElementById('goalBtn-' + goal);
+      if (activeBtn) {
+        activeBtn.className = 'calc-goal-btn py-2.5 px-2 rounded-xl text-xs font-bold uppercase border border-brandBlue bg-brandBlue text-white shadow-sm transition-all text-center';
+      }
+      calculateKcal();
+    }
+
+    function calculateKcal() {
       const w = Number(document.getElementById('inputWeight').value);
       const tw = Number(document.getElementById('inputTargetWeight').value);
       const h = Number(document.getElementById('inputHeight').value);
 
-      document.getElementById('valWeight').textContent = w + ' кг';
-      document.getElementById('valTargetWeight').textContent = tw + ' кг';
-      document.getElementById('valHeight').textContent = h + ' см';
+      document.getElementById('labelWeight').textContent = w + ' кг';
+      document.getElementById('labelTargetWeight').textContent = tw + ' кг';
+      document.getElementById('labelHeight').textContent = h + ' см';
 
-      const diff = Number((tw - w).toFixed(1));
-      const diffStr = (diff > 0 ? '+' : '') + diff + ' кг';
-      document.getElementById('graphDiffVal').textContent = diffStr;
+      let bmr = 10 * w + 6.25 * h - 140;
+      let targetKcal = Math.round(bmr * 1.4);
 
-      // Calories calculation
-      let bmr = (selectedGender === 'male') ? (10 * w + 6.25 * h - 140) : (10 * w + 6.25 * h - 220);
-      let targetKcal = Math.round(bmr * 1.35 * (diff < 0 ? 0.85 : 1.12));
-      document.getElementById('graphCalories').textContent = targetKcal + ' ккал / день';
-
-      // Update Curve endpoint
-      const endY = diff < 0 ? 18 : 65;
-      const curve = document.getElementById('graphCurve');
-      if (curve) {
-        curve.setAttribute('d', `M 10 70 Q 100 ${Math.round((70 + endY)/2 - 5)}, 190 ${endY}`);
+      if (selectedGoal === 'cut') {
+        targetKcal = Math.round(targetKcal * 0.82);
+      } else if (selectedGoal === 'bulk') {
+        targetKcal = Math.round(targetKcal * 1.15);
       }
+
+      let prot = Math.round(w * 2.2);
+      let fat = Math.round(w * 0.9);
+      let carbs = Math.max(0, Math.round((targetKcal - prot * 4 - fat * 9) / 4));
+      let diff = (tw - w).toFixed(1);
+
+      document.getElementById('resCalories').innerHTML = targetKcal + ' <span class="text-base text-zinc-400 font-sans">ккал/день</span>';
+      document.getElementById('resProt').textContent = prot + 'г';
+      document.getElementById('resFat').textContent = fat + 'г';
+      document.getElementById('resCarb').textContent = carbs + 'г';
+      document.getElementById('resDiff').textContent = (diff > 0 ? '+' : '') + diff + ' кг';
     }
 
-    // 3. REVIEWS SLIDER
-    let reviewOffset = 0;
-    function nextReview() {
-      reviewOffset = (reviewOffset + 1) % 5;
-      updateReviewCards();
-    }
-    function prevReview() {
-      reviewOffset = (reviewOffset - 1 + 5) % 5;
-      updateReviewCards();
-    }
-    function updateReviewCards() {
-      const reviews = (currentClient.reviews && currentClient.reviews.length) ? currentClient.reviews : [];
-      if (reviews.length >= 3) {
-        document.getElementById('reviewImg0').src = reviews[(reviewOffset) % reviews.length].image || '';
-        document.getElementById('reviewImg1').src = reviews[(reviewOffset + 1) % reviews.length].image || '';
-        document.getElementById('reviewImg2').src = reviews[(reviewOffset + 2) % reviews.length].image || '';
-      }
-    }
+    // 6. FAQ TOGGLE
+    function toggleFaq(num) {
+      const ans = document.getElementById('faqAnswer-' + num);
+      const icon = document.getElementById('faqIcon-' + num);
+      if (!ans) return;
 
-    // 4. FAQ ACCORDION ENGINE
-    function toggleFaq(idx) {
-      const answer = document.getElementById('faqAnswer' + idx);
-      const icon = document.getElementById('faqIcon' + idx);
-      if (answer.classList.contains('hidden')) {
-        answer.classList.remove('hidden');
-        icon.textContent = '✕';
+      if (ans.classList.contains('hidden')) {
+        ans.classList.remove('hidden');
+        if (icon) icon.style.transform = 'rotate(180deg)';
       } else {
-        answer.classList.add('hidden');
-        icon.textContent = '+';
+        ans.classList.add('hidden');
+        if (icon) icon.style.transform = 'rotate(0deg)';
       }
     }
 
-    // 5. APPLICATION FORM SUBMISSION TO TELEGRAM
-    function submitForm(e) {
-      e.preventDefault();
-      const name = document.getElementById('formName').value.trim();
-      const contact = document.getElementById('formContact').value.trim();
-      const goal = document.getElementById('formGoal').value.trim();
-      const exp = document.getElementById('formExp').value.trim();
-
-      const tgCoach = (currentClient && currentClient.telegramUsername) ? currentClient.telegramUsername.replace(/^@/, '') : 'Bernetskiy';
-      const msg = `⚡️ НОВАЯ ЗАЯВКА НА ВЕДЕНИЕ:\n\n👤 Имя: ${name}\n📱 Контакт: ${contact}\n🎯 Цель: ${goal || 'Рекомпозиция'}\n📋 Опыт: ${exp || 'Не указан'}`;
-
-      window.open(`https://t.me/${tgCoach}?text=${encodeURIComponent(msg)}`, '_blank');
-      alert('Заявка сформирована! Сейчас откроется Telegram для отправки сообщения наставнику.');
+    // 7. BOOKING MODAL & TELEGRAM SUBMIT
+    function openBookingModal() {
+      document.getElementById('bookingModal').classList.remove('hidden');
     }
 
-    // Initial load
-    document.addEventListener('DOMContentLoaded', () => {
-      renderCaseTabs();
-      selectCase(0);
-      updateDiagnostics();
-    });
+    function closeBookingModal() {
+      document.getElementById('bookingModal').classList.add('hidden');
+    }
+
+    function handleBookingSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('modalName').value.trim();
+      const contact = document.getElementById('modalContact').value.trim();
+      const goal = document.getElementById('modalGoal').value;
+      const w = document.getElementById('inputWeight').value;
+      const tw = document.getElementById('inputTargetWeight').value;
+
+      const tgUser = (currentClient && currentClient.telegramUsername) ? currentClient.telegramUsername.replace(/^@/, '') : 'Bernetskiy';
+      const msg = `⚡️ НОВАЯ ЗАПИСЬ НА ТРЕНИРОВКУ:\n\n👤 Имя: ${name}\n📱 Контакт: ${contact}\n🎯 Цель: ${goal}\n⚖️ Вес: ${w} кг ⟶ ${tw} кг`;
+
+      const tgUrl = `https://t.me/${tgUser}?text=${encodeURIComponent(msg)}`;
+      window.open(tgUrl, '_blank');
+      closeBookingModal();
+    }
+
+    window.addEventListener('DOMContentLoaded', initClient);
   </script>
 </body>
+
 </html>
