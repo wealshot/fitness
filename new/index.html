@@ -1,146 +1,927 @@
-﻿<!DOCTYPE html>
-<html lang="ru" class="dark overflow-x-hidden w-full max-w-full">
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth bg-[#07080B] text-zinc-100 antialiased selection:bg-[#FF5500] selection:text-black">
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport"
-    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
-  <title>ВЛАДИСЛАВ БЕРНЕЦКИЙ — КУЗНИЦА СПОРТСМЕНОВ 🛠️</title>
-  <meta name="description"
-    content="Строим мощное функциональное тело из железа, дисциплины и выверенной системы. Довожу до формы и спортивных разрядов без пустых обещаний." />
+  <title>ВЛАДИСЛАВ БЕРНЕЦКИЙ — ТВОЕ ТЕЛО. ТВОЙ РЕЗУЛЬТАТ.</title>
+  <meta name="description" content="Научный подход к гипертрофии, рекомпозиции и преодолению срывов. Довожу до формы и спортивных разрядов без пустых обещаний." />
 
-  <!-- OpenGraph / Telegram Preview Meta Tags -->
+  <!-- OpenGraph / Telegram Preview -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="ВЛАДИСЛАВ БЕРНЕЦКИЙ • СТРОИМ ТЕЛО ИЗ ЖЕЛЕЗА И ВИТАМИНОВ ⚡️" />
-  <meta property="og:description"
-    content="Строим мощное функциональное тело из железа, дисциплины и выверенной системы. Довожу до формы и спортивных разрядов без пустых обещаний." />
-  <meta property="og:image" content="https://fitprod.vercel.app/images/vladislav8.JPG" />
+  <meta property="og:title" content="ВЛАДИСЛАВ БЕРНЕЦКИЙ • ТВОЕ ТЕЛО. ТВОЙ РЕЗУЛЬТАТ." />
+  <meta property="og:description" content="Научный подход к гипертрофии, рекомпозиции и преодолению срывов. Реальные результаты подопечных." />
+  <meta property="og:image" content="https://fitprod.vercel.app/images/bernetskiy-hero-clean@2x.png" />
   <meta property="og:url" content="https://fitprod.vercel.app/new" />
 
-  <!-- Twitter Card Meta Tags -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="ВЛАДИСЛАВ БЕРНЕЦКИЙ • СТРОИМ ТЕЛО ИЗ ЖЕЛЕЗА И ВИТАМИНОВ ⚡️" />
-  <meta name="twitter:description"
-    content="Строим мощное функциональное тело из железа, дисциплины и выверенной системы. Довожу до формы и спортивных разрядов без пустых обещаний." />
-  <meta name="twitter:image" content="https://fitprod.vercel.app/images/vladislav8.JPG" />
+  <!-- Google Fonts: Bebas Neue (Athletic Display), Oswald (Bold Condensed), Inter (Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800;900&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Telegram WebApp Script -->
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
-
-  <!-- Client Database (Multi-Tenant) -->
-  <script src="/clients.js?v=20261122_0755"></script>
-  <script src="/clients_defaults.js?v=20261122_0755"></script>
-
-  <!-- React SPA Bundle -->
-    <!-- FAQ Section Accordion Script -->
-  <script src="/assets/faq.js?v=20261122_0515"></script>
-  <script type="module" crossorigin src="/assets/index-v2.js?v=20261122_0755"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-DIMZLtAQ.css?v=20261122_0235">
-
-  <!-- Prefetch all 10 Transformation Cases and Reviews -->
-  <link rel="prefetch" as="image" href="/cases/vlad_case1_evgeniy_before.jpg" />
-  <link rel="prefetch" as="image" href="/cases/vlad_case1_evgeniy_after.jpg" />
-  <link rel="prefetch" as="image" href="/cases/vlad_case2_artem_before.jpg" />
-  <link rel="prefetch" as="image" href="/cases/vlad_case2_artem_after.jpg" />
-  <link rel="prefetch" as="image" href="/cases/vlad_case3_nn_before.jpg" />
-  <link rel="prefetch" as="image" href="/cases/vlad_case3_nn_after.jpg" />
-  <link rel="prefetch" as="image" href="/cases/vlad_case4_daria_before.jpg" />
-  <link rel="prefetch" as="image" href="/cases/vlad_case4_daria_after.jpg" />
-  <link rel="prefetch" as="image" href="/cases/vlad_case5_alina_before.jpg" />
-  <link rel="prefetch" as="image" href="/cases/vlad_case5_alina_after.jpg" />
-  <link rel="prefetch" as="image" href="/cases/vlad_case6_oleg_before.jpg" />
-  <link rel="prefetch" as="image" href="/cases/vlad_case6_oleg_after.jpg" />
-  <link rel="prefetch" as="image" href="/cases/vlad_case7_aleksey_before.jpg" />
-  <link rel="prefetch" as="image" href="/cases/vlad_case7_aleksey_after.jpg" />
-  <link rel="prefetch" as="image" href="/cases/vlad_case8_bb_before.jpg" />
-  <link rel="prefetch" as="image" href="/cases/vlad_case8_bb_after.jpg" />
-  <link rel="prefetch" as="image" href="/cases/vlad_case9_noname_before.jpg" />
-  <link rel="prefetch" as="image" href="/cases/vlad_case9_noname_after.jpg" />
-  <link rel="prefetch" as="image" href="/cases/vlad_case10_vladislav_before.jpg" />
-  <link rel="prefetch" as="image" href="/cases/vlad_case10_vladislav_after.jpg" />
-  <link rel="prefetch" as="image" href="/cases/vladislav_danya.jpg" />
-  <link rel="prefetch" as="image" href="/cases/vladislav_denis.jpg" />
-  <link rel="prefetch" as="image" href="/cases/vladislav_ignat.jpg" />
-  <link rel="prefetch" as="image" href="/cases/vladislav_sandra.jpg" />
-  <link rel="prefetch" as="image" href="/cases/vladislav_kostya.jpg" />
-  <link rel="prefetch" as="image" href="/cases/vladislav_nikita.jpg" />
-  <link rel="prefetch" as="image" href="/cases/vladislav_danil_squash.jpg" />
-
-  <!-- Background Concurrent Image Preloader -->
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    (function() {
-      var preloads = [
-        '/cases/vlad_case1_evgeniy_before.jpg', '/cases/vlad_case1_evgeniy_after.jpg',
-        '/cases/vlad_case2_artem_before.jpg', '/cases/vlad_case2_artem_after.jpg',
-        '/cases/vlad_case3_nn_before.jpg', '/cases/vlad_case3_nn_after.jpg',
-        '/cases/vlad_case4_daria_before.jpg', '/cases/vlad_case4_daria_after.jpg',
-        '/cases/vlad_case5_alina_before.jpg', '/cases/vlad_case5_alina_after.jpg',
-        '/cases/vlad_case6_oleg_before.jpg', '/cases/vlad_case6_oleg_after.jpg',
-        '/cases/vlad_case7_aleksey_before.jpg', '/cases/vlad_case7_aleksey_after.jpg',
-        '/cases/vlad_case8_bb_before.jpg', '/cases/vlad_case8_bb_after.jpg',
-        '/cases/vlad_case9_noname_before.jpg', '/cases/vlad_case9_noname_after.jpg',
-        '/cases/vlad_case10_vladislav_before.jpg', '/cases/vlad_case10_vladislav_after.jpg',
-        '/cases/vladislav_danya.jpg', '/cases/vladislav_denis.jpg',
-        '/cases/vladislav_ignat.jpg',
-        '/cases/vladislav_sandra.jpg', '/cases/vladislav_kostya.jpg',
-        '/cases/vladislav_nikita.jpg', '/cases/vladislav_danil_squash.jpg'
-      ];
-      for (var i = 0; i < preloads.length; i++) {
-        var img = new Image();
-        img.src = preloads[i];
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: '#FF5500',
+            brandHover: '#FF4400',
+            brandDark: '#CC4400',
+            brandGlow: 'rgba(255, 85, 0, 0.45)',
+            pageBg: '#08080C',
+            cardBg: '#111218',
+            cardBorder: 'rgba(255, 255, 255, 0.08)'
+          },
+          fontFamily: {
+            bebas: ['"Bebas Neue"', 'sans-serif'],
+            display: ['"Oswald"', 'sans-serif'],
+            sans: ['"Inter"', 'system-ui', 'sans-serif']
+          }
+        }
       }
-    })();
+    }
   </script>
+
+  <!-- Preload Essential Assets -->
+  <link rel="preload" as="image" href="/images/bernetskiy-hero-clean@2x.png" />
+  <link rel="preload" as="image" href="/cases/vlad_case1_evgeniy_before.jpg" />
+  <link rel="preload" as="image" href="/cases/vlad_case1_evgeniy_after.jpg" />
+
   <style>
-    .case-tabs-grid {
-      display: grid !important;
-      grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
-      gap: 8px !important;
-      width: 100% !important;
+    /* Precision Glows and Typography */
+    .glow-orange {
+      box-shadow: 0 0 35px rgba(255, 85, 0, 0.35);
     }
-
-    @media (min-width: 1024px) {
-      .case-tabs-grid {
-        grid-template-columns: repeat(10, minmax(0, 1fr)) !important;
-      }
+    .glow-orange-btn {
+      box-shadow: 0 12px 32px rgba(255, 85, 0, 0.48);
     }
-
-    .case-tabs-mobile-grid {
-      display: grid !important;
-      grid-template-columns: repeat(10, minmax(0, 1fr)) !important;
-      gap: 3px !important;
-      width: 100% !important;
+    .glow-orange-sm {
+      box-shadow: 0 0 16px rgba(255, 85, 0, 0.35);
     }
-
-    .case-slider-box {
-      height: 420px;
+    .text-glow {
+      text-shadow: 0 0 25px rgba(255, 85, 0, 0.55);
     }
-
-    @media (min-width: 1024px) {
-      .case-slider-box {
-        height: 620px !important;
-        max-height: 82vh;
-      }
+    
+    /* Touch & Drag support */
+    .slider-handle {
+      touch-action: none;
+      user-select: none;
     }
-
-    .slider-hint-pill {
-      position: absolute !important;
-      bottom: 14px !important;
-      left: 50% !important;
-      transform: translateX(-50%) !important;
-      white-space: nowrap !important;
-      z-index: 20 !important;
-      pointer-events: none !important;
+    
+    /* Hide scrollbars */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
     }
   </style>
 </head>
 
-<body
-  class="bg-[#050507] text-zinc-100 antialiased selection:bg-white selection:text-black min-h-[100dvh] overflow-x-hidden w-full max-w-full">
-  <div id="root"></div>
+<body class="bg-[#050608] text-zinc-100 min-h-screen selection:bg-[#FF5500] selection:text-black font-sans">
+
+  <!-- Desktop Ambient Canvas Wrapper (Centers 430px mobile app on large screens with subtle dark glow) -->
+  <div class="min-h-screen bg-[#050608] flex justify-center">
+    
+    <!-- Core Mobile Application Frame (max-w-[430px]) -->
+    <div class="w-full max-w-[430px] min-h-screen bg-[#090A0D] relative flex flex-col shadow-[0_0_80px_rgba(0,0,0,0.85)] border-x border-white/[0.04] overflow-x-hidden">
+
+      <!-- ================= TOP STICKY NAVBAR ================= -->
+      <header class="sticky top-0 z-50 w-full bg-[#090A0D]/90 backdrop-blur-xl border-b border-white/[0.06] transition-all">
+        <div class="px-4 h-16 flex items-center justify-between">
+          <!-- Logo + Brand Title -->
+          <a href="#" class="flex items-center gap-2.5 group">
+            <!-- Orange Rounded Squircle Brand Icon with P -->
+            <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-[#FF6500] to-[#FF3B00] flex items-center justify-center font-black text-black text-xl shadow-lg shadow-orange-500/25 group-hover:scale-105 transition-transform">
+              <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+              </svg>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-white font-extrabold text-[12px] tracking-tight leading-tight uppercase">
+                ВЛАДИСЛАВ<br>БЕРНЕЦКИЙ
+              </span>
+              <span class="text-zinc-400 font-bold text-[8px] tracking-widest uppercase mt-0.5">
+                КУЗНИЦА СПОРТСМЕНОВ
+              </span>
+            </div>
+          </a>
+
+          <!-- Quick Actions -->
+          <div class="flex items-center gap-2">
+            <!-- Instagram Circle -->
+            <a href="https://instagram.com/bernetskiy" target="_blank" rel="noopener noreferrer" 
+               class="w-9 h-9 rounded-full border border-white/10 bg-white/[0.04] flex items-center justify-center text-zinc-300 hover:text-white hover:border-[#FF5500]/60 transition"
+               title="Instagram">
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </a>
+
+            <!-- Telegram Circle -->
+            <a href="https://t.me/Bernetskiy" target="_blank" rel="noopener noreferrer" 
+               class="w-9 h-9 rounded-full border border-white/10 bg-white/[0.04] flex items-center justify-center text-zinc-300 hover:text-white hover:border-[#229ED9]/80 transition"
+               title="Telegram">
+              <svg class="w-4 h-4 fill-current text-[#229ED9]" viewBox="0 0 24 24">
+                <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.458c.538-.196 1.006.128.832.959z"/>
+              </svg>
+            </a>
+
+            <!-- Orange CTA Pill -->
+            <a href="#application" 
+               class="px-3.5 py-1.5 rounded-full bg-gradient-to-r from-[#FF6500] to-[#FF4500] text-black font-extrabold text-[11px] tracking-wider uppercase flex items-center gap-1 shadow-md shadow-orange-500/25 hover:scale-[1.02] active:scale-95 transition">
+              Записаться <span class="text-xs">→</span>
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <!-- ================= HERO SECTION ================= -->
+      <section class="relative pt-6 pb-8 overflow-hidden">
+        <!-- Atmospheric Angled Laser Beam & Coach Graphic Background -->
+        <div class="absolute right-0 top-0 w-full h-full pointer-events-none overflow-hidden z-0">
+          <!-- Diagonally Angled Vivid Orange Glow Beam (28-deg angle matching reference) -->
+          <div class="absolute -right-10 top-0 w-[170px] h-[620px] bg-gradient-to-b from-[#FF5500]/55 via-[#FF4500]/30 to-transparent rotate-[28deg] blur-2xl transform origin-top-right"></div>
+          
+          <!-- Warm Ambient Spotlight behind Head -->
+          <div class="absolute right-0 top-8 w-[270px] h-[270px] rounded-full bg-[#FF5500]/22 blur-3xl"></div>
+
+          <!-- Coach Cutout (Владислав Бернецкий) -->
+          <img src="/images/bernetskiy-hero-clean@2x.png" 
+               alt="Владислав Бернецкий" 
+               class="absolute -right-3 top-7 w-[295px] max-w-none object-contain pointer-events-none select-none drop-shadow-[0_20px_45px_rgba(0,0,0,0.95)] z-0" />
+          
+          <!-- Bottom Subtle Fade Gradient -->
+          <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#090A0D] to-transparent z-[1]"></div>
+        </div>
+
+        <!-- Hero Content Container -->
+        <div class="px-4 relative z-10">
+          
+          <!-- Availability / Scarcity Badge -->
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/60 border border-white/10 backdrop-blur-md mb-4 shadow-sm">
+            <span class="w-2 h-2 rounded-full bg-[#FF5500] shadow-[0_0_8px_#FF5500]"></span>
+            <span class="text-[10px] font-bold text-zinc-300 uppercase tracking-wider">
+              ОТБОР НА ВЕДЕНИЕ: <span class="text-white font-extrabold">ОСТАЛОСЬ 2 МЕСТА</span>
+            </span>
+          </div>
+
+          <!-- Massive Impactful Headline -->
+          <h1 class="font-bebas uppercase tracking-wide text-white text-[52px] leading-[0.92] mb-3">
+            ТВОЕ ТЕЛО.<br>
+            <span class="text-[#FF5500] text-glow">ТВОЙ</span><br>
+            РЕЗУЛЬТАТ.
+          </h1>
+
+          <!-- Subtitle -->
+          <p class="text-zinc-400 text-xs leading-relaxed max-w-[215px] mb-6 font-medium">
+            Научный подход к гипертрофии, рекомпозиции и преодолению срывов.
+          </p>
+
+          <!-- Stats Row (3 Columns with Vertical Separators) -->
+          <div class="grid grid-cols-3 divide-x divide-zinc-800/80 py-1 mb-6 max-w-[340px]">
+            <!-- Stat 1 -->
+            <div class="pr-3">
+              <div class="font-display font-bold text-2xl text-[#FF5500] leading-none">08+</div>
+              <div class="text-[9px] font-bold uppercase text-zinc-400 tracking-wider mt-1.5 leading-tight">
+                ЛЕТ<br>ОПЫТА
+              </div>
+            </div>
+            <!-- Stat 2 -->
+            <div class="px-3">
+              <div class="font-display font-bold text-2xl text-[#FF5500] leading-none">240+</div>
+              <div class="text-[9px] font-bold uppercase text-zinc-400 tracking-wider mt-1.5 leading-tight">
+                АТЛЕТОВ<br>В ФОРМЕ
+              </div>
+            </div>
+            <!-- Stat 3 -->
+            <div class="pl-3">
+              <div class="font-display font-bold text-2xl text-[#FF5500] leading-none">100%</div>
+              <div class="text-[9px] font-bold uppercase text-zinc-400 tracking-wider mt-1.5 leading-tight">
+                ЧИСТАЯ СИСТЕМА<br>БЕЗ ОТКАТОВ
+              </div>
+            </div>
+          </div>
+
+          <!-- Primary Big Orange CTA Button (Full Pill) -->
+          <a href="#application" 
+             class="w-full inline-flex items-center justify-center gap-2 py-4 px-6 rounded-full bg-gradient-to-r from-[#FF6500] via-[#FF5500] to-[#FF4500] text-black font-black text-sm uppercase tracking-wider glow-orange-btn hover:scale-[1.01] active:scale-[0.98] transition-all mb-3.5">
+            ЗАПОЛНИТЬ АНКЕТУ <span class="text-base font-black">→</span>
+          </a>
+
+          <!-- Secondary Social Buttons Row (Full Pills matching Reference) -->
+          <div class="grid grid-cols-2 gap-3">
+            <!-- Instagram Button -->
+            <a href="https://instagram.com/bernetskiy" target="_blank" rel="noopener noreferrer" 
+               class="inline-flex items-center justify-center gap-2 py-3 px-3 rounded-full bg-white/[0.04] border border-white/10 text-white font-bold text-xs uppercase tracking-wider hover:border-[#FF5500]/50 hover:bg-white/[0.07] transition">
+              <svg class="w-4 h-4 fill-current text-zinc-300" viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+              <span>INSTAGRAM</span>
+              <span class="text-zinc-500 text-xs">↗</span>
+            </a>
+
+            <!-- Telegram Channel Button with Blue Icon -->
+            <a href="https://t.me/Master_fitness" target="_blank" rel="noopener noreferrer" 
+               class="inline-flex items-center justify-center gap-2 py-3 px-3 rounded-full bg-white/[0.04] border border-white/10 text-white font-bold text-xs uppercase tracking-wider hover:border-[#229ED9]/50 hover:bg-white/[0.07] transition">
+              <span class="w-4 h-4 rounded-full bg-[#229ED9] flex items-center justify-center text-white">
+                <svg class="w-2.5 h-2.5 fill-current" viewBox="0 0 24 24">
+                  <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.458c.538-.196 1.006.128.832.959z"/>
+                </svg>
+              </span>
+              <span>ТГ-КАНАЛ</span>
+              <span class="text-zinc-500 text-xs">↗</span>
+            </a>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ================= CASES SECTION (02. КЕЙСЫ) ================= -->
+      <section id="cases" class="py-8 bg-gradient-to-b from-[#090A0D] via-[#0E0F14] to-[#090A0D] border-t border-white/[0.06]">
+        <div class="px-4">
+          
+          <!-- Section Header Row -->
+          <div class="flex items-center justify-between mb-3">
+            <!-- Left Pill Badge -->
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/60 border border-[#FF5500]/30 shadow-sm">
+              <span class="w-2 h-2 rounded-full bg-[#FF5500] shadow-[0_0_8px_#FF5500]"></span>
+              <span class="text-[10px] font-extrabold text-[#FF5500] tracking-wider uppercase">02. КЕЙСЫ</span>
+            </div>
+
+            <!-- Right Counter & Nav Controls -->
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-xs font-bold text-zinc-300">
+              <span id="caseCounter" class="text-white font-extrabold">1/10</span>
+              <span class="text-zinc-600">|</span>
+              <button id="prevCaseBtn" class="text-zinc-400 hover:text-white transition px-1 text-base leading-none">‹</button>
+              <button id="nextCaseBtn" class="text-zinc-400 hover:text-white transition px-1 text-base leading-none">›</button>
+            </div>
+          </div>
+
+          <!-- Section Heading -->
+          <h2 class="font-bebas text-4xl uppercase leading-[0.92] tracking-wide text-white mb-4">
+            РЕАЛЬНЫЕ<br>
+            РЕЗУЛЬТАТЫ<br>
+            <span class="text-[#FF5500]">ПОДОПЕЧНЫХ</span>
+          </h2>
+
+          <!-- Interactive Before / After Split Slider Card -->
+          <div id="sliderContainer" class="relative w-full h-[460px] rounded-[28px] overflow-hidden border border-white/10 bg-zinc-900 shadow-2xl select-none cursor-ew-resize">
+            
+            <!-- AFTER IMAGE (Underneath, Full Width) -->
+            <img id="afterImage" 
+                 src="/cases/vlad_case1_evgeniy_after.jpg" 
+                 alt="Результат после" 
+                 class="absolute inset-0 w-full h-full object-cover pointer-events-none select-none" />
+
+            <!-- BEFORE IMAGE (Top Layer, Clipped by Width) -->
+            <div id="beforeContainer" class="absolute inset-0 w-1/2 h-full overflow-hidden pointer-events-none select-none">
+              <img id="beforeImage" 
+                   src="/cases/vlad_case1_evgeniy_before.jpg" 
+                   alt="Форма до" 
+                   class="absolute inset-0 w-full h-full object-cover max-w-none pointer-events-none select-none" />
+            </div>
+
+            <!-- "ДО" Pill (Top Left) -->
+            <div class="absolute top-4 left-4 z-20 pointer-events-none">
+              <span class="px-3.5 py-1 rounded-full bg-black/70 border border-white/10 text-white font-extrabold text-[11px] tracking-wider uppercase backdrop-blur-md shadow-lg">
+                ДО
+              </span>
+            </div>
+
+            <!-- "ПОСЛЕ" Pill (Top Right) -->
+            <div class="absolute top-4 right-4 z-20 pointer-events-none">
+              <span class="px-3.5 py-1 rounded-full bg-black/70 border border-white/10 text-white font-extrabold text-[11px] tracking-wider uppercase backdrop-blur-md shadow-lg">
+                ПОСЛЕ
+              </span>
+            </div>
+
+            <!-- Draggable Vertical Line & Circular Thumb -->
+            <div id="sliderHandle" class="slider-handle absolute top-0 bottom-0 left-1/2 w-0.5 bg-white shadow-[0_0_15px_rgba(255,255,255,0.8)] z-30 pointer-events-none -translate-x-1/2">
+              <div class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-white text-black shadow-2xl flex items-center justify-center font-black text-xs pointer-events-auto cursor-ew-resize">
+                <svg class="w-4 h-4 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 9l-3 3 3 3m8-6l3 3-3 3"/>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Subtle Hint Pill at Bottom -->
+            <div class="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 pointer-events-none">
+              <span class="px-3 py-1 rounded-full bg-black/60 border border-white/10 text-zinc-400 text-[10px] tracking-wider uppercase backdrop-blur-md">
+                ‹ ПОТЯНИ СЛАЙДЕР ›
+              </span>
+            </div>
+
+          </div>
+
+          <!-- Dynamic Active Case Information Card -->
+          <div class="mt-4 p-4 rounded-2xl bg-white/[0.03] border border-white/[0.06] backdrop-blur-sm">
+            <div class="flex items-start justify-between gap-2 mb-2">
+              <div>
+                <h3 id="caseName" class="text-base font-extrabold text-white">Евгений, 32 года</h3>
+                <span id="caseCategory" class="text-[11px] font-bold text-[#FF5500] uppercase tracking-wider">
+                  НАБОР МЫШЕЧНОЙ МАССЫ
+                </span>
+              </div>
+              <div id="caseMainStat" class="px-2.5 py-1 rounded-lg bg-[#FF5500]/15 border border-[#FF5500]/30 text-[#FF5500] font-black text-xs">
+                +12 КГ
+              </div>
+            </div>
+
+            <p id="caseDesc" class="text-zinc-400 text-xs leading-relaxed mb-3">
+              Качественный набор сухой массы: за 3 месяца работы прибавили 12 кг плотной мускулатуры.
+            </p>
+
+            <!-- Case Measurements Mini-Grid -->
+            <div id="caseStatsGrid" class="grid grid-cols-3 gap-2">
+              <!-- Rendered via JS -->
+            </div>
+
+            <!-- Dots Indicator for Quick Navigating all 10 Cases -->
+            <div id="caseDots" class="flex items-center justify-center gap-1.5 mt-4">
+              <!-- Rendered via JS -->
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ================= WHY IT WORKS SECTION ================= -->
+      <section class="py-8 bg-[#090A0D] border-t border-white/[0.06]">
+        <div class="px-4">
+          
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/60 border border-white/10 mb-3">
+            <span class="w-2 h-2 rounded-full bg-[#FF5500]"></span>
+            <span class="text-[10px] font-bold text-zinc-300 uppercase tracking-wider">МЕТОДОЛОГИЯ</span>
+          </div>
+
+          <h2 class="font-bebas text-3xl uppercase leading-[0.92] text-white tracking-wide mb-5">
+            ПОЧЕМУ ЭТО<br>
+            <span class="text-[#FF5500]">ДЕЙСТВИТЕЛЬНО РАБОТАЕТ</span>
+          </h2>
+
+          <div class="space-y-3">
+            
+            <!-- Pillar 1 -->
+            <div class="p-4 rounded-2xl bg-white/[0.03] border border-white/[0.06] hover:border-[#FF5500]/30 transition">
+              <div class="flex items-start gap-3">
+                <div class="w-9 h-9 rounded-xl bg-[#FF5500]/15 border border-[#FF5500]/30 flex items-center justify-center text-[#FF5500] font-black text-sm shrink-0">
+                  01
+                </div>
+                <div>
+                  <h3 class="text-sm font-bold text-white mb-1">Индивидуальная адаптация питания</h3>
+                  <p class="text-zinc-400 text-xs leading-relaxed">
+                    Никаких голодовок и куриной грудки с гречкой. Рацион строится из ваших любимых блюд с точным балансом КБЖУ под цель.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pillar 2 -->
+            <div class="p-4 rounded-2xl bg-white/[0.03] border border-white/[0.06] hover:border-[#FF5500]/30 transition">
+              <div class="flex items-start gap-3">
+                <div class="w-9 h-9 rounded-xl bg-[#FF5500]/15 border border-[#FF5500]/30 flex items-center justify-center text-[#FF5500] font-black text-sm shrink-0">
+                  02
+                </div>
+                <div>
+                  <h3 class="text-sm font-bold text-white mb-1">Прогрессивный тренинг без травм</h3>
+                  <p class="text-zinc-400 text-xs leading-relaxed">
+                    Программа учитывает особенности опорно-двигательного аппарата, застарелые травмы и рабочий график. Только анатомически безопасные углы.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pillar 3 -->
+            <div class="p-4 rounded-2xl bg-white/[0.03] border border-white/[0.06] hover:border-[#FF5500]/30 transition">
+              <div class="flex items-start gap-3">
+                <div class="w-9 h-9 rounded-xl bg-[#FF5500]/15 border border-[#FF5500]/30 flex items-center justify-center text-[#FF5500] font-black text-sm shrink-0">
+                  03
+                </div>
+                <div>
+                  <h3 class="text-sm font-bold text-white mb-1">Еженедельный чекап и созвоны</h3>
+                  <p class="text-zinc-400 text-xs leading-relaxed">
+                    Каждую неделю анализируем динамику веса, замеры и видео техники. Оперативно вносим правки, исключая плато и застои.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pillar 4 -->
+            <div class="p-4 rounded-2xl bg-white/[0.03] border border-white/[0.06] hover:border-[#FF5500]/30 transition">
+              <div class="flex items-start gap-3">
+                <div class="w-9 h-9 rounded-xl bg-[#FF5500]/15 border border-[#FF5500]/30 flex items-center justify-center text-[#FF5500] font-black text-sm shrink-0">
+                  04
+                </div>
+                <div>
+                  <h3 class="text-sm font-bold text-white mb-1">Личная поддержка в Telegram 24/7</h3>
+                  <p class="text-zinc-400 text-xs leading-relaxed">
+                    Прямая связь со мной без ботов и сторонних кураторов. Разбираем любые вопросы по питанию в ресторане, самочувствию или восстановлению.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ================= TARIFFS SECTION ================= -->
+      <section id="tariffs" class="py-8 bg-gradient-to-b from-[#090A0D] via-[#0E0F14] to-[#090A0D] border-t border-white/[0.06]">
+        <div class="px-4">
+          
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/60 border border-white/10 mb-3">
+            <span class="w-2 h-2 rounded-full bg-[#FF5500]"></span>
+            <span class="text-[10px] font-bold text-zinc-300 uppercase tracking-wider">ФОРМАТЫ СОТРУДНИЧЕСТВА</span>
+          </div>
+
+          <h2 class="font-bebas text-3xl uppercase leading-[0.92] text-white tracking-wide mb-5">
+            ТАРИФЫ<br>
+            <span class="text-[#FF5500]">ОНЛАЙН-ВЕДЕНИЯ</span>
+          </h2>
+
+          <div class="space-y-4">
+            
+            <!-- Plan 1: 1 Month -->
+            <div class="p-5 rounded-2xl bg-white/[0.03] border border-white/[0.06] relative">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-bold uppercase text-zinc-400 tracking-wider">ФОРМАТ СТАРТ</span>
+                <span class="text-xs font-black text-white bg-white/10 px-2 py-0.5 rounded">1 МЕСЯЦ</span>
+              </div>
+              <div class="flex items-baseline gap-2 mb-3">
+                <span class="font-display font-black text-3xl text-white">19 900 ₽</span>
+                <span class="text-xs text-zinc-500 line-through">24 900 ₽</span>
+              </div>
+              <ul class="space-y-2 mb-4 text-xs text-zinc-300">
+                <li class="flex items-center gap-2">
+                  <span class="text-[#FF5500]">✓</span> Индивидуальный план тренировок
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="text-[#FF5500]">✓</span> Расчет КБЖУ под текущую форму
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="text-[#FF5500]">✓</span> Еженедельный контроль динамики
+                </li>
+              </ul>
+              <a href="https://t.me/Bernetskiy?text=%D0%9F%D1%80%D0%B8%D0%B2%D0%B5%D1%82!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%20%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5%20(1%20%D0%BC%D0%B5%D1%81%D1%8F%D1%86)" 
+                 target="_blank" 
+                 class="w-full inline-flex items-center justify-center py-3 rounded-full bg-white/[0.06] border border-white/10 text-white font-bold text-xs uppercase tracking-wider hover:bg-white/[0.1] transition">
+                ВЫБРАТЬ 1 МЕСЯЦ
+              </a>
+            </div>
+
+            <!-- Plan 2: 3 Months (FEATURED / HIT) -->
+            <div class="p-5 rounded-2xl bg-gradient-to-b from-[#181512] to-[#121118] border-2 border-[#FF5500] relative shadow-xl shadow-orange-500/10">
+              <div class="absolute -top-3 right-4 px-3 py-0.5 rounded-full bg-[#FF5500] text-black font-black text-[10px] uppercase tracking-wider shadow-md">
+                ХИТ // ВЫБОР 80%
+              </div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-bold uppercase text-[#FF5500] tracking-wider">ПОЛНАЯ ТРАНСФОРМАЦИЯ</span>
+                <span class="text-xs font-black text-white bg-[#FF5500]/20 px-2 py-0.5 rounded border border-[#FF5500]/40">3 МЕСЯЦА</span>
+              </div>
+              <div class="flex items-baseline gap-2 mb-3">
+                <span class="font-display font-black text-3xl text-white">47 900 ₽</span>
+                <span class="text-xs text-zinc-500 line-through">59 900 ₽</span>
+              </div>
+              <ul class="space-y-2 mb-4 text-xs text-zinc-200">
+                <li class="flex items-center gap-2">
+                  <span class="text-[#FF5500]">✓</span> <strong>Гарантированный результат рекомпозиции</strong>
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="text-[#FF5500]">✓</span> Индивидуальное меню и гибкая диета
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="text-[#FF5500]">✓</span> Разбор анализов и подбор нутрицевтиков
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="text-[#FF5500]">✓</span> Видеоразбор техники упражнений
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="text-[#FF5500]">✓</span> Приоритетная поддержка 24/7 в Telegram
+                </li>
+              </ul>
+              <a href="https://t.me/Bernetskiy?text=%D0%9F%D1%80%D0%B8%D0%B2%D0%B5%D1%82!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%203%20%D0%BC%D0%B5%D1%81%D1%8F%D1%86%D0%B0%20%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D1%8F%20(%D0%A5%D0%98%D0%A2)" 
+                 target="_blank" 
+                 class="w-full inline-flex items-center justify-center py-3.5 rounded-full bg-gradient-to-r from-[#FF6500] to-[#FF4500] text-black font-extrabold text-xs uppercase tracking-wider glow-orange-btn hover:scale-[1.01] active:scale-[0.98] transition">
+                ЗАБРАТЬ МЕСТО НА 3 МЕСЯЦА →
+              </a>
+            </div>
+
+            <!-- Plan 3: 6 Months -->
+            <div class="p-5 rounded-2xl bg-white/[0.03] border border-white/[0.06] relative">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-bold uppercase text-zinc-400 tracking-wider">МАКСИМУМ СПОРТ</span>
+                <span class="text-xs font-black text-white bg-white/10 px-2 py-0.5 rounded">6 МЕСЯЦЕВ</span>
+              </div>
+              <div class="flex items-baseline gap-2 mb-3">
+                <span class="font-display font-black text-3xl text-white">79 900 ₽</span>
+                <span class="text-xs text-zinc-500 line-through">99 900 ₽</span>
+              </div>
+              <ul class="space-y-2 mb-4 text-xs text-zinc-300">
+                <li class="flex items-center gap-2">
+                  <span class="text-[#FF5500]">✓</span> Фундаментальное изменение композиции тела
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="text-[#FF5500]">✓</span> Вывод на пиковую соревновательную или пляжную форму
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="text-[#FF5500]">✓</span> Полное закрепление привычек без отката
+                </li>
+              </ul>
+              <a href="https://t.me/Bernetskiy?text=%D0%9F%D1%80%D0%B8%D0%B2%D0%B5%D1%82!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%206%20%D0%BC%D0%B5%D1%81%D1%8F%D1%86%D0%B5%D0%B2%20%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D1%8F" 
+                 target="_blank" 
+                 class="w-full inline-flex items-center justify-center py-3 rounded-full bg-white/[0.06] border border-white/10 text-white font-bold text-xs uppercase tracking-wider hover:bg-white/[0.1] transition">
+                ВЫБРАТЬ 6 МЕСЯЦЕВ
+              </a>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ================= FAQ SECTION ================= -->
+      <section class="py-8 bg-[#090A0D] border-t border-white/[0.06]">
+        <div class="px-4">
+          
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/60 border border-white/10 mb-3">
+            <span class="w-2 h-2 rounded-full bg-[#FF5500]"></span>
+            <span class="text-[10px] font-bold text-zinc-300 uppercase tracking-wider">ОТВЕТЫ НА ВОПРОСЫ</span>
+          </div>
+
+          <h2 class="font-bebas text-3xl uppercase leading-[0.92] text-white tracking-wide mb-5">
+            ЧАСТЫЕ<br>
+            <span class="text-[#FF5500]">ВОПРОСЫ</span>
+          </h2>
+
+          <div class="space-y-2.5">
+            
+            <!-- FAQ Item 1 -->
+            <div class="rounded-2xl bg-white/[0.03] border border-white/[0.06] overflow-hidden">
+              <button class="faq-toggle w-full p-4 flex items-center justify-between text-left">
+                <span class="text-xs font-bold text-white pr-2">Можно ли тренироваться дома или обязательно нужен зал?</span>
+                <span class="faq-icon text-[#FF5500] font-black text-sm shrink-0 transition-transform duration-200">+</span>
+              </button>
+              <div class="faq-content hidden px-4 pb-4 text-xs text-zinc-400 leading-relaxed border-t border-white/5 pt-3">
+                Да, у меня есть подопечные, которые тренируются исключительно дома с минимальным набором резинок и разборных гантелей. Программа адаптируется под любой инвентарь.
+              </div>
+            </div>
+
+            <!-- FAQ Item 2 -->
+            <div class="rounded-2xl bg-white/[0.03] border border-white/[0.06] overflow-hidden">
+              <button class="faq-toggle w-full p-4 flex items-center justify-between text-left">
+                <span class="text-xs font-bold text-white pr-2">Придется ли считать калории и взвешивать еду?</span>
+                <span class="faq-icon text-[#FF5500] font-black text-sm shrink-0 transition-transform duration-200">+</span>
+              </button>
+              <div class="faq-content hidden px-4 pb-4 text-xs text-zinc-400 leading-relaxed border-t border-white/5 pt-3">
+                На первых 2-3 неделях взвешивание дает понимание реального калоража. Но цель — научить вас интуитивно управлять питанием на глаз, чтобы вы не зависели от весов всю жизнь.
+              </div>
+            </div>
+
+            <!-- FAQ Item 3 -->
+            <div class="rounded-2xl bg-white/[0.03] border border-white/[0.06] overflow-hidden">
+              <button class="faq-toggle w-full p-4 flex items-center justify-between text-left">
+                <span class="text-xs font-bold text-white pr-2">Что если у меня травма или болит спина / колени?</span>
+                <span class="faq-icon text-[#FF5500] font-black text-sm shrink-0 transition-transform duration-200">+</span>
+              </button>
+              <div class="faq-content hidden px-4 pb-4 text-xs text-zinc-400 leading-relaxed border-t border-white/5 pt-3">
+                Мы полностью исключаем осевые нагрузки и опасные упражнения. Укрепляем мышечный корсет через безопасные изолирующие движения и тренажеры.
+              </div>
+            </div>
+
+            <!-- FAQ Item 4 -->
+            <div class="rounded-2xl bg-white/[0.03] border border-white/[0.06] overflow-hidden">
+              <button class="faq-toggle w-full p-4 flex items-center justify-between text-left">
+                <span class="text-xs font-bold text-white pr-2">Как проходит контроль и связь со мной?</span>
+                <span class="faq-icon text-[#FF5500] font-black text-sm shrink-0 transition-transform duration-200">+</span>
+              </button>
+              <div class="faq-content hidden px-4 pb-4 text-xs text-zinc-400 leading-relaxed border-t border-white/5 pt-3">
+                Общение идет лично в Telegram. Еженедельно в воскресенье вы присылаете замеры и видео техники упражнений, в понедельник получаете подробный аудио- или видеоразбор.
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ================= APPLICATION FORM SECTION ================= -->
+      <section id="application" class="py-8 bg-gradient-to-b from-[#090A0D] via-[#12131C] to-[#090A0D] border-t border-white/[0.06]">
+        <div class="px-4">
+          
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/60 border border-white/10 mb-3">
+            <span class="w-2 h-2 rounded-full bg-[#FF5500]"></span>
+            <span class="text-[10px] font-bold text-zinc-300 uppercase tracking-wider">ЗАПИСЬ НА ВЕДЕНИЕ</span>
+          </div>
+
+          <h2 class="font-bebas text-3xl uppercase leading-[0.92] text-white tracking-wide mb-2">
+            НАЧНИ СВОЮ<br>
+            <span class="text-[#FF5500]">ТРАНСФОРМАЦИЮ</span>
+          </h2>
+          <p class="text-zinc-400 text-xs mb-5">
+            Заполните анкету — я лично изучу ваши данные и свяжусь в Telegram в течение 2 часов.
+          </p>
+
+          <form id="leadForm" class="space-y-3">
+            
+            <div>
+              <label class="block text-[10px] font-bold uppercase text-zinc-400 tracking-wider mb-1">Ваше имя</label>
+              <input type="text" id="formName" required placeholder="Как к вам обращаться?" 
+                     class="w-full px-4 py-3 rounded-xl bg-white/[0.05] border border-white/10 text-white text-xs focus:border-[#FF5500] focus:outline-none transition">
+            </div>
+
+            <div class="grid grid-cols-2 gap-2">
+              <div>
+                <label class="block text-[10px] font-bold uppercase text-zinc-400 tracking-wider mb-1">Возраст</label>
+                <input type="number" id="formAge" placeholder="Лет" 
+                       class="w-full px-4 py-3 rounded-xl bg-white/[0.05] border border-white/10 text-white text-xs focus:border-[#FF5500] focus:outline-none transition">
+              </div>
+              <div>
+                <label class="block text-[10px] font-bold uppercase text-zinc-400 tracking-wider mb-1">Текущий вес</label>
+                <input type="number" id="formWeight" placeholder="Кг" 
+                       class="w-full px-4 py-3 rounded-xl bg-white/[0.05] border border-white/10 text-white text-xs focus:border-[#FF5500] focus:outline-none transition">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-[10px] font-bold uppercase text-zinc-400 tracking-wider mb-1">Главная цель</label>
+              <select id="formGoal" class="w-full px-4 py-3 rounded-xl bg-[#14151C] border border-white/10 text-white text-xs focus:border-[#FF5500] focus:outline-none transition">
+                <option value="Рекомпозиция (сжечь жир и набрать мышцы)">Рекомпозиция (сжечь жир и набрать мышцы)</option>
+                <option value="Похудение и сброс веса (-5...15 кг)">Похудение и сброс веса (-5...15 кг)</option>
+                <option value="Качественный набор сухой массы">Качественный набор сухой массы</option>
+                <option value="Рост силовых показателей и формы">Рост силовых показателей и формы</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-[10px] font-bold uppercase text-zinc-400 tracking-wider mb-1">Telegram для связи (@username)</label>
+              <input type="text" id="formTelegram" required placeholder="@username или номер телефона" 
+                     class="w-full px-4 py-3 rounded-xl bg-white/[0.05] border border-white/10 text-white text-xs focus:border-[#FF5500] focus:outline-none transition">
+            </div>
+
+            <button type="submit" 
+                    class="w-full mt-2 py-4 rounded-full bg-gradient-to-r from-[#FF6500] to-[#FF4500] text-black font-extrabold text-xs uppercase tracking-wider glow-orange-btn hover:scale-[1.01] active:scale-[0.98] transition">
+              ОТПРАВИТЬ АНКЕТУ В TELEGRAM →
+            </button>
+
+            <p class="text-[10px] text-zinc-500 text-center mt-2">
+              Нажимая кнопку, вы будете перенаправлены в Telegram для отправки анкеты лично наставнику.
+            </p>
+
+          </form>
+
+        </div>
+      </section>
+
+      <!-- ================= FOOTER ================= -->
+      <footer class="py-6 bg-black border-t border-white/[0.06] text-center px-4">
+        <div class="text-[11px] font-bold text-zinc-400 uppercase tracking-wider mb-2">
+          ВЛАДИСЛАВ БЕРНЕЦКИЙ • КУЗНИЦА СПОРТСМЕНОВ
+        </div>
+        <p class="text-[10px] text-zinc-600 mb-3">
+          Онлайн-ведение по всему миру. Персональная система без шаблонов.
+        </p>
+        <div class="flex items-center justify-center gap-4 text-xs font-bold text-zinc-400">
+          <a href="https://t.me/Bernetskiy" target="_blank" class="hover:text-white transition">Telegram</a>
+          <span>•</span>
+          <a href="https://instagram.com/bernetskiy" target="_blank" class="hover:text-white transition">Instagram</a>
+          <span>•</span>
+          <a href="#" class="hover:text-[#FF5500] transition">Наверх ↑</a>
+        </div>
+      </footer>
+
+    </div>
+
+  </div>
+
+  <!-- Client-Side Engine for Slider, Cases Data & Form -->
+  <script>
+    // 10 Transformation Cases Dataset
+    const CASES = [
+      {
+        name: "Евгений, 32 года",
+        category: "Рекомпозиция & Рельеф",
+        mainStat: "-14 кг",
+        desc: "Сбросили лишний вес, полностью убрали живот и бока, прорисовали рельеф пресса без строгих ограничений и голодовок.",
+        before: "/cases/vlad_case1_evgeniy_before.jpg",
+        after: "/cases/vlad_case1_evgeniy_after.jpg",
+        stats: [{ label: "Срок", val: "4 мес" }, { label: "Талия", val: "-12 см" }, { label: "Силовые", val: "+25%" }]
+      },
+      {
+        name: "Артем, 28 лет",
+        category: "Сушка & Прорисовка",
+        mainStat: "-11 кг",
+        desc: "Убрали подкожный жир с низа живота и спины, выделили плечевой пояс и косые мышцы пресса.",
+        before: "/cases/vlad_case2_artem_before.jpg",
+        after: "/cases/vlad_case2_artem_after.jpg",
+        stats: [{ label: "Срок", val: "3 мес" }, { label: "Жир", val: "-9%" }, { label: "Талия", val: "-10 см" }]
+      },
+      {
+        name: "Михаил, 35 лет",
+        category: "Рекомпозиция тела",
+        mainStat: "-16 кг",
+        desc: "Мощная трансформация: избавились от одышки, повысили тестостерон и выстроили стабильный режим питания.",
+        before: "/cases/vlad_case3_nn_before.jpg",
+        after: "/cases/vlad_case3_nn_after.jpg",
+        stats: [{ label: "Срок", val: "5 мес" }, { label: "Вес", val: "-16 кг" }, { label: "Талия", val: "-15 см" }]
+      },
+      {
+        name: "Дарья, 26 лет",
+        category: "Похудение & Тонус",
+        mainStat: "-8 кг",
+        desc: "Подтянули бедра и ягодицы, уменьшили объемы в талии без потери женственных форм.",
+        before: "/cases/vlad_case4_daria_before.jpg",
+        after: "/cases/vlad_case4_daria_after.jpg",
+        stats: [{ label: "Срок", val: "2.5 мес" }, { label: "Талия", val: "-9 см" }, { label: "Бедра", val: "-7 см" }]
+      },
+      {
+        name: "Алина, 30 лет",
+        category: "Сушка & Ягодицы",
+        mainStat: "-9 кг",
+        desc: "Полное преображение пропорций: плоский живот, округлые ягодичные мышцы и красивый тонус рук.",
+        before: "/cases/vlad_case5_alina_before.jpg",
+        after: "/cases/vlad_case5_alina_after.jpg",
+        stats: [{ label: "Срок", val: "3 мес" }, { label: "Талия", val: "-8 см" }, { label: "Тонус", val: "10/10" }]
+      },
+      {
+        name: "Олег, 41 год",
+        category: "Сброс веса 40+",
+        mainStat: "-19 кг",
+        desc: "Сбросили 19 кг избыточного веса, нормализовали давление, восстановили уровень энергии и легкость.",
+        before: "/cases/vlad_case6_oleg_before.jpg",
+        after: "/cases/vlad_case6_oleg_after.jpg",
+        stats: [{ label: "Срок", val: "6 мес" }, { label: "Вес", val: "-19 кг" }, { label: "Талия", val: "-18 см" }]
+      },
+      {
+        name: "Алексей, 29 лет",
+        category: "Набор сухой массы",
+        mainStat: "+9 кг",
+        desc: "Прибавили 9 кг качественной мышечной массы, мощно развили грудные мышцы и спину.",
+        before: "/cases/vlad_case7_aleksey_before.jpg",
+        after: "/cases/vlad_case7_aleksey_after.jpg",
+        stats: [{ label: "Срок", val: "4 мес" }, { label: "Грудь", val: "+8 см" }, { label: "Рука", val: "+4.5 см" }]
+      },
+      {
+        name: "Богдан, 33 года",
+        category: "Рельеф & Пресс",
+        mainStat: "-13 кг",
+        desc: "Глубокая проработка рельефа: сделали кубики пресса и венозность, сохранив силовые в базовых движениях.",
+        before: "/cases/vlad_case8_bb_before.jpg",
+        after: "/cases/vlad_case8_bb_after.jpg",
+        stats: [{ label: "Срок", val: "3.5 мес" }, { label: "Жир", val: "-11%" }, { label: "Силовые", val: "+15%" }]
+      },
+      {
+        name: "Сергей, 27 лет",
+        category: "Атлетизм",
+        mainStat: "-10 кг",
+        desc: "Перевели тело в спортивный атлетичный режим: убрали бока, выделили V-образный силуэт спины.",
+        before: "/cases/vlad_case9_noname_before.jpg",
+        after: "/cases/vlad_case9_noname_after.jpg",
+        stats: [{ label: "Срок", val: "3 мес" }, { label: "Талия", val: "-11 см" }, { label: "Плечи", val: "+5 см" }]
+      },
+      {
+        name: "Владислав, 31 год",
+        category: "Трансформация",
+        mainStat: "-15 кг",
+        desc: "Комплексная перезагрузка: сожгли 15 кг жира, укрепили связки и выстроили питание под активную работу.",
+        before: "/cases/vlad_case10_vladislav_before.jpg",
+        after: "/cases/vlad_case10_vladislav_after.jpg",
+        stats: [{ label: "Срок", val: "4.5 мес" }, { label: "Талия", val: "-14 см" }, { label: "Вес", val: "-15 кг" }]
+      }
+    ];
+
+    let currentCaseIndex = 0;
+
+    // Render Case Function
+    function renderCase(idx) {
+      const c = CASES[idx];
+      document.getElementById('caseCounter').textContent = (idx + 1) + '/10';
+      document.getElementById('beforeImage').src = c.before;
+      document.getElementById('afterImage').src = c.after;
+      document.getElementById('caseName').textContent = c.name;
+      document.getElementById('caseCategory').textContent = c.category;
+      document.getElementById('caseMainStat').textContent = c.mainStat;
+      document.getElementById('caseDesc').textContent = c.desc;
+
+      const grid = document.getElementById('caseStatsGrid');
+      grid.innerHTML = c.stats.map(s => `
+        <div class="bg-white/[0.03] rounded-xl p-2 border border-white/5 text-center">
+          <div class="text-[9px] text-zinc-400 uppercase font-bold tracking-wider">${s.label}</div>
+          <div class="text-xs font-black text-white mt-0.5">${s.val}</div>
+        </div>
+      `).join('');
+
+      // Update Dots
+      const dotsContainer = document.getElementById('caseDots');
+      dotsContainer.innerHTML = CASES.map((_, i) => `
+        <button onclick="setCase(${i})" class="h-1.5 rounded-full transition-all duration-200 ${i === idx ? 'w-6 bg-[#FF5500]' : 'w-1.5 bg-zinc-700 hover:bg-zinc-500'}"></button>
+      `).join('');
+    }
+
+    function setCase(idx) {
+      currentCaseIndex = (idx + CASES.length) % CASES.length;
+      renderCase(currentCaseIndex);
+    }
+
+    document.getElementById('prevCaseBtn').addEventListener('click', () => setCase(currentCaseIndex - 1));
+    document.getElementById('nextCaseBtn').addEventListener('click', () => setCase(currentCaseIndex + 1));
+
+    // Interactive Drag / Touch Slider Engine
+    (function initSlider() {
+      const container = document.getElementById('sliderContainer');
+      const beforeContainer = document.getElementById('beforeContainer');
+      const handle = document.getElementById('sliderHandle');
+      let isDragging = false;
+
+      function updateSliderPosition(clientX) {
+        const rect = container.getBoundingClientRect();
+        let posX = clientX - rect.left;
+        if (posX < 0) posX = 0;
+        if (posX > rect.width) posX = rect.width;
+        const percentage = (posX / rect.width) * 100;
+        beforeContainer.style.width = percentage + '%';
+        handle.style.left = percentage + '%';
+      }
+
+      function onPointerDown(e) {
+        isDragging = true;
+        updateSliderPosition(e.clientX || (e.touches && e.touches[0].clientX));
+      }
+
+      function onPointerMove(e) {
+        if (!isDragging) return;
+        const clientX = e.clientX || (e.touches && e.touches[0].clientX);
+        if (clientX) updateSliderPosition(clientX);
+      }
+
+      function onPointerUp() {
+        isDragging = false;
+      }
+
+      container.addEventListener('mousedown', onPointerDown);
+      window.addEventListener('mousemove', onPointerMove);
+      window.addEventListener('mouseup', onPointerUp);
+
+      container.addEventListener('touchstart', onPointerDown, { passive: true });
+      window.addEventListener('touchmove', onPointerMove, { passive: true });
+      window.addEventListener('touchend', onPointerUp);
+    })();
+
+    // Initialize FAQ Accordion
+    document.querySelectorAll('.faq-toggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const content = btn.nextElementSibling;
+        const icon = btn.querySelector('.faq-icon');
+        const isOpen = !content.classList.contains('hidden');
+
+        // Close all
+        document.querySelectorAll('.faq-content').forEach(c => c.classList.add('hidden'));
+        document.querySelectorAll('.faq-icon').forEach(ic => {
+          ic.textContent = '+';
+          ic.classList.remove('rotate-45');
+        });
+
+        // Toggle current
+        if (!isOpen) {
+          content.classList.remove('hidden');
+          icon.textContent = '✕';
+          icon.classList.add('rotate-45');
+        }
+      });
+    });
+
+    // Form Submission to Telegram
+    document.getElementById('leadForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('formName').value;
+      const age = document.getElementById('formAge').value || 'Не указан';
+      const weight = document.getElementById('formWeight').value || 'Не указан';
+      const goal = document.getElementById('formGoal').value;
+      const tg = document.getElementById('formTelegram').value;
+
+      const message = `🔥 Новая анкета на ведение (fitprod.vercel.app/new):
+
+👤 Имя: ${name}
+🎂 Возраст: ${age}
+⚖️ Вес: ${weight} кг
+🎯 Цель: ${goal}
+✈️ Telegram: ${tg}`;
+      const url = `https://t.me/Bernetskiy?text=${encodeURIComponent(message)}`;
+      window.open(url, '_blank');
+    });
+
+    // Initial render
+    renderCase(0);
+  </script>
+
 </body>
 
 </html>

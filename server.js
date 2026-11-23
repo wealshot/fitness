@@ -21,9 +21,14 @@ const server = http.createServer((req, res) => {
 
   let filePath = path.join(__dirname, urlPath);
 
-  // If path has no extension (like /, /gleb, /angelina, /ivan), serve index.html
+  // If path has no extension (like /, /gleb, /new, /bernetskiy), check directory index.html or fallback
   if (!path.extname(urlPath)) {
-    filePath = path.join(__dirname, 'index.html');
+    const dirIndex = path.join(__dirname, urlPath, 'index.html');
+    if (fs.existsSync(dirIndex)) {
+      filePath = dirIndex;
+    } else {
+      filePath = path.join(__dirname, 'index.html');
+    }
   } else if (!fs.existsSync(filePath)) {
     filePath = path.join(__dirname, 'index.html');
   }
