@@ -30,14 +30,14 @@
         }
       })();
     </script>
-    <script src="/clients.js?v=20261124_0005"></script>
-  <script src="/clients_defaults.js?v=20261124_0005"></script>
+    <script src="/clients.js?v=20261124_0010"></script>
+  <script src="/clients_defaults.js?v=20261124_0010"></script>
 
     <!-- React SPA Bundle -->
       <!-- FAQ Section Accordion Script -->
   <script src="/assets/faq.js?v=20261122_0515"></script>
-  <script type="module" crossorigin src="/assets/index-v2.js?v=20261124_0005"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-DIMZLtAQ.css?v=20261122_0235">
+  <script type="module" crossorigin src="/assets/index-v2.js?v=20261124_0010"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-DIMZLtAQ.css?v=20261124_0010">
 
     <!-- Prefetch all 10 Transformation Cases and Reviews -->
     <link rel="prefetch" as="image" href="/cases/vlad_case1_evgeniy_before.jpg" />
@@ -124,7 +124,29 @@
         z-index: 20 !important;
         pointer-events: none !important;
       }
-    </style>
+    
+.stat-card-glass {
+  background: rgba(26, 26, 32, 0.72) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+.stats-grid-wrapper {
+  position: relative !important;
+}
+
+.stats-grid-wrapper::before {
+  content: '' !important;
+  position: absolute !important;
+  inset: -15px -10px !important;
+  background: radial-gradient(ellipse at 50% 50%, rgba(255, 107, 0, 0.22) 0%, rgba(255, 85, 0, 0.06) 50%, transparent 80%) !important;
+  pointer-events: none !important;
+  z-index: 0 !important;
+}
+
+  </style>
   </head>
   <body class="bg-[#050507] text-zinc-100 antialiased selection:bg-white selection:text-black min-h-[100dvh] overflow-x-hidden w-full max-w-full">
     <div id="root"></div>

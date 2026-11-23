@@ -62,3 +62,25 @@
   gap: 3px !important;
   width: 100% !important;
 }
+
+
+.stat-card-glass {
+  background: rgba(26, 26, 32, 0.72) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+.stats-grid-wrapper {
+  position: relative !important;
+}
+
+.stats-grid-wrapper::before {
+  content: '' !important;
+  position: absolute !important;
+  inset: -15px -10px !important;
+  background: radial-gradient(ellipse at 50% 50%, rgba(255, 107, 0, 0.22) 0%, rgba(255, 85, 0, 0.06) 50%, transparent 80%) !important;
+  pointer-events: none !important;
+  z-index: 0 !important;
+}
