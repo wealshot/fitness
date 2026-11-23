@@ -219,19 +219,21 @@ Error generating stack: `+i.message+`
  */const dx={name:"zap",size:24,node:[["path",{d:"M15.914 4a1.5 1.5 0 00-2.474-1.561l-9 9A1.5 1.5 0 005.5 14h4.002a.5.5 0 01.471.666L8.086 20a1.5 1.5 0 002.475 1.56l9-9A1.5 1.5 0 0018.5 10h-3.997a.5.5 0 01-.472-.667z",key:"1v7up4"}]]};dx.node;const hx=at(dx);var ud={};(function n(s,c,o,f){var m=!!(s.Worker&&s.Blob&&s.Promise&&s.OffscreenCanvas&&s.OffscreenCanvasRenderingContext2D&&s.HTMLCanvasElement&&s.HTMLCanvasElement.prototype.transferControlToOffscreen&&s.URL&&s.URL.createObjectURL),h=typeof Path2D=="function"&&typeof DOMMatrix=="function",p=(function(){if(!s.OffscreenCanvas)return!1;try{var E=new OffscreenCanvas(1,1),j=E.getContext("2d");j.fillRect(0,0,1,1);var le=E.transferToImageBitmap();j.createPattern(le,"no-repeat")}catch{return!1}return!0})();function y(){}function b(E){var j=c.exports.Promise,le=j!==void 0?j:s.Promise;return typeof le=="function"?new le(E):(E(y,y),null)}var v=(function(E,j){return{transform:function(le){if(E)return le;if(j.has(le))return j.get(le);var fe=new OffscreenCanvas(le.width,le.height),T=fe.getContext("2d");return T.drawImage(le,0,0),j.set(le,fe),fe},clear:function(){j.clear()}}})(p,new Map),g=(function(){var E=Math.floor(16.666666666666668),j,le,fe={},T=0;return typeof requestAnimationFrame=="function"&&typeof cancelAnimationFrame=="function"?(j=function(L){var K=Math.random();return fe[K]=requestAnimationFrame(function Z(ne){T===ne||T+E-1<ne?(T=ne,delete fe[K],L()):fe[K]=requestAnimationFrame(Z)}),K},le=function(L){fe[L]&&cancelAnimationFrame(fe[L])}):(j=function(L){return setTimeout(L,E)},le=function(L){return clearTimeout(L)}),{frame:j,cancel:le}})(),S=(function(){var E,j,le={};function fe(T){function L(K,Z){T.postMessage({options:K||{},callback:Z})}T.init=function(Z){var ne=Z.transferControlToOffscreen();T.postMessage({canvas:ne},[ne])},T.fire=function(Z,ne,ce){if(j)return L(Z,null),j;var pe=Math.random().toString(36).slice(2);return j=b(function(J){function oe(Le){Le.data.callback===pe&&(delete le[pe],T.removeEventListener("message",oe),j=null,v.clear(),ce(),J())}T.addEventListener("message",oe),L(Z,pe),le[pe]=oe.bind(null,{data:{callback:pe}})}),j},T.reset=function(){T.postMessage({reset:!0});for(var Z in le)le[Z](),delete le[Z]}}return function(){if(E)return E;if(!o&&m){var T=["var CONFETTI, SIZE = {}, module = {};","("+n.toString()+")(this, module, true, SIZE);","onmessage = function(msg) {","  if (msg.data.options) {","    CONFETTI(msg.data.options).then(function () {","      if (msg.data.callback) {","        postMessage({ callback: msg.data.callback });","      }","    });","  } else if (msg.data.reset) {","    CONFETTI && CONFETTI.reset();","  } else if (msg.data.resize) {","    SIZE.width = msg.data.resize.width;","    SIZE.height = msg.data.resize.height;","  } else if (msg.data.canvas) {","    SIZE.width = msg.data.canvas.width;","    SIZE.height = msg.data.canvas.height;","    CONFETTI = module.exports.create(msg.data.canvas);","  }","}"].join(`
 `);try{E=new Worker(URL.createObjectURL(new Blob([T])))}catch(L){return typeof console<"u"&&typeof console.warn=="function"&&console.warn("🎊 Could not load worker",L),null}fe(E)}return E}})(),A={particleCount:50,angle:90,spread:45,startVelocity:45,decay:.9,gravity:1,drift:0,ticks:200,x:.5,y:.5,shapes:["square","circle"],zIndex:100,colors:["#26ccff","#a25afd","#ff5e7e","#88ff5a","#fcff42","#ffa62d","#ff36ff"],disableForReducedMotion:!1,scalar:1};function z(E,j){return j?j(E):E}function O(E){return E!=null}function k(E,j,le){return z(E&&O(E[j])?E[j]:A[j],le)}function B(E){return E<0?0:Math.floor(E)}function Y(E,j){return Math.floor(Math.random()*(j-E))+E}function X(E){return parseInt(E,16)}function $(E){return E.map(P)}function P(E){var j=String(E).replace(/[^0-9a-f]/gi,"");return j.length<6&&(j=j[0]+j[0]+j[1]+j[1]+j[2]+j[2]),{r:X(j.substring(0,2)),g:X(j.substring(2,4)),b:X(j.substring(4,6))}}function re(E){var j=k(E,"origin",Object);return j.x=k(j,"x",Number),j.y=k(j,"y",Number),j}function I(E){E.width=document.documentElement.clientWidth,E.height=document.documentElement.clientHeight}function F(E){var j=E.getBoundingClientRect();E.width=j.width,E.height=j.height}function se(E){var j=document.createElement("canvas");return j.style.position="fixed",j.style.top="0px",j.style.left="0px",j.style.pointerEvents="none",j.style.zIndex=E,j}function te(E,j,le,fe,T,L,K,Z,ne){E.save(),E.translate(j,le),E.rotate(L),E.scale(fe,T),E.arc(0,0,1,K,Z,ne),E.restore()}function ge(E){var j=E.angle*(Math.PI/180),le=E.spread*(Math.PI/180);return{x:E.x,y:E.y,wobble:Math.random()*10,wobbleSpeed:Math.min(.11,Math.random()*.1+.05),velocity:E.startVelocity*.5+Math.random()*E.startVelocity,angle2D:-j+(.5*le-Math.random()*le),tiltAngle:(Math.random()*(.75-.25)+.25)*Math.PI,color:E.color,shape:E.shape,tick:0,totalTicks:E.ticks,decay:E.decay,drift:E.drift,random:Math.random()+2,tiltSin:0,tiltCos:0,wobbleX:0,wobbleY:0,gravity:E.gravity*3,ovalScalar:.6,scalar:E.scalar,flat:E.flat}}function je(E,j){j.x+=Math.cos(j.angle2D)*j.velocity+j.drift,j.y+=Math.sin(j.angle2D)*j.velocity+j.gravity,j.velocity*=j.decay,j.flat?(j.wobble=0,j.wobbleX=j.x+10*j.scalar,j.wobbleY=j.y+10*j.scalar,j.tiltSin=0,j.tiltCos=0,j.random=1):(j.wobble+=j.wobbleSpeed,j.wobbleX=j.x+10*j.scalar*Math.cos(j.wobble),j.wobbleY=j.y+10*j.scalar*Math.sin(j.wobble),j.tiltAngle+=.1,j.tiltSin=Math.sin(j.tiltAngle),j.tiltCos=Math.cos(j.tiltAngle),j.random=Math.random()+2);var le=j.tick++/j.totalTicks,fe=j.x+j.random*j.tiltCos,T=j.y+j.random*j.tiltSin,L=j.wobbleX+j.random*j.tiltCos,K=j.wobbleY+j.random*j.tiltSin;if(E.fillStyle="rgba("+j.color.r+", "+j.color.g+", "+j.color.b+", "+(1-le)+")",E.beginPath(),h&&j.shape.type==="path"&&typeof j.shape.path=="string"&&Array.isArray(j.shape.matrix))E.fill(me(j.shape.path,j.shape.matrix,j.x,j.y,Math.abs(L-fe)*.1,Math.abs(K-T)*.1,Math.PI/10*j.wobble));else if(j.shape.type==="bitmap"){var Z=Math.PI/10*j.wobble,ne=Math.abs(L-fe)*.1,ce=Math.abs(K-T)*.1,pe=j.shape.bitmap.width*j.scalar,J=j.shape.bitmap.height*j.scalar,oe=new DOMMatrix([Math.cos(Z)*ne,Math.sin(Z)*ne,-Math.sin(Z)*ce,Math.cos(Z)*ce,j.x,j.y]);oe.multiplySelf(new DOMMatrix(j.shape.matrix));var Le=E.createPattern(v.transform(j.shape.bitmap),"no-repeat");Le.setTransform(oe),E.globalAlpha=1-le,E.fillStyle=Le,E.fillRect(j.x-pe/2,j.y-J/2,pe,J),E.globalAlpha=1}else if(j.shape==="circle")E.ellipse?E.ellipse(j.x,j.y,Math.abs(L-fe)*j.ovalScalar,Math.abs(K-T)*j.ovalScalar,Math.PI/10*j.wobble,0,2*Math.PI):te(E,j.x,j.y,Math.abs(L-fe)*j.ovalScalar,Math.abs(K-T)*j.ovalScalar,Math.PI/10*j.wobble,0,2*Math.PI);else if(j.shape==="star")for(var Te=Math.PI/2*3,$e=4*j.scalar,Ie=8*j.scalar,ze=j.x,Ce=j.y,Pe=5,W=Math.PI/Pe;Pe--;)ze=j.x+Math.cos(Te)*Ie,Ce=j.y+Math.sin(Te)*Ie,E.lineTo(ze,Ce),Te+=W,ze=j.x+Math.cos(Te)*$e,Ce=j.y+Math.sin(Te)*$e,E.lineTo(ze,Ce),Te+=W;else E.moveTo(Math.floor(j.x),Math.floor(j.y)),E.lineTo(Math.floor(j.wobbleX),Math.floor(T)),E.lineTo(Math.floor(L),Math.floor(K)),E.lineTo(Math.floor(fe),Math.floor(j.wobbleY));return E.closePath(),E.fill(),j.tick<j.totalTicks}function De(E,j,le,fe,T){var L=j.slice(),K=E.getContext("2d"),Z,ne,ce=b(function(pe){function J(){Z=ne=null,K.clearRect(0,0,fe.width,fe.height),v.clear(),T(),pe()}function oe(){o&&!(fe.width===f.width&&fe.height===f.height)&&(fe.width=E.width=f.width,fe.height=E.height=f.height),!fe.width&&!fe.height&&(le(E),fe.width=E.width,fe.height=E.height),K.clearRect(0,0,fe.width,fe.height),L=L.filter(function(Le){return je(K,Le)}),L.length?Z=g.frame(oe):J()}Z=g.frame(oe),ne=J});return{addFettis:function(pe){return L=L.concat(pe),ce},canvas:E,promise:ce,reset:function(){Z&&g.cancel(Z),ne&&ne()}}}function Be(E,j){var le=!E,fe=!!k(j||{},"resize"),T=!1,L=k(j,"disableForReducedMotion",Boolean),K=m&&!!k(j||{},"useWorker"),Z=K?S():null,ne=le?I:F,ce=E&&Z?!!E.__confetti_initialized:!1,pe=typeof matchMedia=="function"&&matchMedia("(prefers-reduced-motion)").matches,J;function oe(Te,$e,Ie){for(var ze=k(Te,"particleCount",B),Ce=k(Te,"angle",Number),Pe=k(Te,"spread",Number),W=k(Te,"startVelocity",Number),Ee=k(Te,"decay",Number),Re=k(Te,"gravity",Number),zt=k(Te,"drift",Number),pt=k(Te,"colors",$),an=k(Te,"ticks",Number),Ta=k(Te,"shapes"),Bn=k(Te,"scalar"),Un=!!k(Te,"flat"),Ut=re(Te),La=ze,ie=[],Je=E.width*Ut.x,Na=E.height*Ut.y;La--;)ie.push(ge({x:Je,y:Na,angle:Ce,spread:Pe,startVelocity:W,color:pt[La%pt.length],shape:Ta[Y(0,Ta.length)],ticks:an,decay:Ee,gravity:Re,drift:zt,scalar:Bn,flat:Un}));return J?J.addFettis(ie):(J=De(E,ie,ne,$e,Ie),J.promise)}function Le(Te){var $e=L||k(Te,"disableForReducedMotion",Boolean),Ie=k(Te,"zIndex",Number);if($e&&pe)return b(function(W){W()});le&&J?E=J.canvas:le&&!E&&(E=se(Ie),document.body.appendChild(E)),fe&&!ce&&ne(E);var ze={width:E.width,height:E.height};Z&&!ce&&Z.init(E),ce=!0,Z&&(E.__confetti_initialized=!0);function Ce(){if(Z){var W={getBoundingClientRect:function(){if(!le)return E.getBoundingClientRect()}};ne(W),Z.postMessage({resize:{width:W.width,height:W.height}});return}ze.width=ze.height=null}function Pe(){J=null,fe&&(T=!1,s.removeEventListener("resize",Ce)),le&&E&&(document.body.contains(E)&&document.body.removeChild(E),E=null,ce=!1)}return fe&&!T&&(T=!0,s.addEventListener("resize",Ce,!1)),Z?Z.fire(Te,ze,Pe):oe(Te,ze,Pe)}return Le.reset=function(){Z&&Z.reset(),J&&J.reset()},Le}var Se;function Q(){return Se||(Se=Be(null,{useWorker:!0,resize:!0})),Se}function me(E,j,le,fe,T,L,K){var Z=new Path2D(E),ne=new Path2D;ne.addPath(Z,new DOMMatrix(j));var ce=new Path2D;return ce.addPath(ne,new DOMMatrix([Math.cos(K)*T,Math.sin(K)*T,-Math.sin(K)*L,Math.cos(K)*L,le,fe])),ce}function ee(E){if(!h)throw new Error("path confetti are not supported in this browser");var j,le;typeof E=="string"?j=E:(j=E.path,le=E.matrix);var fe=new Path2D(j),T=document.createElement("canvas"),L=T.getContext("2d");if(!le){for(var K=1e3,Z=K,ne=K,ce=0,pe=0,J,oe,Le=0;Le<K;Le+=2)for(var Te=0;Te<K;Te+=2)L.isPointInPath(fe,Le,Te,"nonzero")&&(Z=Math.min(Z,Le),ne=Math.min(ne,Te),ce=Math.max(ce,Le),pe=Math.max(pe,Te));J=ce-Z,oe=pe-ne;var $e=10,Ie=Math.min($e/J,$e/oe);le=[Ie,0,0,Ie,-Math.round(J/2+Z)*Ie,-Math.round(oe/2+ne)*Ie]}return{type:"path",path:j,matrix:le}}function xe(E){var j,le=1,fe="#000000",T='"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", "EmojiOne Color", "Android Emoji", "Twemoji Mozilla", "system emoji", sans-serif';typeof E=="string"?j=E:(j=E.text,le="scalar"in E?E.scalar:le,T="fontFamily"in E?E.fontFamily:T,fe="color"in E?E.color:fe);var L=10*le,K=""+L+"px "+T,Z=new OffscreenCanvas(L,L),ne=Z.getContext("2d");ne.font=K;var ce=ne.measureText(j),pe=Math.ceil(ce.actualBoundingBoxRight+ce.actualBoundingBoxLeft),J=Math.ceil(ce.actualBoundingBoxAscent+ce.actualBoundingBoxDescent),oe=2,Le=ce.actualBoundingBoxLeft+oe,Te=ce.actualBoundingBoxAscent+oe;pe+=oe+oe,J+=oe+oe,Z=new OffscreenCanvas(pe,J),ne=Z.getContext("2d"),ne.font=K,ne.fillStyle=fe,ne.fillText(j,Le,Te);var $e=1/le;return{type:"bitmap",bitmap:Z.transferToImageBitmap(),matrix:[$e,0,0,$e,-pe*$e/2,-J*$e/2]}}c.exports=function(){return Q().apply(this,arguments)},c.exports.reset=function(){Q().reset()},c.exports.create=Be,c.exports.shapeFromPath=ee,c.exports.shapeFromText=xe})((function(){return typeof window<"u"?window:typeof self<"u"?self:this||{}})(),ud,!1);const fd=ud.exports;ud.exports.create;function oS({client:n,nutrition:s,goal:c,weight:o,targetWeight:f,height:m,selectedTierId:h}){const p=pi.find(z=>z.id===c),y=p?p.title:"КОРРЕКЦИЯ ФОРМЫ",b=n.tiers.find(z=>z.id===h)||n.tiers[0],v=(s==null?void 0:s.targetCalories)||2200,g=(s==null?void 0:s.macros)||{proteins:{grams:160},fats:{grams:65},carbs:{grams:240}},S=n.ctaButtonText||`ЗАБРАТЬ ПЛАН [${v} ККАЛ]`,A=()=>{try{fd({particleCount:50,spread:60,origin:{y:.8},colors:[n.accentColor,"#FFFFFF","#000000"]})}catch{}const k=(n.slug==="fleist"||n.ctaMessageTitle?[`ПРИВЕТ, ${n.name.toUpperCase()}!`,"Прошел экспресс-диагностику формы и авторский расчёт КБЖУ в твоем веб-приложении:","","[ РЕЗУЛЬТАТЫ ДИАГНОСТИКИ И ПАРАМЕТРЫ ]",`• Главная цель: ${y}`,`• Замеры: ${o} кг -> ориентир: ${f} кг (рост: ${m} см)`,`• Авторский расчёт нормы: ${v} ккал`,`• Баланс БЖУ: Белки: ${g.proteins.grams}г / Жиры: ${g.fats.grams}г / Углеводы: ${g.carbs.grams}г`,`• Выбранный формат: ${b.name} (${b.price})`,"","Хочу разобрать эти показатели на персональной консультации и получить рекомендации!"]:[`ПРИВЕТ, ${n.name}!`,"Прошел экспресс-диагностику в твоем веб-приложении:","","[ ДАННЫЕ ПРОФИЛЯ ]",`• Цель: ${y}`,`• Замеры: ${o} кг -> хочу ${f} кг (рост: ${m} см)`,`• Расчетная норма: ${v} ккал`,`• Баланс БЖУ: Белки: ${g.proteins.grams}г / Жиры: ${g.fats.grams}г / Углеводы: ${g.carbs.grams}г`,`• Выбранный протокол: ${b.name} (${b.price})`,"","Готов начать работу по протоколу. Подскажи следующие шаги!"]).join(`
 `),B=encodeURIComponent(k),Y=`https://t.me/${n.telegramUsername}?text=${B}`;window.open(Y,"_blank")};
+
 if (n.slug === "new") {
   return u.jsxs("section", {
     className: "relative w-full overflow-hidden pb-6 border-b border-white/[0.08]",
     style: { backgroundColor: "#06070a" },
     children: [
+      /* 1. Top Header Bar */
       u.jsxs("header", {
-        className: "relative z-20 flex items-center justify-between px-4 py-3.5 border-b border-white/[0.06] bg-black/40 backdrop-blur-md",
+        className: "relative z-20 flex items-center justify-between px-4 py-3.5 border-b border-white/[0.06] bg-black/50 backdrop-blur-md",
         children: [
           u.jsxs("div", {
             className: "flex items-center gap-2.5",
             children: [
               u.jsx("div", {
-                className: "w-8 h-8 rounded-lg flex items-center justify-center font-display text-base font-black text-white shadow-md",
+                className: "w-8 h-8 rounded-lg flex items-center justify-center font-display text-sm font-black text-white shadow-md",
                 style: { backgroundColor: n.accentColor, boxShadow: "0 0 15px " + n.accentGlow },
                 children: "⚡"
               }),
@@ -257,63 +259,75 @@ if (n.slug === "new") {
               u.jsxs("button", {
                 type: "button",
                 onClick: A,
-                className: "px-3 py-1.5 rounded-full text-[10px] font-tech font-bold uppercase tracking-wider text-white shadow-sm flex items-center gap-1 active:scale-95 transition-all cursor-pointer",
-                style: { backgroundColor: n.accentColor, boxShadow: "0 0 12px " + n.accentGlow },
+                className: "px-3.5 py-1.5 rounded-full text-[10px] font-tech font-bold uppercase tracking-wider text-white shadow-sm flex items-center gap-1 active:scale-95 transition-all cursor-pointer",
+                style: { backgroundColor: n.accentColor, boxShadow: "0 0 14px " + n.accentGlow },
                 children: ["Записаться", u.jsx("span", { children: "→" })]
               })
             ]
           })
         ]
       }),
+
+      /* 2. Coach Portrait Card (Clean, Uncluttered, with Breathing Room) */
       u.jsxs("div", {
-        className: "relative w-full px-4 pt-5 pb-2",
+        className: "relative w-full px-4 pt-4",
         children: [
           u.jsxs("div", {
-            className: "relative w-full h-[410px] rounded-2xl overflow-hidden border border-white/[0.08] shadow-2xl bg-[#090A0F] mb-4",
+            className: "relative w-full h-[320px] rounded-2xl overflow-hidden border border-white/[0.08] shadow-2xl bg-[#090A0F]",
             children: [
               u.jsx("img", {
                 src: n.heroImage,
                 alt: n.name,
-                className: "w-full h-full object-cover object-top filter contrast-105 brightness-95",
+                className: "w-full h-full object-cover object-top filter contrast-105 brightness-100",
                 style: n.heroImageStyle
               }),
-              u.jsx("div", { className: "absolute inset-0 bg-gradient-to-t from-[#06070a] via-[#06070a]/30 to-transparent pointer-events-none" }),
-              u.jsx("div", { className: "absolute inset-0 bg-gradient-to-r from-[#06070a]/70 via-transparent to-transparent pointer-events-none" }),
+              /* Smooth Bottom Gradient Fade */
+              u.jsx("div", { className: "absolute inset-0 bg-gradient-to-t from-[#06070a] via-[#06070a]/20 to-transparent pointer-events-none" }),
+              /* Scarcity Floating Tag on Photo Top Left */
               u.jsx("div", {
                 className: "absolute top-3 left-3 z-10",
                 children: u.jsxs("div", {
                   className: "inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-tech font-black tracking-wider uppercase border border-white/10 bg-black/60 backdrop-blur-md text-white shadow-md",
                   children: [
                     u.jsx("span", { className: "w-2 h-2 rounded-full animate-ping", style: { backgroundColor: n.accentColor } }),
-                    u.jsx("span", { style: { color: n.accentColor }, children: n.scarcityBadge || "ОТБОР НА ВЕДЕНИЕ: ОСТАЛОСЬ 2 МЕСТА" })
+                    u.jsx("span", { style: { color: n.accentColor }, children: n.scarcityBadge || "ОТБОР НА ВЕДЕНИЕ: СВОБОДНО 2 МЕСТА" })
                   ]
                 })
+              })
+            ]
+          })
+        ]
+      }),
+
+      /* 3. Offer & Headline Block in Clean Space (NOT overlapping photo!) */
+      u.jsxs("div", {
+        className: "relative w-full px-4 pt-3 pb-2 space-y-3",
+        children: [
+          u.jsxs("div", {
+            className: "space-y-1.5",
+            children: [
+              u.jsx("div", {
+                className: "text-[10px] font-tech font-bold tracking-widest uppercase px-3 py-1 rounded-full border border-white/10 bg-white/[0.04] inline-block text-zinc-300",
+                children: n.spec || "СТРОИМ ТЕЛО ИЗ ЖЕЛЕЗА И ВИТАМИНОВ ⚡"
               }),
-              u.jsxs("div", {
-                className: "absolute bottom-4 left-4 right-4 z-10 space-y-1.5",
+              u.jsxs("h1", {
+                className: "font-display text-2xl sm:text-3xl text-white uppercase tracking-tight leading-none pt-1",
                 children: [
-                  u.jsx("div", {
-                    className: "text-[10px] font-tech font-bold tracking-widest uppercase px-2.5 py-0.5 rounded-full border border-white/10 bg-black/50 backdrop-blur-sm inline-block text-zinc-300",
-                    children: n.spec || "СТРОИМ ТЕЛО ИЗ ЖЕЛЕЗА И ВИТАМИНОВ ⚡"
-                  }),
-                  u.jsxs("h1", {
-                    className: "font-display text-3xl sm:text-4xl text-white uppercase tracking-tight leading-none drop-shadow-lg",
-                    children: [
-                      "ТВОЕ ТЕЛО.",
-                      u.jsx("br", {}),
-                      u.jsx("span", { style: { color: n.accentColor }, children: "ТВОЙ РЕЗУЛЬТАТ." })
-                    ]
-                  }),
-                  u.jsx("p", {
-                    className: "text-[11px] font-tech text-zinc-300 leading-snug drop-shadow-md max-w-[280px]",
-                    children: n.bio || "Научный подход к гипертрофии, рекомпозиции и преодолению срывов."
-                  })
+                  "ТВОЕ ТЕЛО.",
+                  u.jsx("br", {}),
+                  u.jsx("span", { style: { color: n.accentColor }, children: "ТВОЙ РЕЗУЛЬТАТ." })
                 ]
+              }),
+              u.jsx("p", {
+                className: "text-xs font-tech text-zinc-400 leading-relaxed pt-0.5",
+                children: n.bio || "Научный подход к гипертрофии, рекомпозиции и преодолению срывов."
               })
             ]
           }),
+
+          /* 4. Stats Metrics Row: 3 Floating Translucent Cards */
           u.jsx("div", {
-            className: "grid grid-cols-3 divide-x divide-white/10 rounded-xl p-3 border border-white/[0.08] bg-white/[0.03] backdrop-blur-md mb-4 text-center shadow-lg",
+            className: "grid grid-cols-3 divide-x divide-white/10 rounded-xl p-3 border border-white/[0.08] bg-white/[0.03] backdrop-blur-md text-center shadow-lg",
             children: (n.stats || []).map((st, sIdx) => u.jsxs("div", {
               className: "px-2 py-1",
               children: [
@@ -322,8 +336,10 @@ if (n.slug === "new") {
               ]
             }, sIdx))
           }),
+
+          /* 5. Primary Big CTA Button + Secondary Socials */
           u.jsxs("div", {
-            className: "space-y-2.5",
+            className: "space-y-2 pt-1",
             children: [
               u.jsxs("button", {
                 type: "button",
