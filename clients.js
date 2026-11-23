@@ -132,7 +132,7 @@ window.CLIENTS = {
   },
   "bernetskiy": {
     "slug": "bernetskiy",
-    "updatedAt": "2026-11-24T00:50:00.000Z",
+    "updatedAt": "2026-11-23T15:42:15.705Z",
     "brandTag": "МСМК // ОНЛАЙН-НАСТАВНИК",
     "location": "ОНЛАЙН // СНГ & МИР",
     "name": "ВЛАДИСЛАВ БЕРНЕЦКИЙ",
