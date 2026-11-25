@@ -329,6 +329,7 @@
   <script>
     (function() {
       var slug = 'new';
+      var todayDate = new Date().toLocaleDateString('en-CA');
       // 1. Track Unique Visit per Session
       try {
         if (!sessionStorage.getItem('fitprod_visit_counted_' + slug)) {
@@ -336,7 +337,7 @@
           fetch('/api/analytics', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ slug: slug, type: 'visit' })
+            body: JSON.stringify({ slug: slug, type: 'visit', date: todayDate })
           }).catch(function() {});
         }
       } catch (e) {}
@@ -354,7 +355,7 @@
             fetch('/api/analytics', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ slug: slug, type: 'click' })
+              body: JSON.stringify({ slug: slug, type: 'click', date: todayDate })
             }).catch(function() {});
           }
         } catch (e) {}
