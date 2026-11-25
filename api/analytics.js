@@ -8,11 +8,18 @@ export default async function handler(req, res) {
     return res.status(200).end();
   }
 
-  const slug = (req.query?.slug || req.body?.slug || 'new').toLowerCase().trim();
-  const type = (req.query?.type || req.body?.type || 'visit').toLowerCase().trim(); // 'visit' or 'click'
+  let body = req.body;
+  if (typeof body === 'string') {
+    try { body = JSON.parse(body); } catch(e) {}
+  }
+
+  const slug = (req.query?.slug || body?.slug || 'new').toLowerCase().trim();
+  const type = (req.query?.type || body?.type || 'visit').toLowerCase().trim(); // 'visit' or 'click'
+  const action = (req.query?.action || body?.action || '').toLowerCase().trim();
   const key = `fitprod_v1_${slug}_${type}s`;
 
-  if (req.method === 'POST') {
+  // POST or GET with ?action=hit
+  if (req.method === 'POST' || action === 'hit') {
     try {
       const response = await fetch(`https://countapi.mileshilliard.com/api/v1/hit/${key}`);
       const data = await response.json();
