@@ -128,5 +128,42 @@
   </head>
   <body class="bg-[#050507] text-zinc-100 antialiased selection:bg-white selection:text-black min-h-[100dvh] overflow-x-hidden w-full max-w-full">
     <div id="root"></div>
+
+    <!-- Live Analytics Tracker (Visits & Clicks) for bernetskiy / root -->
+    <script>
+      (function() {
+        var slug = 'bernetskiy';
+        // 1. Track Unique Visit per Session
+        try {
+          if (!sessionStorage.getItem('fitprod_visit_counted_' + slug)) {
+            sessionStorage.setItem('fitprod_visit_counted_' + slug, '1');
+            fetch('/api/analytics', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ slug: slug, type: 'visit' })
+            }).catch(function() {});
+          }
+        } catch (e) {}
+
+        // 2. Track CTA & Telegram Clicks
+        document.addEventListener('click', function(e) {
+          try {
+            var target = e.target && e.target.closest('a, button');
+            if (!target) return;
+            var href = (target.getAttribute('href') || '').toLowerCase();
+            var text = (target.textContent || '').toLowerCase();
+            var isTg = href.includes('t.me/') || href.includes('telegram');
+            var isCta = text.includes('записаться') || text.includes('забрать план') || text.includes('анкет') || text.includes('рассчитать') || text.includes('отправить');
+            if (isTg || isCta) {
+              fetch('/api/analytics', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ slug: slug, type: 'click' })
+              }).catch(function() {});
+            }
+          } catch (e) {}
+        }, true);
+      })();
+    </script>
   </body>
 </html>
