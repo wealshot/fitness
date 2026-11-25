@@ -1,120 +1,132 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru" class="dark overflow-x-hidden w-full max-w-full">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
-    <title>PULSE • Персональный фитнес-наставник & онлайн-ведение</title>
-    <meta name="description" content="Интерактивная диагностика формы, калькулятор нормы КБЖУ и персональный подбор программы тренировок." />
 
-    <!-- Telegram WebApp Script -->
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>PULSE РІР‚Сћ Р СџР ВµРЎР‚РЎРѓР С•Р Р…Р В°Р В»РЎРЉР Р…РЎвЂ№Р в„–
+    РЎвЂћР С‘РЎвЂљР Р…Р ВµРЎРѓ-Р Р…Р В°РЎРѓРЎвЂљР В°Р Р†Р Р…Р С‘Р С” &
+    Р С•Р Р…Р В»Р В°Р в„–Р Р…-Р Р†Р ВµР Т‘Р ВµР Р…Р С‘Р Вµ</title>
+  <meta name="description"
+    content="Р ВР Р…РЎвЂљР ВµРЎР‚Р В°Р С”РЎвЂљР С‘Р Р†Р Р…Р В°РЎРЏ Р Т‘Р С‘Р В°Р С–Р Р…Р С•РЎРѓРЎвЂљР С‘Р С”Р В° РЎвЂћР С•РЎР‚Р СРЎвЂ№, Р С”Р В°Р В»РЎРЉР С”РЎС“Р В»РЎРЏРЎвЂљР С•РЎР‚ Р Р…Р С•РЎР‚Р СРЎвЂ№ Р С™Р вЂР вЂ“Р Р€ Р С‘ Р С—Р ВµРЎР‚РЎРѓР С•Р Р…Р В°Р В»РЎРЉР Р…РЎвЂ№Р в„– Р С—Р С•Р Т‘Р В±Р С•РЎР‚ Р С—РЎР‚Р С•Р С–РЎР‚Р В°Р СР СРЎвЂ№ РЎвЂљРЎР‚Р ВµР Р…Р С‘РЎР‚Р С•Р Р†Р С•Р С”." />
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="image" href="/images/vladislav8.JPG" />
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <!-- Telegram WebApp Script -->
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
-    <!-- Client Database (Multi-Tenant) -->
-        <!-- Route guard: only allow Vladislav, Radionov, Felix, or admin; redirect everything else -->
-    <script>
-      (function() {
-        var p = window.location.pathname.replace(/^\/+|\/+$/g, '').toLowerCase().split('/')[0];
-        var allowed = ['', 'bernetskiy', 'radionov', 'rodionov', 'felix', 'admin', 'new'];
-        if (p && !allowed.includes(p)) {
-          console.warn('[PULSE] Route not allowed or deleted:', p);
-          window.location.replace('/');
-        }
-      })();
-    </script>
-    <script src="/clients.js?v=20261124_restore_orange"></script>
+  <!-- Client Database (Multi-Tenant) -->
+  <!-- Route guard: only allow Vladislav, Radionov, Felix, or admin; redirect everything else -->
+  <script>
+    (function () {
+      var p = window.location.pathname.replace(/^\/+|\/+$/g, '').toLowerCase().split('/')[0];
+      var allowed = ['', 'bernetskiy', 'radionov', 'rodionov', 'felix', 'admin', 'new'];
+      if (p && !allowed.includes(p)) {
+        console.warn('[PULSE] Route not allowed or deleted:', p);
+        window.location.replace('/');
+      }
+    })();
+  </script>
+  <script src="/clients.js?v=20261124_restore_orange"></script>
   <script src="/clients_defaults.js?v=20261124_restore_orange"></script>
 
-    <!-- React SPA Bundle -->
-      <!-- FAQ Section Accordion Script -->
+  <!-- React SPA Bundle -->
+  <!-- FAQ Section Accordion Script -->
   <script src="/assets/faq.js?v=20261122_0515"></script>
   <script type="module" crossorigin src="/assets/index-v2.js?v=20261124_restore_orange"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-DIMZLtAQ.css?v=20261122_0235">
+  <link rel="stylesheet" crossorigin href="/assets/index-DIMZLtAQ.css?v=20261122_0235">
 
-    <!-- Prefetch all 10 Transformation Cases and Reviews -->
-    <link rel="prefetch" as="image" href="/cases/vlad_case1_evgeniy_before.jpg" />
-    <link rel="prefetch" as="image" href="/cases/vlad_case1_evgeniy_after.jpg" />
-    <link rel="prefetch" as="image" href="/cases/vlad_case2_artem_before.jpg" />
-    <link rel="prefetch" as="image" href="/cases/vlad_case2_artem_after.jpg" />
-    <link rel="prefetch" as="image" href="/cases/vlad_case3_nn_before.jpg" />
-    <link rel="prefetch" as="image" href="/cases/vlad_case3_nn_after.jpg" />
-    <link rel="prefetch" as="image" href="/cases/vlad_case4_daria_before.jpg" />
-    <link rel="prefetch" as="image" href="/cases/vlad_case4_daria_after.jpg" />
-    <link rel="prefetch" as="image" href="/cases/vlad_case5_alina_before.jpg" />
-    <link rel="prefetch" as="image" href="/cases/vlad_case5_alina_after.jpg" />
-    <link rel="prefetch" as="image" href="/cases/vlad_case6_oleg_before.jpg" />
-    <link rel="prefetch" as="image" href="/cases/vlad_case6_oleg_after.jpg" />
-    <link rel="prefetch" as="image" href="/cases/vlad_case7_aleksey_before.jpg" />
-    <link rel="prefetch" as="image" href="/cases/vlad_case7_aleksey_after.jpg" />
-    <link rel="prefetch" as="image" href="/cases/vlad_case8_bb_before.jpg" />
-    <link rel="prefetch" as="image" href="/cases/vlad_case8_bb_after.jpg" />
-    <link rel="prefetch" as="image" href="/cases/vlad_case9_noname_before.jpg" />
-    <link rel="prefetch" as="image" href="/cases/vlad_case9_noname_after.jpg" />
-    <link rel="prefetch" as="image" href="/cases/vlad_case10_vladislav_before.jpg" />
-    <link rel="prefetch" as="image" href="/cases/vlad_case10_vladislav_after.jpg" />
-    <link rel="prefetch" as="image" href="/cases/vladislav_danya.jpg" />
-    <link rel="prefetch" as="image" href="/cases/vladislav_denis.jpg" />
-    <link rel="prefetch" as="image" href="/cases/vladislav_ignat.jpg" />
-    <link rel="prefetch" as="image" href="/cases/vladislav_sandra.jpg" />
-    <link rel="prefetch" as="image" href="/cases/vladislav_kostya.jpg" />
-    <link rel="prefetch" as="image" href="/cases/vladislav_nikita.jpg" />
-    <link rel="prefetch" as="image" href="/cases/vladislav_danil_squash.jpg" />
+  <!-- React SPA Bundle -->
+  <script type="module" crossorigin src="/assets/index-DYlgibrW.js?v=20261121_2350"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-DIMZLtAQ.css">
 
-    <!-- Background Concurrent Image Preloader -->
-    <script>
-      (function() {
-        var preloads = [
-          '/cases/vlad_case1_evgeniy_before.jpg', '/cases/vlad_case1_evgeniy_after.jpg',
-          '/cases/vlad_case2_artem_before.jpg', '/cases/vlad_case2_artem_after.jpg',
-          '/cases/vlad_case3_nn_before.jpg', '/cases/vlad_case3_nn_after.jpg',
-          '/cases/vlad_case4_daria_before.jpg', '/cases/vlad_case4_daria_after.jpg',
-          '/cases/vlad_case5_alina_before.jpg', '/cases/vlad_case5_alina_after.jpg',
-          '/cases/vlad_case6_oleg_before.jpg', '/cases/vlad_case6_oleg_after.jpg',
-          '/cases/vlad_case7_aleksey_before.jpg', '/cases/vlad_case7_aleksey_after.jpg',
-          '/cases/vlad_case8_bb_before.jpg', '/cases/vlad_case8_bb_after.jpg',
-          '/cases/vlad_case9_noname_before.jpg', '/cases/vlad_case9_noname_after.jpg',
-          '/cases/vlad_case10_vladislav_before.jpg', '/cases/vlad_case10_vladislav_after.jpg',
-          '/cases/vladislav_danya.jpg', '/cases/vladislav_denis.jpg',
-          '/cases/vladislav_ignat.jpg',
-          '/cases/vladislav_sandra.jpg', '/cases/vladislav_kostya.jpg',
-          '/cases/vladislav_nikita.jpg', '/cases/vladislav_danil_squash.jpg'
-        ];
-        for (var i = 0; i < preloads.length; i++) {
-          var img = new Image();
-          img.src = preloads[i];
-        }
-      })();
-    </script>
-    <style>
-      .case-tabs-grid {
-        display: grid !important;
-        grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
-        gap: 8px !important;
-        width: 100% !important;
+  <!-- Prefetch all 10 Transformation Cases and Reviews -->
+  <link rel="prefetch" as="image" href="/cases/vlad_case1_evgeniy_before.jpg" />
+  <link rel="prefetch" as="image" href="/cases/vlad_case1_evgeniy_after.jpg" />
+  <link rel="prefetch" as="image" href="/cases/vlad_case2_artem_before.jpg" />
+  <link rel="prefetch" as="image" href="/cases/vlad_case2_artem_after.jpg" />
+  <link rel="prefetch" as="image" href="/cases/vlad_case3_nn_before.jpg" />
+  <link rel="prefetch" as="image" href="/cases/vlad_case3_nn_after.jpg" />
+  <link rel="prefetch" as="image" href="/cases/vlad_case4_daria_before.jpg" />
+  <link rel="prefetch" as="image" href="/cases/vlad_case4_daria_after.jpg" />
+  <link rel="prefetch" as="image" href="/cases/vlad_case5_alina_before.jpg" />
+  <link rel="prefetch" as="image" href="/cases/vlad_case5_alina_after.jpg" />
+  <link rel="prefetch" as="image" href="/cases/vlad_case6_oleg_before.jpg" />
+  <link rel="prefetch" as="image" href="/cases/vlad_case6_oleg_after.jpg" />
+  <link rel="prefetch" as="image" href="/cases/vlad_case7_aleksey_before.jpg" />
+  <link rel="prefetch" as="image" href="/cases/vlad_case7_aleksey_after.jpg" />
+  <link rel="prefetch" as="image" href="/cases/vlad_case8_bb_before.jpg" />
+  <link rel="prefetch" as="image" href="/cases/vlad_case8_bb_after.jpg" />
+  <link rel="prefetch" as="image" href="/cases/vlad_case9_noname_before.jpg" />
+  <link rel="prefetch" as="image" href="/cases/vlad_case9_noname_after.jpg" />
+  <link rel="prefetch" as="image" href="/cases/vlad_case10_vladislav_before.jpg" />
+  <link rel="prefetch" as="image" href="/cases/vlad_case10_vladislav_after.jpg" />
+  <link rel="prefetch" as="image" href="/cases/vladislav_danya.jpg" />
+  <link rel="prefetch" as="image" href="/cases/vladislav_denis.jpg" />
+  <link rel="prefetch" as="image" href="/cases/vladislav_ignat.jpg" />
+  <link rel="prefetch" as="image" href="/cases/vladislav_sandra.jpg" />
+  <link rel="prefetch" as="image" href="/cases/vladislav_kostya.jpg" />
+  <link rel="prefetch" as="image" href="/cases/vladislav_nikita.jpg" />
+  <link rel="prefetch" as="image" href="/cases/vladislav_danil_squash.jpg" />
+
+  <!-- Background Concurrent Image Preloader for instant 0ms case switching -->
+  <script>
+    (function () {
+      var preloads = [
+        '/cases/vlad_case1_evgeniy_before.jpg', '/cases/vlad_case1_evgeniy_after.jpg',
+        '/cases/vlad_case2_artem_before.jpg', '/cases/vlad_case2_artem_after.jpg',
+        '/cases/vlad_case3_nn_before.jpg', '/cases/vlad_case3_nn_after.jpg',
+        '/cases/vlad_case4_daria_before.jpg', '/cases/vlad_case4_daria_after.jpg',
+        '/cases/vlad_case5_alina_before.jpg', '/cases/vlad_case5_alina_after.jpg',
+        '/cases/vlad_case6_oleg_before.jpg', '/cases/vlad_case6_oleg_after.jpg',
+        '/cases/vlad_case7_aleksey_before.jpg', '/cases/vlad_case7_aleksey_after.jpg',
+        '/cases/vlad_case8_bb_before.jpg', '/cases/vlad_case8_bb_after.jpg',
+        '/cases/vlad_case9_noname_before.jpg', '/cases/vlad_case9_noname_after.jpg',
+        '/cases/vlad_case10_vladislav_before.jpg', '/cases/vlad_case10_vladislav_after.jpg',
+        '/cases/vladislav_danya.jpg', '/cases/vladislav_denis.jpg',
+        '/cases/vladislav_ignat.jpg',
+        '/cases/vladislav_sandra.jpg', '/cases/vladislav_kostya.jpg',
+        '/cases/vladislav_nikita.jpg', '/cases/vladislav_danil_squash.jpg'
+      ];
+      for (var i = 0; i < preloads.length; i++) {
+        var img = new Image();
+        img.src = preloads[i];
       }
-      @media (min-width: 1024px) {
-        .case-tabs-grid {
-          grid-template-columns: repeat(10, minmax(0, 1fr)) !important;
-        }
+    })();
+  </script>
+  <style>
+    .case-tabs-grid {
+      grid-template-columns: repeat(10, minmax(0, 1fr)) !important;
+    }
+    }
+
+    .case-slider-box {
+      height: 420px;
+    }
+
+    @media (min-width: 1024px) {
+      .case-slider-box {
+        height: 620px !important;
+        max-height: 82vh;
       }
+
       .case-tabs-mobile-grid {
         display: grid !important;
         grid-template-columns: repeat(10, minmax(0, 1fr)) !important;
         gap: 3px !important;
         width: 100% !important;
       }
-      .case-slider-box { height: 420px; }
-      @media (min-width: 1024px) {
-        .case-slider-box { height: 620px !important; max-height: 82vh; }
+
+      .case-slider-box {
+        height: 420px;
       }
+
+      @media (min-width: 1024px) {
+        .case-slider-box {
+          height: 620px !important;
+          max-height: 82vh;
+        }
+      }
+
       .slider-hint-pill {
         position: absolute !important;
         bottom: 14px !important;
@@ -124,10 +136,8 @@
         z-index: 20 !important;
         pointer-events: none !important;
       }
-    </style>
-  </head>
-  <body class="bg-[#050507] text-zinc-100 antialiased selection:bg-white selection:text-black min-h-[100dvh] overflow-x-hidden w-full max-w-full">
-    <div id="root"></div>
+  </style>
+</head>
 
     <!-- Live Analytics Tracker (Visits & Clicks) for bernetskiy / root -->
     <script>
@@ -136,15 +146,24 @@
         var todayDate = new Date().toLocaleDateString('en-CA');
         // 1. Track Unique Visit per Session
         try {
-          if (!sessionStorage.getItem('fitprod_visit_counted_' + slug)) {
-            sessionStorage.setItem('fitprod_visit_counted_' + slug, '1');
+          var target = e.target && e.target.closest('a, button');
+          if (!target) return;
+          var href = (target.getAttribute('href') || '').toLowerCase();
+          var text = (target.textContent || '').toLowerCase();
+          var isTg = href.includes('t.me/') || href.includes('telegram');
+          var isCta = text.includes('записаться') || text.includes('забрать план') || text.includes('анкет') || text.includes('рассчитать') || text.includes('отправить');
+          if (isTg || isCta) {
             fetch('/api/analytics', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({ slug: slug, type: 'visit', date: todayDate })
             }).catch(function() {});
           }
-        } catch (e) {}
+        } catch (e) { }
+      }, true);
+    })();
+  </script>
+</body>
 
         // 2. Track CTA & Telegram Clicks
         document.addEventListener('click', function(e) {
