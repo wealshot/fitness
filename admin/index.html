@@ -104,6 +104,65 @@
     <!-- CONTENT CONTAINER -->
     <main class="max-w-4xl mx-auto px-4 sm:px-6 pt-6 sm:pt-8 flex flex-col gap-8">
 
+      <!-- SECTION: LIVE VISITOR ANALYTICS -->
+      <section class="glass-card rounded-2xl p-5 sm:p-7 relative overflow-hidden border border-white/10 shadow-2xl" id="analyticsSection">
+        <div class="flex items-center justify-between gap-2 mb-5 border-b border-white/10 pb-4">
+          <div class="flex items-center gap-2.5 min-w-0">
+            <span class="text-2xl shrink-0">📊</span>
+            <div>
+              <h3 class="font-display text-sm xs:text-base sm:text-xl uppercase tracking-wide text-white whitespace-nowrap">
+                ПОСЕЩАЕМОСТЬ & КОНВЕРСИЯ САЙТА
+              </h3>
+              <p class="text-[11px] text-zinc-400 font-mono">Статистика просмотров сайта и кликов по заявкам в реальном времени</p>
+            </div>
+          </div>
+          <button type="button" onclick="refreshAnalytics()" id="refreshAnalyticsBtn" class="px-3 py-1.5 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-xs font-tech text-zinc-300 hover:text-white transition-all flex items-center gap-1.5 cursor-pointer shrink-0 active:scale-95">
+            <span id="refreshIcon" class="inline-block transition-transform duration-500">🔄</span>
+            <span class="hidden sm:inline">Обновить</span>
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
+          <!-- CARD 1: VISITS -->
+          <div class="p-4 rounded-xl border border-blue-500/20 bg-blue-500/[0.04] backdrop-blur-md relative overflow-hidden">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-mono uppercase tracking-wider text-blue-300 font-bold">Посетителей сайта</span>
+              <span class="text-lg">👁️</span>
+            </div>
+            <div class="font-display text-3xl sm:text-4xl text-white tracking-tight" id="statVisits">—</div>
+            <div class="text-[11px] text-zinc-400 font-mono mt-1">Уникальные визиты профиля</div>
+          </div>
+
+          <!-- CARD 2: CLICKS -->
+          <div class="p-4 rounded-xl border border-emerald-500/20 bg-emerald-500/[0.04] backdrop-blur-md relative overflow-hidden">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-mono uppercase tracking-wider text-emerald-300 font-bold">Клики по заявке</span>
+              <span class="text-lg">🎯</span>
+            </div>
+            <div class="font-display text-3xl sm:text-4xl text-emerald-400 tracking-tight" id="statClicks">—</div>
+            <div class="text-[11px] text-zinc-400 font-mono mt-1">Переходов в Telegram / CTA</div>
+          </div>
+
+          <!-- CARD 3: CONVERSION -->
+          <div class="p-4 rounded-xl border border-orange-500/20 bg-orange-500/[0.04] backdrop-blur-md relative overflow-hidden">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-mono uppercase tracking-wider text-orange-300 font-bold">Конверсия в интерес</span>
+              <span class="text-lg">⚡</span>
+            </div>
+            <div class="font-display text-3xl sm:text-4xl text-orange-400 tracking-tight" id="statConversion">0.0%</div>
+            <div class="text-[11px] text-zinc-400 font-mono mt-1">Клики / Просмотры</div>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between text-[11px] font-mono text-zinc-400 pt-3 border-t border-white/5">
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span>Учет посещаемости: <strong class="text-emerald-400" id="statSlugLabel">new</strong></span>
+          </div>
+          <span id="statLastUpdated" class="text-zinc-500">Загрузка данных...</span>
+        </div>
+      </section>
+
       <!-- SECTION 0: HERO PHOTO & MAIN HEADLINE -->
       <section class="glass-card rounded-2xl p-5 sm:p-7 relative overflow-hidden">
         <div class="flex items-center justify-between gap-2 mb-5 border-b border-white/10 pb-4">
@@ -745,6 +804,45 @@
       if (savedToken) {
         document.getElementById('githubTokenInput').value = savedToken;
       }
+      fetchAnalytics();
+    }
+
+    async function fetchAnalytics() {
+      const slug = currentSlug || 'new';
+      const visitsEl = document.getElementById('statVisits');
+      const clicksEl = document.getElementById('statClicks');
+      const convEl = document.getElementById('statConversion');
+      const slugLabel = document.getElementById('statSlugLabel');
+      const lastUpdated = document.getElementById('statLastUpdated');
+
+      if (slugLabel) slugLabel.textContent = slug;
+
+      try {
+        const res = await fetch(`/api/analytics?slug=${encodeURIComponent(slug)}`);
+        if (!res.ok) throw new Error('Status ' + res.status);
+        const data = await res.json();
+
+        if (visitsEl) visitsEl.textContent = (data.visits || 0).toLocaleString();
+        if (clicksEl) clicksEl.textContent = (data.clicks || 0).toLocaleString();
+        if (convEl) convEl.textContent = data.conversion || '0.0%';
+        if (lastUpdated) lastUpdated.textContent = 'Обновлено в ' + new Date().toLocaleTimeString();
+      } catch (e) {
+        console.warn('[ANALYTICS] Fetch error:', e);
+        if (visitsEl) visitsEl.textContent = '0';
+        if (clicksEl) clicksEl.textContent = '0';
+        if (convEl) convEl.textContent = '0.0%';
+        if (lastUpdated) lastUpdated.textContent = 'Счетчик запущен';
+      }
+    }
+
+    function refreshAnalytics() {
+      const icon = document.getElementById('refreshIcon');
+      if (icon) icon.classList.add('animate-spin');
+      fetchAnalytics().finally(() => {
+        setTimeout(() => {
+          if (icon) icon.classList.remove('animate-spin');
+        }, 600);
+      });
     }
 
     let activeTierIndex = 0;
