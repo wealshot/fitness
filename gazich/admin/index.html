@@ -1,0 +1,1643 @@
+<!DOCTYPE html>
+<html lang="ru" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>PULSE • Личный кабинет наставника</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+      <script>
+      (function() {
+        var p = window.location.pathname.replace(/^\/+|\/+$/g, '').toLowerCase().split('/')[0];
+        var allowed = ['', 'admin', 'bernetskiy', 'radionov', 'rodionov', 'felix', 'new', 'gazich'];
+        if (p && !allowed.includes(p)) {
+          alert('Профиль ' + p + ' был удален.');
+          window.location.replace('/admin');
+        }
+      })();
+    </script>
+    <script src="/clients.js?v=20261122_0755"></script>
+  <script src="/clients_defaults.js?v=20261122_0755"></script>
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #050507; color: #f4f4f5; }
+    .font-display { font-family: 'Anton', sans-serif; }
+    .font-tech { font-family: 'Space Grotesk', sans-serif; }
+    input, textarea, select {
+      background-color: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #fff;
+      transition: all 0.2s ease;
+    }
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: var(--accent, #FF6B00);
+      box-shadow: 0 0 15px var(--accent-dim, rgba(255, 107, 0, 0.25));
+      background-color: rgba(255, 255, 255, 0.07);
+    }
+    .glass-card {
+      background-color: #090A0F;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col pb-28">
+
+  <!-- AUTH MODAL -->
+  <div id="authOverlay" class="fixed inset-0 z-50 bg-[#050507]/95 backdrop-blur-xl flex items-center justify-center p-4">
+    <div class="glass-card max-w-md w-full rounded-2xl p-6 sm:p-8 shadow-2xl relative border border-white/10 text-center">
+      <div class="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mx-auto mb-4 text-2xl shadow-inner">
+        🔒
+      </div>
+      <h2 class="font-display text-2xl sm:text-3xl uppercase tracking-wider text-white">ЛИЧНЫЙ КАБИНЕТ НАСТАВНИКА</h2>
+      <p id="authSubtitle" class="text-zinc-400 text-xs sm:text-sm mt-1 mb-6">Авторизация в системе управления профилем и тарифами</p>
+      
+      <form id="authForm" onsubmit="handleAuth(event)">
+        <div class="mb-4 text-left">
+          <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1.5">Ключ доступа / Пароль наставника</label>
+          <input type="password" id="adminPasswordInput" placeholder="Введите пароль..." class="w-full px-4 py-3 rounded-xl text-center text-lg font-mono tracking-widest" required autofocus />
+          <p id="authError" class="text-red-400 text-xs mt-1.5 hidden text-center">Неверный пароль. Попробуйте еще раз.</p>
+        </div>
+        <button type="submit" id="authSubmitBtn" class="w-full py-3.5 rounded-xl font-bold uppercase tracking-wider text-black bg-white hover:bg-zinc-200 transition-all cursor-pointer font-tech shadow-lg active:scale-95">
+          Войти в личный кабинет →
+        </button>
+      </form>
+      <div class="mt-6 text-[11px] text-zinc-500 font-mono">PULSE • COACH PORTAL // SECURE ACCESS</div>
+    </div>
+  </div>
+
+  <!-- MAIN APP -->
+  <div id="adminApp" class="hidden">
+    <!-- TOP HEADER -->
+    <header class="border-b border-white/10 bg-[#050507]/95 backdrop-blur-md sticky top-0 z-30 px-3 sm:px-8 py-2.5 sm:py-3.5 flex items-center justify-between gap-2">
+      <div class="flex items-center gap-2 sm:gap-3 min-w-0">
+        <div class="w-8 h-8 rounded-lg bg-orange-500/20 border border-orange-500/40 flex items-center justify-center text-sm font-bold text-orange-400 font-tech shrink-0">
+          P
+        </div>
+        <div class="min-w-0">
+          <div class="font-display text-sm sm:text-base md:text-lg tracking-wider text-white leading-tight truncate" id="headerCoachName">КАБИНЕТ УПРАВЛЕНИЯ</div>
+          <div class="text-[10px] font-mono text-zinc-400 truncate flex items-center gap-1.5">
+            <span class="text-orange-400 font-semibold hidden sm:inline">КАБИНЕТ</span>
+            <span class="text-zinc-600 hidden sm:inline">•</span>
+            <span id="headerSlug" class="truncate">fitprod.vercel.app/bernetskiy</span>
+          </div>
+        </div>
+      </div>
+      <div class="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
+        <button type="button" onclick="clearLocalOverrides()" class="h-8 px-2 sm:px-3 rounded-lg border border-red-500/30 bg-red-500/10 hover:bg-red-500/20 text-xs font-tech text-red-300 transition-all flex items-center justify-center gap-1 cursor-pointer" title="Сбросить все правки к исходному сайту">
+          <span class="text-sm">↺</span>
+          <span class="hidden md:inline text-[11px]">Сбросить</span>
+        </button>
+        <a id="viewLiveSiteBtn" href="/bernetskiy" target="_blank" class="h-8 px-2 sm:px-3.5 rounded-lg border border-emerald-500/30 bg-emerald-500/10 hover:bg-emerald-500/20 text-xs font-tech text-emerald-400 transition-all flex items-center gap-1 font-bold whitespace-nowrap">
+          <span>Сайт</span> <span class="hidden sm:inline">тренера</span> ↗
+        </a>
+        <button onclick="logout()" class="h-8 px-2 sm:px-3 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-xs font-tech text-zinc-400 hover:text-white transition-all cursor-pointer whitespace-nowrap">
+          Выйти
+        </button>
+      </div>
+    </header>
+
+    <!-- CONTENT CONTAINER -->
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 pt-6 sm:pt-8 flex flex-col gap-8">
+
+      <!-- SECTION: LIVE VISITOR ANALYTICS -->
+      <section class="glass-card rounded-2xl p-3 sm:p-5 relative overflow-hidden border border-white/10 shadow-2xl" id="analyticsSection">
+        <div class="flex items-center justify-between gap-2 mb-2.5 sm:mb-3 border-b border-white/10 pb-2 sm:pb-3">
+          <div class="flex items-center gap-1.5 sm:gap-2 min-w-0">
+            <span class="text-base sm:text-xl shrink-0">📊</span>
+            <div class="min-w-0">
+              <h3 class="font-display text-xs sm:text-lg uppercase tracking-wide text-white leading-tight truncate">
+                ПОСЕЩАЕМОСТЬ & КОНВЕРСИЯ
+              </h3>
+              <p class="text-[10px] text-zinc-400 font-mono hidden sm:block">Статистика просмотров сайта и кликов в реальном времени</p>
+            </div>
+          </div>
+          
+          <button type="button" onclick="refreshAnalytics()" id="refreshAnalyticsBtn" class="px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-[11px] sm:text-xs font-tech text-zinc-300 hover:text-white transition-all flex items-center gap-1 cursor-pointer shrink-0 active:scale-95" title="Обновить">
+            <span id="refreshIcon" class="inline-block transition-transform duration-500 text-xs sm:text-sm">🔄</span>
+            <span class="text-[10px] sm:text-xs font-semibold">Обновить</span>
+          </button>
+        </div>
+
+        <div class="grid grid-cols-3 gap-1.5 sm:gap-4 mb-2 sm:mb-3">
+          <!-- CARD 1: VISITS -->
+          <div class="p-2 sm:p-4 rounded-xl border border-blue-500/20 bg-blue-500/[0.04] backdrop-blur-md relative overflow-hidden text-center sm:text-left flex flex-col justify-between">
+            <div class="flex items-center justify-center sm:justify-between mb-0.5 sm:mb-1">
+              <span class="text-[9px] sm:text-xs font-mono uppercase tracking-wider text-blue-300 font-bold truncate">Визиты</span>
+              <span class="text-sm hidden sm:inline">👁️</span>
+            </div>
+            <div class="font-display text-lg sm:text-3xl text-white tracking-tight leading-tight" id="statVisits">—</div>
+            <div class="text-[8px] sm:text-[10px] text-zinc-400 font-mono mt-0.5 truncate" id="statVisitsSub">всего: —</div>
+          </div>
+
+          <!-- CARD 2: CLICKS -->
+          <div class="p-2 sm:p-4 rounded-xl border border-emerald-500/20 bg-emerald-500/[0.04] backdrop-blur-md relative overflow-hidden text-center sm:text-left flex flex-col justify-between">
+            <div class="flex items-center justify-center sm:justify-between mb-0.5 sm:mb-1">
+              <span class="text-[9px] sm:text-xs font-mono uppercase tracking-wider text-emerald-300 font-bold truncate">Клики</span>
+              <span class="text-sm hidden sm:inline">🎯</span>
+            </div>
+            <div class="font-display text-lg sm:text-3xl text-emerald-400 tracking-tight leading-tight" id="statClicks">—</div>
+            <div class="text-[8px] sm:text-[10px] text-zinc-400 font-mono mt-0.5 truncate" id="statClicksSub">всего: —</div>
+          </div>
+
+          <!-- CARD 3: CONVERSION -->
+          <div class="p-2 sm:p-4 rounded-xl border border-orange-500/20 bg-orange-500/[0.04] backdrop-blur-md relative overflow-hidden text-center sm:text-left flex flex-col justify-between">
+            <div class="flex items-center justify-center sm:justify-between mb-0.5 sm:mb-1">
+              <span class="text-[9px] sm:text-xs font-mono uppercase tracking-wider text-orange-300 font-bold truncate">Конверсия</span>
+              <span class="text-sm hidden sm:inline">⚡</span>
+            </div>
+            <div class="font-display text-lg sm:text-3xl text-orange-400 tracking-tight leading-tight" id="statConversion">0.0%</div>
+            <div class="text-[8px] sm:text-[10px] text-zinc-400 font-mono mt-0.5 truncate" id="statConversionSub">всего: 0.0%</div>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between text-[9px] sm:text-[11px] font-mono text-zinc-400 pt-1.5 sm:pt-2 border-t border-white/5">
+          <div class="flex items-center gap-1.5 min-w-0 truncate">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shrink-0"></span>
+            <span class="truncate">Счетчик: <strong class="text-emerald-400" id="statSlugLabel">new</strong></span>
+          </div>
+          <span id="statLastUpdated" class="text-zinc-500 shrink-0 text-right">Загрузка...</span>
+        </div>
+      </section>
+
+      <!-- SECTION 0: HERO PHOTO & MAIN HEADLINE -->
+      <section class="glass-card rounded-2xl p-5 sm:p-7 relative overflow-hidden">
+        <div class="flex items-center justify-between gap-2 mb-5 border-b border-white/10 pb-4">
+          <div class="flex items-center gap-2 min-w-0">
+            <span class="text-xl shrink-0">🔥</span>
+            <h3 class="font-display text-sm xs:text-base sm:text-xl uppercase tracking-wide text-white whitespace-nowrap">ГЛАВНЫЙ ЭКРАН (HERO)</h3>
+          </div>
+          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/5 text-zinc-400 whitespace-nowrap shrink-0">ПЕРВЫЙ ЭКРАН</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-5 items-center">
+          <div>
+            <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-2">Главное фото тренера</label>
+            <div class="relative rounded-xl overflow-hidden border border-white/15 bg-black/40 aspect-[3/4] flex items-center justify-center group">
+              <img id="coachHeroPreview" src="" class="w-full h-full object-cover object-top" />
+              <label class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center cursor-pointer text-xs font-tech text-white">
+                <span class="text-2xl mb-1">📁</span>
+                <span>Заменить фото</span>
+                <input type="file" accept="image/*" class="hidden" onchange="handleImageUpload(event, 'coachHeroPreview', 'newHeroImage')" />
+              </label>
+            </div>
+          </div>
+          <div class="sm:col-span-2 flex flex-col gap-4">
+            <div>
+              <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1">Главный крупный заголовок</label>
+              <input type="text" id="coachHeroTitle" placeholder="ТВОЕ ТЕЛО. ТВОЙ РЕЗУЛЬТАТ." class="w-full px-3.5 py-2.5 rounded-xl text-sm font-bold" />
+              <p class="text-[11px] text-zinc-500 mt-1">Отображается огромными буквами на главном экране компьютера.</p>
+            </div>
+            <div>
+              <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1">Описание на главном экране (абзац под заголовком)</label>
+              <textarea id="coachHeroDescription" rows="3" placeholder="Научный подход к гипертрофии..." class="w-full px-3.5 py-2.5 rounded-xl text-sm resize-none"></textarea>
+            </div>
+            <div>
+              <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1">Бейдж над заголовком</label>
+              <input type="text" id="coachSpec" placeholder="СТРОИМ ТЕЛО ИЗ ЖЕЛЕЗА И ВИТАМИНОВ ⚡" class="w-full px-3.5 py-2 rounded-xl text-xs font-mono" />
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
+              <div>
+                <label class="block text-[11px] font-mono text-zinc-400 mb-1">Главная кнопка Hero (Калькулятор)</label>
+                <input type="text" id="coachPrimaryBtnText" placeholder="Рассчитать форму и калории" class="w-full px-3 py-2 rounded-lg text-xs" />
+              </div>
+              <div>
+                <label class="block text-[11px] font-mono text-zinc-400 mb-1">Вторая кнопка Hero (Telegram)</label>
+                <input type="text" id="coachSecondaryBtnText" placeholder="Написать в Telegram" class="w-full px-3 py-2 rounded-lg text-xs" />
+              </div>
+              <div>
+                <label class="block text-[11px] font-mono text-zinc-400 mb-1">Кнопка в шапке (CTA)</label>
+                <input type="text" id="coachCtaBtnText" placeholder="Забрать план [2342 ккал]" class="w-full px-3 py-2 rounded-lg text-xs" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 1: PROFILE & CONTACTS -->
+      <section class="glass-card rounded-2xl p-5 sm:p-7 relative overflow-hidden">
+        <div class="flex items-center justify-between gap-2 mb-5 border-b border-white/10 pb-4">
+          <div class="flex items-center gap-2 min-w-0">
+            <span class="text-xl shrink-0">👤</span>
+            <h3 class="font-display text-sm xs:text-base sm:text-xl uppercase tracking-wide text-white whitespace-nowrap">ИМЯ & БЕЙДЖИ</h3>
+          </div>
+          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/5 text-zinc-400 whitespace-nowrap shrink-0">ПРОФИЛЬ</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+          <div>
+            <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1">Имя</label>
+            <input type="text" id="coachFirstName" class="w-full px-3.5 py-2.5 rounded-xl text-sm" />
+          </div>
+          <div>
+            <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1">Фамилия</label>
+            <input type="text" id="coachLastName" class="w-full px-3.5 py-2.5 rounded-xl text-sm" />
+          </div>
+          <div>
+            <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1">Подзаголовок под именем (напр. КУЗНИЦА СПОРТСМЕНОВ 🛠️)</label>
+            <input type="text" id="coachTagline" class="w-full px-3.5 py-2.5 rounded-xl text-sm" />
+          </div>
+          <div>
+            <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1">Telegram username (куда летят заявки)</label>
+            <div class="relative">
+              <span class="absolute left-3.5 top-2.5 text-zinc-400 font-mono text-sm">@</span>
+              <input type="text" id="coachTelegram" class="w-full pl-8 pr-3.5 py-2.5 rounded-xl text-sm font-mono" placeholder="username" />
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1">Telegram-канал (кнопка «ТГ-КАНАЛ ↗»)</label>
+            <div class="relative">
+              <span class="absolute left-3.5 top-2.5 text-sky-400 font-mono text-sm">📢</span>
+              <input type="text" id="coachTelegramChannel" class="w-full pl-9 pr-3.5 py-2.5 rounded-xl text-sm font-mono" placeholder="Master_fitness или https://t.me/..." />
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1">Текст кнопки ТГ-канала</label>
+            <input type="text" id="coachTelegramChannelLabel" placeholder="ТГ-КАНАЛ" class="w-full px-3.5 py-2.5 rounded-xl text-xs font-mono font-bold" />
+          </div>
+          <div>
+            <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1">Instagram профиль (кнопка «INSTAGRAM ↗»)</label>
+            <div class="relative">
+              <span class="absolute left-3.5 top-2.5 text-pink-400 font-mono text-sm">📷</span>
+              <input type="text" id="coachInstagram" class="w-full pl-9 pr-3.5 py-2.5 rounded-xl text-sm font-mono" placeholder="bernetskiy или https://instagram.com/..." />
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1">Текст кнопки Instagram</label>
+            <input type="text" id="coachInstagramLabel" placeholder="INSTAGRAM" class="w-full px-3.5 py-2.5 rounded-xl text-xs font-mono font-bold" />
+          </div>
+          <div>
+            <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1">Верхняя плашка статуса (напр. МАСТЕР СПОРТА // ОНЛАЙН-НАСТАВНИК)</label>
+            <input type="text" id="coachBrandTag" class="w-full px-3.5 py-2.5 rounded-xl text-xs font-mono" />
+          </div>
+          <div>
+            <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1">Локация (напр. ОНЛАЙН // СНГ & МИР)</label>
+            <input type="text" id="coachLocation" class="w-full px-3.5 py-2.5 rounded-xl text-xs font-mono" />
+          </div>
+          <div>
+            <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1">Плашка мест</label>
+            <input type="text" id="coachScarcityBadge" placeholder="ОТБОР НА ВЕДЕНИЕ: СВОБОДНО 2 МЕСТА" class="w-full px-3.5 py-2.5 rounded-xl text-xs font-mono text-orange-400 font-bold" />
+          </div>
+          <div>
+            <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1">Хэштег/код в правом углу</label>
+            <input type="text" id="coachScarcityCode" placeholder="#BERNETSKIY-2026" class="w-full px-3.5 py-2.5 rounded-xl text-xs font-mono text-zinc-400" />
+          </div>
+          <div class="sm:col-span-2">
+            <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1">О себе (Био)</label>
+            <textarea id="coachBio" rows="3" class="w-full px-3.5 py-2.5 rounded-xl text-sm resize-none"></textarea>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 1.5: TOGGLE SECTIONS -->
+      <section class="glass-card rounded-2xl p-5 sm:p-7">
+        <div class="flex items-center justify-between gap-2 mb-4 border-b border-white/10 pb-3">
+          <div class="flex items-center gap-2 min-w-0">
+            <span class="text-xl shrink-0">🎛️</span>
+            <h3 class="font-display text-sm xs:text-base sm:text-xl uppercase tracking-wide text-white whitespace-nowrap">УПРАВЛЕНИЕ СЕКЦИЯМИ</h3>
+          </div>
+          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/5 text-zinc-400 whitespace-nowrap shrink-0">ВКЛ / ВЫКЛ</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <label class="flex items-center gap-3 p-3.5 rounded-xl bg-white/[0.02] border border-white/10 cursor-pointer hover:bg-white/[0.04] transition-all">
+            <input type="checkbox" id="toggleReviewsSection" class="w-5 h-5 rounded accent-orange-500 cursor-pointer" />
+            <div>
+              <div class="text-sm font-bold text-white">Блок отзывов</div>
+              <div class="text-xs text-zinc-400">Карусель отзывов подопечных</div>
+            </div>
+          </label>
+          <label class="flex items-center gap-3 p-3.5 rounded-xl bg-white/[0.02] border border-white/10 cursor-pointer hover:bg-white/[0.04] transition-all">
+            <input type="checkbox" id="toggleCasesSection" class="w-5 h-5 rounded accent-orange-500 cursor-pointer" />
+            <div>
+              <div class="text-sm font-bold text-white">Блок кейсов (До / После)</div>
+              <div class="text-xs text-zinc-400">Слайдер результатов трансформации</div>
+            </div>
+          </label>
+                    <label class="flex items-center gap-3 p-3.5 rounded-xl bg-white/[0.02] border border-white/10 cursor-pointer hover:bg-white/[0.04] transition-all">
+            <input type="checkbox" id="toggleFaqSection" class="w-5 h-5 rounded accent-orange-500 cursor-pointer" />
+            <div>
+              <div class="text-sm font-bold text-white">Блок вопросов (FAQ)</div>
+              <div class="text-xs text-zinc-400">Часто задаваемые вопросы</div>
+            </div>
+          </label>
+<label class="flex items-center gap-3 p-3.5 rounded-xl bg-white/[0.02] border border-white/10 cursor-pointer hover:bg-white/[0.04] transition-all">
+            <input type="checkbox" id="toggleApplicationForm" class="w-5 h-5 rounded accent-orange-500 cursor-pointer" />
+            <div>
+              <div class="text-sm font-bold text-white">Форма анкеты</div>
+              <div class="text-xs text-zinc-400">Шаг с анкетой и отправкой в TG</div>
+            </div>
+          </label>
+        </div>
+      </section>
+
+      <!-- SECTION 2: STATS CARDS -->
+      <section class="glass-card rounded-2xl p-5 sm:p-7">
+        <div class="flex items-center justify-between gap-2 mb-5 border-b border-white/10 pb-4">
+          <div class="flex items-center gap-2 min-w-0">
+            <span class="text-xl shrink-0">⚡️</span>
+            <h3 class="font-display text-sm xs:text-base sm:text-xl uppercase tracking-wide text-white whitespace-nowrap">ЦИФРЫ & ОПЫТ</h3>
+          </div>
+          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/5 text-zinc-400 whitespace-nowrap shrink-0">3 КАРТОЧКИ</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div class="p-3.5 rounded-xl bg-white/[0.02] border border-white/5">
+            <label class="block text-[11px] font-mono text-zinc-400 mb-1">Карточка 1 (Цифра / Текст)</label>
+            <input type="text" id="statVal0" class="w-full px-3 py-2 rounded-lg text-sm font-mono mb-2 font-bold" />
+            <input type="text" id="statLabel0" class="w-full px-3 py-1.5 rounded-lg text-xs" />
+          </div>
+          <div class="p-3.5 rounded-xl bg-white/[0.02] border border-white/5">
+            <label class="block text-[11px] font-mono text-zinc-400 mb-1">Карточка 2 (Цифра / Текст)</label>
+            <input type="text" id="statVal1" class="w-full px-3 py-2 rounded-lg text-sm font-mono mb-2 font-bold" />
+            <input type="text" id="statLabel1" class="w-full px-3 py-1.5 rounded-lg text-xs" />
+          </div>
+          <div class="p-3.5 rounded-xl bg-white/[0.02] border border-white/5">
+            <label class="block text-[11px] font-mono text-zinc-400 mb-1">Карточка 3 (Цифра / Текст)</label>
+            <input type="text" id="statVal2" class="w-full px-3 py-2 rounded-lg text-sm font-mono mb-2 font-bold" />
+            <input type="text" id="statLabel2" class="w-full px-3 py-1.5 rounded-lg text-xs" />
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 3: TIERS & PRICES -->
+      <section class="glass-card rounded-2xl p-5 sm:p-7">
+        <div class="flex items-center justify-between gap-2 mb-4 border-b border-white/10 pb-3">
+          <div class="flex items-center gap-2 min-w-0">
+            <span class="text-xl shrink-0">💎</span>
+            <h3 class="font-display text-base sm:text-xl uppercase tracking-wide text-white truncate">ТАРИФЫ</h3>
+          </div>
+          <div class="flex items-center gap-2 shrink-0">
+            <span id="tiersCountBadge" class="text-xs font-mono font-bold px-2.5 py-1 rounded-lg bg-white/5 text-zinc-400 border border-white/10 shrink-0">3/5</span>
+            <button type="button" onclick="addTier()" class="px-2.5 sm:px-3 py-1 rounded-lg bg-orange-500 hover:bg-orange-400 text-black font-tech font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-1 cursor-pointer shadow-sm active:scale-95 shrink-0">
+              <span>+ ДОБАВИТЬ</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Horizontal Tier Navigation (Full Width with Trash) -->
+        <div class="relative w-full flex items-center justify-between bg-white/5 border border-white/10 p-1.5 rounded-xl mb-4">
+          <button type="button" onclick="prevTier()" class="h-9 w-12 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer font-bold text-base shrink-0" title="Предыдущий тариф">
+            <span>←</span>
+          </button>
+          <div class="absolute left-1/2 -translate-x-1/2 font-tech text-sm sm:text-base text-zinc-400 px-3 flex items-center gap-2 font-bold tracking-wider select-none pointer-events-none">
+            <span class="text-white text-base sm:text-lg font-extrabold" id="tierCounterCurrent">01</span>
+            <span class="text-zinc-600 font-normal">/</span>
+            <span id="tierCounterTotal">03</span>
+          </div>
+          <div class="flex items-center gap-1.5 shrink-0">
+            <button type="button" onclick="deleteActiveTier()" class="h-9 w-9 rounded-lg border border-red-500/25 bg-red-500/10 hover:bg-red-500/20 text-red-400 hover:text-red-300 flex items-center justify-center transition-all active:scale-95 cursor-pointer text-sm" title="Удалить этот тариф">
+              <span>🗑️</span>
+            </button>
+            <button type="button" onclick="nextTier()" class="h-9 w-12 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer font-bold text-base" title="Следующий тариф">
+              <span>→</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Active Tier Editor Card -->
+        <div class="p-5 rounded-xl bg-white/[0.02] border border-white/10 flex flex-col gap-4 relative">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div>
+              <label class="block text-[11px] font-mono text-zinc-400 mb-1">Название тарифа</label>
+              <input type="text" id="tierNameInput" class="w-full px-3 py-2 rounded-lg text-sm font-bold" />
+            </div>
+            <div>
+              <label class="block text-[11px] font-mono text-zinc-400 mb-1">Бейдж / Статус</label>
+              <input type="text" id="tierBadgeInput" placeholder="ХИТ ПРОДАЖ, ALL INCLUSIVE..." class="w-full px-3 py-2 rounded-lg text-xs font-mono" />
+            </div>
+            <div>
+              <label class="block text-[11px] font-mono text-zinc-400 mb-1">Цена и период</label>
+              <div class="grid grid-cols-2 gap-2">
+                <input type="text" id="tierPriceInput" placeholder="14 900 ₽" class="px-3 py-2 rounded-lg text-sm font-mono text-orange-400 font-bold" />
+                <input type="text" id="tierPeriodInput" placeholder="В МЕСЯЦ" class="px-3 py-2 rounded-lg text-xs font-mono" />
+              </div>
+            </div>
+          </div>
+          <div>
+            <label class="block text-[11px] font-mono text-zinc-400 mb-1">Рекомендуемая цель</label>
+            <select id="tierGoalInput" class="w-full sm:w-64 px-3 py-1.5 rounded-lg text-xs font-mono">
+              <option value="recomp">Рекомпозиция (recomp)</option>
+              <option value="cut">Сушка и рельеф (cut)</option>
+              <option value="bulk">Набор массы (bulk)</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-[11px] font-mono text-zinc-400 mb-1">Пункты программы (по одному на каждой строке)</label>
+            <textarea id="tierFeaturesInput" rows="4" class="w-full px-3 py-2 rounded-lg text-xs font-mono resize-none"></textarea>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 4: CASES -->
+      <section class="glass-card rounded-2xl p-5 sm:p-7">
+        <div class="flex items-center justify-between gap-2 mb-4 border-b border-white/10 pb-3">
+          <div class="flex items-center gap-2 min-w-0">
+            <span class="text-xl shrink-0">📸</span>
+            <h3 class="font-display text-base sm:text-xl uppercase tracking-wide text-white truncate">КЕЙСЫ</h3>
+          </div>
+          <div class="flex items-center gap-2 shrink-0">
+            <span id="casesCountBadge" class="text-xs font-mono font-bold px-2.5 py-1 rounded-lg bg-white/5 text-zinc-400 border border-white/10 shrink-0">10/10</span>
+            <button type="button" onclick="addCase()" class="px-2.5 sm:px-3 py-1 rounded-lg bg-orange-500 hover:bg-orange-400 text-black font-tech font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-1 cursor-pointer shadow-sm active:scale-95 shrink-0">
+              <span>+ ДОБАВИТЬ</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Horizontal Case Navigation (Full Width with Trash) -->
+        <div class="relative w-full flex items-center justify-between bg-white/5 border border-white/10 p-1.5 rounded-xl mb-4">
+          <button type="button" onclick="prevCase()" class="h-9 w-12 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer font-bold text-base shrink-0" title="Предыдущий кейс">
+            <span>←</span>
+          </button>
+          <div class="absolute left-1/2 -translate-x-1/2 font-tech text-sm sm:text-base text-zinc-400 px-3 flex items-center gap-2 font-bold tracking-wider select-none pointer-events-none">
+            <span class="text-white text-base sm:text-lg font-extrabold" id="caseCounterCurrent">01</span>
+            <span class="text-zinc-600 font-normal">/</span>
+            <span id="caseCounterTotal">05</span>
+          </div>
+          <div class="flex items-center gap-1.5 shrink-0">
+            <button type="button" onclick="deleteActiveCase()" class="h-9 w-9 rounded-lg border border-red-500/25 bg-red-500/10 hover:bg-red-500/20 text-red-400 hover:text-red-300 flex items-center justify-center transition-all active:scale-95 cursor-pointer text-sm" title="Удалить этот кейс">
+              <span>🗑️</span>
+            </button>
+            <button type="button" onclick="nextCase()" class="h-9 w-12 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer font-bold text-base" title="Следующий кейс">
+              <span>→</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Active Case Editor Card -->
+        <div class="p-5 rounded-xl bg-white/[0.02] border border-white/10 flex flex-col gap-4 relative">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-1">
+            <!-- BEFORE IMAGE -->
+            <div>
+              <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-2">Фото ДО</label>
+              <div class="relative rounded-xl overflow-hidden border border-white/15 bg-black/40 aspect-[4/3] flex items-center justify-center group">
+                <img id="caseBeforePreview" src="" class="w-full h-full object-cover" />
+                <label class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center cursor-pointer text-xs font-tech text-white">
+                  <span class="text-2xl mb-1">📁</span>
+                  <span>Нажмите чтобы заменить</span>
+                  <input type="file" accept="image/*" class="hidden" onchange="handleCaseBeforeImage(event)" />
+                </label>
+              </div>
+              <input type="text" id="caseStatA" class="w-full mt-2 px-3 py-2 rounded-lg text-xs font-mono" placeholder="Подпись: ТОЧКА А // ..." />
+            </div>
+
+            <!-- AFTER IMAGE -->
+            <div>
+              <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-2">Фото ПОСЛЕ</label>
+              <div class="relative rounded-xl overflow-hidden border border-white/15 bg-black/40 aspect-[4/3] flex items-center justify-center group">
+                <img id="caseAfterPreview" src="" class="w-full h-full object-cover" />
+                <label class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center cursor-pointer text-xs font-tech text-white">
+                  <span class="text-2xl mb-1">📁</span>
+                  <span>Нажмите чтобы заменить</span>
+                  <input type="file" accept="image/*" class="hidden" onchange="handleCaseAfterImage(event)" />
+                </label>
+              </div>
+              <input type="text" id="caseStatB" class="w-full mt-2 px-3 py-2 rounded-lg text-xs font-mono" placeholder="Подпись: ТОЧКА Б // ..." />
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-4">
+            <div>
+              <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1">Название кейса</label>
+              <input type="text" id="caseName" class="w-full px-3.5 py-2.5 rounded-xl text-sm font-bold" />
+            </div>
+            <div>
+              <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1">Описание трансформации</label>
+              <textarea id="caseDescription" rows="2" class="w-full px-3.5 py-2.5 rounded-xl text-sm resize-none"></textarea>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 5: REVIEWS -->
+      <section class="glass-card rounded-2xl p-5 sm:p-7">
+        <div class="flex items-center justify-between gap-2 mb-4 border-b border-white/10 pb-3">
+          <div class="flex items-center gap-2 min-w-0">
+            <span class="text-xl shrink-0">💬</span>
+            <h3 class="font-display text-base sm:text-xl uppercase tracking-wide text-white whitespace-nowrap">ОТЗЫВЫ</h3>
+          </div>
+          <div class="flex items-center gap-2 shrink-0">
+            <span id="reviewsCountBadge" class="text-xs font-mono font-bold px-2.5 py-1 rounded-lg bg-white/5 text-zinc-400 border border-white/10 shrink-0">15/15</span>
+            <button type="button" onclick="addReview()" class="px-2.5 sm:px-3 py-1 rounded-lg bg-orange-500 hover:bg-orange-400 text-black font-tech font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-1 cursor-pointer shadow-sm active:scale-95 shrink-0">
+              <span>+ ДОБАВИТЬ</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Horizontal Review Navigation (Full Width with Trash) -->
+        <div class="relative w-full flex items-center justify-between bg-white/5 border border-white/10 p-1.5 rounded-xl mb-4">
+          <button type="button" onclick="prevReview()" class="h-9 w-12 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer font-bold text-base shrink-0" title="Предыдущий отзыв">
+            <span>←</span>
+          </button>
+          <div class="absolute left-1/2 -translate-x-1/2 font-tech text-sm sm:text-base text-zinc-400 px-3 flex items-center gap-2 font-bold tracking-wider select-none pointer-events-none">
+            <span class="text-white text-base sm:text-lg font-extrabold" id="reviewCounterCurrent">01</span>
+            <span class="text-zinc-600 font-normal">/</span>
+            <span id="reviewCounterTotal">15</span>
+          </div>
+          <div class="flex items-center gap-1.5 shrink-0">
+            <button type="button" onclick="deleteActiveReview()" class="h-9 w-9 rounded-lg border border-red-500/25 bg-red-500/10 hover:bg-red-500/20 text-red-400 hover:text-red-300 flex items-center justify-center transition-all active:scale-95 cursor-pointer text-sm" title="Удалить этот отзыв">
+              <span>🗑️</span>
+            </button>
+            <button type="button" onclick="nextReview()" class="h-9 w-12 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer font-bold text-base" title="Следующий отзыв">
+              <span>→</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Active Review Editor Card -->
+        <div class="p-5 rounded-xl bg-white/[0.02] border border-white/10 flex flex-col gap-4 relative">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 items-center">
+            <div>
+              <label class="block text-[11px] font-mono text-zinc-400 mb-1.5">Фото отзыва</label>
+              <div class="relative rounded-xl overflow-hidden border border-white/15 bg-black/40 aspect-[4/3] flex items-center justify-center group">
+                <img id="activeReviewPreview" src="" class="w-full h-full object-cover" />
+                <label class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center cursor-pointer text-xs font-tech text-white">
+                  <span class="text-xl mb-1">📁</span>
+                  <span>Заменить фото</span>
+                  <input type="file" accept="image/*" class="hidden" onchange="handleActiveReviewImage(event)" />
+                </label>
+              </div>
+            </div>
+            <div class="sm:col-span-2 flex flex-col gap-2.5">
+              <div class="grid grid-cols-2 gap-2">
+                <div>
+                  <label class="block text-[10px] font-mono text-zinc-400 mb-0.5">Имя подопечного</label>
+                  <input type="text" id="reviewAuthorInput" class="w-full px-3 py-1.5 rounded-lg text-xs font-bold" />
+                </div>
+                <div>
+                  <label class="block text-[10px] font-mono text-zinc-400 mb-0.5">Тег / Достижение</label>
+                  <input type="text" id="reviewTagInput" class="w-full px-3 py-1.5 rounded-lg text-xs font-mono" />
+                </div>
+              </div>
+              <div>
+                <label class="block text-[10px] font-mono text-zinc-400 mb-0.5">Результат (главная строка)</label>
+                <input type="text" id="reviewResultInput" class="w-full px-3 py-1.5 rounded-lg text-xs font-bold text-orange-400" />
+              </div>
+              <div>
+                <label class="block text-[10px] font-mono text-zinc-400 mb-0.5">Текст отзыва</label>
+                <textarea id="reviewTextInput" rows="3" class="w-full px-3 py-1.5 rounded-lg text-xs resize-none"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      
+      <!-- SECTION: FAQ (ВОПРОС-ОТВЕТ) -->
+      <section class="glass-card rounded-2xl p-4 sm:p-6 mb-6">
+        <div class="flex items-center justify-between pb-3 mb-4 border-b border-white/10 gap-2">
+          <div class="flex items-center gap-2 min-w-0">
+            <span class="text-orange-500 font-mono text-sm sm:text-base font-bold shrink-0">08</span>
+            <h3 class="font-display text-base sm:text-xl uppercase tracking-wide text-white whitespace-nowrap">ВОПРОС-ОТВЕТ (FAQ)</h3>
+          </div>
+          <div class="flex items-center gap-2 shrink-0">
+            <span id="faqCountBadge" class="text-xs font-mono font-bold px-2.5 py-1 rounded-lg bg-white/5 text-zinc-400 border border-white/10 shrink-0">5/5</span>
+            <button type="button" onclick="addFaq()" class="px-2.5 sm:px-3 py-1 rounded-lg bg-orange-500 hover:bg-orange-400 text-black font-tech font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-1 cursor-pointer shadow-sm active:scale-95 shrink-0">
+              <span>+ ДОБАВИТЬ</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Horizontal FAQ Navigation -->
+        <div class="relative w-full flex items-center justify-between bg-white/5 border border-white/10 p-1.5 rounded-xl mb-4">
+          <button type="button" onclick="prevFaq()" class="h-9 w-12 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer font-bold text-base shrink-0" title="Предыдущий вопрос">
+            <span>←</span>
+          </button>
+          <div class="absolute left-1/2 -translate-x-1/2 font-tech text-sm sm:text-base text-zinc-400 px-3 flex items-center gap-2 font-bold tracking-wider select-none pointer-events-none">
+            <span class="text-white text-base sm:text-lg font-extrabold" id="faqCounterCurrent">01</span>
+            <span class="text-zinc-600 font-normal">/</span>
+            <span class="text-zinc-400 text-xs sm:text-sm font-semibold" id="faqCounterTotal">05</span>
+          </div>
+          <div class="flex items-center gap-1.5 z-10">
+            <button type="button" onclick="deleteFaq()" class="h-9 px-2.5 rounded-lg border border-red-500/20 bg-red-500/10 hover:bg-red-500/20 text-red-400 flex items-center justify-center transition-all active:scale-95 cursor-pointer text-xs font-bold gap-1" title="Удалить вопрос">
+              <span>🗑️</span>
+              <span class="hidden sm:inline">УДАЛИТЬ</span>
+            </button>
+            <button type="button" onclick="nextFaq()" class="h-9 w-12 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-white flex items-center justify-center transition-all active:scale-95 cursor-pointer font-bold text-base shrink-0" title="Следующий вопрос">
+              <span>→</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- FAQ Item Edit Card -->
+        <div class="bg-black/30 border border-white/10 rounded-xl p-4 sm:p-5">
+          <div class="space-y-4">
+            <div>
+              <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1.5">Текст вопроса</label>
+              <input type="text" id="faqQuestionInput" oninput="saveActiveFaqData();" class="w-full px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold bg-white/5 border border-white/10 text-white focus:outline-none focus:border-orange-500/50" placeholder="Например: Подойдёт ли программа, если у меня нет опыта?" />
+            </div>
+            <div>
+              <label class="block text-xs font-mono uppercase tracking-wider text-zinc-400 mb-1.5">Развёрнутый ответ наставника</label>
+              <textarea id="faqAnswerInput" oninput="saveActiveFaqData();" rows="4" class="w-full px-3 py-2 rounded-lg text-xs sm:text-sm bg-white/5 border border-white/10 text-zinc-200 resize-none focus:outline-none focus:border-orange-500/50" placeholder="Подробный ответ наставника..."></textarea>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ADVANCED SERVER SYNC -->
+      <details class="glass-card rounded-2xl p-5 border border-white/5 text-xs text-zinc-400">
+        <summary class="cursor-pointer font-mono font-bold text-zinc-300 flex items-center justify-between">
+          <span>⚙️ СЕРВЕРНАЯ СИНХРОНИЗАЦИЯ</span>
+          <span class="text-xs text-zinc-500">Опционально</span>
+        </summary>
+        <div class="mt-4 pt-4 border-t border-white/10 flex flex-col gap-3">
+          <p class="text-zinc-400 leading-relaxed">
+            Изменения вступают в силу автоматически при сохранении. Для привязки персонального ключа публикации на глобальном сервере:
+          </p>
+          <input type="password" id="githubTokenInput" placeholder="ghp_... или gho_..." class="w-full px-3 py-2 rounded-lg font-mono text-xs" />
+          <div class="flex items-center gap-2">
+            <button type="button" onclick="saveGithubToken()" class="px-3 py-1.5 rounded bg-white/10 hover:bg-white/20 text-white font-mono text-[11px] cursor-pointer">
+              Сохранить токен
+            </button>
+            <button type="button" onclick="clearLocalOverrides()" class="px-3 py-1.5 rounded bg-red-500/10 hover:bg-red-500/20 text-red-300 font-mono text-[11px] cursor-pointer">
+              Сбросить к исходным настройкам
+            </button>
+          </div>
+        </div>
+      </details>
+
+    </main>
+
+    <!-- STICKY BOTTOM SAVE BAR -->
+    <div class="fixed bottom-0 left-0 right-0 z-40 bg-[#050507]/95 border-t border-white/10 backdrop-blur-xl px-3 sm:px-6 py-2.5 sm:py-3.5 shadow-2xl">
+      <div class="max-w-4xl mx-auto flex items-center justify-between gap-2 sm:gap-4">
+        <div class="flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs font-mono text-zinc-400 min-w-0">
+          <span id="saveStatusDot" class="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-emerald-400 shrink-0"></span>
+          <span id="saveStatusText" class="truncate">Все данные актуальны</span>
+        </div>
+        <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+          <button type="button" onclick="clearLocalOverrides()" class="h-10 w-10 sm:w-auto px-2 sm:px-3.5 rounded-xl border border-red-500/30 bg-red-500/10 hover:bg-red-500/20 text-red-300 text-xs font-tech font-bold uppercase tracking-wider transition-all cursor-pointer active:scale-95 flex items-center justify-center gap-1.5 shrink-0" title="Сбросить все изменения">
+            <span class="text-sm">↺</span>
+            <span class="hidden sm:inline">Сбросить всё</span>
+          </button>
+          <button id="saveChangesBtn" onclick="saveAllChanges()" class="h-10 px-3.5 sm:px-6 rounded-xl font-display uppercase tracking-wider text-black bg-white hover:bg-zinc-200 transition-all font-bold text-xs sm:text-sm shadow-xl flex items-center justify-center gap-1.5 cursor-pointer active:scale-95 shrink-0 whitespace-nowrap">
+            <span>💾</span>
+            <span>СОХРАНИТЬ</span><span class="hidden sm:inline">&nbsp;ИЗМЕНЕНИЯ</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast" class="fixed top-6 right-6 z-50 bg-emerald-500 text-black px-5 py-3 rounded-xl font-bold font-tech text-sm shadow-2xl transition-all transform translate-y-[-100px] opacity-0 flex items-center gap-2">
+    <span id="toastIcon">✅</span>
+    <span id="toastMsg">Изменения успешно сохранены!</span>
+  </div>
+
+  <script>
+    function getSlug() {
+      const pathParts = window.location.pathname.replace(/^\/+|\/+$/g, '').split('/');
+      if (pathParts[0] && pathParts[0] !== 'admin') {
+        return pathParts[0].toLowerCase();
+      }
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('client')) return params.get('client').toLowerCase();
+      return 'bernetskiy';
+    }
+
+    const currentSlug = getSlug();
+    let currentClient = null;
+    let pendingImages = {};
+
+    function loadClient() {
+      if (typeof window.CLIENTS === 'undefined' || !window.CLIENTS[currentSlug]) {
+        alert('Профиль ' + currentSlug + ' не найден в системе.');
+        return;
+      }
+      
+      let localOverride = null;
+      try {
+        const raw = localStorage.getItem('pulse_override_' + currentSlug);
+        if (raw) localOverride = JSON.parse(raw);
+      } catch(e) {}
+
+      const serverClient = JSON.parse(JSON.stringify(window.CLIENTS[currentSlug]));
+
+      // Auto-purge stale local override when server is newer or override has no timestamp / is > 2 minutes old
+      if (localOverride) {
+        const overrideTime = localOverride.updatedAt ? new Date(localOverride.updatedAt).getTime() : 0;
+        const serverTime = serverClient.updatedAt ? new Date(serverClient.updatedAt).getTime() : 0;
+        if (!overrideTime || serverTime >= overrideTime || (Date.now() - overrideTime > 120000)) {
+          console.log('[PULSE] Purged stale local override in admin for:', currentSlug);
+          localStorage.removeItem('pulse_override_' + currentSlug);
+          localOverride = null;
+        }
+      }
+
+      if (localOverride) {
+        delete localOverride.reviews;
+        delete localOverride.cases;
+        delete localOverride.stats;
+        currentClient = Object.assign(serverClient, localOverride);
+      } else {
+        currentClient = serverClient;
+      }
+      
+      if (currentClient.accentColor) {
+        document.documentElement.style.setProperty('--accent', currentClient.accentColor);
+        document.documentElement.style.setProperty('--accent-dim', currentClient.accentDim || 'rgba(255, 107, 0, 0.25)');
+      }
+
+      document.getElementById('headerCoachName').textContent = currentClient.name || 'КАБИНЕТ НАСТАВНИКА';
+      document.getElementById('headerSlug').textContent = `fitprod.vercel.app/${currentSlug}`;
+      document.getElementById('viewLiveSiteBtn').href = `/${currentSlug}`;
+      
+      // Hero
+      document.getElementById('coachHeroPreview').src = currentClient.heroImage || '';
+      document.getElementById('coachHeroTitle').value = currentClient.heroTitle || '';
+      document.getElementById('coachHeroDescription').value = currentClient.heroDescription || '';
+      document.getElementById('coachSpec').value = currentClient.spec || '';
+      document.getElementById('coachPrimaryBtnText').value = currentClient.primaryBtnText || '';
+      document.getElementById('coachSecondaryBtnText').value = currentClient.secondaryBtnText || '';
+      document.getElementById('coachScarcityCode').value = currentClient.scarcityCode || '';
+
+      // Profile
+      document.getElementById('coachFirstName').value = currentClient.firstName || '';
+      document.getElementById('coachLastName').value = currentClient.lastName || '';
+      document.getElementById('coachTagline').value = currentClient.tagline || '';
+      document.getElementById('coachTelegram').value = (currentClient.telegramUsername || '').replace(/^@/, '');
+      document.getElementById('coachTelegramChannel').value = currentClient.telegramChannelUrl || (currentClient.telegramChannel ? '@' + currentClient.telegramChannel : '');
+      document.getElementById('coachTelegramChannelLabel').value = currentClient.telegramChannelLabel || '';
+      document.getElementById('coachInstagram').value = currentClient.instagramUrl || (currentClient.instagram ? '@' + currentClient.instagram : '');
+      document.getElementById('coachInstagramLabel').value = currentClient.instagramLabel || '';
+      document.getElementById('coachBrandTag').value = currentClient.brandTag || '';
+      document.getElementById('coachLocation').value = currentClient.location || '';
+      document.getElementById('coachScarcityBadge').value = currentClient.scarcityBadge || '';
+      document.getElementById('coachBio').value = currentClient.bio || '';
+
+      // Hero buttons & CTA
+      document.getElementById('coachCtaBtnText').value = currentClient.ctaButtonText || '';
+
+      // Toggles
+      document.getElementById('toggleReviewsSection').checked = currentClient.hasReviewsSection !== false;
+      document.getElementById('toggleCasesSection').checked = currentClient.hasCasesSection !== false;
+      document.getElementById('toggleFaqSection').checked = currentClient.hasFaqSection !== false;
+      document.getElementById('toggleApplicationForm').checked = currentClient.hasApplicationForm !== false;
+
+      // Stats
+      if (currentClient.stats && currentClient.stats.length >= 3) {
+        currentClient.stats.forEach((s, i) => {
+          if (i < 3) {
+            document.getElementById(`statVal${i}`).value = s.value || '';
+            document.getElementById(`statLabel${i}`).value = s.label || '';
+          }
+        });
+      }
+
+      renderTiers();
+
+      // Cases
+      activeCaseIndex = 0;
+      if (currentClient.cases && currentClient.cases.length > 0) {
+        renderCasesTabs();
+        loadActiveCaseData();
+      }
+
+      renderReviews();
+      renderFaq();
+
+      const savedToken = localStorage.getItem('pulse_github_token');
+      if (savedToken) {
+        document.getElementById('githubTokenInput').value = savedToken;
+      }
+      fetchAnalytics();
+    }
+
+    async function fetchAnalytics() {
+      const slug = currentSlug || 'new';
+      const visitsEl = document.getElementById('statVisits');
+      const visitsSubEl = document.getElementById('statVisitsSub');
+      const clicksEl = document.getElementById('statClicks');
+      const clicksSubEl = document.getElementById('statClicksSub');
+      const convEl = document.getElementById('statConversion');
+      const convSubEl = document.getElementById('statConversionSub');
+      const slugLabel = document.getElementById('statSlugLabel');
+      const lastUpdated = document.getElementById('statLastUpdated');
+
+      if (slugLabel) slugLabel.textContent = slug;
+
+      try {
+        const localDate = new Date().toLocaleDateString('en-CA');
+        const res = await fetch(`/api/analytics?slug=${encodeURIComponent(slug)}&date=${localDate}`);
+        if (!res.ok) throw new Error('Status ' + res.status);
+        const data = await res.json();
+
+        const today = data.today || { visits: 0, clicks: 0, conversion: '0.0%' };
+        const all = data.all || { visits: data.visits || 0, clicks: data.clicks || 0, conversion: data.conversion || '0.0%' };
+
+        if (visitsEl) visitsEl.textContent = (today.visits || 0).toLocaleString();
+        if (visitsSubEl) visitsSubEl.textContent = `всего: ${(all.visits || 0).toLocaleString()}`;
+
+        if (clicksEl) clicksEl.textContent = (today.clicks || 0).toLocaleString();
+        if (clicksSubEl) clicksSubEl.textContent = `всего: ${(all.clicks || 0).toLocaleString()}`;
+
+        if (convEl) convEl.textContent = today.conversion || '0.0%';
+        if (convSubEl) convSubEl.textContent = `всего: ${all.conversion || '0.0%'}`;
+
+        if (lastUpdated) lastUpdated.textContent = 'Обновлено в ' + new Date().toLocaleTimeString();
+      } catch (e) {
+        console.warn('[ANALYTICS] Fetch error:', e);
+        if (visitsEl) visitsEl.textContent = '0';
+        if (visitsSubEl) visitsSubEl.textContent = 'всего: 0';
+        if (clicksEl) clicksEl.textContent = '0';
+        if (clicksSubEl) clicksSubEl.textContent = 'всего: 0';
+        if (convEl) convEl.textContent = '0.0%';
+        if (convSubEl) convSubEl.textContent = 'всего: 0.0%';
+        if (lastUpdated) lastUpdated.textContent = 'Счетчик запущен';
+      }
+    }
+
+    function refreshAnalytics() {
+      const icon = document.getElementById('refreshIcon');
+      if (icon) icon.classList.add('animate-spin');
+      fetchAnalytics().finally(() => {
+        setTimeout(() => {
+          if (icon) icon.classList.remove('animate-spin');
+        }, 600);
+      });
+    }
+
+    let activeTierIndex = 0;
+
+    function updateTierCounter() {
+      const tiers = currentClient.tiers || [];
+      const currentEl = document.getElementById('tierCounterCurrent');
+      const totalEl = document.getElementById('tierCounterTotal');
+      const badge = document.getElementById('tiersCountBadge');
+      const currentNum = activeTierIndex + 1;
+      const totalNum = tiers.length;
+      if (currentEl) currentEl.textContent = String(currentNum).padStart(2, '0');
+      if (totalEl) totalEl.textContent = String(totalNum).padStart(2, '0');
+      if (badge) badge.textContent = `${totalNum}/5`;
+
+    }
+
+    function renderTiers() {
+      const count = (currentClient.tiers || []).length;
+      if (activeTierIndex >= count) activeTierIndex = Math.max(0, count - 1);
+      updateTierCounter();
+      loadActiveTierData();
+    }
+
+    function switchTier(index) {
+      saveActiveTierData();
+      activeTierIndex = index;
+      updateTierCounter();
+      loadActiveTierData();
+    }
+
+    function prevTier() {
+      const len = (currentClient.tiers || []).length;
+      if (len <= 1) return;
+      saveActiveTierData();
+      activeTierIndex = (activeTierIndex - 1 + len) % len;
+      updateTierCounter();
+      loadActiveTierData();
+    }
+
+    function nextTier() {
+      const len = (currentClient.tiers || []).length;
+      if (len <= 1) return;
+      saveActiveTierData();
+      activeTierIndex = (activeTierIndex + 1) % len;
+      updateTierCounter();
+      loadActiveTierData();
+    }
+
+    function saveActiveTierData() {
+      if (!currentClient.tiers || !currentClient.tiers[activeTierIndex]) return;
+      const t = currentClient.tiers[activeTierIndex];
+      const nameEl = document.getElementById('tierNameInput');
+      const badgeEl = document.getElementById('tierBadgeInput');
+      const priceEl = document.getElementById('tierPriceInput');
+      const periodEl = document.getElementById('tierPeriodInput');
+      const goalEl = document.getElementById('tierGoalInput');
+      const featEl = document.getElementById('tierFeaturesInput');
+      if (nameEl) t.name = nameEl.value.trim();
+      if (badgeEl) t.badge = badgeEl.value.trim();
+      if (priceEl) t.price = priceEl.value.trim();
+      if (periodEl) t.period = periodEl.value.trim();
+      if (goalEl) t.recommendedGoal = goalEl.value;
+      if (featEl) {
+        t.features = featEl.value
+          .split('\n')
+          .map(s => s.trim())
+          .filter(Boolean);
+      }
+    }
+
+    function loadActiveTierData() {
+      const tiers = currentClient.tiers || [];
+      if (!tiers[activeTierIndex]) return;
+      const t = tiers[activeTierIndex];
+      const codeStr = '0' + (activeTierIndex + 1);
+      t.code = codeStr;
+      const tcBadge = document.getElementById('activeTierCodeBadge'); if (tcBadge) tcBadge.textContent = codeStr;
+      const tTitle = document.getElementById('activeTierTitle'); if (tTitle) tTitle.textContent = `ТАРИФ ${activeTierIndex + 1} ИЗ ${tiers.length}`;
+      document.getElementById('tierNameInput').value = t.name || '';
+      document.getElementById('tierBadgeInput').value = t.badge || '';
+      document.getElementById('tierPriceInput').value = t.price || '';
+      document.getElementById('tierPeriodInput').value = t.period || '';
+      document.getElementById('tierGoalInput').value = t.recommendedGoal || 'recomp';
+      document.getElementById('tierFeaturesInput').value = (t.features || []).join('\n');
+    }
+
+    function addTier() {
+      if (!currentClient.tiers) currentClient.tiers = [];
+      if (currentClient.tiers.length >= 5) {
+        alert('Максимальное количество тарифов — 5.');
+        return;
+      }
+      saveActiveTierData();
+      const nextNum = currentClient.tiers.length + 1;
+      const codeStr = '0' + nextNum;
+      currentClient.tiers.push({
+        id: 'tier-custom-' + Date.now(),
+        code: codeStr,
+        name: 'ТАРИФ ' + codeStr + ' // НАЗВАНИЕ',
+        badge: 'ФОРМАТ ' + nextNum,
+        price: '19 900 ₽',
+        period: 'В МЕСЯЦ',
+        recommendedGoal: (nextNum === 1 ? 'recomp' : nextNum === 2 ? 'cut' : nextNum === 3 ? 'bulk' : 'recomp'),
+        features: [
+          'Индивидуальный тренировочный план',
+          'Расчёт и ведение по КБЖУ',
+          'Поддержка в Telegram и разбор техники'
+        ]
+      });
+      activeTierIndex = currentClient.tiers.length - 1;
+      renderTiers();
+    }
+
+    function deleteActiveTier() {
+      if (!currentClient.tiers || currentClient.tiers.length <= 1) {
+        alert('В системе должен оставаться хотя бы один тариф (от 1 до 5).');
+        return;
+      }
+      const t = currentClient.tiers[activeTierIndex];
+      const tierName = (t && t.name) ? t.name : `Тариф 0${activeTierIndex + 1}`;
+      if (!confirm(`Удалить «${tierName}»?`)) return;
+      currentClient.tiers.splice(activeTierIndex, 1);
+      activeTierIndex = Math.max(0, activeTierIndex - 1);
+      renderTiers();
+    }
+
+    let activeCaseIndex = 0;
+
+    function updateCaseCounter() {
+      const cases = currentClient.cases || [];
+      const currentEl = document.getElementById('caseCounterCurrent');
+      const totalEl = document.getElementById('caseCounterTotal');
+      const badge = document.getElementById('casesCountBadge');
+      const currentNum = activeCaseIndex + 1;
+      const totalNum = cases.length;
+      if (currentEl) currentEl.textContent = String(currentNum).padStart(2, '0');
+      if (totalEl) totalEl.textContent = String(totalNum).padStart(2, '0');
+      const maxCases = Math.max(10, totalNum);
+      if (badge) badge.textContent = `${totalNum}/${maxCases}`;
+
+    }
+
+    function renderCases() {
+      const count = (currentClient.cases || []).length;
+      if (activeCaseIndex >= count) activeCaseIndex = Math.max(0, count - 1);
+      updateCaseCounter();
+      loadActiveCaseData();
+    }
+
+    function renderCasesTabs() {
+      renderCases();
+    }
+
+    function switchCase(index) {
+      saveActiveCaseData();
+      activeCaseIndex = index;
+      updateCaseCounter();
+      loadActiveCaseData();
+    }
+
+    function prevCase() {
+      const len = (currentClient.cases || []).length;
+      if (len <= 1) return;
+      saveActiveCaseData();
+      activeCaseIndex = (activeCaseIndex - 1 + len) % len;
+      updateCaseCounter();
+      loadActiveCaseData();
+    }
+
+    function nextCase() {
+      const len = (currentClient.cases || []).length;
+      if (len <= 1) return;
+      saveActiveCaseData();
+      activeCaseIndex = (activeCaseIndex + 1) % len;
+      updateCaseCounter();
+      loadActiveCaseData();
+    }
+
+    function saveActiveCaseData() {
+      if (!currentClient.cases || !currentClient.cases[activeCaseIndex]) return;
+      const c = currentClient.cases[activeCaseIndex];
+      const nameEl = document.getElementById('caseName');
+      const descEl = document.getElementById('caseDescription');
+      const statAEl = document.getElementById('caseStatA');
+      const statBEl = document.getElementById('caseStatB');
+      if (nameEl) c.name = nameEl.value.trim().replace(/^кей[сc]\s*\d+\s*\/\/\s*/i, '');
+      if (descEl) c.description = descEl.value.trim();
+      if (statAEl) c.initialStats = statAEl.value.trim();
+      if (statBEl) c.resultStats = statBEl.value.trim();
+      const bImgKey = 'newCaseBefore_' + activeCaseIndex;
+      const aImgKey = 'newCaseAfter_' + activeCaseIndex;
+      if (pendingImages[bImgKey] && pendingImages[bImgKey].data) {
+        c.beforeImage = pendingImages[bImgKey].data;
+      }
+      if (pendingImages[aImgKey] && pendingImages[aImgKey].data) {
+        c.afterImage = pendingImages[aImgKey].data;
+      }
+    }
+
+    function loadActiveCaseData() {
+      const cases = currentClient.cases || [];
+      if (!cases[activeCaseIndex]) return;
+      const c = cases[activeCaseIndex];
+      const codeBadge = document.getElementById('activeCaseCodeBadge');
+      if (codeBadge) codeBadge.textContent = String(activeCaseIndex + 1).padStart(2, '0');
+      const nameEl = document.getElementById('caseName');
+      const descEl = document.getElementById('caseDescription');
+      const statAEl = document.getElementById('caseStatA');
+      const statBEl = document.getElementById('caseStatB');
+      const beforePrev = document.getElementById('caseBeforePreview');
+      const afterPrev = document.getElementById('caseAfterPreview');
+      if (nameEl) nameEl.value = (c.name || '').replace(/^кей[сc]\s*\d+\s*\/\/\s*/i, '');
+      if (descEl) descEl.value = c.description || '';
+      if (statAEl) statAEl.value = c.initialStats || '';
+      if (statBEl) statBEl.value = c.resultStats || '';
+      if (beforePrev) beforePrev.src = c.beforeImage || '';
+      if (afterPrev) afterPrev.src = c.afterImage || '';
+    }
+
+    function handleCaseBeforeImage(event) {
+      handleImageUpload(event, 'caseBeforePreview', 'newCaseBefore_' + activeCaseIndex);
+    }
+
+    function handleCaseAfterImage(event) {
+      handleImageUpload(event, 'caseAfterPreview', 'newCaseAfter_' + activeCaseIndex);
+    }
+
+    function addCase() {
+      if (!currentClient.cases) currentClient.cases = [];
+      if (currentClient.cases.length >= 10) {
+        alert('Максимальное количество кейсов — 10.');
+        return;
+      }
+      saveActiveCaseData();
+      const nextNum = currentClient.cases.length + 1;
+      const codeStr = String(nextNum).padStart(2, '0');
+      currentClient.cases.push({
+        id: nextNum,
+        name: 'ТРАНСФОРМАЦИЯ',
+        tag: '+5 КГ МАССЫ // РЕЛЬЕФ',
+        badge: 'ПРОГРЕСС ЗА 12 НЕДЕЛЬ',
+        beforeImage: '/cases/vladislav_case_before.jpg',
+        afterImage: '/cases/vladislav_case_after.jpg',
+        objectPosition: 'center',
+        description: 'Индивидуальная трансформация подопечного под руководством наставника.',
+        initialStats: 'ТОЧКА А // СТАРТ',
+        resultStats: 'ТОЧКА Б // РЕЗУЛЬТАТ'
+      });
+      activeCaseIndex = currentClient.cases.length - 1;
+      renderCases();
+    }
+
+    function deleteActiveCase() {
+      if (!currentClient.cases || currentClient.cases.length <= 1) {
+        alert('В системе должен оставаться хотя бы один кейс.');
+        return;
+      }
+      const c = currentClient.cases[activeCaseIndex];
+      const caseName = (c && c.name) ? c.name : `Кейс 0${activeCaseIndex + 1}`;
+      if (!confirm(`Удалить «${caseName}»?`)) return;
+      currentClient.cases.splice(activeCaseIndex, 1);
+      activeCaseIndex = Math.max(0, activeCaseIndex - 1);
+      renderCases();
+    }
+
+    let activeReviewIndex = 0;
+
+    function updateReviewCounter() {
+      const reviews = currentClient.reviews || [];
+      const currentEl = document.getElementById('reviewCounterCurrent');
+      const totalEl = document.getElementById('reviewCounterTotal');
+      const badge = document.getElementById('reviewsCountBadge');
+      const currentNum = activeReviewIndex + 1;
+      const totalNum = reviews.length;
+      if (currentEl) currentEl.textContent = String(currentNum).padStart(2, '0');
+      if (totalEl) totalEl.textContent = String(totalNum).padStart(2, '0');
+      if (badge) badge.textContent = `${totalNum}/15`;
+    }
+
+    
+    // ==========================================
+    // FAQ LOGIC
+    // ==========================================
+    let activeFaqIndex = 0;
+
+    function renderFaq() {
+      if (!currentClient.faq) currentClient.faq = [];
+      const count = currentClient.faq.length;
+      if (activeFaqIndex >= count) activeFaqIndex = Math.max(0, count - 1);
+      updateFaqCounter();
+      loadActiveFaqData();
+      renderFaqPills();
+    }
+
+    function renderFaqPills() {}
+
+    function switchFaq(index) {
+      saveActiveFaqData();
+      activeFaqIndex = index;
+      updateFaqCounter();
+      loadActiveFaqData();
+      renderFaqPills();
+    }
+
+    function prevFaq() {
+      const len = (currentClient.faq || []).length;
+      if (len <= 1) return;
+      saveActiveFaqData();
+      activeFaqIndex = (activeFaqIndex - 1 + len) % len;
+      updateFaqCounter();
+      loadActiveFaqData();
+      renderFaqPills();
+    }
+
+    function nextFaq() {
+      const len = (currentClient.faq || []).length;
+      if (len <= 1) return;
+      saveActiveFaqData();
+      activeFaqIndex = (activeFaqIndex + 1) % len;
+      updateFaqCounter();
+      loadActiveFaqData();
+      renderFaqPills();
+    }
+
+    function updateFaqCounter() {
+      const count = (currentClient.faq || []).length;
+      const curEl = document.getElementById('faqCounterCurrent');
+      const totEl = document.getElementById('faqCounterTotal');
+      const bEl = document.getElementById('faqCountBadge');
+      if (curEl) curEl.textContent = count ? String(activeFaqIndex + 1).padStart(2, '0') : '00';
+      if (totEl) totEl.textContent = String(count).padStart(2, '0');
+      if (bEl) bEl.textContent = `${count}/${count}`;
+    }
+
+    function loadActiveFaqData() {
+      const list = currentClient.faq || [];
+      const item = list[activeFaqIndex];
+      const qInput = document.getElementById('faqQuestionInput');
+      const aInput = document.getElementById('faqAnswerInput');
+      if (!item) {
+        if (qInput) qInput.value = '';
+        if (aInput) aInput.value = '';
+        return;
+      }
+      if (qInput) qInput.value = item.question || '';
+      if (aInput) aInput.value = item.answer || '';
+    }
+
+    function saveActiveFaqData() {
+      if (!currentClient.faq || !currentClient.faq[activeFaqIndex]) return;
+      const item = currentClient.faq[activeFaqIndex];
+      const qInput = document.getElementById('faqQuestionInput');
+      const aInput = document.getElementById('faqAnswerInput');
+      if (qInput) item.question = qInput.value.trim();
+      if (aInput) item.answer = aInput.value.trim();
+    }
+
+    function addFaq() {
+      saveActiveFaqData();
+      if (!currentClient.faq) currentClient.faq = [];
+      const newId = currentClient.faq.length + 1;
+      currentClient.faq.push({
+        id: newId,
+        question: "Новый вопрос?",
+        answer: "Подробный ответ наставника..."
+      });
+      activeFaqIndex = currentClient.faq.length - 1;
+      renderFaq();
+    }
+
+    function deleteFaq() {
+      const len = (currentClient.faq || []).length;
+      if (len === 0) return;
+      if (!confirm('Удалить этот вопрос из списка?')) return;
+      currentClient.faq.splice(activeFaqIndex, 1);
+      if (activeFaqIndex >= currentClient.faq.length) {
+        activeFaqIndex = Math.max(0, currentClient.faq.length - 1);
+      }
+      renderFaq();
+    }
+
+    function renderReviews() {
+      const count = (currentClient.reviews || []).length;
+      if (activeReviewIndex >= count) activeReviewIndex = Math.max(0, count - 1);
+      updateReviewCounter();
+      loadActiveReviewData();
+    }
+
+    function switchReview(index) {
+      saveActiveReviewData();
+      saveActiveFaqData();
+      activeReviewIndex = index;
+      updateReviewCounter();
+      loadActiveReviewData();
+    }
+
+    function prevReview() {
+      const len = (currentClient.reviews || []).length;
+      if (len <= 1) return;
+      saveActiveReviewData();
+      saveActiveFaqData();
+      activeReviewIndex = (activeReviewIndex - 1 + len) % len;
+      updateReviewCounter();
+      loadActiveReviewData();
+    }
+
+    function nextReview() {
+      const len = (currentClient.reviews || []).length;
+      if (len <= 1) return;
+      saveActiveReviewData();
+      saveActiveFaqData();
+      activeReviewIndex = (activeReviewIndex + 1) % len;
+      updateReviewCounter();
+      loadActiveReviewData();
+    }
+
+    function saveActiveReviewData() {
+      if (!currentClient.reviews || !currentClient.reviews[activeReviewIndex]) return;
+      const r = currentClient.reviews[activeReviewIndex];
+      const authorEl = document.getElementById('reviewAuthorInput');
+      const tagEl = document.getElementById('reviewTagInput');
+      const resEl = document.getElementById('reviewResultInput');
+      const timeEl = document.getElementById('reviewTimeInput');
+      const textEl = document.getElementById('reviewTextInput');
+      if (authorEl) r.author = authorEl.value.trim();
+      if (tagEl) r.tag = tagEl.value.trim();
+      if (resEl) r.result = resEl.value.trim();
+      if (timeEl) r.time = timeEl.value.trim();
+      if (textEl) r.text = textEl.value.trim();
+      const imgKey = 'newReview_' + activeReviewIndex;
+      if (pendingImages[imgKey] && pendingImages[imgKey].data) {
+        r.image = pendingImages[imgKey].data;
+      }
+    }
+
+    function loadActiveReviewData() {
+      const reviews = currentClient.reviews || [];
+      if (!reviews[activeReviewIndex]) return;
+      const r = reviews[activeReviewIndex];
+      const rNumBadge = document.getElementById('activeReviewNumBadge'); if (rNumBadge) rNumBadge.textContent = `#${activeReviewIndex + 1}`;
+      const rTitle = document.getElementById('activeReviewTitle'); if (rTitle) rTitle.textContent = `ОТЗЫВ ${activeReviewIndex + 1} ИЗ ${reviews.length}`;
+      document.getElementById('activeReviewPreview').src = r.image || '';
+      document.getElementById('reviewAuthorInput').value = r.author || '';
+      document.getElementById('reviewTagInput').value = r.tag || '';
+      document.getElementById('reviewResultInput').value = r.result || '';
+      const timeEl = document.getElementById('reviewTimeInput'); if (timeEl) timeEl.value = r.time || '';
+      document.getElementById('reviewTextInput').value = r.text || '';
+    }
+
+    function handleActiveReviewImage(event) {
+      handleImageUpload(event, 'activeReviewPreview', 'newReview_' + activeReviewIndex);
+    }
+
+    function addReview() {
+      if (!currentClient.reviews) currentClient.reviews = [];
+      if (currentClient.reviews.length >= 15) {
+        alert('Максимальное количество отзывов — 15.');
+        return;
+      }
+      saveActiveReviewData();
+      saveActiveFaqData();
+      const newId = (currentClient.reviews.length > 0) 
+        ? Math.max(...currentClient.reviews.map(r => r.id || 0)) + 1 
+        : 1;
+
+      currentClient.reviews.push({
+        id: newId,
+        author: 'Новый подопечный',
+        tag: 'РЕЗУЛЬТАТ',
+        result: '+6 кг сухой массы // Рельеф',
+        text: 'Отличный результат под руководством наставника!',
+        rating: 5,
+        time: '14:00',
+        image: '/cases/vladislav_danya.jpg'
+      });
+      activeReviewIndex = currentClient.reviews.length - 1;
+      renderReviews();
+      renderFaq();
+    }
+
+    function deleteActiveReview() {
+      if (!currentClient.reviews || currentClient.reviews.length <= 1) {
+        alert('В системе должен оставаться хотя бы один отзыв.');
+        return;
+      }
+      const r = currentClient.reviews[activeReviewIndex];
+      const author = (r && r.author) ? r.author : `Отзыв #${activeReviewIndex + 1}`;
+      if (!confirm(`Удалить отзыв «${author}»?`)) return;
+      currentClient.reviews.splice(activeReviewIndex, 1);
+      activeReviewIndex = Math.max(0, activeReviewIndex - 1);
+      renderReviews();
+      renderFaq();
+    }
+
+    function resetReviewsToServer() {
+      if (!window.CLIENTS || !window.CLIENTS[currentSlug]) return;
+      if (!confirm('Загрузить все актуальные 15 отзывов с сервера? Несохраненные правки в отзывах будут сброшены.')) return;
+      const serverReviews = JSON.parse(JSON.stringify(window.CLIENTS[currentSlug].reviews || []));
+      currentClient.reviews = serverReviews;
+      try {
+        const raw = localStorage.getItem('pulse_override_' + currentSlug);
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          parsed.reviews = serverReviews;
+          localStorage.setItem('pulse_override_' + currentSlug, JSON.stringify(parsed));
+        }
+      } catch(e) {}
+      activeReviewIndex = 0;
+      renderReviews();
+      renderFaq();
+      alert('Все 15 отзывов успешно синхронизированы с сервера!');
+    }
+
+    function handleImageUpload(e, previewId, storeKey) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        const base64 = evt.target.result;
+        document.getElementById(previewId).src = base64;
+        pendingImages[storeKey] = {
+          name: file.name,
+          type: file.type,
+          data: base64
+        };
+        document.getElementById('saveStatusDot').className = 'w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse';
+        document.getElementById('saveStatusText').textContent = 'Есть несохраненные фото';
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function handleAuth(e) {
+      e.preventDefault();
+      const pwd = document.getElementById('adminPasswordInput').value.trim();
+      const coachPasswords = {
+        bernetskiy: ['bernetskiy26fit@'],
+        radionov:   ['nR9#mX2$84!vP2026', 'nR9#mX2$84!'],
+        rodionov:   ['nR9#mX2$84!vP2026', 'nR9#mX2$84!'],
+        felix:      ['fL7!qZ9#31$wK2026', 'fL7!qZ9#31$'],
+        new:        ['new2026', 'newPass123!']
+      };
+      const masterPasswords = ['PulseAdmin#X9v2!2026', 'Pulse#SuperAdmin2026!'];
+      const allowed = [...(coachPasswords[currentSlug] || []), ...masterPasswords];
+      
+      if (allowed.includes(pwd)) {
+        sessionStorage.setItem('pulse_admin_auth_' + currentSlug, pwd);
+        document.getElementById('authOverlay').classList.add('hidden');
+        document.getElementById('adminApp').classList.remove('hidden');
+        loadClient();
+      } else {
+        document.getElementById('authError').classList.remove('hidden');
+      }
+    }
+
+    function checkExistingAuth() {
+      // Auto-save GitHub token from URL (?token=ghp_...)
+      try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const tokenInUrl = urlParams.get('token');
+        if (tokenInUrl) {
+          localStorage.setItem('pulse_github_token', tokenInUrl.trim());
+          if (window.history && window.history.replaceState) {
+            window.history.replaceState({}, document.title, window.location.pathname);
+          }
+          showToast('🔑 GitHub Token успешно подключен!');
+        }
+      } catch(e) {}
+
+      if (sessionStorage.getItem('pulse_admin_auth_' + currentSlug)) {
+        document.getElementById('authOverlay').classList.add('hidden');
+        document.getElementById('adminApp').classList.remove('hidden');
+        loadClient();
+      }
+    }
+
+    function logout() {
+      sessionStorage.removeItem('pulse_admin_auth_' + currentSlug);
+      window.location.reload();
+    }
+
+    function saveGithubToken() {
+      const token = document.getElementById('githubTokenInput').value.trim();
+      if (token) {
+        localStorage.setItem('pulse_github_token', token);
+        showToast('🔑 Токен сохранен! Теперь обновления сразу публикуются на GitHub.');
+      } else {
+        localStorage.removeItem('pulse_github_token');
+        showToast('Токен удален.');
+      }
+    }
+
+    async function clearLocalOverrides() {
+      if (!confirm('Восстановить исходные параметры профиля по умолчанию? Все внесенные изменения будут сброшены к дефолтным.')) {
+        return;
+      }
+      localStorage.removeItem('pulse_override_' + currentSlug);
+      for (let i = localStorage.length - 1; i >= 0; i--) {
+        const k = localStorage.key(i);
+        if (k && (k === 'pulse_override_' + currentSlug || k.startsWith('pulse_override_'))) {
+          localStorage.removeItem(k);
+        }
+      }
+
+      // Restore canonical golden default configuration
+      const defaultConfig = (window.DEFAULT_CLIENTS && window.DEFAULT_CLIENTS[currentSlug]) 
+        ? JSON.parse(JSON.stringify(window.DEFAULT_CLIENTS[currentSlug]))
+        : (window.CLIENTS && window.CLIENTS[currentSlug] ? JSON.parse(JSON.stringify(window.CLIENTS[currentSlug])) : null);
+
+      if (defaultConfig) {
+        defaultConfig.updatedAt = new Date().toISOString();
+        showToast('⏳ Восстановление параметров по умолчанию на сервере...');
+        try {
+          const token = (document.getElementById('githubTokenInput')?.value || localStorage.getItem('pulse_github_token') || '').trim();
+          await fetch('/api/save', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              slug: currentSlug,
+              clientData: defaultConfig,
+              githubToken: token,
+              adminPassword: sessionStorage.getItem('pulse_admin_auth_' + currentSlug) || ''
+            })
+          });
+        } catch(e) {
+          console.warn('Reset server sync error:', e);
+        }
+      }
+
+      showToast('✅ Все настройки сброшены к значениям по умолчанию!');
+      setTimeout(() => {
+        window.location.reload();
+      }, 700);
+    }
+
+    async function saveAllChanges() {
+      const btn = document.getElementById('saveChangesBtn');
+      const dot = document.getElementById('saveStatusDot');
+      const statusText = document.getElementById('saveStatusText');
+      
+      btn.disabled = true;
+      btn.innerHTML = `<span class="animate-spin text-sm">⏳</span><span>СОХРАНЕНИЕ...</span>`;
+      dot.className = 'w-2.5 h-2.5 rounded-full bg-amber-400 animate-ping';
+      statusText.textContent = 'Применение изменений...';
+
+      // Gather form inputs
+      if (pendingImages.newHeroImage && pendingImages.newHeroImage.data) {
+        currentClient.heroImage = pendingImages.newHeroImage.data;
+      }
+      currentClient.heroTitle = document.getElementById('coachHeroTitle').value.trim();
+      currentClient.heroDescription = document.getElementById('coachHeroDescription').value.trim();
+      currentClient.spec = document.getElementById('coachSpec').value.trim();
+      currentClient.primaryBtnText = document.getElementById('coachPrimaryBtnText').value.trim();
+      currentClient.secondaryBtnText = document.getElementById('coachSecondaryBtnText').value.trim();
+      currentClient.scarcityCode = document.getElementById('coachScarcityCode').value.trim();
+
+      currentClient.firstName = document.getElementById('coachFirstName').value.trim();
+      currentClient.lastName = document.getElementById('coachLastName').value.trim();
+      currentClient.name = `${currentClient.firstName} ${currentClient.lastName}`.trim().toUpperCase();
+      currentClient.tagline = document.getElementById('coachTagline').value.trim();
+      currentClient.telegramUsername = document.getElementById('coachTelegram').value.trim().replace(/^@/, '');
+
+      const rawTgChan = document.getElementById('coachTelegramChannel').value.trim();
+      currentClient.telegramChannelLabel = document.getElementById('coachTelegramChannelLabel').value.trim();
+      if (rawTgChan) {
+        if (rawTgChan.startsWith('http://') || rawTgChan.startsWith('https://')) {
+          currentClient.telegramChannelUrl = rawTgChan;
+          currentClient.telegramChannel = rawTgChan.replace(/^https?:\/\/(www\.)?t\.me\//i, '').replace(/\/.*$/, '');
+        } else {
+          const cleanTgChan = rawTgChan.replace(/^@/, '');
+          currentClient.telegramChannel = cleanTgChan;
+          currentClient.telegramChannelUrl = `https://t.me/${cleanTgChan}`;
+        }
+      } else {
+        currentClient.telegramChannel = '';
+        currentClient.telegramChannelUrl = '';
+      }
+
+      const rawIg = document.getElementById('coachInstagram').value.trim();
+      currentClient.instagramLabel = document.getElementById('coachInstagramLabel').value.trim();
+      if (rawIg) {
+        if (rawIg.startsWith('http://') || rawIg.startsWith('https://')) {
+          currentClient.instagramUrl = rawIg;
+          currentClient.instagram = rawIg.replace(/^https?:\/\/(www\.)?instagram\.com\//i, '').replace(/\/.*$/, '');
+        } else {
+          const cleanIg = rawIg.replace(/^@/, '');
+          currentClient.instagram = cleanIg;
+          currentClient.instagramUrl = `https://instagram.com/${cleanIg}`;
+        }
+      } else {
+        currentClient.instagram = '';
+        currentClient.instagramUrl = '';
+      }
+      currentClient.brandTag = document.getElementById('coachBrandTag').value.trim();
+      currentClient.location = document.getElementById('coachLocation').value.trim();
+      currentClient.scarcityBadge = document.getElementById('coachScarcityBadge').value.trim();
+      currentClient.bio = document.getElementById('coachBio').value.trim();
+
+      currentClient.ctaButtonText = document.getElementById('coachCtaBtnText').value.trim();
+
+      currentClient.hasReviewsSection = document.getElementById('toggleReviewsSection').checked;
+      currentClient.hasCasesSection = document.getElementById('toggleCasesSection').checked;
+      currentClient.hasFaqSection = document.getElementById('toggleFaqSection').checked;
+      currentClient.hasApplicationForm = document.getElementById('toggleApplicationForm').checked;
+
+      currentClient.stats = [0, 1, 2].map(i => ({
+        value: document.getElementById(`statVal${i}`).value.trim(),
+        label: document.getElementById(`statLabel${i}`).value.trim()
+      }));
+
+      saveActiveTierData();
+      saveActiveCaseData();
+      saveActiveReviewData();
+      saveActiveFaqData();
+
+      currentClient.updatedAt = new Date().toISOString();
+
+      // 1. INSTANT LOCAL OVERRIDE
+      try {
+        localStorage.setItem('pulse_override_' + currentSlug, JSON.stringify(currentClient));
+        if (window.CLIENTS && window.CLIENTS[currentSlug]) {
+          Object.assign(window.CLIENTS[currentSlug], currentClient);
+        }
+      } catch (e) {
+        console.warn('localStorage quota warning:', e);
+      }
+
+      // 2. REMOTE SYNC VIA /api/save
+      const token = (document.getElementById('githubTokenInput').value || localStorage.getItem('pulse_github_token') || '').trim();
+      const storedPwd = sessionStorage.getItem('pulse_admin_auth_' + currentSlug) || '';
+      const payload = {
+        slug: currentSlug,
+        clientData: currentClient,
+        pendingImages: pendingImages,
+        githubToken: token,
+        adminPassword: storedPwd
+      };
+
+      try {
+        const response = await fetch('/api/save', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        const resData = await response.json();
+        if (response.ok && resData.mode === 'github-commit') {
+          showToast('🚀 Опубликовано на сервере! Сайт пересоберется за 20 секунд.');
+          dot.className = 'w-2.5 h-2.5 rounded-full bg-emerald-400';
+          statusText.textContent = 'Опубликовано на сервере';
+        } else {
+          showToast('✅ Изменения применены! Откройте сайт для проверки.');
+          dot.className = 'w-2.5 h-2.5 rounded-full bg-emerald-400';
+          statusText.textContent = 'Сайт обновлен локально';
+        }
+      } catch (err) {
+        showToast('✅ Изменения сохранены в браузере!');
+        dot.className = 'w-2.5 h-2.5 rounded-full bg-emerald-400';
+        statusText.textContent = 'Сохранено локально';
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = `<span>💾</span><span>СОХРАНИТЬ</span><span class="hidden sm:inline">&nbsp;ИЗМЕНЕНИЯ</span>`;
+      }
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toastMsg').textContent = msg;
+      toast.classList.remove('translate-y-[-100px]', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+      setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('translate-y-[-100px]', 'opacity-0');
+      }, 4500);
+    }
+
+    checkExistingAuth();
+  </script>
+</body>
+</html>
+

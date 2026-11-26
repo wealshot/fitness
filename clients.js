@@ -1195,64 +1195,277 @@ window.CLIENTS = {
     "ctaButtonText": "",
     "hasCasesSection": true,
     "hasFaqSection": true
-  }
-};
-
-if (typeof window !== "undefined" && window.localStorage) {
-  try {
-    // 1. One-click URL reset (?reset=1)
-    if (window.location && window.location.search && window.location.search.includes("reset=1")) {
-      const slug = window.location.pathname.replace(/^\/+|\/+$/g, '').split('/')[0] || '';
-      window.localStorage.removeItem("pulse_override_" + slug);
-      for (let i = window.localStorage.length - 1; i >= 0; i--) {
-        const k = window.localStorage.key(i);
-        if (k && k.startsWith("pulse_override_")) window.localStorage.removeItem(k);
-      }
-      console.log("[PULSE] Reset all local overrides!");
-      window.location.replace(window.location.pathname);
+  },
+  "gazich": {
+  "slug": "gazich",
+  "isPaidProductionClient": true,
+  "brandTag": "ФИТНЕС-ТРЕНЕР // ТРАНСФОРМАЦИЯ ТЕЛА",
+  "location": "ОНЛАЙН // САНКТ-ПЕТЕРБУРГ",
+  "name": "РУСЛАН НИКОЛАЕВ",
+  "firstName": "РУСЛАН",
+  "lastName": "НИКОЛАЕВ",
+  "tagline": "ТВОЙ РЕЗУЛЬТАТ В ЗЕРКАЛЕ",
+  "spec": "ФИТНЕС-ТРЕНЕР",
+  "bio": "Персональный онлайн-тренинг и трансформация тела. Грамотное построение тренировочного процесса, питания и пропорций тела без срывов.",
+  "heroImage": "/images/skrahfit-hero.jpg",
+  "heroImageStyle": {
+    "objectPosition": "center top",
+    "filter": "contrast(1.05) brightness(1.02)"
+  },
+  "accentColor": "#FF5E00",
+  "accentSecondary": "#E11D48",
+  "accentDim": "rgba(255, 94, 0, 0.12)",
+  "accentGlow": "rgba(255, 94, 0, 0.45)",
+  "hasApplicationForm": true,
+  "independentApplicationForm": true,
+  "ctaOpensApplication": true,
+  "hasReviewsSection": false,
+  "telegramUsername": "skrahfit",
+  "ctaButtonText": "ЗАПИСАТЬСЯ НА КОНСУЛЬТАЦИЮ",
+  "targetWeightLabel": "ЖЕЛАЕМЫЙ ВЕС",
+  "tdeeLabel": "КАЛОРИЙНОСТЬ ПОДДЕРЖАНИЯ",
+  "scarcityBadge": "СВОБОДНО ВСЕГО 3 МЕСТА НА ВЕДЕНИЕ",
+  "stats": [
+    {
+      "label": "РЕЗУЛЬТАТ",
+      "value": "8 НЕДЕЛЬ"
+    },
+    {
+      "label": "КОНТРОЛЬ",
+      "value": "100%"
     }
-
-    // 2. Multi-device sync: purge stale local overrides so edits from other devices reflect immediately!
-    for (let i = window.localStorage.length - 1; i >= 0; i--) {
-      const k = window.localStorage.key(i);
-      if (k && k.startsWith("pulse_override_")) {
-        const targetSlug = k.replace("pulse_override_", "").toLowerCase();
-        const raw = window.localStorage.getItem(k);
-        if (raw) {
-        // If coach doesn't exist in CLIENTS, purge it immediately!
-        if (!window.CLIENTS || !window.CLIENTS[targetSlug]) {
-          window.localStorage.removeItem(k);
-          console.log("[PULSE] Purged deleted coach override:", targetSlug);
-          continue;
-        }
-          try {
-            const overrideData = JSON.parse(raw);
-            const serverData = window.CLIENTS[targetSlug];
-            const overrideTime = overrideData.updatedAt ? new Date(overrideData.updatedAt).getTime() : 0;
-            const serverTime = serverData.updatedAt ? new Date(serverData.updatedAt).getTime() : 0;
-
-            // If server is newer OR override has no timestamp OR is older than 2 minutes (120s): PURGE IT!
-            if (!overrideTime || serverTime >= overrideTime || (Date.now() - overrideTime > 120000)) {
-              window.localStorage.removeItem(k);
-              console.log("[PULSE] Purged stale local override for:", targetSlug);
-              continue;
-            }
-
-            if (serverData.cases) delete overrideData.cases;
-            if (serverData.reviews) delete overrideData.reviews;
-            Object.assign(serverData, overrideData);
-            console.log("[PULSE] Applied fresh local admin override for:", targetSlug);
-          } catch(e) {
-            window.localStorage.removeItem(k);
-          }
-        }
-      }
+  ],
+  "goalOverrides": {
+    "bulk": {
+      "title": "НАБОР МЫШЦ",
+      "subtitle": "Качественное увеличение мышечного объема без лишнего жира",
+      "tag": "+3..6 КГ"
+    },
+    "strength": {
+      "title": "РЕКОМПОЗИЦИЯ",
+      "subtitle": "Убери жир и добавь мышцы одновременно",
+      "tag": "ЖИР ↓ МЫШЦЫ ↑",
+      "tagType": "recomp"
     }
-  } catch (e) {
-    console.warn("[PULSE] Local override error:", e);
-  }
+  },
+  "cases": [
+    {
+      "id": 1,
+      "gender": "male",
+      "tabLabel": "01 // ЭЛЬДАР",
+      "name": "ЭЛЬДАР",
+      "tag": "РЕКОМПОЗИЦИЯ И РЕЛЬЕФ",
+      "badge": "МУЖЧИНЫ",
+      "beforeImage": "/cases/skrahfit_case_1.jpg",
+      "afterImage": "/cases/skrahfit_case_1.jpg",
+      "images": [
+        "/cases/skrahfit_case_1.jpg"
+      ],
+      "noSlider": true,
+      "imageFit": "contain",
+      "objectPosition": "center",
+      "description": "Учеба в медицинском, работа, нехватка свободного времени, постоянный стресс — все это казалось преградой для прогресса в форме. Однако я смог выстроить систему питания и тренировок в сложный график.\n\nНабрали мышечную массу, снизили процент жира, появились кубики пресса, тело стало более атлетичным.",
+      "initialStats": "ТОЧКА А // УЧЕБА, СТРЕСС, СЛОЖНЫЙ ГРАФИК",
+      "resultStats": "ТОЧКА Б // МЫШЦЫ, КУБИКИ ПРЕССА, РЕЛЬЕФ"
+    },
+    {
+      "id": 2,
+      "gender": "male",
+      "tabLabel": "02 // АНДРЕЙ",
+      "name": "АНДРЕЙ",
+      "tag": "МЫШЦЫ И СНИЖЕНИЕ ЖИРА",
+      "badge": "МУЖЧИНЫ",
+      "beforeImage": "/cases/skrahfit_case_2.jpg",
+      "afterImage": "/cases/skrahfit_case_2.jpg",
+      "images": [
+        "/cases/skrahfit_case_2.jpg"
+      ],
+      "noSlider": true,
+      "imageFit": "contain",
+      "objectPosition": "center",
+      "description": "Работает барбером, большую часть дня на ногах, поесть полноценно часто не было времени. Были попытки в прошлом прийти в форму, тренировки в зале, но достичь желаемого результата не получалось.\n\nПостроили систему из 2 тренировок в зале и питания без жестких ограничений. Одновременно набрали мышцы и снизили процент подкожного жира.",
+      "initialStats": "ТОЧКА А // РАБОТА НА НОГАХ, НЕТ СИСТЕМЫ",
+      "resultStats": "ТОЧКА Б // НАБРАЛИ МЫШЦЫ, СНИЗИЛИ ЖИР"
+    },
+    {
+      "id": 3,
+      "gender": "male",
+      "tabLabel": "03 // ИВАН",
+      "name": "ИВАН",
+      "tag": "МИНУС ЖИВОТ, ПЛЮС МЫШЦЫ",
+      "badge": "МУЖЧИНЫ",
+      "beforeImage": "/cases/skrahfit_case_3.jpg",
+      "afterImage": "/cases/skrahfit_case_3.jpg",
+      "images": [
+        "/cases/skrahfit_case_3.jpg"
+      ],
+      "noSlider": true,
+      "imageFit": "contain",
+      "objectPosition": "center",
+      "description": "Раньше ходил в зал без особого результата и без любви к тренировкам и каждый раз забрасывал. Вместе мы пришли не только к тому, что тренировки начали приносить удовольствие, но и к изменениям в зеркале.\n\nУменьшили талию, увеличили мышечную массу в плечевом поясе, а самое главное его девушка — в восторге от этих изменений.",
+      "initialStats": "ТОЧКА А // ХОДИЛ В ЗАЛ БЕЗ РЕЗУЛЬТАТА",
+      "resultStats": "ТОЧКА Б // УЗКАЯ ТАЛИЯ, МОЩНЫЙ ВЕРХ"
+    },
+    {
+      "id": 4,
+      "gender": "male",
+      "tabLabel": "04 // СТЕПАН",
+      "name": "СТЕПАН",
+      "tag": "V-СИЛУЭТ И РЕКОМПОЗИЦИЯ",
+      "badge": "МУЖЧИНЫ",
+      "beforeImage": "/cases/skrahfit_case_stepan.jpg",
+      "afterImage": "/cases/skrahfit_case_stepan.jpg",
+      "images": [
+        "/cases/skrahfit_case_stepan.jpg"
+      ],
+      "noSlider": true,
+      "imageFit": "contain",
+      "objectPosition": "center",
+      "description": "Одновременно набрали мышцы и снизили жир. Вес такой же, но фигура приобрела V-образный силуэт, плечевой пояс стал шире, талия уже.",
+      "initialStats": "ТОЧКА А // НЕТ V-КОНУСА, СМАЗАННЫЙ РЕЛЬЕФ",
+      "resultStats": "ТОЧКА Б // V-СИЛУЭТ, ШИРОКИЕ ПЛЕЧИ"
+    },
+    {
+      "id": 5,
+      "gender": "female",
+      "tabLabel": "01 // МАРИЯ",
+      "name": "МАРИЯ",
+      "tag": "-14 КГ БЕЗ СРЫВОВ",
+      "badge": "ЖЕНЩИНЫ",
+      "beforeImage": "/cases/skrahfit_case_4.jpg",
+      "afterImage": "/cases/skrahfit_case_4.jpg",
+      "images": [
+        "/cases/skrahfit_case_4.jpg"
+      ],
+      "noSlider": true,
+      "imageFit": "contain",
+      "objectPosition": "center",
+      "description": "Каждая попытка похудеть заканчивалась срывом и откатом по весу из-за большого урезания еды.\n\nВыстроили комфортную систему из 2 тренировок и питания, вписывающегося под образ жизни. Стала есть больше — похудела на 14 кг в комфортном темпе. И ей даже один раз не продали алкоголь без паспорта, хотя ей 45 лет.",
+      "initialStats": "ТОЧКА А // СРЫВЫ, ГОЛОДОВКИ, ОТКАТЫ",
+      "resultStats": "ТОЧКА Б // МИНУС 14 КГ В 45 ЛЕТ"
+    },
+    {
+      "id": 6,
+      "gender": "female",
+      "tabLabel": "02 // АНАСТАСИЯ",
+      "name": "АНАСТАСИЯ",
+      "tag": "ФОРМА БЕЗ ОТКАЗА ОТ ВКУСНОГО",
+      "badge": "ЖЕНЩИНЫ",
+      "beforeImage": "/cases/skrahfit_case_5.jpg",
+      "afterImage": "/cases/skrahfit_case_5.jpg",
+      "images": [
+        "/cases/skrahfit_case_5.jpg"
+      ],
+      "noSlider": true,
+      "imageFit": "contain",
+      "objectPosition": "center",
+      "description": "Яркий пример как можно похудеть и прийти в форму, не отказываясь от любимой еды. У нас в рационе были и сникерсы, и булочки.\n\nУлучшили качество тела, уменьшили целлюлит, привели мышцы в тонус.",
+      "initialStats": "ТОЧКА А // СТРАХ ЕДЫ, НЕТ ТОНУСА",
+      "resultStats": "ТОЧКА Б // РЕЛЬЕФ И ТОНУС БЕЗ ЗАПРЕТОВ"
+    },
+    {
+      "id": 7,
+      "gender": "female",
+      "tabLabel": "03 // АНАСТАСИЯ",
+      "name": "АНАСТАСИЯ",
+      "tag": "РЕЛЬЕФ И ПЕСОЧНЫЕ ЧАСЫ В 46 ЛЕТ",
+      "badge": "ЖЕНЩИНЫ",
+      "beforeImage": "/cases/skrahfit_case_6.jpg",
+      "afterImage": "/cases/skrahfit_case_6.jpg",
+      "images": [
+        "/cases/skrahfit_case_6.jpg"
+      ],
+      "noSlider": true,
+      "imageFit": "contain",
+      "objectPosition": "center",
+      "description": "Доказательство, что в 46 лет можно измениться до неузнаваемости и сделать так, чтобы коллеги стали завидовать. Она сразу пришла с большой целью — добиться мышечной рельефной формы.\n\nУменьшили талию и ноги, приблизили фигуру к «песочным часам», увеличили мышечную массу.",
+      "initialStats": "ТОЧКА А // 46 ЛЕТ, ЖЕЛАНИЕ ИЗМЕНИТЬСЯ",
+      "resultStats": "ТОЧКА Б // ПЕСОЧНЫЕ ЧАСЫ, РЕЛЬЕФ"
+    },
+    {
+      "id": 8,
+      "gender": "female",
+      "tabLabel": "04 // ДАРЬЯ",
+      "name": "ДАРЬЯ",
+      "tag": "С 1200 ДО 2500 ККАЛ И ЯГОДИЦЫ",
+      "badge": "ЖЕНЩИНЫ",
+      "beforeImage": "/cases/skrahfit_case_7.jpg",
+      "afterImage": "/cases/skrahfit_case_7.jpg",
+      "images": [
+        "/cases/skrahfit_case_7.jpg"
+      ],
+      "noSlider": true,
+      "imageFit": "contain",
+      "objectPosition": "center",
+      "description": "Раньше голодала на 1200 калорий, но фигура все равно не нравилась, не хватало сил и энергии.\n\nПересмотрели подход к тренировкам, питанию, разогнались до 2500 ккал, стало больше энергии и лучше самочувствие, прибавили округлости ягодицам и сделали фигуру «песочные часы».",
+      "initialStats": "ТОЧКА А // ГОЛОД НА 1200 ККАЛ, СЛАБОСТЬ",
+      "resultStats": "ТОЧКА Б // 2500 ККАЛ, ОКРУГЛЫЕ ЯГОДИЦЫ"
+    }
+  ],
+  "tiers": [
+    {
+      "id": "tier-program",
+      "code": "01",
+      "name": "ПРОГРАММА ТРЕНИРОВОК",
+      "badge": "ПЛАН ПОД ВАС",
+      "price": "ИНДИВИДУАЛЬНО",
+      "period": "под ключ",
+      "recommendedGoal": "cut",
+      "subtitle": "Готовый план под ваш зал, цель и ваши особенности",
+      "features": [
+        "Анализ целей, опыта и графика тренировок",
+        "Индивидуальная программа под ваше оборудование и зал",
+        "Учёт травм, осанки и любимых/нелюбимых упражнений",
+        "Подробное описание техники и рабочих весов",
+        "Логика прогрессии: как и когда повышать нагрузку"
+      ]
+    },
+    {
+      "id": "tier-online-daily",
+      "code": "02",
+      "name": "ОНЛАЙН ВЕДЕНИЕ. ЕЖЕДНЕВНАЯ СВЯЗЬ",
+      "badge": "ФЛАГМАН",
+      "price": "ИНДИВИДУАЛЬНО",
+      "period": "в месяц / полный контроль",
+      "recommendedGoal": "bulk",
+      "quote": "Когда начал свой путь, страшно ошибиться и быть уверенным, что делаешь всё правильно каждый день",
+      "features": [
+        "Персональная программа тренировок",
+        "Рекомендации по питанию без стресса, которые гармонично вписываются в вашу жизнь",
+        "Видеоразбор техники выполнения упражнений",
+        "Ежедневная прямая связь лично в Telegram: чат, голосовые сообщения, проверка питания, активности, поддержка, обратная связь по тренировочному процессу"
+      ]
+    },
+    {
+      "id": "tier-online-2touch",
+      "code": "03",
+      "name": "ОНЛАЙН ВЕДЕНИЕ. 2 КАСАНИЯ",
+      "badge": "ОПТИМАЛЬНО",
+      "price": "ИНДИВИДУАЛЬНО",
+      "period": "в месяц / для самостоятельных",
+      "recommendedGoal": "strength",
+      "quote": "Результат без моего ежедневного присутствия. Для занятых и самодостаточных",
+      "features": [
+        "Персональная программа тренировок",
+        "Рекомендации по питанию без стресса, которые гармонично вписываются в вашу жизнь",
+        "2 полных разбора в неделю в удобные для вас дни по тренировкам, питанию и форме",
+        "Система под ваш образ жизни, анатомию, опыт, запросы по фигуре и ваше текущее самочувствие"
+      ]
+    },
+    {
+      "id": "tier-offline",
+      "code": "04",
+      "name": "ПЕРСОНАЛЬНЫЕ ТРЕНИРОВКИ",
+      "badge": "ОФЛАЙН",
+      "price": "ИНДИВИДУАЛЬНО",
+      "period": "офлайн / зал",
+      "recommendedGoal": null,
+      "features": [
+        "Очные тренировки в зале под полным контролем",
+        "Постановка идеальной техники упражнений вживую",
+        "Индивидуальный план питания включен в работу"
+      ]
+    }
+  ]
 }
-
-
-
-
+};

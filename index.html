@@ -19,7 +19,7 @@
   <script>
     (function () {
       var p = window.location.pathname.replace(/^\/+|\/+$/g, '').toLowerCase().split('/')[0];
-      var allowed = ['', 'bernetskiy', 'radionov', 'rodionov', 'felix', 'admin', 'new'];
+      var allowed = ['', 'bernetskiy', 'radionov', 'rodionov', 'felix', 'admin', 'new', 'gazich'];
       if (p && !allowed.includes(p)) {
         console.warn('[PULSE] Route not allowed or deleted:', p);
         window.location.replace('/');
